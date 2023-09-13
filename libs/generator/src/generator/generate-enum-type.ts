@@ -56,7 +56,7 @@ export function generateEnumType(
   sourceFile.set({
     kind: StructureKind.SourceFile,
     statements: [
-      CodeComment.GeneratedWarning,
+      CodeComment.GenratedFileComment,
       ...imports,
       enumStructure,
       `registerEnumType(${name}, { name: '${name}', description: ${JSON.stringify(

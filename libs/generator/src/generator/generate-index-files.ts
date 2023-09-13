@@ -29,7 +29,7 @@ export function generateIndexFiles(
     project.createSourceFile(
       indexFilePath,
       {
-        statements: [CodeComment.GeneratedWarning, ...exports],
+        statements: [CodeComment.GenratedFileComment, ...exports],
       },
       {
         overwrite: true,
@@ -47,7 +47,7 @@ export function generateIndexFiles(
   project.createSourceFile(
     baseIndexFilePath,
     {
-      statements: [CodeComment.GeneratedWarning, ...exports],
+      statements: [CodeComment.GenratedFileComment, ...exports],
     },
     {
       overwrite: true,

@@ -118,7 +118,7 @@ export async function generateNestEaseModule(
   project.createSourceFile(
     sourceFilePath,
     {
-      statements: [CodeComment.GeneratedWarning, ...imports, classDeclaration],
+      statements: [CodeComment.GenratedFileComment, ...imports, classDeclaration],
     },
     {
       overwrite: true,

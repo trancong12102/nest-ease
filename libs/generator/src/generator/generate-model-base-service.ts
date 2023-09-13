@@ -195,7 +195,7 @@ return this.prisma.client.${modelDelegateName}
     sourceFilePath,
     {
       statements: [
-        CodeComment.GeneratedWarning,
+        CodeComment.GenratedFileComment,
         ...optimizeImports(imports, className),
         classDeclaration,
       ],

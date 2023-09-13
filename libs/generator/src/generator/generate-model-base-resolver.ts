@@ -294,7 +294,7 @@ return this.service.${getResolveMethodName(name)}(parent${
     sourceFilePath,
     {
       statements: [
-        CodeComment.GeneratedWarning,
+        CodeComment.GenratedFileComment,
         ...optimizeImports(imports, className),
         classDeclaration,
       ],

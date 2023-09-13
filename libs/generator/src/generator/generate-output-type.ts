@@ -83,7 +83,7 @@ export function generateOutputType(
   sourceFile.set({
     kind: StructureKind.SourceFile,
     statements: [
-      CodeComment.GeneratedWarning,
+      CodeComment.GenratedFileComment,
       ...optimizeImports(imports, name),
       classDeclaration,
     ],
