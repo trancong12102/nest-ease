@@ -1,0 +1,100 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/prisma-client"
+}
+
+generator nest-ease {
+  provider = "node dist/libs/generator/src/bin.js"
+}
+
+/// UserRole Documentation
+enum UserRole {
+  /// UserRole USER
+  USER
+  /// UserRole ADMIN
+  ADMIN
+  /// UserRole MODERATOR
+  MODERATOR
+}
+
+enum PostKind {
+  BLOG
+  ADVERT
+}
+
+/// User model documentation
+model User {
+  id           Int      @id @default(autoincrement())
+  /// Email field documentation
+  email        String   @unique
+  /// Multiple line
+  /// documentation
+  name         String?
+  role         UserRole @default(USER)
+  /// One to many relation with Post
+  posts        Post[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  parentId     Int?
+  /// Self relation with User
+  parent       User?    @relation("UserToUser", fields: [parentId], references: [id])
+  /// Self relation with User
+  children     User[]   @relation("UserToUser")
+  /// Another Many to many relation with Post
+  anotherPosts Post[]   @relation("AnotherUserToPost")
+  toMapField   String   @map("toMapFieldMapped")
+}
+
+model Post {
+  id              Int        @id @default(autoincrement())
+  title           String
+  content         String?
+  published       Boolean    @default(false)
+  /// Many to one relation with User
+  author          User       @relation(fields: [authorId], references: [id])
+  authorId        Int
+  /// Another Many to one relation with User
+  anotherAuthor   User       @relation("AnotherUserToPost", fields: [anotherAuthorId], references: [id])
+  anotherAuthorId Int
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  /// Many to many relation with Category
+  categories      Category[]
+  postKind        PostKind
+  jsonField       Json
+  scalarList      String[]
+}
+
+model Category {
+  id        Int               @id @default(autoincrement())
+  name      String            @unique
+  /// Many to many relation with Post
+  posts     Post[]
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+  /// One to one relation with CategoryMetadata
+  metadata  CategoryMetadata?
+}
+
+model CategoryMetadata {
+  id         Int      @id @default(autoincrement())
+  /// One to one relation with Category
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int      @unique
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Standalone {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  name       String
+  jsonField  Json
+  scalarList String[]
+}
