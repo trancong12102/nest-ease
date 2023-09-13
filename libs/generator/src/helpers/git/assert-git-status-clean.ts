@@ -6,8 +6,8 @@ export function assertGitStatusClean(
     throw new Error(
       `
 ERROR:
-  File "${filePath}" is changed.
-  Please commit it before running generator or disable options "dangerous.overwriteCustomFiles" to prevent overwriting custom files.
+  File "${filePath}" is changed!
+  Please commit it before running generator or disable option "dangerous.overwriteCustomFiles" to prevent overwriting custom files.
 `
     );
   }
