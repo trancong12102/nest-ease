@@ -18,7 +18,11 @@ export function selectInputType(inputTypes: InputTypeRef[]): InputTypeRef {
         rank -= 2;
       }
 
-      if (type.includes('Unchecked') || type === 'JsonNullValueInput') {
+      if (
+        type.includes('Unchecked') ||
+        type === 'JsonNullValueInput' ||
+        type === 'JsonNullValueFilter'
+      ) {
         rank -= 5;
       }
 
