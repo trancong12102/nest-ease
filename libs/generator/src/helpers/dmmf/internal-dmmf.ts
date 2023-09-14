@@ -8,8 +8,6 @@ import {
   DatamodelType,
   ModelMapping,
   FieldLocation,
-  OutputTypeRef,
-  SchemaField,
   Model,
 } from '../../types/dmmf';
 import { CacheManager } from '../cache/cache-manager';
@@ -65,18 +63,6 @@ export class InternalDmmf {
 
   isModel(name: string) {
     return !!this.getModel(name);
-  }
-
-  isRelationOutputTypeRef(type: OutputTypeRef) {
-    const { location, namespace } = type;
-
-    return location === 'outputObjectTypes' && namespace === 'model';
-  }
-
-  removeRelationFields(fields: SchemaField[]): SchemaField[] {
-    return fields.filter(
-      (f) => f.name !== '_count' && !this.isRelationOutputTypeRef(f.outputType)
-    );
   }
 
   getNonPrimitiveTypeFileKind(

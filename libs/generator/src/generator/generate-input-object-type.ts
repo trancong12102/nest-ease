@@ -49,6 +49,17 @@ export function generateInputObjectType(
   }
 
   const { fields } = type;
+  const isNestedInputType = getIsNestedInputType(name);
+
+  const shouldImportHideField =
+    isNestedInputType && fields.some((f) => getIsHiddenField(f.name));
+  if (shouldImportHideField) {
+    imports.push({
+      kind: StructureKind.ImportDeclaration,
+      moduleSpecifier: '@nestjs/graphql',
+      namedImports: ['HideField'],
+    });
+  }
 
   for (const field of fields) {
     const { imports: propertyImports, property } = getPropertyDeclaration(
@@ -56,6 +67,15 @@ export function generateInputObjectType(
       options,
       field
     );
+    if (isNestedInputType && getIsHiddenField(field.name)) {
+      property.decorators = (property.decorators || [])
+        .filter((d) => d.name !== 'Field')
+        .concat({
+          kind: StructureKind.Decorator,
+          name: 'HideField',
+          arguments: [],
+        });
+    }
     imports.push(...propertyImports);
     properties.push(property);
   }
@@ -88,4 +108,18 @@ export function generateInputObjectType(
     const inputType = selectInputType(inputTypes);
     generatePrismaType(project, options, inputType);
   }
+}
+
+function getIsHiddenField(name: string) {
+  return [
+    'connectOrCreate',
+    'deleteMany',
+    'set',
+    'updateMany',
+    'upsert',
+  ].includes(name);
+}
+
+function getIsNestedInputType(inputType: string) {
+  return inputType.match(/.*?Nested.*?Input$/);
 }

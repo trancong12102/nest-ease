@@ -6,7 +6,7 @@ import {
   StructureKind,
 } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator';
-import { FieldNamespace } from '../types/dmmf';
+import { FieldNamespace, SchemaField } from '../types/dmmf';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { BaseFileKind } from '../enums/base-file-kind';
 import { optimizeImports } from '../helpers/import/optimize-imports';
@@ -49,7 +49,7 @@ export function generateOutputType(
 
   const fields =
     kind === BaseFileKind.Model
-      ? dmmf.removeRelationFields(type.fields)
+      ? removeCountAndRelationFields(type.fields)
       : type.fields;
 
   for (const field of fields) {
@@ -93,4 +93,14 @@ export function generateOutputType(
     const { outputType } = field;
     generatePrismaType(project, options, outputType);
   }
+}
+
+function removeCountAndRelationFields(fields: SchemaField[]) {
+  return fields.filter(
+    ({ name, outputType: { location, namespace } }) =>
+      !(
+        name === '_count' ||
+        (location === 'outputObjectTypes' && namespace === 'model')
+      )
+  );
 }
