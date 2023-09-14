@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UserBaseService } from '../nest-ease-base';
+import { UserBaseService } from '../nest-ease/base';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()

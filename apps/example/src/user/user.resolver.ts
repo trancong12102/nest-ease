@@ -1,5 +1,5 @@
 import { Resolver } from '@nestjs/graphql';
-import { UserBaseResolver, User } from '../nest-ease-base';
+import { UserBaseResolver, User } from '../nest-ease/base';
 import { UserService } from './user.service';
 
 @Resolver(() => User)

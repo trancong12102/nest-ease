@@ -1,5 +1,5 @@
 import { Resolver } from '@nestjs/graphql';
-import { StandaloneBaseResolver, Standalone } from '../nest-ease-base';
+import { StandaloneBaseResolver, Standalone } from '../nest-ease/base';
 import { StandaloneService } from './standalone.service';
 
 @Resolver(() => Standalone)
