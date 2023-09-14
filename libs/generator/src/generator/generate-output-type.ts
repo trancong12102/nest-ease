@@ -13,7 +13,7 @@ import { optimizeImports } from '../helpers/import/optimize-imports';
 import { CodeComment } from '../enums/code-comment';
 import { generatePrismaType } from './generate-prisma-type';
 import { getPropertyDeclaration } from '../helpers/generator/get-property-declaration';
-import { buildModelCommentMap } from '../helpers/comment/build-model-comment-map';
+import { buildModelDocumentations } from '../helpers/documentation/build-model-documentations';
 
 export function generateOutputType(
   project: Project,
@@ -23,7 +23,8 @@ export function generateOutputType(
 ) {
   const { srcPath, dmmf } = options;
   const model = dmmf.getModel(name);
-  const modelCommentMap = buildModelCommentMap(model);
+  const { documentation, fields: fieldDocumentations } =
+    buildModelDocumentations(model);
   const kind = dmmf.isModel(name) ? BaseFileKind.Model : BaseFileKind.Output;
   const sourceFilePath = getBaseChildFilePath(srcPath, name, kind);
   if (project.getSourceFile(sourceFilePath)) {
@@ -57,7 +58,7 @@ export function generateOutputType(
       sourceFilePath,
       options,
       field,
-      modelCommentMap.fields?.[field.name]
+      fieldDocumentations?.[field.name]
     );
     imports.push(...propertyImports);
     properties.push(property);
@@ -71,13 +72,11 @@ export function generateOutputType(
       {
         kind: StructureKind.Decorator,
         name: 'ObjectType',
-        arguments: [
-          `{ description: ${JSON.stringify(modelCommentMap.documentation)} }`,
-        ],
+        arguments: [`{ description: ${JSON.stringify(documentation)} }`],
       },
     ],
     properties,
-    docs: modelCommentMap.documentation ? [modelCommentMap.documentation] : [],
+    docs: documentation ? [documentation] : [],
   };
 
   sourceFile.set({

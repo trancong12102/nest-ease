@@ -9,7 +9,7 @@ import { FieldNamespace } from '../types/dmmf';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { BaseFileKind } from '../enums/base-file-kind';
 import { CodeComment } from '../enums/code-comment';
-import { buildEnumComment } from '../helpers/comment/build-enum-comment';
+import { buildEnumDocumentationOptions } from '../helpers/documentation/build-enum-documentation-options';
 
 export function generateEnumType(
   project: Project,
@@ -34,7 +34,8 @@ export function generateEnumType(
 
   const { values } = type;
   const datamodelEnum = dmmf.getDatamodelType('enums', name);
-  const comment = buildEnumComment(datamodelEnum);
+  const { description, valuesMap } =
+    buildEnumDocumentationOptions(datamodelEnum);
 
   const imports: ImportDeclarationStructure[] = [
     {
@@ -43,15 +44,21 @@ export function generateEnumType(
       moduleSpecifier: '@nestjs/graphql',
     },
   ];
+
   const enumStructure: EnumDeclarationStructure = {
     kind: StructureKind.Enum,
     isExported: true,
     name,
-    members: values.map((value) => ({
-      name: value,
-      value,
-    })),
-    docs: comment ? [comment] : [],
+    members: values.map((value) => {
+      const comment = valuesMap?.[value]?.description;
+
+      return {
+        name: value,
+        value,
+        docs: comment ? [comment] : [],
+      };
+    }),
+    docs: description ? [description] : [],
   };
   sourceFile.set({
     kind: StructureKind.SourceFile,
@@ -60,8 +67,8 @@ export function generateEnumType(
       ...imports,
       enumStructure,
       `registerEnumType(${name}, { name: '${name}', description: ${JSON.stringify(
-        comment
-      )} })`,
+        description
+      )}, valuesMap: ${JSON.stringify(valuesMap)} })`,
     ],
   });
 }

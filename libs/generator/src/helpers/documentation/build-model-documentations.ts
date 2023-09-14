@@ -1,6 +1,6 @@
 import { Model } from '../../types/dmmf';
 
-export function buildModelCommentMap(model?: Model): {
+export function buildModelDocumentations(model?: Model): {
   documentation?: string;
   fields?: Record<string, string | undefined>;
 } {
