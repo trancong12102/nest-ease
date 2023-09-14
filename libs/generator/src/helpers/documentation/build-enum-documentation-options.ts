@@ -16,14 +16,14 @@ export function buildEnumDocumentationOptions(
 
   return {
     description: datamodelEnum.documentation,
-    valuesMap: values.reduce(
+    valuesMap: values.reduce<EnumOptions['valuesMap']>(
       (acc, { name, documentation }) => ({
         ...acc,
         [name]: {
           description: documentation,
         },
       }),
-      {} as EnumOptions['valuesMap']
+      {}
     ),
   };
 }
