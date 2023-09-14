@@ -1,11 +1,4 @@
-import {
-  FieldLocation,
-  FieldNamespace,
-  InputType,
-  Model,
-  OutputType,
-  SchemaEnum,
-} from '../../types/dmmf';
+import { FieldLocation, FieldNamespace, Model } from '../../types/dmmf';
 import { getScalarFieldMetadata } from './get-scalar-field-metadata';
 import {
   FieldMetadata,
@@ -37,7 +30,7 @@ export function getFieldMetadata({
   },
   importDest,
 }: {
-  type: string | OutputType | SchemaEnum | InputType;
+  type: string;
   location: FieldLocation;
   namespace?: FieldNamespace;
   importDest: string;
@@ -47,10 +40,6 @@ export function getFieldMetadata({
   propertyOptions: PropertyTypeOptions;
 }): FieldMetadata {
   const { isList, fixCircular } = propertyOptions;
-
-  if (typeof type !== 'string') {
-    throw new Error('Type must be a string');
-  }
 
   if (location === 'fieldRefTypes') {
     throw new Error('Field ref types are not supported');

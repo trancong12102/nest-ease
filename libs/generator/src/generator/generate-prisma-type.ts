@@ -1,4 +1,4 @@
-import { OutputTypeRef, SchemaArgInputType } from '../types/dmmf';
+import { InputTypeRef, OutputTypeRef } from '../types/dmmf';
 import { generateOutputType } from './generate-output-type';
 import { Project } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator';
@@ -8,7 +8,7 @@ import { generateInputObjectType } from './generate-input-object-type';
 export function generatePrismaType(
   project: Project,
   options: GeneratorOptions,
-  ref: OutputTypeRef | SchemaArgInputType
+  ref: OutputTypeRef | InputTypeRef
 ) {
   const { location, namespace, type } = ref;
   if (location === 'scalar' || location === 'fieldRefTypes') {

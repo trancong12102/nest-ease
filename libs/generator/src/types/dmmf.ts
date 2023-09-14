@@ -11,7 +11,7 @@ export type SchemaField = DMMF.SchemaField;
 export type FieldLocation = DMMF.FieldLocation;
 export type FieldNamespace = DMMF.FieldNamespace;
 export type OutputTypeRef = DMMF.OutputTypeRef;
-export type SchemaArgInputType = DMMF.SchemaArgInputType;
+export type InputTypeRef = DMMF.InputTypeRef;
 export type SchemaArg = DMMF.SchemaArg;
 export type EnumValue = DMMF.EnumValue;
 

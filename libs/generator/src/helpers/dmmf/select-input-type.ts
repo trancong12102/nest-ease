@@ -1,8 +1,6 @@
-import { SchemaArgInputType } from '../../types/dmmf';
+import { InputTypeRef } from '../../types/dmmf';
 
-export function selectInputType(
-  inputTypes: SchemaArgInputType[]
-): SchemaArgInputType {
+export function selectInputType(inputTypes: InputTypeRef[]): InputTypeRef {
   const rankedInputTypes = inputTypes
     .map((i) => {
       let rank = 0;
@@ -20,14 +18,11 @@ export function selectInputType(
         rank -= 2;
       }
 
-      if (typeof type === 'string') {
-        if (type.includes('Unchecked')) {
-          rank -= 5;
-        }
-
-        if (type.includes('RelationFilter')) {
-          rank += 1;
-        }
+      if (type.includes('Unchecked')) {
+        rank -= 5;
+      }
+      if (type.includes('RelationFilter')) {
+        rank += 1;
       }
 
       return {
