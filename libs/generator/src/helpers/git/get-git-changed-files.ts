@@ -1,12 +1,13 @@
 import simpleGit from 'simple-git';
 import path from 'path';
 
-export async function getGitChangedFiles() {
+export async function getGitChangedFiles(): Promise<string[]> {
   const cwd = process.cwd();
   const repo = simpleGit({
     baseDir: cwd,
   });
-  const status = await repo.status();
+  const { modified, created } = await repo.status();
+  const changedPaths = [...modified, ...created];
 
-  return status.files.map((file) => path.resolve(cwd, file.path));
+  return changedPaths.map((p) => path.resolve(cwd, p));
 }
