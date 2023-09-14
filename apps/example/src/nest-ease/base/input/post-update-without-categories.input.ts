@@ -6,7 +6,8 @@ import { Type } from 'class-transformer';
 import { NullableStringFieldUpdateOperationsInput } from './nullable-string-field-update-operations.input';
 import { BoolFieldUpdateOperationsInput } from './bool-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from './date-time-field-update-operations.input';
-import { PostKind, JsonNullValueInput } from '../enum';
+import { PostKind } from '../enum';
+import { GraphQLJSON } from 'graphql-scalars';
 import { PostUpdatescalarListInput } from './post-updatescalar-list.input';
 import { UserUpdateOneRequiredWithoutPostsNestedInput } from './user-update-one-required-without-posts-nested.input';
 import { UserUpdateOneRequiredWithoutAnotherPostsNestedInput } from './user-update-one-required-without-another-posts-nested.input';
@@ -45,8 +46,8 @@ export class PostUpdateWithoutCategoriesInput {
   updatedAt?: DateTimeFieldUpdateOperationsInput;
   @Field(() => PostKind, { nullable: true, description: undefined })
   postKind?: keyof typeof PostKind;
-  @Field(() => JsonNullValueInput, { nullable: true, description: undefined })
-  jsonField?: keyof typeof JsonNullValueInput;
+  @Field(() => GraphQLJSON, { nullable: true, description: undefined })
+  jsonField?: any;
   @Type(() => PostUpdatescalarListInput)
   @Field(() => PostUpdatescalarListInput, {
     nullable: true,

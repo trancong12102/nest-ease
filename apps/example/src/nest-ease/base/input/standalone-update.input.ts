@@ -4,7 +4,7 @@ import { InputType, Field } from '@nestjs/graphql';
 import { DateTimeFieldUpdateOperationsInput } from './date-time-field-update-operations.input';
 import { Type } from 'class-transformer';
 import { StringFieldUpdateOperationsInput } from './string-field-update-operations.input';
-import { JsonNullValueInput } from '../enum';
+import { GraphQLJSON } from 'graphql-scalars';
 import { StandaloneUpdatescalarListInput } from './standalone-updatescalar-list.input';
 
 @InputType()
@@ -27,8 +27,8 @@ export class StandaloneUpdateInput {
     description: undefined,
   })
   name?: StringFieldUpdateOperationsInput;
-  @Field(() => JsonNullValueInput, { nullable: true, description: undefined })
-  jsonField?: keyof typeof JsonNullValueInput;
+  @Field(() => GraphQLJSON, { nullable: true, description: undefined })
+  jsonField?: any;
   @Type(() => StandaloneUpdatescalarListInput)
   @Field(() => StandaloneUpdatescalarListInput, {
     nullable: true,
