@@ -12,4 +12,5 @@ export enum CategoryMetadataScalarFieldEnum {
 registerEnumType(CategoryMetadataScalarFieldEnum, {
   name: 'CategoryMetadataScalarFieldEnum',
   description: undefined,
+  valuesMap: undefined,
 });

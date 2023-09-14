@@ -7,4 +7,8 @@ export enum QueryMode {
   insensitive = 'insensitive',
 }
 
-registerEnumType(QueryMode, { name: 'QueryMode', description: undefined });
+registerEnumType(QueryMode, {
+  name: 'QueryMode',
+  description: undefined,
+  valuesMap: undefined,
+});

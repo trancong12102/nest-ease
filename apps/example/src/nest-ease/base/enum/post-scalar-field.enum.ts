@@ -19,4 +19,5 @@ export enum PostScalarFieldEnum {
 registerEnumType(PostScalarFieldEnum, {
   name: 'PostScalarFieldEnum',
   description: undefined,
+  valuesMap: undefined,
 });

@@ -14,4 +14,5 @@ export enum StandaloneScalarFieldEnum {
 registerEnumType(StandaloneScalarFieldEnum, {
   name: 'StandaloneScalarFieldEnum',
   description: undefined,
+  valuesMap: undefined,
 });

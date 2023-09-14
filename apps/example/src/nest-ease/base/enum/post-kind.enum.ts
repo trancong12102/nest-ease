@@ -2,12 +2,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { registerEnumType } from '@nestjs/graphql';
 
-/**
- *
- * Possible values:
- *   - BLOG // undefined
- *   - ADVERT // undefined
- */
 export enum PostKind {
   BLOG = 'BLOG',
   ADVERT = 'ADVERT',
@@ -15,6 +9,6 @@ export enum PostKind {
 
 registerEnumType(PostKind, {
   name: 'PostKind',
-  description:
-    '\n\nPossible values:\n  - BLOG // undefined\n  - ADVERT // undefined',
+  description: undefined,
+  valuesMap: { BLOG: {}, ADVERT: {} },
 });

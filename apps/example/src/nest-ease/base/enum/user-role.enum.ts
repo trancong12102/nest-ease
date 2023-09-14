@@ -2,22 +2,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { registerEnumType } from '@nestjs/graphql';
 
-/**
- * UserRole Documentation
- *
- * Possible values:
- *   - USER // UserRole USER
- *   - ADMIN // UserRole ADMIN
- *   - MODERATOR // UserRole MODERATOR
- */
+/** UserRole Documentation */
 export enum UserRole {
+  /** UserRole USER */
   USER = 'USER',
+  /** UserRole ADMIN */
   ADMIN = 'ADMIN',
+  /** UserRole MODERATOR */
   MODERATOR = 'MODERATOR',
 }
 
 registerEnumType(UserRole, {
   name: 'UserRole',
-  description:
-    'UserRole Documentation\n\nPossible values:\n  - USER // UserRole USER\n  - ADMIN // UserRole ADMIN\n  - MODERATOR // UserRole MODERATOR',
+  description: 'UserRole Documentation',
+  valuesMap: {
+    USER: { description: 'UserRole USER' },
+    ADMIN: { description: 'UserRole ADMIN' },
+    MODERATOR: { description: 'UserRole MODERATOR' },
+  },
 });
