@@ -16,13 +16,13 @@ export class CategoryUpdateOneRequiredWithoutMetadataNestedInput {
     nullable: true,
     description: undefined,
   })
-  create?: CategoryCreateWithoutMetadataInput;
+  create?: CategoryCreateWithoutMetadataInput | null;
   @Type(() => CategoryCreateOrConnectWithoutMetadataInput)
   @HideField()
-  connectOrCreate?: CategoryCreateOrConnectWithoutMetadataInput;
+  connectOrCreate?: CategoryCreateOrConnectWithoutMetadataInput | null;
   @Type(() => CategoryUpsertWithoutMetadataInput)
   @HideField()
-  upsert?: CategoryUpsertWithoutMetadataInput;
+  upsert?: CategoryUpsertWithoutMetadataInput | null;
   @Type(() => CategoryWhereUniqueInput)
   @Field(() => CategoryWhereUniqueInput, {
     nullable: true,
@@ -34,5 +34,5 @@ export class CategoryUpdateOneRequiredWithoutMetadataNestedInput {
     nullable: true,
     description: undefined,
   })
-  update?: CategoryUpdateToOneWithWhereWithoutMetadataInput;
+  update?: CategoryUpdateToOneWithWhereWithoutMetadataInput | null;
 }

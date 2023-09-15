@@ -11,11 +11,11 @@ export class CategoryMetadataUpdateWithoutCategoryInput {
     nullable: true,
     description: undefined,
   })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+  createdAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
   @Field(() => DateTimeFieldUpdateOperationsInput, {
     nullable: true,
     description: undefined,
   })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+  updatedAt?: DateTimeFieldUpdateOperationsInput | null;
 }

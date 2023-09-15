@@ -18,13 +18,13 @@ export class CategoryUpdateManyWithoutPostsNestedInput {
     nullable: true,
     description: undefined,
   })
-  create?: Array<CategoryCreateWithoutPostsInput>;
+  create?: Array<CategoryCreateWithoutPostsInput> | null;
   @Type(() => CategoryCreateOrConnectWithoutPostsInput)
   @HideField()
-  connectOrCreate?: Array<CategoryCreateOrConnectWithoutPostsInput>;
+  connectOrCreate?: Array<CategoryCreateOrConnectWithoutPostsInput> | null;
   @Type(() => CategoryUpsertWithWhereUniqueWithoutPostsInput)
   @HideField()
-  upsert?: Array<CategoryUpsertWithWhereUniqueWithoutPostsInput>;
+  upsert?: Array<CategoryUpsertWithWhereUniqueWithoutPostsInput> | null;
   @Type(() => CategoryWhereUniqueInput)
   @HideField()
   set?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
@@ -51,11 +51,11 @@ export class CategoryUpdateManyWithoutPostsNestedInput {
     nullable: true,
     description: undefined,
   })
-  update?: Array<CategoryUpdateWithWhereUniqueWithoutPostsInput>;
+  update?: Array<CategoryUpdateWithWhereUniqueWithoutPostsInput> | null;
   @Type(() => CategoryUpdateManyWithWhereWithoutPostsInput)
   @HideField()
-  updateMany?: Array<CategoryUpdateManyWithWhereWithoutPostsInput>;
+  updateMany?: Array<CategoryUpdateManyWithWhereWithoutPostsInput> | null;
   @Type(() => CategoryScalarWhereInput)
   @HideField()
-  deleteMany?: Array<CategoryScalarWhereInput>;
+  deleteMany?: Array<CategoryScalarWhereInput> | null;
 }

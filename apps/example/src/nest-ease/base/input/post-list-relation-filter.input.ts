@@ -8,11 +8,11 @@ import { Type } from 'class-transformer';
 export class PostListRelationFilter {
   @Type(() => PostWhereInput)
   @Field(() => PostWhereInput, { nullable: true, description: undefined })
-  every?: Omit<PostWhereInput, never>;
+  every?: Omit<PostWhereInput, never> | null;
   @Type(() => PostWhereInput)
   @Field(() => PostWhereInput, { nullable: true, description: undefined })
-  some?: Omit<PostWhereInput, never>;
+  some?: Omit<PostWhereInput, never> | null;
   @Type(() => PostWhereInput)
   @Field(() => PostWhereInput, { nullable: true, description: undefined })
-  none?: Omit<PostWhereInput, never>;
+  none?: Omit<PostWhereInput, never> | null;
 }

@@ -10,34 +10,34 @@ import { CategoryMetadataNullableRelationFilter } from './category-metadata-null
 @InputType()
 export class CategoryWhereUniqueInput {
   @Field(() => Int, { nullable: true, description: undefined })
-  id?: number;
+  id?: number | null;
   @Field(() => String, { nullable: true, description: undefined })
-  name?: string;
+  name?: string | null;
   @Type(() => CategoryWhereInput)
   @Field(() => [CategoryWhereInput], { nullable: true, description: undefined })
-  AND?: Array<CategoryWhereInput>;
+  AND?: Array<CategoryWhereInput> | null;
   @Type(() => CategoryWhereInput)
   @Field(() => [CategoryWhereInput], { nullable: true, description: undefined })
-  OR?: Array<CategoryWhereInput>;
+  OR?: Array<CategoryWhereInput> | null;
   @Type(() => CategoryWhereInput)
   @Field(() => [CategoryWhereInput], { nullable: true, description: undefined })
-  NOT?: Array<CategoryWhereInput>;
+  NOT?: Array<CategoryWhereInput> | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
-  createdAt?: DateTimeFilter;
+  createdAt?: DateTimeFilter | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
-  updatedAt?: DateTimeFilter;
+  updatedAt?: DateTimeFilter | null;
   @Type(() => PostListRelationFilter)
   @Field(() => PostListRelationFilter, {
     nullable: true,
     description: undefined,
   })
-  posts?: Omit<PostListRelationFilter, never>;
+  posts?: Omit<PostListRelationFilter, never> | null;
   @Type(() => CategoryMetadataNullableRelationFilter)
   @Field(() => CategoryMetadataNullableRelationFilter, {
     nullable: true,
     description: undefined,
   })
-  metadata?: CategoryMetadataNullableRelationFilter;
+  metadata?: CategoryMetadataNullableRelationFilter | null;
 }

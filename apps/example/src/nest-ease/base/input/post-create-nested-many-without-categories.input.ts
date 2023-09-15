@@ -14,10 +14,10 @@ export class PostCreateNestedManyWithoutCategoriesInput {
     nullable: true,
     description: undefined,
   })
-  create?: Array<PostCreateWithoutCategoriesInput>;
+  create?: Array<PostCreateWithoutCategoriesInput> | null;
   @Type(() => PostCreateOrConnectWithoutCategoriesInput)
   @HideField()
-  connectOrCreate?: Array<PostCreateOrConnectWithoutCategoriesInput>;
+  connectOrCreate?: Array<PostCreateOrConnectWithoutCategoriesInput> | null;
   @Type(() => PostWhereUniqueInput)
   @Field(() => [PostWhereUniqueInput], {
     nullable: true,

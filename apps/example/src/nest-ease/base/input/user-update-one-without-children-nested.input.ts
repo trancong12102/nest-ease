@@ -17,19 +17,19 @@ export class UserUpdateOneWithoutChildrenNestedInput {
     nullable: true,
     description: undefined,
   })
-  create?: UserCreateWithoutChildrenInput;
+  create?: UserCreateWithoutChildrenInput | null;
   @Type(() => UserCreateOrConnectWithoutChildrenInput)
   @HideField()
-  connectOrCreate?: UserCreateOrConnectWithoutChildrenInput;
+  connectOrCreate?: UserCreateOrConnectWithoutChildrenInput | null;
   @Type(() => UserUpsertWithoutChildrenInput)
   @HideField()
-  upsert?: UserUpsertWithoutChildrenInput;
+  upsert?: UserUpsertWithoutChildrenInput | null;
   @Type(() => UserWhereInput)
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
-  disconnect?: Omit<UserWhereInput, never>;
+  disconnect?: Omit<UserWhereInput, never> | null;
   @Type(() => UserWhereInput)
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
-  delete?: Omit<UserWhereInput, never>;
+  delete?: Omit<UserWhereInput, never> | null;
   @Type(() => UserWhereUniqueInput)
   @Field(() => UserWhereUniqueInput, { nullable: true, description: undefined })
   connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
@@ -38,5 +38,5 @@ export class UserUpdateOneWithoutChildrenNestedInput {
     nullable: true,
     description: undefined,
   })
-  update?: UserUpdateToOneWithWhereWithoutChildrenInput;
+  update?: UserUpdateToOneWithWhereWithoutChildrenInput | null;
 }

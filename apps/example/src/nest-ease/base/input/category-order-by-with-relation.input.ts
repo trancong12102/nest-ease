@@ -9,23 +9,23 @@ import { CategoryMetadataOrderByWithRelationInput } from './category-metadata-or
 @InputType()
 export class CategoryOrderByWithRelationInput {
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  id?: keyof typeof SortOrder;
+  id?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  name?: keyof typeof SortOrder;
+  name?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  createdAt?: keyof typeof SortOrder;
+  createdAt?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  updatedAt?: keyof typeof SortOrder;
+  updatedAt?: keyof typeof SortOrder | null;
   @Type(() => PostOrderByRelationAggregateInput)
   @Field(() => PostOrderByRelationAggregateInput, {
     nullable: true,
     description: undefined,
   })
-  posts?: PostOrderByRelationAggregateInput;
+  posts?: PostOrderByRelationAggregateInput | null;
   @Type(() => CategoryMetadataOrderByWithRelationInput)
   @Field(() => CategoryMetadataOrderByWithRelationInput, {
     nullable: true,
     description: undefined,
   })
-  metadata?: Omit<CategoryMetadataOrderByWithRelationInput, never>;
+  metadata?: Omit<CategoryMetadataOrderByWithRelationInput, never> | null;
 }

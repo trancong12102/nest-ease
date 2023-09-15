@@ -5,5 +5,5 @@ import { InputType, Field } from '@nestjs/graphql';
 @InputType()
 export class StringFieldUpdateOperationsInput {
   @Field(() => String, { nullable: true, description: undefined })
-  set?: string;
+  set?: string | null;
 }

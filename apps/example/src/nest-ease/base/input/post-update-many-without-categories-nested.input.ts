@@ -18,13 +18,13 @@ export class PostUpdateManyWithoutCategoriesNestedInput {
     nullable: true,
     description: undefined,
   })
-  create?: Array<PostCreateWithoutCategoriesInput>;
+  create?: Array<PostCreateWithoutCategoriesInput> | null;
   @Type(() => PostCreateOrConnectWithoutCategoriesInput)
   @HideField()
-  connectOrCreate?: Array<PostCreateOrConnectWithoutCategoriesInput>;
+  connectOrCreate?: Array<PostCreateOrConnectWithoutCategoriesInput> | null;
   @Type(() => PostUpsertWithWhereUniqueWithoutCategoriesInput)
   @HideField()
-  upsert?: Array<PostUpsertWithWhereUniqueWithoutCategoriesInput>;
+  upsert?: Array<PostUpsertWithWhereUniqueWithoutCategoriesInput> | null;
   @Type(() => PostWhereUniqueInput)
   @HideField()
   set?: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
@@ -51,11 +51,11 @@ export class PostUpdateManyWithoutCategoriesNestedInput {
     nullable: true,
     description: undefined,
   })
-  update?: Array<PostUpdateWithWhereUniqueWithoutCategoriesInput>;
+  update?: Array<PostUpdateWithWhereUniqueWithoutCategoriesInput> | null;
   @Type(() => PostUpdateManyWithWhereWithoutCategoriesInput)
   @HideField()
-  updateMany?: Array<PostUpdateManyWithWhereWithoutCategoriesInput>;
+  updateMany?: Array<PostUpdateManyWithWhereWithoutCategoriesInput> | null;
   @Type(() => PostScalarWhereInput)
   @HideField()
-  deleteMany?: Array<PostScalarWhereInput>;
+  deleteMany?: Array<PostScalarWhereInput> | null;
 }

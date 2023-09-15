@@ -11,41 +11,41 @@ import { StringNullableListFilter } from './string-nullable-list-filter.input';
 @InputType()
 export class StandaloneWhereUniqueInput {
   @Field(() => Int, { nullable: true, description: undefined })
-  id?: number;
+  id?: number | null;
   @Type(() => StandaloneWhereInput)
   @Field(() => [StandaloneWhereInput], {
     nullable: true,
     description: undefined,
   })
-  AND?: Array<StandaloneWhereInput>;
+  AND?: Array<StandaloneWhereInput> | null;
   @Type(() => StandaloneWhereInput)
   @Field(() => [StandaloneWhereInput], {
     nullable: true,
     description: undefined,
   })
-  OR?: Array<StandaloneWhereInput>;
+  OR?: Array<StandaloneWhereInput> | null;
   @Type(() => StandaloneWhereInput)
   @Field(() => [StandaloneWhereInput], {
     nullable: true,
     description: undefined,
   })
-  NOT?: Array<StandaloneWhereInput>;
+  NOT?: Array<StandaloneWhereInput> | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
-  createdAt?: DateTimeFilter;
+  createdAt?: DateTimeFilter | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
-  updatedAt?: DateTimeFilter;
+  updatedAt?: DateTimeFilter | null;
   @Type(() => StringFilter)
   @Field(() => StringFilter, { nullable: true, description: undefined })
-  name?: StringFilter;
+  name?: StringFilter | null;
   @Type(() => JsonFilter)
   @Field(() => JsonFilter, { nullable: true, description: undefined })
-  jsonField?: JsonFilter;
+  jsonField?: JsonFilter | null;
   @Type(() => StringNullableListFilter)
   @Field(() => StringNullableListFilter, {
     nullable: true,
     description: undefined,
   })
-  scalarList?: StringNullableListFilter;
+  scalarList?: StringNullableListFilter | null;
 }

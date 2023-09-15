@@ -15,58 +15,58 @@ import { UserListRelationFilter } from './user-list-relation-filter.input';
 @InputType()
 export class UserWhereUniqueInput {
   @Field(() => Int, { nullable: true, description: undefined })
-  id?: number;
+  id?: number | null;
   @Field(() => String, { nullable: true, description: undefined })
-  email?: string;
+  email?: string | null;
   @Type(() => UserWhereInput)
   @Field(() => [UserWhereInput], { nullable: true, description: undefined })
-  AND?: Array<UserWhereInput>;
+  AND?: Array<UserWhereInput> | null;
   @Type(() => UserWhereInput)
   @Field(() => [UserWhereInput], { nullable: true, description: undefined })
-  OR?: Array<UserWhereInput>;
+  OR?: Array<UserWhereInput> | null;
   @Type(() => UserWhereInput)
   @Field(() => [UserWhereInput], { nullable: true, description: undefined })
-  NOT?: Array<UserWhereInput>;
+  NOT?: Array<UserWhereInput> | null;
   @Type(() => StringNullableFilter)
   @Field(() => StringNullableFilter, { nullable: true, description: undefined })
-  name?: StringNullableFilter;
+  name?: StringNullableFilter | null;
   @Type(() => EnumUserRoleFilter)
   @Field(() => EnumUserRoleFilter, { nullable: true, description: undefined })
-  role?: EnumUserRoleFilter;
+  role?: EnumUserRoleFilter | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
-  createdAt?: DateTimeFilter;
+  createdAt?: DateTimeFilter | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
-  updatedAt?: DateTimeFilter;
+  updatedAt?: DateTimeFilter | null;
   @Type(() => IntNullableFilter)
   @Field(() => IntNullableFilter, { nullable: true, description: undefined })
-  parentId?: IntNullableFilter;
+  parentId?: IntNullableFilter | null;
   @Type(() => StringFilter)
   @Field(() => StringFilter, { nullable: true, description: undefined })
-  toMapField?: StringFilter;
+  toMapField?: StringFilter | null;
   @Type(() => PostListRelationFilter)
   @Field(() => PostListRelationFilter, {
     nullable: true,
     description: undefined,
   })
-  posts?: Omit<PostListRelationFilter, never>;
+  posts?: Omit<PostListRelationFilter, never> | null;
   @Type(() => UserNullableRelationFilter)
   @Field(() => UserNullableRelationFilter, {
     nullable: true,
     description: undefined,
   })
-  parent?: UserNullableRelationFilter;
+  parent?: UserNullableRelationFilter | null;
   @Type(() => UserListRelationFilter)
   @Field(() => UserListRelationFilter, {
     nullable: true,
     description: undefined,
   })
-  children?: Omit<UserListRelationFilter, never>;
+  children?: Omit<UserListRelationFilter, never> | null;
   @Type(() => PostListRelationFilter)
   @Field(() => PostListRelationFilter, {
     nullable: true,
     description: undefined,
   })
-  anotherPosts?: Omit<PostListRelationFilter, never>;
+  anotherPosts?: Omit<PostListRelationFilter, never> | null;
 }

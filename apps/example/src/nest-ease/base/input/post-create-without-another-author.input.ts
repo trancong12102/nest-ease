@@ -13,13 +13,13 @@ export class PostCreateWithoutAnotherAuthorInput {
   @Field(() => String, { nullable: false, description: undefined })
   title!: string;
   @Field(() => String, { nullable: true, description: undefined })
-  content?: string;
+  content?: string | null;
   @Field(() => Boolean, { nullable: true, description: undefined })
-  published?: boolean;
+  published?: boolean | null;
   @Field(() => Date, { nullable: true, description: undefined })
-  createdAt?: Date | string;
+  createdAt?: Date | string | null;
   @Field(() => Date, { nullable: true, description: undefined })
-  updatedAt?: Date | string;
+  updatedAt?: Date | string | null;
   @Field(() => PostKind, { nullable: false, description: undefined })
   postKind!: keyof typeof PostKind;
   @Field(() => GraphQLJSON, { nullable: false, description: undefined })
@@ -29,7 +29,7 @@ export class PostCreateWithoutAnotherAuthorInput {
     nullable: true,
     description: undefined,
   })
-  scalarList?: PostCreatescalarListInput;
+  scalarList?: PostCreatescalarListInput | null;
   @Type(() => UserCreateNestedOneWithoutPostsInput)
   @Field(() => UserCreateNestedOneWithoutPostsInput, {
     nullable: false,
@@ -41,5 +41,5 @@ export class PostCreateWithoutAnotherAuthorInput {
     nullable: true,
     description: undefined,
   })
-  categories?: Omit<CategoryCreateNestedManyWithoutPostsInput, never>;
+  categories?: Omit<CategoryCreateNestedManyWithoutPostsInput, never> | null;
 }

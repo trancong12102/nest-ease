@@ -20,47 +20,47 @@ export class PostUpdateInput {
     nullable: true,
     description: undefined,
   })
-  title?: StringFieldUpdateOperationsInput;
+  title?: StringFieldUpdateOperationsInput | null;
   @Type(() => NullableStringFieldUpdateOperationsInput)
   @Field(() => NullableStringFieldUpdateOperationsInput, {
     nullable: true,
     description: undefined,
   })
-  content?: NullableStringFieldUpdateOperationsInput;
+  content?: NullableStringFieldUpdateOperationsInput | null;
   @Type(() => BoolFieldUpdateOperationsInput)
   @Field(() => BoolFieldUpdateOperationsInput, {
     nullable: true,
     description: undefined,
   })
-  published?: BoolFieldUpdateOperationsInput;
+  published?: BoolFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
   @Field(() => DateTimeFieldUpdateOperationsInput, {
     nullable: true,
     description: undefined,
   })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+  createdAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
   @Field(() => DateTimeFieldUpdateOperationsInput, {
     nullable: true,
     description: undefined,
   })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+  updatedAt?: DateTimeFieldUpdateOperationsInput | null;
   @Field(() => PostKind, { nullable: true, description: undefined })
-  postKind?: keyof typeof PostKind;
+  postKind?: keyof typeof PostKind | null;
   @Field(() => GraphQLJSON, { nullable: true, description: undefined })
-  jsonField?: any;
+  jsonField?: any | null;
   @Type(() => PostUpdatescalarListInput)
   @Field(() => PostUpdatescalarListInput, {
     nullable: true,
     description: undefined,
   })
-  scalarList?: PostUpdatescalarListInput;
+  scalarList?: PostUpdatescalarListInput | null;
   @Type(() => UserUpdateOneRequiredWithoutPostsNestedInput)
   @Field(() => UserUpdateOneRequiredWithoutPostsNestedInput, {
     nullable: true,
     description: undefined,
   })
-  author?: Omit<UserUpdateOneRequiredWithoutPostsNestedInput, never>;
+  author?: Omit<UserUpdateOneRequiredWithoutPostsNestedInput, never> | null;
   @Type(() => UserUpdateOneRequiredWithoutAnotherPostsNestedInput)
   @Field(() => UserUpdateOneRequiredWithoutAnotherPostsNestedInput, {
     nullable: true,
@@ -69,11 +69,11 @@ export class PostUpdateInput {
   anotherAuthor?: Omit<
     UserUpdateOneRequiredWithoutAnotherPostsNestedInput,
     never
-  >;
+  > | null;
   @Type(() => CategoryUpdateManyWithoutPostsNestedInput)
   @Field(() => CategoryUpdateManyWithoutPostsNestedInput, {
     nullable: true,
     description: undefined,
   })
-  categories?: Omit<CategoryUpdateManyWithoutPostsNestedInput, never>;
+  categories?: Omit<CategoryUpdateManyWithoutPostsNestedInput, never> | null;
 }

@@ -6,29 +6,29 @@ import { GraphQLJSON } from 'graphql-scalars';
 @InputType()
 export class JsonFilter {
   @Field(() => GraphQLJSON, { nullable: true, description: undefined })
-  equals?: any;
+  equals?: any | null;
   @Field(() => [String], { nullable: true, description: undefined })
-  path?: Array<string>;
+  path?: Array<string> | null;
   @Field(() => String, { nullable: true, description: undefined })
-  string_contains?: string;
+  string_contains?: string | null;
   @Field(() => String, { nullable: true, description: undefined })
-  string_starts_with?: string;
+  string_starts_with?: string | null;
   @Field(() => String, { nullable: true, description: undefined })
-  string_ends_with?: string;
+  string_ends_with?: string | null;
   @Field(() => GraphQLJSON, { nullable: true, description: undefined })
-  array_contains?: any;
+  array_contains?: any | null;
   @Field(() => GraphQLJSON, { nullable: true, description: undefined })
-  array_starts_with?: any;
+  array_starts_with?: any | null;
   @Field(() => GraphQLJSON, { nullable: true, description: undefined })
-  array_ends_with?: any;
+  array_ends_with?: any | null;
   @Field(() => GraphQLJSON, { nullable: true, description: undefined })
-  lt?: any;
+  lt?: any | null;
   @Field(() => GraphQLJSON, { nullable: true, description: undefined })
-  lte?: any;
+  lte?: any | null;
   @Field(() => GraphQLJSON, { nullable: true, description: undefined })
-  gt?: any;
+  gt?: any | null;
   @Field(() => GraphQLJSON, { nullable: true, description: undefined })
-  gte?: any;
+  gte?: any | null;
   @Field(() => GraphQLJSON, { nullable: true, description: undefined })
-  not?: any;
+  not?: any | null;
 }

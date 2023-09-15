@@ -14,23 +14,23 @@ import { UserScalarFieldEnum } from '../enum';
 export class UserFindManyArgs {
   @Type(() => UserWhereInput)
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
-  where?: Omit<UserWhereInput, never>;
+  where?: Omit<UserWhereInput, never> | null;
   @Type(() => UserOrderByWithRelationInput)
   @Field(() => [UserOrderByWithRelationInput], {
     nullable: true,
     description: undefined,
   })
-  orderBy?: Array<UserOrderByWithRelationInput>;
+  orderBy?: Array<UserOrderByWithRelationInput> | null;
   @Type(() => UserWhereUniqueInput)
   @Field(() => UserWhereUniqueInput, { nullable: true, description: undefined })
   cursor?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
   @Field(() => Int, { nullable: true, description: undefined })
-  take?: number;
+  take?: number | null;
   @Field(() => Int, { nullable: true, description: undefined })
-  skip?: number;
+  skip?: number | null;
   @Field(() => [UserScalarFieldEnum], {
     nullable: true,
     description: undefined,
   })
-  distinct?: Array<keyof typeof UserScalarFieldEnum>;
+  distinct?: Array<keyof typeof UserScalarFieldEnum> | null;
 }

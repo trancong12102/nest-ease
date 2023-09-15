@@ -13,29 +13,29 @@ export class CategoryScalarWhereInput {
     nullable: true,
     description: undefined,
   })
-  AND?: Array<CategoryScalarWhereInput>;
+  AND?: Array<CategoryScalarWhereInput> | null;
   @Type(() => CategoryScalarWhereInput)
   @Field(() => [CategoryScalarWhereInput], {
     nullable: true,
     description: undefined,
   })
-  OR?: Array<CategoryScalarWhereInput>;
+  OR?: Array<CategoryScalarWhereInput> | null;
   @Type(() => CategoryScalarWhereInput)
   @Field(() => [CategoryScalarWhereInput], {
     nullable: true,
     description: undefined,
   })
-  NOT?: Array<CategoryScalarWhereInput>;
+  NOT?: Array<CategoryScalarWhereInput> | null;
   @Type(() => IntFilter)
   @Field(() => IntFilter, { nullable: true, description: undefined })
-  id?: IntFilter;
+  id?: IntFilter | null;
   @Type(() => StringFilter)
   @Field(() => StringFilter, { nullable: true, description: undefined })
-  name?: StringFilter;
+  name?: StringFilter | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
-  createdAt?: DateTimeFilter;
+  createdAt?: DateTimeFilter | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
-  updatedAt?: DateTimeFilter;
+  updatedAt?: DateTimeFilter | null;
 }

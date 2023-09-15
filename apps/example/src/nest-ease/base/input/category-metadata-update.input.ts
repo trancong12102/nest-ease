@@ -12,17 +12,20 @@ export class CategoryMetadataUpdateInput {
     nullable: true,
     description: undefined,
   })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+  createdAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
   @Field(() => DateTimeFieldUpdateOperationsInput, {
     nullable: true,
     description: undefined,
   })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+  updatedAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => CategoryUpdateOneRequiredWithoutMetadataNestedInput)
   @Field(() => CategoryUpdateOneRequiredWithoutMetadataNestedInput, {
     nullable: true,
     description: undefined,
   })
-  category?: Omit<CategoryUpdateOneRequiredWithoutMetadataNestedInput, never>;
+  category?: Omit<
+    CategoryUpdateOneRequiredWithoutMetadataNestedInput,
+    never
+  > | null;
 }

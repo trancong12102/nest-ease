@@ -15,13 +15,13 @@ export class UserCreateNestedManyWithoutParentInput {
     nullable: true,
     description: undefined,
   })
-  create?: Array<UserCreateWithoutParentInput>;
+  create?: Array<UserCreateWithoutParentInput> | null;
   @Type(() => UserCreateOrConnectWithoutParentInput)
   @HideField()
-  connectOrCreate?: Array<UserCreateOrConnectWithoutParentInput>;
+  connectOrCreate?: Array<UserCreateOrConnectWithoutParentInput> | null;
   @Type(() => UserCreateManyParentInputEnvelope)
   @HideField()
-  createMany?: UserCreateManyParentInputEnvelope;
+  createMany?: UserCreateManyParentInputEnvelope | null;
   @Type(() => UserWhereUniqueInput)
   @Field(() => [UserWhereUniqueInput], {
     nullable: true,

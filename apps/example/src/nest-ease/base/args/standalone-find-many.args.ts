@@ -14,13 +14,13 @@ import { StandaloneScalarFieldEnum } from '../enum';
 export class StandaloneFindManyArgs {
   @Type(() => StandaloneWhereInput)
   @Field(() => StandaloneWhereInput, { nullable: true, description: undefined })
-  where?: Omit<StandaloneWhereInput, never>;
+  where?: Omit<StandaloneWhereInput, never> | null;
   @Type(() => StandaloneOrderByWithRelationInput)
   @Field(() => [StandaloneOrderByWithRelationInput], {
     nullable: true,
     description: undefined,
   })
-  orderBy?: Array<StandaloneOrderByWithRelationInput>;
+  orderBy?: Array<StandaloneOrderByWithRelationInput> | null;
   @Type(() => StandaloneWhereUniqueInput)
   @Field(() => StandaloneWhereUniqueInput, {
     nullable: true,
@@ -28,12 +28,12 @@ export class StandaloneFindManyArgs {
   })
   cursor?: Prisma.AtLeast<StandaloneWhereUniqueInput, 'id'>;
   @Field(() => Int, { nullable: true, description: undefined })
-  take?: number;
+  take?: number | null;
   @Field(() => Int, { nullable: true, description: undefined })
-  skip?: number;
+  skip?: number | null;
   @Field(() => [StandaloneScalarFieldEnum], {
     nullable: true,
     description: undefined,
   })
-  distinct?: Array<keyof typeof StandaloneScalarFieldEnum>;
+  distinct?: Array<keyof typeof StandaloneScalarFieldEnum> | null;
 }

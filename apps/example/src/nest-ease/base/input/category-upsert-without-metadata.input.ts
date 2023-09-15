@@ -22,5 +22,5 @@ export class CategoryUpsertWithoutMetadataInput {
   create!: CategoryCreateWithoutMetadataInput;
   @Type(() => CategoryWhereInput)
   @Field(() => CategoryWhereInput, { nullable: true, description: undefined })
-  where?: Omit<CategoryWhereInput, never>;
+  where?: Omit<CategoryWhereInput, never> | null;
 }

@@ -14,10 +14,10 @@ export class CategoryCreateNestedManyWithoutPostsInput {
     nullable: true,
     description: undefined,
   })
-  create?: Array<CategoryCreateWithoutPostsInput>;
+  create?: Array<CategoryCreateWithoutPostsInput> | null;
   @Type(() => CategoryCreateOrConnectWithoutPostsInput)
   @HideField()
-  connectOrCreate?: Array<CategoryCreateOrConnectWithoutPostsInput>;
+  connectOrCreate?: Array<CategoryCreateOrConnectWithoutPostsInput> | null;
   @Type(() => CategoryWhereUniqueInput)
   @Field(() => [CategoryWhereUniqueInput], {
     nullable: true,

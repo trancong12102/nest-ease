@@ -8,11 +8,11 @@ import { Type } from 'class-transformer';
 export class UserListRelationFilter {
   @Type(() => UserWhereInput)
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
-  every?: Omit<UserWhereInput, never>;
+  every?: Omit<UserWhereInput, never> | null;
   @Type(() => UserWhereInput)
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
-  some?: Omit<UserWhereInput, never>;
+  some?: Omit<UserWhereInput, never> | null;
   @Type(() => UserWhereInput)
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
-  none?: Omit<UserWhereInput, never>;
+  none?: Omit<UserWhereInput, never> | null;
 }

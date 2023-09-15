@@ -17,13 +17,13 @@ export class CategoryMetadataFindManyArgs {
     nullable: true,
     description: undefined,
   })
-  where?: Omit<CategoryMetadataWhereInput, never>;
+  where?: Omit<CategoryMetadataWhereInput, never> | null;
   @Type(() => CategoryMetadataOrderByWithRelationInput)
   @Field(() => [CategoryMetadataOrderByWithRelationInput], {
     nullable: true,
     description: undefined,
   })
-  orderBy?: Array<CategoryMetadataOrderByWithRelationInput>;
+  orderBy?: Array<CategoryMetadataOrderByWithRelationInput> | null;
   @Type(() => CategoryMetadataWhereUniqueInput)
   @Field(() => CategoryMetadataWhereUniqueInput, {
     nullable: true,
@@ -34,12 +34,12 @@ export class CategoryMetadataFindManyArgs {
     'id' | 'categoryId'
   >;
   @Field(() => Int, { nullable: true, description: undefined })
-  take?: number;
+  take?: number | null;
   @Field(() => Int, { nullable: true, description: undefined })
-  skip?: number;
+  skip?: number | null;
   @Field(() => [CategoryMetadataScalarFieldEnum], {
     nullable: true,
     description: undefined,
   })
-  distinct?: Array<keyof typeof CategoryMetadataScalarFieldEnum>;
+  distinct?: Array<keyof typeof CategoryMetadataScalarFieldEnum> | null;
 }

@@ -8,5 +8,5 @@ import { Type } from 'class-transformer';
 export class StandaloneDeleteManyArgs {
   @Type(() => StandaloneWhereInput)
   @Field(() => StandaloneWhereInput, { nullable: true, description: undefined })
-  where?: Omit<StandaloneWhereInput, never>;
+  where?: Omit<StandaloneWhereInput, never> | null;
 }

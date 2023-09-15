@@ -8,8 +8,8 @@ import { Type } from 'class-transformer';
 export class CategoryRelationFilter {
   @Type(() => CategoryWhereInput)
   @Field(() => CategoryWhereInput, { nullable: true, description: undefined })
-  is?: Omit<CategoryWhereInput, never>;
+  is?: Omit<CategoryWhereInput, never> | null;
   @Type(() => CategoryWhereInput)
   @Field(() => CategoryWhereInput, { nullable: true, description: undefined })
-  isNot?: Omit<CategoryWhereInput, never>;
+  isNot?: Omit<CategoryWhereInput, never> | null;
 }

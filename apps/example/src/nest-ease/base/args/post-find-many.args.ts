@@ -14,23 +14,23 @@ import { PostScalarFieldEnum } from '../enum';
 export class PostFindManyArgs {
   @Type(() => PostWhereInput)
   @Field(() => PostWhereInput, { nullable: true, description: undefined })
-  where?: Omit<PostWhereInput, never>;
+  where?: Omit<PostWhereInput, never> | null;
   @Type(() => PostOrderByWithRelationInput)
   @Field(() => [PostOrderByWithRelationInput], {
     nullable: true,
     description: undefined,
   })
-  orderBy?: Array<PostOrderByWithRelationInput>;
+  orderBy?: Array<PostOrderByWithRelationInput> | null;
   @Type(() => PostWhereUniqueInput)
   @Field(() => PostWhereUniqueInput, { nullable: true, description: undefined })
   cursor?: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
   @Field(() => Int, { nullable: true, description: undefined })
-  take?: number;
+  take?: number | null;
   @Field(() => Int, { nullable: true, description: undefined })
-  skip?: number;
+  skip?: number | null;
   @Field(() => [PostScalarFieldEnum], {
     nullable: true,
     description: undefined,
   })
-  distinct?: Array<keyof typeof PostScalarFieldEnum>;
+  distinct?: Array<keyof typeof PostScalarFieldEnum> | null;
 }

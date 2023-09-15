@@ -13,5 +13,5 @@ export class PostCreateManyAnotherAuthorInputEnvelope {
   })
   data!: Array<PostCreateManyAnotherAuthorInput>;
   @Field(() => Boolean, { nullable: true, description: undefined })
-  skipDuplicates?: boolean;
+  skipDuplicates?: boolean | null;
 }

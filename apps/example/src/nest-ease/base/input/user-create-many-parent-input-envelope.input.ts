@@ -13,5 +13,5 @@ export class UserCreateManyParentInputEnvelope {
   })
   data!: Array<UserCreateManyParentInput>;
   @Field(() => Boolean, { nullable: true, description: undefined })
-  skipDuplicates?: boolean;
+  skipDuplicates?: boolean | null;
 }

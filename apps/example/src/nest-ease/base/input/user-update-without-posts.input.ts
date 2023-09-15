@@ -17,49 +17,52 @@ export class UserUpdateWithoutPostsInput {
     nullable: true,
     description: undefined,
   })
-  email?: StringFieldUpdateOperationsInput;
+  email?: StringFieldUpdateOperationsInput | null;
   @Type(() => NullableStringFieldUpdateOperationsInput)
   @Field(() => NullableStringFieldUpdateOperationsInput, {
     nullable: true,
     description: undefined,
   })
-  name?: NullableStringFieldUpdateOperationsInput;
+  name?: NullableStringFieldUpdateOperationsInput | null;
   @Field(() => UserRole, { nullable: true, description: undefined })
-  role?: keyof typeof UserRole;
+  role?: keyof typeof UserRole | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
   @Field(() => DateTimeFieldUpdateOperationsInput, {
     nullable: true,
     description: undefined,
   })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+  createdAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
   @Field(() => DateTimeFieldUpdateOperationsInput, {
     nullable: true,
     description: undefined,
   })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+  updatedAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => StringFieldUpdateOperationsInput)
   @Field(() => StringFieldUpdateOperationsInput, {
     nullable: true,
     description: undefined,
   })
-  toMapField?: StringFieldUpdateOperationsInput;
+  toMapField?: StringFieldUpdateOperationsInput | null;
   @Type(() => UserUpdateOneWithoutChildrenNestedInput)
   @Field(() => UserUpdateOneWithoutChildrenNestedInput, {
     nullable: true,
     description: undefined,
   })
-  parent?: Omit<UserUpdateOneWithoutChildrenNestedInput, never>;
+  parent?: Omit<UserUpdateOneWithoutChildrenNestedInput, never> | null;
   @Type(() => UserUpdateManyWithoutParentNestedInput)
   @Field(() => UserUpdateManyWithoutParentNestedInput, {
     nullable: true,
     description: undefined,
   })
-  children?: Omit<UserUpdateManyWithoutParentNestedInput, never>;
+  children?: Omit<UserUpdateManyWithoutParentNestedInput, never> | null;
   @Type(() => PostUpdateManyWithoutAnotherAuthorNestedInput)
   @Field(() => PostUpdateManyWithoutAnotherAuthorNestedInput, {
     nullable: true,
     description: undefined,
   })
-  anotherPosts?: Omit<PostUpdateManyWithoutAnotherAuthorNestedInput, never>;
+  anotherPosts?: Omit<
+    PostUpdateManyWithoutAnotherAuthorNestedInput,
+    never
+  > | null;
 }

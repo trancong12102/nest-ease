@@ -22,5 +22,5 @@ export class UserUpsertWithoutPostsInput {
   create!: UserCreateWithoutPostsInput;
   @Type(() => UserWhereInput)
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
-  where?: Omit<UserWhereInput, never>;
+  where?: Omit<UserWhereInput, never> | null;
 }

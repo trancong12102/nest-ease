@@ -14,10 +14,10 @@ export class CategoryMetadataCreateNestedOneWithoutCategoryInput {
     nullable: true,
     description: undefined,
   })
-  create?: CategoryMetadataCreateWithoutCategoryInput;
+  create?: CategoryMetadataCreateWithoutCategoryInput | null;
   @Type(() => CategoryMetadataCreateOrConnectWithoutCategoryInput)
   @HideField()
-  connectOrCreate?: CategoryMetadataCreateOrConnectWithoutCategoryInput;
+  connectOrCreate?: CategoryMetadataCreateOrConnectWithoutCategoryInput | null;
   @Type(() => CategoryMetadataWhereUniqueInput)
   @Field(() => CategoryMetadataWhereUniqueInput, {
     nullable: true,

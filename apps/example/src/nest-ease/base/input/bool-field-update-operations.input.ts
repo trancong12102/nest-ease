@@ -5,5 +5,5 @@ import { InputType, Field } from '@nestjs/graphql';
 @InputType()
 export class BoolFieldUpdateOperationsInput {
   @Field(() => Boolean, { nullable: true, description: undefined })
-  set?: boolean;
+  set?: boolean | null;
 }

@@ -6,17 +6,17 @@ import { UserRole } from '../enum';
 @InputType()
 export class UserCreateManyParentInput {
   @Field(() => Int, { nullable: true, description: undefined })
-  id?: number;
+  id?: number | null;
   @Field(() => String, { nullable: false, description: undefined })
   email!: string;
   @Field(() => String, { nullable: true, description: undefined })
-  name?: string;
+  name?: string | null;
   @Field(() => UserRole, { nullable: true, description: undefined })
-  role?: keyof typeof UserRole;
+  role?: keyof typeof UserRole | null;
   @Field(() => Date, { nullable: true, description: undefined })
-  createdAt?: Date | string;
+  createdAt?: Date | string | null;
   @Field(() => Date, { nullable: true, description: undefined })
-  updatedAt?: Date | string;
+  updatedAt?: Date | string | null;
   @Field(() => String, { nullable: false, description: undefined })
   toMapField!: string;
 }

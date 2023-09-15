@@ -9,37 +9,37 @@ import { CategoryRelationFilter } from './category-relation-filter.input';
 @InputType()
 export class CategoryMetadataWhereUniqueInput {
   @Field(() => Int, { nullable: true, description: undefined })
-  id?: number;
+  id?: number | null;
   @Field(() => Int, { nullable: true, description: undefined })
-  categoryId?: number;
+  categoryId?: number | null;
   @Type(() => CategoryMetadataWhereInput)
   @Field(() => [CategoryMetadataWhereInput], {
     nullable: true,
     description: undefined,
   })
-  AND?: Array<CategoryMetadataWhereInput>;
+  AND?: Array<CategoryMetadataWhereInput> | null;
   @Type(() => CategoryMetadataWhereInput)
   @Field(() => [CategoryMetadataWhereInput], {
     nullable: true,
     description: undefined,
   })
-  OR?: Array<CategoryMetadataWhereInput>;
+  OR?: Array<CategoryMetadataWhereInput> | null;
   @Type(() => CategoryMetadataWhereInput)
   @Field(() => [CategoryMetadataWhereInput], {
     nullable: true,
     description: undefined,
   })
-  NOT?: Array<CategoryMetadataWhereInput>;
+  NOT?: Array<CategoryMetadataWhereInput> | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
-  createdAt?: DateTimeFilter;
+  createdAt?: DateTimeFilter | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
-  updatedAt?: DateTimeFilter;
+  updatedAt?: DateTimeFilter | null;
   @Type(() => CategoryRelationFilter)
   @Field(() => CategoryRelationFilter, {
     nullable: true,
     description: undefined,
   })
-  category?: CategoryRelationFilter;
+  category?: CategoryRelationFilter | null;
 }

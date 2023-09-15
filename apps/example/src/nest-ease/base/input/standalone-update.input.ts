@@ -14,25 +14,25 @@ export class StandaloneUpdateInput {
     nullable: true,
     description: undefined,
   })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+  createdAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
   @Field(() => DateTimeFieldUpdateOperationsInput, {
     nullable: true,
     description: undefined,
   })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+  updatedAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => StringFieldUpdateOperationsInput)
   @Field(() => StringFieldUpdateOperationsInput, {
     nullable: true,
     description: undefined,
   })
-  name?: StringFieldUpdateOperationsInput;
+  name?: StringFieldUpdateOperationsInput | null;
   @Field(() => GraphQLJSON, { nullable: true, description: undefined })
-  jsonField?: any;
+  jsonField?: any | null;
   @Type(() => StandaloneUpdatescalarListInput)
   @Field(() => StandaloneUpdatescalarListInput, {
     nullable: true,
     description: undefined,
   })
-  scalarList?: StandaloneUpdatescalarListInput;
+  scalarList?: StandaloneUpdatescalarListInput | null;
 }

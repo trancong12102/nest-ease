@@ -12,13 +12,13 @@ export class UserCreateWithoutAnotherPostsInput {
   @Field(() => String, { nullable: false, description: undefined })
   email!: string;
   @Field(() => String, { nullable: true, description: undefined })
-  name?: string;
+  name?: string | null;
   @Field(() => UserRole, { nullable: true, description: undefined })
-  role?: keyof typeof UserRole;
+  role?: keyof typeof UserRole | null;
   @Field(() => Date, { nullable: true, description: undefined })
-  createdAt?: Date | string;
+  createdAt?: Date | string | null;
   @Field(() => Date, { nullable: true, description: undefined })
-  updatedAt?: Date | string;
+  updatedAt?: Date | string | null;
   @Field(() => String, { nullable: false, description: undefined })
   toMapField!: string;
   @Type(() => PostCreateNestedManyWithoutAuthorInput)
@@ -26,17 +26,17 @@ export class UserCreateWithoutAnotherPostsInput {
     nullable: true,
     description: undefined,
   })
-  posts?: Omit<PostCreateNestedManyWithoutAuthorInput, never>;
+  posts?: Omit<PostCreateNestedManyWithoutAuthorInput, never> | null;
   @Type(() => UserCreateNestedOneWithoutChildrenInput)
   @Field(() => UserCreateNestedOneWithoutChildrenInput, {
     nullable: true,
     description: undefined,
   })
-  parent?: Omit<UserCreateNestedOneWithoutChildrenInput, never>;
+  parent?: Omit<UserCreateNestedOneWithoutChildrenInput, never> | null;
   @Type(() => UserCreateNestedManyWithoutParentInput)
   @Field(() => UserCreateNestedManyWithoutParentInput, {
     nullable: true,
     description: undefined,
   })
-  children?: Omit<UserCreateNestedManyWithoutParentInput, never>;
+  children?: Omit<UserCreateNestedManyWithoutParentInput, never> | null;
 }

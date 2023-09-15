@@ -5,13 +5,13 @@ import { InputType, Field } from '@nestjs/graphql';
 @InputType()
 export class StringNullableListFilter {
   @Field(() => [String], { nullable: true, description: undefined })
-  equals?: Array<string>;
+  equals?: Array<string> | null;
   @Field(() => String, { nullable: true, description: undefined })
-  has?: string;
+  has?: string | null;
   @Field(() => [String], { nullable: true, description: undefined })
-  hasEvery?: Array<string>;
+  hasEvery?: Array<string> | null;
   @Field(() => [String], { nullable: true, description: undefined })
-  hasSome?: Array<string>;
+  hasSome?: Array<string> | null;
   @Field(() => Boolean, { nullable: true, description: undefined })
-  isEmpty?: boolean;
+  isEmpty?: boolean | null;
 }

@@ -17,25 +17,25 @@ export class CategoryMetadataUpdateOneWithoutCategoryNestedInput {
     nullable: true,
     description: undefined,
   })
-  create?: CategoryMetadataCreateWithoutCategoryInput;
+  create?: CategoryMetadataCreateWithoutCategoryInput | null;
   @Type(() => CategoryMetadataCreateOrConnectWithoutCategoryInput)
   @HideField()
-  connectOrCreate?: CategoryMetadataCreateOrConnectWithoutCategoryInput;
+  connectOrCreate?: CategoryMetadataCreateOrConnectWithoutCategoryInput | null;
   @Type(() => CategoryMetadataUpsertWithoutCategoryInput)
   @HideField()
-  upsert?: CategoryMetadataUpsertWithoutCategoryInput;
+  upsert?: CategoryMetadataUpsertWithoutCategoryInput | null;
   @Type(() => CategoryMetadataWhereInput)
   @Field(() => CategoryMetadataWhereInput, {
     nullable: true,
     description: undefined,
   })
-  disconnect?: Omit<CategoryMetadataWhereInput, never>;
+  disconnect?: Omit<CategoryMetadataWhereInput, never> | null;
   @Type(() => CategoryMetadataWhereInput)
   @Field(() => CategoryMetadataWhereInput, {
     nullable: true,
     description: undefined,
   })
-  delete?: Omit<CategoryMetadataWhereInput, never>;
+  delete?: Omit<CategoryMetadataWhereInput, never> | null;
   @Type(() => CategoryMetadataWhereUniqueInput)
   @Field(() => CategoryMetadataWhereUniqueInput, {
     nullable: true,
@@ -50,5 +50,5 @@ export class CategoryMetadataUpdateOneWithoutCategoryNestedInput {
     nullable: true,
     description: undefined,
   })
-  update?: CategoryMetadataUpdateToOneWithWhereWithoutCategoryInput;
+  update?: CategoryMetadataUpdateToOneWithWhereWithoutCategoryInput | null;
 }

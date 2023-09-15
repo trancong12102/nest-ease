@@ -5,5 +5,5 @@ import { InputType, Field } from '@nestjs/graphql';
 @InputType()
 export class DateTimeFieldUpdateOperationsInput {
   @Field(() => Date, { nullable: true, description: undefined })
-  set?: Date | string;
+  set?: Date | string | null;
 }

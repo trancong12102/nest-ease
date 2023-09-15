@@ -11,11 +11,11 @@ export class CategoryMetadataNullableRelationFilter {
     nullable: true,
     description: undefined,
   })
-  is?: Omit<CategoryMetadataWhereInput, never>;
+  is?: Omit<CategoryMetadataWhereInput, never> | null;
   @Type(() => CategoryMetadataWhereInput)
   @Field(() => CategoryMetadataWhereInput, {
     nullable: true,
     description: undefined,
   })
-  isNot?: Omit<CategoryMetadataWhereInput, never>;
+  isNot?: Omit<CategoryMetadataWhereInput, never> | null;
 }

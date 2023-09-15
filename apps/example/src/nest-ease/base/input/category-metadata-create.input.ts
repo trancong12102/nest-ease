@@ -7,9 +7,9 @@ import { Type } from 'class-transformer';
 @InputType()
 export class CategoryMetadataCreateInput {
   @Field(() => Date, { nullable: true, description: undefined })
-  createdAt?: Date | string;
+  createdAt?: Date | string | null;
   @Field(() => Date, { nullable: true, description: undefined })
-  updatedAt?: Date | string;
+  updatedAt?: Date | string | null;
   @Type(() => CategoryCreateNestedOneWithoutMetadataInput)
   @Field(() => CategoryCreateNestedOneWithoutMetadataInput, {
     nullable: false,

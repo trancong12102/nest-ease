@@ -6,20 +6,20 @@ import { Type } from 'class-transformer';
 @InputType()
 export class NestedDateTimeFilter {
   @Field(() => Date, { nullable: true, description: undefined })
-  equals?: Date | string;
+  equals?: Date | string | null;
   @Field(() => [Date], { nullable: true, description: undefined })
-  in?: Array<Date> | Array<string>;
+  in?: Array<Date> | Array<string> | null;
   @Field(() => [Date], { nullable: true, description: undefined })
-  notIn?: Array<Date> | Array<string>;
+  notIn?: Array<Date> | Array<string> | null;
   @Field(() => Date, { nullable: true, description: undefined })
-  lt?: Date | string;
+  lt?: Date | string | null;
   @Field(() => Date, { nullable: true, description: undefined })
-  lte?: Date | string;
+  lte?: Date | string | null;
   @Field(() => Date, { nullable: true, description: undefined })
-  gt?: Date | string;
+  gt?: Date | string | null;
   @Field(() => Date, { nullable: true, description: undefined })
-  gte?: Date | string;
+  gte?: Date | string | null;
   @Type(() => NestedDateTimeFilter)
   @Field(() => NestedDateTimeFilter, { nullable: true, description: undefined })
-  not?: NestedDateTimeFilter;
+  not?: NestedDateTimeFilter | null;
 }

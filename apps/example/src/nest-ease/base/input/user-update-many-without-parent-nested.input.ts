@@ -19,16 +19,16 @@ export class UserUpdateManyWithoutParentNestedInput {
     nullable: true,
     description: undefined,
   })
-  create?: Array<UserCreateWithoutParentInput>;
+  create?: Array<UserCreateWithoutParentInput> | null;
   @Type(() => UserCreateOrConnectWithoutParentInput)
   @HideField()
-  connectOrCreate?: Array<UserCreateOrConnectWithoutParentInput>;
+  connectOrCreate?: Array<UserCreateOrConnectWithoutParentInput> | null;
   @Type(() => UserUpsertWithWhereUniqueWithoutParentInput)
   @HideField()
-  upsert?: Array<UserUpsertWithWhereUniqueWithoutParentInput>;
+  upsert?: Array<UserUpsertWithWhereUniqueWithoutParentInput> | null;
   @Type(() => UserCreateManyParentInputEnvelope)
   @HideField()
-  createMany?: UserCreateManyParentInputEnvelope;
+  createMany?: UserCreateManyParentInputEnvelope | null;
   @Type(() => UserWhereUniqueInput)
   @HideField()
   set?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
@@ -55,11 +55,11 @@ export class UserUpdateManyWithoutParentNestedInput {
     nullable: true,
     description: undefined,
   })
-  update?: Array<UserUpdateWithWhereUniqueWithoutParentInput>;
+  update?: Array<UserUpdateWithWhereUniqueWithoutParentInput> | null;
   @Type(() => UserUpdateManyWithWhereWithoutParentInput)
   @HideField()
-  updateMany?: Array<UserUpdateManyWithWhereWithoutParentInput>;
+  updateMany?: Array<UserUpdateManyWithWhereWithoutParentInput> | null;
   @Type(() => UserScalarWhereInput)
   @HideField()
-  deleteMany?: Array<UserScalarWhereInput>;
+  deleteMany?: Array<UserScalarWhereInput> | null;
 }

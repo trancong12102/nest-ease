@@ -6,20 +6,20 @@ import { Type } from 'class-transformer';
 @InputType()
 export class NestedIntFilter {
   @Field(() => Int, { nullable: true, description: undefined })
-  equals?: number;
+  equals?: number | null;
   @Field(() => [Int], { nullable: true, description: undefined })
-  in?: Array<number>;
+  in?: Array<number> | null;
   @Field(() => [Int], { nullable: true, description: undefined })
-  notIn?: Array<number>;
+  notIn?: Array<number> | null;
   @Field(() => Int, { nullable: true, description: undefined })
-  lt?: number;
+  lt?: number | null;
   @Field(() => Int, { nullable: true, description: undefined })
-  lte?: number;
+  lte?: number | null;
   @Field(() => Int, { nullable: true, description: undefined })
-  gt?: number;
+  gt?: number | null;
   @Field(() => Int, { nullable: true, description: undefined })
-  gte?: number;
+  gte?: number | null;
   @Type(() => NestedIntFilter)
   @Field(() => NestedIntFilter, { nullable: true, description: undefined })
-  not?: NestedIntFilter;
+  not?: NestedIntFilter | null;
 }

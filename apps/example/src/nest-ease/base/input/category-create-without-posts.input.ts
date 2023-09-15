@@ -9,13 +9,16 @@ export class CategoryCreateWithoutPostsInput {
   @Field(() => String, { nullable: false, description: undefined })
   name!: string;
   @Field(() => Date, { nullable: true, description: undefined })
-  createdAt?: Date | string;
+  createdAt?: Date | string | null;
   @Field(() => Date, { nullable: true, description: undefined })
-  updatedAt?: Date | string;
+  updatedAt?: Date | string | null;
   @Type(() => CategoryMetadataCreateNestedOneWithoutCategoryInput)
   @Field(() => CategoryMetadataCreateNestedOneWithoutCategoryInput, {
     nullable: true,
     description: undefined,
   })
-  metadata?: Omit<CategoryMetadataCreateNestedOneWithoutCategoryInput, never>;
+  metadata?: Omit<
+    CategoryMetadataCreateNestedOneWithoutCategoryInput,
+    never
+  > | null;
 }

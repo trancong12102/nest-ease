@@ -9,43 +9,43 @@ import { CategoryOrderByRelationAggregateInput } from './category-order-by-relat
 @InputType()
 export class PostOrderByWithRelationInput {
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  id?: keyof typeof SortOrder;
+  id?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  title?: keyof typeof SortOrder;
+  title?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  content?: keyof typeof SortOrder;
+  content?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  published?: keyof typeof SortOrder;
+  published?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  authorId?: keyof typeof SortOrder;
+  authorId?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  anotherAuthorId?: keyof typeof SortOrder;
+  anotherAuthorId?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  createdAt?: keyof typeof SortOrder;
+  createdAt?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  updatedAt?: keyof typeof SortOrder;
+  updatedAt?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  postKind?: keyof typeof SortOrder;
+  postKind?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  jsonField?: keyof typeof SortOrder;
+  jsonField?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  scalarList?: keyof typeof SortOrder;
+  scalarList?: keyof typeof SortOrder | null;
   @Type(() => UserOrderByWithRelationInput)
   @Field(() => UserOrderByWithRelationInput, {
     nullable: true,
     description: undefined,
   })
-  author?: Omit<UserOrderByWithRelationInput, never>;
+  author?: Omit<UserOrderByWithRelationInput, never> | null;
   @Type(() => UserOrderByWithRelationInput)
   @Field(() => UserOrderByWithRelationInput, {
     nullable: true,
     description: undefined,
   })
-  anotherAuthor?: Omit<UserOrderByWithRelationInput, never>;
+  anotherAuthor?: Omit<UserOrderByWithRelationInput, never> | null;
   @Type(() => CategoryOrderByRelationAggregateInput)
   @Field(() => CategoryOrderByRelationAggregateInput, {
     nullable: true,
     description: undefined,
   })
-  categories?: CategoryOrderByRelationAggregateInput;
+  categories?: CategoryOrderByRelationAggregateInput | null;
 }

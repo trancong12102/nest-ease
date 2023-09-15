@@ -6,29 +6,29 @@ import { Type } from 'class-transformer';
 @InputType()
 export class NestedStringNullableFilter {
   @Field(() => String, { nullable: true, description: undefined })
-  equals?: string;
+  equals?: string | null;
   @Field(() => [String], { nullable: true, description: undefined })
-  in?: Array<string>;
+  in?: Array<string> | null;
   @Field(() => [String], { nullable: true, description: undefined })
-  notIn?: Array<string>;
+  notIn?: Array<string> | null;
   @Field(() => String, { nullable: true, description: undefined })
-  lt?: string;
+  lt?: string | null;
   @Field(() => String, { nullable: true, description: undefined })
-  lte?: string;
+  lte?: string | null;
   @Field(() => String, { nullable: true, description: undefined })
-  gt?: string;
+  gt?: string | null;
   @Field(() => String, { nullable: true, description: undefined })
-  gte?: string;
+  gte?: string | null;
   @Field(() => String, { nullable: true, description: undefined })
-  contains?: string;
+  contains?: string | null;
   @Field(() => String, { nullable: true, description: undefined })
-  startsWith?: string;
+  startsWith?: string | null;
   @Field(() => String, { nullable: true, description: undefined })
-  endsWith?: string;
+  endsWith?: string | null;
   @Type(() => NestedStringNullableFilter)
   @Field(() => NestedStringNullableFilter, {
     nullable: true,
     description: undefined,
   })
-  not?: NestedStringNullableFilter;
+  not?: NestedStringNullableFilter | null;
 }

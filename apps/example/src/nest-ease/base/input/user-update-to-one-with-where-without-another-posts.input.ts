@@ -9,7 +9,7 @@ import { UserUpdateWithoutAnotherPostsInput } from './user-update-without-anothe
 export class UserUpdateToOneWithWhereWithoutAnotherPostsInput {
   @Type(() => UserWhereInput)
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
-  where?: Omit<UserWhereInput, never>;
+  where?: Omit<UserWhereInput, never> | null;
   @Type(() => UserUpdateWithoutAnotherPostsInput)
   @Field(() => UserUpdateWithoutAnotherPostsInput, {
     nullable: false,

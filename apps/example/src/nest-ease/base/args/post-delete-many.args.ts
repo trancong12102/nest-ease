@@ -8,5 +8,5 @@ import { Type } from 'class-transformer';
 export class PostDeleteManyArgs {
   @Type(() => PostWhereInput)
   @Field(() => PostWhereInput, { nullable: true, description: undefined })
-  where?: Omit<PostWhereInput, never>;
+  where?: Omit<PostWhereInput, never> | null;
 }

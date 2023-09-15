@@ -8,9 +8,9 @@ import { Type } from 'class-transformer';
 @InputType()
 export class StandaloneCreateInput {
   @Field(() => Date, { nullable: true, description: undefined })
-  createdAt?: Date | string;
+  createdAt?: Date | string | null;
   @Field(() => Date, { nullable: true, description: undefined })
-  updatedAt?: Date | string;
+  updatedAt?: Date | string | null;
   @Field(() => String, { nullable: false, description: undefined })
   name!: string;
   @Field(() => GraphQLJSON, { nullable: false, description: undefined })
@@ -20,5 +20,5 @@ export class StandaloneCreateInput {
     nullable: true,
     description: undefined,
   })
-  scalarList?: StandaloneCreatescalarListInput;
+  scalarList?: StandaloneCreatescalarListInput | null;
 }

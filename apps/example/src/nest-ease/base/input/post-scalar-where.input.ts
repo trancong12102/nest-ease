@@ -18,53 +18,53 @@ export class PostScalarWhereInput {
     nullable: true,
     description: undefined,
   })
-  AND?: Array<PostScalarWhereInput>;
+  AND?: Array<PostScalarWhereInput> | null;
   @Type(() => PostScalarWhereInput)
   @Field(() => [PostScalarWhereInput], {
     nullable: true,
     description: undefined,
   })
-  OR?: Array<PostScalarWhereInput>;
+  OR?: Array<PostScalarWhereInput> | null;
   @Type(() => PostScalarWhereInput)
   @Field(() => [PostScalarWhereInput], {
     nullable: true,
     description: undefined,
   })
-  NOT?: Array<PostScalarWhereInput>;
+  NOT?: Array<PostScalarWhereInput> | null;
   @Type(() => IntFilter)
   @Field(() => IntFilter, { nullable: true, description: undefined })
-  id?: IntFilter;
+  id?: IntFilter | null;
   @Type(() => StringFilter)
   @Field(() => StringFilter, { nullable: true, description: undefined })
-  title?: StringFilter;
+  title?: StringFilter | null;
   @Type(() => StringNullableFilter)
   @Field(() => StringNullableFilter, { nullable: true, description: undefined })
-  content?: StringNullableFilter;
+  content?: StringNullableFilter | null;
   @Type(() => BoolFilter)
   @Field(() => BoolFilter, { nullable: true, description: undefined })
-  published?: BoolFilter;
+  published?: BoolFilter | null;
   @Type(() => IntFilter)
   @Field(() => IntFilter, { nullable: true, description: undefined })
-  authorId?: IntFilter;
+  authorId?: IntFilter | null;
   @Type(() => IntFilter)
   @Field(() => IntFilter, { nullable: true, description: undefined })
-  anotherAuthorId?: IntFilter;
+  anotherAuthorId?: IntFilter | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
-  createdAt?: DateTimeFilter;
+  createdAt?: DateTimeFilter | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
-  updatedAt?: DateTimeFilter;
+  updatedAt?: DateTimeFilter | null;
   @Type(() => EnumPostKindFilter)
   @Field(() => EnumPostKindFilter, { nullable: true, description: undefined })
-  postKind?: EnumPostKindFilter;
+  postKind?: EnumPostKindFilter | null;
   @Type(() => JsonFilter)
   @Field(() => JsonFilter, { nullable: true, description: undefined })
-  jsonField?: JsonFilter;
+  jsonField?: JsonFilter | null;
   @Type(() => StringNullableListFilter)
   @Field(() => StringNullableListFilter, {
     nullable: true,
     description: undefined,
   })
-  scalarList?: StringNullableListFilter;
+  scalarList?: StringNullableListFilter | null;
 }

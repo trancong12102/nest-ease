@@ -14,13 +14,13 @@ import { CategoryScalarFieldEnum } from '../enum';
 export class CategoryFindManyArgs {
   @Type(() => CategoryWhereInput)
   @Field(() => CategoryWhereInput, { nullable: true, description: undefined })
-  where?: Omit<CategoryWhereInput, never>;
+  where?: Omit<CategoryWhereInput, never> | null;
   @Type(() => CategoryOrderByWithRelationInput)
   @Field(() => [CategoryOrderByWithRelationInput], {
     nullable: true,
     description: undefined,
   })
-  orderBy?: Array<CategoryOrderByWithRelationInput>;
+  orderBy?: Array<CategoryOrderByWithRelationInput> | null;
   @Type(() => CategoryWhereUniqueInput)
   @Field(() => CategoryWhereUniqueInput, {
     nullable: true,
@@ -28,12 +28,12 @@ export class CategoryFindManyArgs {
   })
   cursor?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
   @Field(() => Int, { nullable: true, description: undefined })
-  take?: number;
+  take?: number | null;
   @Field(() => Int, { nullable: true, description: undefined })
-  skip?: number;
+  skip?: number | null;
   @Field(() => [CategoryScalarFieldEnum], {
     nullable: true,
     description: undefined,
   })
-  distinct?: Array<keyof typeof CategoryScalarFieldEnum>;
+  distinct?: Array<keyof typeof CategoryScalarFieldEnum> | null;
 }

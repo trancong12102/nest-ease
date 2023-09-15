@@ -6,11 +6,11 @@ import { UserRole } from '../enum';
 @InputType()
 export class EnumUserRoleFilter {
   @Field(() => UserRole, { nullable: true, description: undefined })
-  equals?: keyof typeof UserRole;
+  equals?: keyof typeof UserRole | null;
   @Field(() => [UserRole], { nullable: true, description: undefined })
-  in?: Array<keyof typeof UserRole>;
+  in?: Array<keyof typeof UserRole> | null;
   @Field(() => [UserRole], { nullable: true, description: undefined })
-  notIn?: Array<keyof typeof UserRole>;
+  notIn?: Array<keyof typeof UserRole> | null;
   @Field(() => UserRole, { nullable: true, description: undefined })
-  not?: keyof typeof UserRole;
+  not?: keyof typeof UserRole | null;
 }

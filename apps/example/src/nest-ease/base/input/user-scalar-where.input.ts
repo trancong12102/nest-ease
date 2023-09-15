@@ -16,41 +16,41 @@ export class UserScalarWhereInput {
     nullable: true,
     description: undefined,
   })
-  AND?: Array<UserScalarWhereInput>;
+  AND?: Array<UserScalarWhereInput> | null;
   @Type(() => UserScalarWhereInput)
   @Field(() => [UserScalarWhereInput], {
     nullable: true,
     description: undefined,
   })
-  OR?: Array<UserScalarWhereInput>;
+  OR?: Array<UserScalarWhereInput> | null;
   @Type(() => UserScalarWhereInput)
   @Field(() => [UserScalarWhereInput], {
     nullable: true,
     description: undefined,
   })
-  NOT?: Array<UserScalarWhereInput>;
+  NOT?: Array<UserScalarWhereInput> | null;
   @Type(() => IntFilter)
   @Field(() => IntFilter, { nullable: true, description: undefined })
-  id?: IntFilter;
+  id?: IntFilter | null;
   @Type(() => StringFilter)
   @Field(() => StringFilter, { nullable: true, description: undefined })
-  email?: StringFilter;
+  email?: StringFilter | null;
   @Type(() => StringNullableFilter)
   @Field(() => StringNullableFilter, { nullable: true, description: undefined })
-  name?: StringNullableFilter;
+  name?: StringNullableFilter | null;
   @Type(() => EnumUserRoleFilter)
   @Field(() => EnumUserRoleFilter, { nullable: true, description: undefined })
-  role?: EnumUserRoleFilter;
+  role?: EnumUserRoleFilter | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
-  createdAt?: DateTimeFilter;
+  createdAt?: DateTimeFilter | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
-  updatedAt?: DateTimeFilter;
+  updatedAt?: DateTimeFilter | null;
   @Type(() => IntNullableFilter)
   @Field(() => IntNullableFilter, { nullable: true, description: undefined })
-  parentId?: IntNullableFilter;
+  parentId?: IntNullableFilter | null;
   @Type(() => StringFilter)
   @Field(() => StringFilter, { nullable: true, description: undefined })
-  toMapField?: StringFilter;
+  toMapField?: StringFilter | null;
 }

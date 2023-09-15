@@ -7,8 +7,8 @@ import { Type } from 'class-transformer';
 @InputType()
 export class BoolFilter {
   @Field(() => Boolean, { nullable: true, description: undefined })
-  equals?: boolean;
+  equals?: boolean | null;
   @Type(() => NestedBoolFilter)
   @Field(() => NestedBoolFilter, { nullable: true, description: undefined })
-  not?: NestedBoolFilter;
+  not?: NestedBoolFilter | null;
 }

@@ -8,17 +8,17 @@ import { Type } from 'class-transformer';
 @InputType()
 export class CategoryMetadataOrderByWithRelationInput {
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  id?: keyof typeof SortOrder;
+  id?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  categoryId?: keyof typeof SortOrder;
+  categoryId?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  createdAt?: keyof typeof SortOrder;
+  createdAt?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  updatedAt?: keyof typeof SortOrder;
+  updatedAt?: keyof typeof SortOrder | null;
   @Type(() => CategoryOrderByWithRelationInput)
   @Field(() => CategoryOrderByWithRelationInput, {
     nullable: true,
     description: undefined,
   })
-  category?: Omit<CategoryOrderByWithRelationInput, never>;
+  category?: Omit<CategoryOrderByWithRelationInput, never> | null;
 }

@@ -15,13 +15,13 @@ export class PostCreateNestedManyWithoutAuthorInput {
     nullable: true,
     description: undefined,
   })
-  create?: Array<PostCreateWithoutAuthorInput>;
+  create?: Array<PostCreateWithoutAuthorInput> | null;
   @Type(() => PostCreateOrConnectWithoutAuthorInput)
   @HideField()
-  connectOrCreate?: Array<PostCreateOrConnectWithoutAuthorInput>;
+  connectOrCreate?: Array<PostCreateOrConnectWithoutAuthorInput> | null;
   @Type(() => PostCreateManyAuthorInputEnvelope)
   @HideField()
-  createMany?: PostCreateManyAuthorInputEnvelope;
+  createMany?: PostCreateManyAuthorInputEnvelope | null;
   @Type(() => PostWhereUniqueInput)
   @Field(() => [PostWhereUniqueInput], {
     nullable: true,

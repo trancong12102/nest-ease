@@ -6,5 +6,5 @@ import { SortOrder } from '../enum';
 @InputType()
 export class UserOrderByRelationAggregateInput {
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  _count?: keyof typeof SortOrder;
+  _count?: keyof typeof SortOrder | null;
 }

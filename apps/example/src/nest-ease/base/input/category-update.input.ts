@@ -14,29 +14,32 @@ export class CategoryUpdateInput {
     nullable: true,
     description: undefined,
   })
-  name?: StringFieldUpdateOperationsInput;
+  name?: StringFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
   @Field(() => DateTimeFieldUpdateOperationsInput, {
     nullable: true,
     description: undefined,
   })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+  createdAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
   @Field(() => DateTimeFieldUpdateOperationsInput, {
     nullable: true,
     description: undefined,
   })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+  updatedAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => PostUpdateManyWithoutCategoriesNestedInput)
   @Field(() => PostUpdateManyWithoutCategoriesNestedInput, {
     nullable: true,
     description: undefined,
   })
-  posts?: Omit<PostUpdateManyWithoutCategoriesNestedInput, never>;
+  posts?: Omit<PostUpdateManyWithoutCategoriesNestedInput, never> | null;
   @Type(() => CategoryMetadataUpdateOneWithoutCategoryNestedInput)
   @Field(() => CategoryMetadataUpdateOneWithoutCategoryNestedInput, {
     nullable: true,
     description: undefined,
   })
-  metadata?: Omit<CategoryMetadataUpdateOneWithoutCategoryNestedInput, never>;
+  metadata?: Omit<
+    CategoryMetadataUpdateOneWithoutCategoryNestedInput,
+    never
+  > | null;
 }

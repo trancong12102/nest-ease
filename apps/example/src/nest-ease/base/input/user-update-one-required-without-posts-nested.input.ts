@@ -16,13 +16,13 @@ export class UserUpdateOneRequiredWithoutPostsNestedInput {
     nullable: true,
     description: undefined,
   })
-  create?: UserCreateWithoutPostsInput;
+  create?: UserCreateWithoutPostsInput | null;
   @Type(() => UserCreateOrConnectWithoutPostsInput)
   @HideField()
-  connectOrCreate?: UserCreateOrConnectWithoutPostsInput;
+  connectOrCreate?: UserCreateOrConnectWithoutPostsInput | null;
   @Type(() => UserUpsertWithoutPostsInput)
   @HideField()
-  upsert?: UserUpsertWithoutPostsInput;
+  upsert?: UserUpsertWithoutPostsInput | null;
   @Type(() => UserWhereUniqueInput)
   @Field(() => UserWhereUniqueInput, { nullable: true, description: undefined })
   connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
@@ -31,5 +31,5 @@ export class UserUpdateOneRequiredWithoutPostsNestedInput {
     nullable: true,
     description: undefined,
   })
-  update?: UserUpdateToOneWithWhereWithoutPostsInput;
+  update?: UserUpdateToOneWithWhereWithoutPostsInput | null;
 }

@@ -19,16 +19,16 @@ export class PostUpdateManyWithoutAnotherAuthorNestedInput {
     nullable: true,
     description: undefined,
   })
-  create?: Array<PostCreateWithoutAnotherAuthorInput>;
+  create?: Array<PostCreateWithoutAnotherAuthorInput> | null;
   @Type(() => PostCreateOrConnectWithoutAnotherAuthorInput)
   @HideField()
-  connectOrCreate?: Array<PostCreateOrConnectWithoutAnotherAuthorInput>;
+  connectOrCreate?: Array<PostCreateOrConnectWithoutAnotherAuthorInput> | null;
   @Type(() => PostUpsertWithWhereUniqueWithoutAnotherAuthorInput)
   @HideField()
-  upsert?: Array<PostUpsertWithWhereUniqueWithoutAnotherAuthorInput>;
+  upsert?: Array<PostUpsertWithWhereUniqueWithoutAnotherAuthorInput> | null;
   @Type(() => PostCreateManyAnotherAuthorInputEnvelope)
   @HideField()
-  createMany?: PostCreateManyAnotherAuthorInputEnvelope;
+  createMany?: PostCreateManyAnotherAuthorInputEnvelope | null;
   @Type(() => PostWhereUniqueInput)
   @HideField()
   set?: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
@@ -55,11 +55,11 @@ export class PostUpdateManyWithoutAnotherAuthorNestedInput {
     nullable: true,
     description: undefined,
   })
-  update?: Array<PostUpdateWithWhereUniqueWithoutAnotherAuthorInput>;
+  update?: Array<PostUpdateWithWhereUniqueWithoutAnotherAuthorInput> | null;
   @Type(() => PostUpdateManyWithWhereWithoutAnotherAuthorInput)
   @HideField()
-  updateMany?: Array<PostUpdateManyWithWhereWithoutAnotherAuthorInput>;
+  updateMany?: Array<PostUpdateManyWithWhereWithoutAnotherAuthorInput> | null;
   @Type(() => PostScalarWhereInput)
   @HideField()
-  deleteMany?: Array<PostScalarWhereInput>;
+  deleteMany?: Array<PostScalarWhereInput> | null;
 }

@@ -5,7 +5,7 @@ import { InputType, Field } from '@nestjs/graphql';
 @InputType()
 export class CategoryMetadataCreateWithoutCategoryInput {
   @Field(() => Date, { nullable: true, description: undefined })
-  createdAt?: Date | string;
+  createdAt?: Date | string | null;
   @Field(() => Date, { nullable: true, description: undefined })
-  updatedAt?: Date | string;
+  updatedAt?: Date | string | null;
 }

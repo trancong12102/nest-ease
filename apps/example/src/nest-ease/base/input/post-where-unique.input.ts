@@ -17,59 +17,59 @@ import { CategoryListRelationFilter } from './category-list-relation-filter.inpu
 @InputType()
 export class PostWhereUniqueInput {
   @Field(() => Int, { nullable: true, description: undefined })
-  id?: number;
+  id?: number | null;
   @Type(() => PostWhereInput)
   @Field(() => [PostWhereInput], { nullable: true, description: undefined })
-  AND?: Array<PostWhereInput>;
+  AND?: Array<PostWhereInput> | null;
   @Type(() => PostWhereInput)
   @Field(() => [PostWhereInput], { nullable: true, description: undefined })
-  OR?: Array<PostWhereInput>;
+  OR?: Array<PostWhereInput> | null;
   @Type(() => PostWhereInput)
   @Field(() => [PostWhereInput], { nullable: true, description: undefined })
-  NOT?: Array<PostWhereInput>;
+  NOT?: Array<PostWhereInput> | null;
   @Type(() => StringFilter)
   @Field(() => StringFilter, { nullable: true, description: undefined })
-  title?: StringFilter;
+  title?: StringFilter | null;
   @Type(() => StringNullableFilter)
   @Field(() => StringNullableFilter, { nullable: true, description: undefined })
-  content?: StringNullableFilter;
+  content?: StringNullableFilter | null;
   @Type(() => BoolFilter)
   @Field(() => BoolFilter, { nullable: true, description: undefined })
-  published?: BoolFilter;
+  published?: BoolFilter | null;
   @Type(() => IntFilter)
   @Field(() => IntFilter, { nullable: true, description: undefined })
-  authorId?: IntFilter;
+  authorId?: IntFilter | null;
   @Type(() => IntFilter)
   @Field(() => IntFilter, { nullable: true, description: undefined })
-  anotherAuthorId?: IntFilter;
+  anotherAuthorId?: IntFilter | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
-  createdAt?: DateTimeFilter;
+  createdAt?: DateTimeFilter | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
-  updatedAt?: DateTimeFilter;
+  updatedAt?: DateTimeFilter | null;
   @Type(() => EnumPostKindFilter)
   @Field(() => EnumPostKindFilter, { nullable: true, description: undefined })
-  postKind?: EnumPostKindFilter;
+  postKind?: EnumPostKindFilter | null;
   @Type(() => JsonFilter)
   @Field(() => JsonFilter, { nullable: true, description: undefined })
-  jsonField?: JsonFilter;
+  jsonField?: JsonFilter | null;
   @Type(() => StringNullableListFilter)
   @Field(() => StringNullableListFilter, {
     nullable: true,
     description: undefined,
   })
-  scalarList?: StringNullableListFilter;
+  scalarList?: StringNullableListFilter | null;
   @Type(() => UserRelationFilter)
   @Field(() => UserRelationFilter, { nullable: true, description: undefined })
-  author?: UserRelationFilter;
+  author?: UserRelationFilter | null;
   @Type(() => UserRelationFilter)
   @Field(() => UserRelationFilter, { nullable: true, description: undefined })
-  anotherAuthor?: UserRelationFilter;
+  anotherAuthor?: UserRelationFilter | null;
   @Type(() => CategoryListRelationFilter)
   @Field(() => CategoryListRelationFilter, {
     nullable: true,
     description: undefined,
   })
-  categories?: Omit<CategoryListRelationFilter, never>;
+  categories?: Omit<CategoryListRelationFilter, never> | null;
 }

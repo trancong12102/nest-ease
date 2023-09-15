@@ -9,19 +9,19 @@ import { Type } from 'class-transformer';
 @InputType()
 export class PostCreateManyAuthorInput {
   @Field(() => Int, { nullable: true, description: undefined })
-  id?: number;
+  id?: number | null;
   @Field(() => String, { nullable: false, description: undefined })
   title!: string;
   @Field(() => String, { nullable: true, description: undefined })
-  content?: string;
+  content?: string | null;
   @Field(() => Boolean, { nullable: true, description: undefined })
-  published?: boolean;
+  published?: boolean | null;
   @Field(() => Int, { nullable: false, description: undefined })
   anotherAuthorId!: number;
   @Field(() => Date, { nullable: true, description: undefined })
-  createdAt?: Date | string;
+  createdAt?: Date | string | null;
   @Field(() => Date, { nullable: true, description: undefined })
-  updatedAt?: Date | string;
+  updatedAt?: Date | string | null;
   @Field(() => PostKind, { nullable: false, description: undefined })
   postKind!: keyof typeof PostKind;
   @Field(() => GraphQLJSON, { nullable: false, description: undefined })
@@ -31,5 +31,5 @@ export class PostCreateManyAuthorInput {
     nullable: true,
     description: undefined,
   })
-  scalarList?: PostCreatescalarListInput;
+  scalarList?: PostCreatescalarListInput | null;
 }
