@@ -117,6 +117,7 @@ function getIsHiddenField(name: string) {
     'set',
     'updateMany',
     'upsert',
+    'createMany',
   ].includes(name);
 }
 
