@@ -20,10 +20,7 @@ export class UserCreateNestedManyWithoutParentInput {
   @HideField()
   connectOrCreate?: Array<UserCreateOrConnectWithoutParentInput>;
   @Type(() => UserCreateManyParentInputEnvelope)
-  @Field(() => UserCreateManyParentInputEnvelope, {
-    nullable: true,
-    description: undefined,
-  })
+  @HideField()
   createMany?: UserCreateManyParentInputEnvelope;
   @Type(() => UserWhereUniqueInput)
   @Field(() => [UserWhereUniqueInput], {

@@ -27,10 +27,7 @@ export class UserUpdateManyWithoutParentNestedInput {
   @HideField()
   upsert?: Array<UserUpsertWithWhereUniqueWithoutParentInput>;
   @Type(() => UserCreateManyParentInputEnvelope)
-  @Field(() => UserCreateManyParentInputEnvelope, {
-    nullable: true,
-    description: undefined,
-  })
+  @HideField()
   createMany?: UserCreateManyParentInputEnvelope;
   @Type(() => UserWhereUniqueInput)
   @HideField()

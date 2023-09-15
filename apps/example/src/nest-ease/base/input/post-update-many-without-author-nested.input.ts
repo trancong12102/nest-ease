@@ -27,10 +27,7 @@ export class PostUpdateManyWithoutAuthorNestedInput {
   @HideField()
   upsert?: Array<PostUpsertWithWhereUniqueWithoutAuthorInput>;
   @Type(() => PostCreateManyAuthorInputEnvelope)
-  @Field(() => PostCreateManyAuthorInputEnvelope, {
-    nullable: true,
-    description: undefined,
-  })
+  @HideField()
   createMany?: PostCreateManyAuthorInputEnvelope;
   @Type(() => PostWhereUniqueInput)
   @HideField()

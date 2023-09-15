@@ -20,10 +20,7 @@ export class PostCreateNestedManyWithoutAnotherAuthorInput {
   @HideField()
   connectOrCreate?: Array<PostCreateOrConnectWithoutAnotherAuthorInput>;
   @Type(() => PostCreateManyAnotherAuthorInputEnvelope)
-  @Field(() => PostCreateManyAnotherAuthorInputEnvelope, {
-    nullable: true,
-    description: undefined,
-  })
+  @HideField()
   createMany?: PostCreateManyAnotherAuthorInputEnvelope;
   @Type(() => PostWhereUniqueInput)
   @Field(() => [PostWhereUniqueInput], {
