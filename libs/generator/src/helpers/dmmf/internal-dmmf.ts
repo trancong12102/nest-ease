@@ -9,11 +9,11 @@ import {
   ModelMapping,
   FieldLocation,
   Model,
+  ModelOperationType,
 } from '../../types/dmmf';
 import { CacheManager } from '../cache/cache-manager';
 import { pluralize } from '../../utils/pluralize';
 import { camelCase } from 'case-anything';
-import { ModelOperationType } from '../../enums/model-operation-type';
 import { BaseFileKind } from '../../types/file-kind';
 
 export class InternalDmmf {
@@ -98,69 +98,51 @@ export class InternalDmmf {
     return [
       {
         name: 'createOne',
-        type: ModelOperationType.Mutation,
+        type: 'Mutation',
         argsTypeName: `${modelName}CreateArgs`,
         resolverMethod: `create${modelName}`,
         serviceMethod: 'create',
-        schemaField: this.getSchemaField(
-          ModelOperationType.Mutation,
-          `createOne${modelName}`
-        ),
+        schemaField: this.getSchemaField('Mutation', `createOne${modelName}`),
       },
       {
         name: 'updateOne',
-        type: ModelOperationType.Mutation,
+        type: 'Mutation',
         argsTypeName: `${modelName}UpdateArgs`,
         resolverMethod: `update${modelName}`,
         serviceMethod: 'update',
-        schemaField: this.getSchemaField(
-          ModelOperationType.Mutation,
-          `updateOne${modelName}`
-        ),
+        schemaField: this.getSchemaField('Mutation', `updateOne${modelName}`),
       },
       {
         name: 'deleteOne',
-        type: ModelOperationType.Mutation,
+        type: 'Mutation',
         argsTypeName: `${modelName}DeleteArgs`,
         resolverMethod: `delete${modelName}`,
         serviceMethod: 'delete',
-        schemaField: this.getSchemaField(
-          ModelOperationType.Mutation,
-          `deleteOne${modelName}`
-        ),
+        schemaField: this.getSchemaField('Mutation', `deleteOne${modelName}`),
       },
       {
         name: 'deleteMany',
-        type: ModelOperationType.Mutation,
+        type: 'Mutation',
         argsTypeName: `${modelName}DeleteManyArgs`,
         resolverMethod: `delete${pluralize(modelName)}`,
         serviceMethod: 'deleteMany',
-        schemaField: this.getSchemaField(
-          ModelOperationType.Mutation,
-          `deleteMany${modelName}`
-        ),
+        schemaField: this.getSchemaField('Mutation', `deleteMany${modelName}`),
       },
       {
         name: 'findUnique',
-        type: ModelOperationType.Query,
+        type: 'Query',
         argsTypeName: `${modelName}FindUniqueArgs`,
         resolverMethod: camelCase(modelName),
         serviceMethod: 'findUnique',
-        schemaField: this.getSchemaField(
-          ModelOperationType.Query,
-          `findUnique${modelName}`
-        ),
+        schemaField: this.getSchemaField('Query', `findUnique${modelName}`),
       },
       {
         name: 'findMany',
-        type: ModelOperationType.Query,
+        type: 'Query',
         argsTypeName: `${modelName}FindManyArgs`,
         resolverMethod: camelCase(pluralize(modelName)),
         serviceMethod: 'findMany',
-        schemaField: this.getSchemaField(
-          ModelOperationType.Query,
-          `findMany${modelName}`
-        ),
+        schemaField: this.getSchemaField('Query', `findMany${modelName}`),
       },
     ];
   }

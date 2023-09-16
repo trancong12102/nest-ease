@@ -1,5 +1,4 @@
 import { DMMF } from '@prisma/generator-helper';
-import { ModelOperationType } from '../enums/model-operation-type';
 
 export type PrismaDMMF = DMMF.Document;
 export type Model = DMMF.Model;
@@ -14,6 +13,8 @@ export type OutputTypeRef = DMMF.OutputTypeRef;
 export type InputTypeRef = DMMF.InputTypeRef;
 export type SchemaArg = DMMF.SchemaArg;
 export type EnumValue = DMMF.EnumValue;
+
+export type ModelOperationType = 'Mutation' | 'Query';
 
 export interface ModelOperation {
   type: ModelOperationType;
