@@ -3,7 +3,7 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { CategoryWhereUniqueInput } from './category-where-unique.input';
 import { Type } from 'class-transformer';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 import { CategoryUpdateWithoutPostsInput } from './category-update-without-posts.input';
 
 @InputType()

@@ -7,7 +7,7 @@ import { PostCreateOrConnectWithoutAnotherAuthorInput } from './post-create-or-c
 import { PostUpsertWithWhereUniqueWithoutAnotherAuthorInput } from './post-upsert-with-where-unique-without-another-author.input';
 import { PostCreateManyAnotherAuthorInputEnvelope } from './post-create-many-another-author-input-envelope.input';
 import { PostWhereUniqueInput } from './post-where-unique.input';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 import { PostUpdateWithWhereUniqueWithoutAnotherAuthorInput } from './post-update-with-where-unique-without-another-author.input';
 import { PostUpdateManyWithWhereWithoutAnotherAuthorInput } from './post-update-many-with-where-without-another-author.input';
 import { PostScalarWhereInput } from './post-scalar-where.input';

@@ -6,7 +6,7 @@ import { Type } from 'class-transformer';
 import { UserCreateOrConnectWithoutPostsInput } from './user-create-or-connect-without-posts.input';
 import { UserUpsertWithoutPostsInput } from './user-upsert-without-posts.input';
 import { UserWhereUniqueInput } from './user-where-unique.input';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 import { UserUpdateToOneWithWhereWithoutPostsInput } from './user-update-to-one-with-where-without-posts.input';
 
 @InputType()

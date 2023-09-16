@@ -7,7 +7,7 @@ import { CategoryMetadataCreateOrConnectWithoutCategoryInput } from './category-
 import { CategoryMetadataUpsertWithoutCategoryInput } from './category-metadata-upsert-without-category.input';
 import { CategoryMetadataWhereInput } from './category-metadata-where.input';
 import { CategoryMetadataWhereUniqueInput } from './category-metadata-where-unique.input';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 import { CategoryMetadataUpdateToOneWithWhereWithoutCategoryInput } from './category-metadata-update-to-one-with-where-without-category.input';
 
 @InputType()

@@ -3,7 +3,7 @@
 import { ArgsType, Field } from '@nestjs/graphql';
 import { CategoryWhereUniqueInput } from '../input';
 import { Type } from 'class-transformer';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 
 @ArgsType()
 export class CategoryDeleteArgs {

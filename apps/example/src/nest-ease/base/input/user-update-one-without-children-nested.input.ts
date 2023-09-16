@@ -7,7 +7,7 @@ import { UserCreateOrConnectWithoutChildrenInput } from './user-create-or-connec
 import { UserUpsertWithoutChildrenInput } from './user-upsert-without-children.input';
 import { UserWhereInput } from './user-where.input';
 import { UserWhereUniqueInput } from './user-where-unique.input';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 import { UserUpdateToOneWithWhereWithoutChildrenInput } from './user-update-to-one-with-where-without-children.input';
 
 @InputType()

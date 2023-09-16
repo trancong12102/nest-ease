@@ -3,7 +3,7 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { CategoryMetadataWhereUniqueInput } from './category-metadata-where-unique.input';
 import { Type } from 'class-transformer';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 import { CategoryMetadataCreateWithoutCategoryInput } from './category-metadata-create-without-category.input';
 
 @InputType()

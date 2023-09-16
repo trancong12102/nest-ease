@@ -6,7 +6,7 @@ import { Type } from 'class-transformer';
 import { CategoryCreateOrConnectWithoutMetadataInput } from './category-create-or-connect-without-metadata.input';
 import { CategoryUpsertWithoutMetadataInput } from './category-upsert-without-metadata.input';
 import { CategoryWhereUniqueInput } from './category-where-unique.input';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 import { CategoryUpdateToOneWithWhereWithoutMetadataInput } from './category-update-to-one-with-where-without-metadata.input';
 
 @InputType()

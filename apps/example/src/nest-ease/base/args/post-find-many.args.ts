@@ -7,7 +7,7 @@ import {
   PostWhereUniqueInput,
 } from '../input';
 import { Type } from 'class-transformer';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 import { PostScalarFieldEnum } from '../enum';
 
 @ArgsType()

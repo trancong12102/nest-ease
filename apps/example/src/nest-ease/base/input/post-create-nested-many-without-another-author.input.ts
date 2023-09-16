@@ -6,7 +6,7 @@ import { Type } from 'class-transformer';
 import { PostCreateOrConnectWithoutAnotherAuthorInput } from './post-create-or-connect-without-another-author.input';
 import { PostCreateManyAnotherAuthorInputEnvelope } from './post-create-many-another-author-input-envelope.input';
 import { PostWhereUniqueInput } from './post-where-unique.input';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 
 @InputType()
 export class PostCreateNestedManyWithoutAnotherAuthorInput {

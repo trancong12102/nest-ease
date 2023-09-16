@@ -5,7 +5,7 @@ import { UserCreateWithoutPostsInput } from './user-create-without-posts.input';
 import { Type } from 'class-transformer';
 import { UserCreateOrConnectWithoutPostsInput } from './user-create-or-connect-without-posts.input';
 import { UserWhereUniqueInput } from './user-where-unique.input';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 
 @InputType()
 export class UserCreateNestedOneWithoutPostsInput {

@@ -5,7 +5,7 @@ import { CategoryCreateWithoutPostsInput } from './category-create-without-posts
 import { Type } from 'class-transformer';
 import { CategoryCreateOrConnectWithoutPostsInput } from './category-create-or-connect-without-posts.input';
 import { CategoryWhereUniqueInput } from './category-where-unique.input';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 
 @InputType()
 export class CategoryCreateNestedManyWithoutPostsInput {

@@ -2,4 +2,4 @@
 /dist
 /coverage
 pnpm-lock.yaml
-prisma-client
+@prisma-client

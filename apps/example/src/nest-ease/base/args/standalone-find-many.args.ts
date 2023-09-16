@@ -7,7 +7,7 @@ import {
   StandaloneWhereUniqueInput,
 } from '../input';
 import { Type } from 'class-transformer';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 import { StandaloneScalarFieldEnum } from '../enum';
 
 @ArgsType()

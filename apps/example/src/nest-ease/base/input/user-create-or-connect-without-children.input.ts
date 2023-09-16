@@ -3,7 +3,7 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { UserWhereUniqueInput } from './user-where-unique.input';
 import { Type } from 'class-transformer';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 import { UserCreateWithoutChildrenInput } from './user-create-without-children.input';
 
 @InputType()

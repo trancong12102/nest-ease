@@ -6,7 +6,7 @@ import { Type } from 'class-transformer';
 import { UserCreateOrConnectWithoutParentInput } from './user-create-or-connect-without-parent.input';
 import { UserCreateManyParentInputEnvelope } from './user-create-many-parent-input-envelope.input';
 import { UserWhereUniqueInput } from './user-where-unique.input';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 
 @InputType()
 export class UserCreateNestedManyWithoutParentInput {

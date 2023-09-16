@@ -3,7 +3,7 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { PostWhereUniqueInput } from './post-where-unique.input';
 import { Type } from 'class-transformer';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 import { PostUpdateWithoutAnotherAuthorInput } from './post-update-without-another-author.input';
 import { PostCreateWithoutAnotherAuthorInput } from './post-create-without-another-author.input';
 

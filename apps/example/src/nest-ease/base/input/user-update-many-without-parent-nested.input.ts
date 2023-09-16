@@ -7,7 +7,7 @@ import { UserCreateOrConnectWithoutParentInput } from './user-create-or-connect-
 import { UserUpsertWithWhereUniqueWithoutParentInput } from './user-upsert-with-where-unique-without-parent.input';
 import { UserCreateManyParentInputEnvelope } from './user-create-many-parent-input-envelope.input';
 import { UserWhereUniqueInput } from './user-where-unique.input';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 import { UserUpdateWithWhereUniqueWithoutParentInput } from './user-update-with-where-unique-without-parent.input';
 import { UserUpdateManyWithWhereWithoutParentInput } from './user-update-many-with-where-without-parent.input';
 import { UserScalarWhereInput } from './user-scalar-where.input';

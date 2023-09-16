@@ -5,7 +5,7 @@ import { CategoryMetadataCreateWithoutCategoryInput } from './category-metadata-
 import { Type } from 'class-transformer';
 import { CategoryMetadataCreateOrConnectWithoutCategoryInput } from './category-metadata-create-or-connect-without-category.input';
 import { CategoryMetadataWhereUniqueInput } from './category-metadata-where-unique.input';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 
 @InputType()
 export class CategoryMetadataCreateNestedOneWithoutCategoryInput {

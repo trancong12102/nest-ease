@@ -40,3 +40,4 @@ Thumbs.db
 
 .env
 dmmf.json
+@prisma-client

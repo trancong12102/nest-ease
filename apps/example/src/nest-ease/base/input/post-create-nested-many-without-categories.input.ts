@@ -5,7 +5,7 @@ import { PostCreateWithoutCategoriesInput } from './post-create-without-categori
 import { Type } from 'class-transformer';
 import { PostCreateOrConnectWithoutCategoriesInput } from './post-create-or-connect-without-categories.input';
 import { PostWhereUniqueInput } from './post-where-unique.input';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 
 @InputType()
 export class PostCreateNestedManyWithoutCategoriesInput {

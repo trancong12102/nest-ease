@@ -3,7 +3,7 @@
 import { ArgsType, Field } from '@nestjs/graphql';
 import { CategoryMetadataWhereUniqueInput } from '../input';
 import { Type } from 'class-transformer';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 
 @ArgsType()
 export class CategoryMetadataFindUniqueArgs {

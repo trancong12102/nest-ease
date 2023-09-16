@@ -6,7 +6,7 @@ import { Type } from 'class-transformer';
 import { CategoryCreateOrConnectWithoutPostsInput } from './category-create-or-connect-without-posts.input';
 import { CategoryUpsertWithWhereUniqueWithoutPostsInput } from './category-upsert-with-where-unique-without-posts.input';
 import { CategoryWhereUniqueInput } from './category-where-unique.input';
-import { Prisma } from '../../../prisma-client';
+import { Prisma } from '../../../@prisma-client';
 import { CategoryUpdateWithWhereUniqueWithoutPostsInput } from './category-update-with-where-unique-without-posts.input';
 import { CategoryUpdateManyWithWhereWithoutPostsInput } from './category-update-many-with-where-without-posts.input';
 import { CategoryScalarWhereInput } from './category-scalar-where.input';
