@@ -17,13 +17,7 @@ export async function generateModelModule(
   generatorOptions: GeneratorOptions,
   modelMapping: ModelMapping
 ) {
-  const {
-    srcPath,
-    config: {
-      generator: { overwriteCustomFiles },
-    },
-    gitChangedFiles,
-  } = generatorOptions;
+  const { srcPath, overwriteCustomFiles, gitChangedFiles } = generatorOptions;
   const {
     model: { name: modelName },
   } = modelMapping;

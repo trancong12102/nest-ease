@@ -5,12 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 import * as os from 'os';
 
 export const ConfigSchema = z.object({
-  prisma: z.object({
-    servicePath: z.string(),
-  }),
-  generator: z.object({
-    overwriteCustomFiles: z.boolean().optional(),
-  }),
+  prismaServicePath: z.string(),
+  overwriteCustomFiles: z.boolean().default(false),
 });
 
 export type GeneratorConfig = z.infer<typeof ConfigSchema>;
@@ -43,15 +39,11 @@ export async function getGeneratorConfig(
   const config = (await import(configJsPath)).default;
 
   const parsedConfig = ConfigSchema.parse(config);
-  const {
-    prisma: { servicePath },
-  } = parsedConfig;
+  const { prismaServicePath } = parsedConfig;
 
   return {
     ...parsedConfig,
-    prisma: {
-      servicePath: path.resolve(srcPath, servicePath),
-    },
+    prismaServicePath: path.resolve(srcPath, prismaServicePath),
   };
 }
 

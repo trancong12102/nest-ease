@@ -19,14 +19,8 @@ export async function generateModelService(
   generatorOptions: GeneratorOptions,
   modelMapping: ModelMapping
 ) {
-  const {
-    srcPath,
-    config: {
-      prisma,
-      generator: { overwriteCustomFiles },
-    },
-    gitChangedFiles,
-  } = generatorOptions;
+  const { srcPath, overwriteCustomFiles, gitChangedFiles, prismaServicePath } =
+    generatorOptions;
   const {
     model: { name: modelName },
   } = modelMapping;
@@ -65,7 +59,7 @@ export async function generateModelService(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        prisma.servicePath
+        prismaServicePath
       ),
       namedImports: [prismaServiceClassname],
     },

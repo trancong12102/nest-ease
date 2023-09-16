@@ -12,8 +12,7 @@ export type GeneratorOptions = {
   projectRootPath: string;
   prismaClientPath: string;
   gitChangedFiles: string[];
-  config: GeneratorConfig;
-};
+} & GeneratorConfig;
 
 export type FieldMetadata = {
   propertyType: string;
