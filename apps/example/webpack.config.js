@@ -5,15 +5,23 @@ const swcDefaultConfig =
 
 // Nx plugins for webpack.
 module.exports = composePlugins(withNx(), (config) => {
-  config.module.rules = [
-    {
-      test: /\.ts$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'swc-loader',
-        options: swcDefaultConfig,
+  const combinedConfig = Object.assign(config);
+
+  const {
+    module: { rules },
+  } = config;
+  combinedConfig.module.rules = rules
+    .filter((r) => !r.loader?.match(/(ts-loader)/))
+    .concat([
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'swc-loader',
+          options: swcDefaultConfig,
+        },
       },
-    },
-  ];
-  return config;
+    ]);
+
+  return combinedConfig;
 });
