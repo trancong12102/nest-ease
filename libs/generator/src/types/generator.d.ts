@@ -10,6 +10,7 @@ export type GeneratorOptions = {
   dmmf: InternalDmmf;
   srcPath: string;
   projectRootPath: string;
+  prismaClientPath: string;
   gitChangedFiles: string[];
   config: GeneratorConfig;
 };

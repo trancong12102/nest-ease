@@ -32,8 +32,9 @@ export function generateModelBaseService(
   const {
     srcPath,
     config: {
-      prisma: { servicePath: prismaServicePath, clientPath: prismaClientPath },
+      prisma: { servicePath: prismaServicePath },
     },
+    prismaClientPath,
   } = generatorOptions;
   const { model, operations } = modelMapping;
   const { name: modelName } = model;

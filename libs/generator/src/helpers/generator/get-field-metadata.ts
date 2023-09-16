@@ -23,11 +23,7 @@ export function getFieldMetadata({
   location,
   namespace,
   propertyOptions,
-  generatorOptions: {
-    dmmf,
-    srcPath,
-    config: { prisma },
-  },
+  generatorOptions: { dmmf, srcPath, prismaClientPath },
   importDest,
 }: {
   type: string;
@@ -83,7 +79,7 @@ export function getFieldMetadata({
   if (isWhereUniqueInput) {
     imports.push({
       kind: StructureKind.ImportDeclaration,
-      moduleSpecifier: getImportModuleSpecifier(importDest, prisma.clientPath),
+      moduleSpecifier: getImportModuleSpecifier(importDest, prismaClientPath),
       namedImports: ['Prisma'],
     });
   }

@@ -6,7 +6,6 @@ import * as os from 'os';
 
 export const ConfigSchema = z.object({
   prisma: z.object({
-    clientPath: z.string(),
     servicePath: z.string(),
   }),
   generator: z.object({
@@ -16,7 +15,9 @@ export const ConfigSchema = z.object({
 
 export type GeneratorConfig = z.infer<typeof ConfigSchema>;
 
-export async function getGeneratorConfig(srcPath: string) {
+export async function getGeneratorConfig(
+  srcPath: string
+): Promise<GeneratorConfig> {
   const configTsPath = getConfigPath(srcPath);
   const project = new Project({
     compilerOptions: {
@@ -43,14 +44,13 @@ export async function getGeneratorConfig(srcPath: string) {
 
   const parsedConfig = ConfigSchema.parse(config);
   const {
-    prisma: { servicePath, clientPath },
+    prisma: { servicePath },
   } = parsedConfig;
 
   return {
     ...parsedConfig,
     prisma: {
       servicePath: path.resolve(srcPath, servicePath),
-      clientPath: path.resolve(srcPath, clientPath),
     },
   };
 }
