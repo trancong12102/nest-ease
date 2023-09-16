@@ -6,6 +6,7 @@ export async function getGitChangedFiles(): Promise<string[]> {
   const repo = simpleGit({
     baseDir: cwd,
   });
+  await repo.add('.');
   const { modified, created } = await repo.status();
   const changedPaths = [...modified, ...created];
 
