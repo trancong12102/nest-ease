@@ -11,8 +11,8 @@ import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { selectInputType } from '../helpers/dmmf/select-input-type';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { generatePrismaType } from './generate-prisma-type';
-import { CodeComment } from '../enums/code-comment';
 import { getPropertyDeclaration } from '../helpers/generator/get-property-declaration';
+import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
 
 export function generateInputObjectType(
   project: Project,
@@ -92,7 +92,7 @@ export function generateInputObjectType(
   sourceFile.set({
     kind: StructureKind.SourceFile,
     statements: [
-      CodeComment.GenratedFileComment,
+      GENERATED_FILE_COMMENT,
       ...optimizeImports(imports, name),
       classDeclaration,
     ],

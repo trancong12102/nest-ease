@@ -9,10 +9,10 @@ import { SchemaArg } from '../types/dmmf';
 import { GeneratorOptions } from '../types/generator';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { selectInputType } from '../helpers/dmmf/select-input-type';
-import { CodeComment } from '../enums/code-comment';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { generatePrismaType } from './generate-prisma-type';
 import { getPropertyDeclaration } from '../helpers/generator/get-property-declaration';
+import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
 
 export function generateArgsType(
   project: Project,
@@ -64,7 +64,7 @@ export function generateArgsType(
   sourceFile.set({
     kind: StructureKind.SourceFile,
     statements: [
-      CodeComment.GenratedFileComment,
+      GENERATED_FILE_COMMENT,
       ...optimizeImports(imports, name),
       classDeclaration,
     ],

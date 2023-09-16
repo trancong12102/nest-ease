@@ -14,7 +14,7 @@ import { generateModelResolver } from './generate-model-resolver';
 import { getClassname } from '../helpers/path/get-classname';
 import { getModuleChildFilePath } from '../helpers/path/get-module-child-file-path';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
-import { CodeComment } from '../enums/code-comment';
+import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
 
 export async function generateNestEaseModule(
   project: Project,
@@ -113,11 +113,7 @@ export async function generateNestEaseModule(
   project.createSourceFile(
     sourceFilePath,
     {
-      statements: [
-        CodeComment.GenratedFileComment,
-        ...imports,
-        classDeclaration,
-      ],
+      statements: [GENERATED_FILE_COMMENT, ...imports, classDeclaration],
     },
     {
       overwrite: true,

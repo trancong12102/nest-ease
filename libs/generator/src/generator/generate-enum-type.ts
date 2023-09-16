@@ -7,8 +7,8 @@ import {
 import { GeneratorOptions } from '../types/generator';
 import { FieldNamespace } from '../types/dmmf';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
-import { CodeComment } from '../enums/code-comment';
 import { buildEnumDocumentationOptions } from '../helpers/documentation/build-enum-documentation-options';
+import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
 
 export function generateEnumType(
   project: Project,
@@ -62,7 +62,7 @@ export function generateEnumType(
   sourceFile.set({
     kind: StructureKind.SourceFile,
     statements: [
-      CodeComment.GenratedFileComment,
+      GENERATED_FILE_COMMENT,
       ...imports,
       enumStructure,
       `registerEnumType(${name}, { name: '${name}', description: ${JSON.stringify(

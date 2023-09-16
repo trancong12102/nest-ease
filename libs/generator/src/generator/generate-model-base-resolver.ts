@@ -12,7 +12,6 @@ import { GeneratorOptions } from '../types/generator';
 import { ModelMapping } from '../types/dmmf';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { getClassname } from '../helpers/path/get-classname';
-import { CodeComment } from '../enums/code-comment';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
 import { getFieldMetadata } from '../helpers/generator/get-field-metadata';
@@ -20,6 +19,7 @@ import { getPropertyType } from '../helpers/generator/get-property-type';
 import { getResolveMethodName } from '../helpers/generator/get-resolve-method-name';
 import { getGraphqlType } from '../helpers/generator/get-graphql-type';
 import { camelCase } from 'case-anything';
+import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
 
 export function generateModelBaseResolver(
   project: Project,
@@ -286,7 +286,7 @@ return this.service.${getResolveMethodName(name)}(parent${
     sourceFilePath,
     {
       statements: [
-        CodeComment.GenratedFileComment,
+        GENERATED_FILE_COMMENT,
         ...optimizeImports(imports, className),
         classDeclaration,
       ],

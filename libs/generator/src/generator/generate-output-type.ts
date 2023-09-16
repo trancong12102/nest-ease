@@ -9,11 +9,11 @@ import { GeneratorOptions } from '../types/generator';
 import { FieldNamespace, SchemaField } from '../types/dmmf';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { optimizeImports } from '../helpers/import/optimize-imports';
-import { CodeComment } from '../enums/code-comment';
 import { generatePrismaType } from './generate-prisma-type';
 import { getPropertyDeclaration } from '../helpers/generator/get-property-declaration';
 import { buildModelDocumentations } from '../helpers/documentation/build-model-documentations';
 import { BaseFileKind } from '../types/file-kind';
+import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
 
 export function generateOutputType(
   project: Project,
@@ -80,7 +80,7 @@ export function generateOutputType(
   sourceFile.set({
     kind: StructureKind.SourceFile,
     statements: [
-      CodeComment.GenratedFileComment,
+      GENERATED_FILE_COMMENT,
       ...optimizeImports(imports, name),
       classDeclaration,
     ],

@@ -12,7 +12,6 @@ import { GeneratorOptions } from '../types/generator';
 import { Model, ModelMapping } from '../types/dmmf';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { getClassname } from '../helpers/path/get-classname';
-import { CodeComment } from '../enums/code-comment';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
 import { getFieldMetadata } from '../helpers/generator/get-field-metadata';
@@ -20,6 +19,7 @@ import { camelCase } from 'case-anything';
 import { getPropertyType } from '../helpers/generator/get-property-type';
 import { getResolveMethodName } from '../helpers/generator/get-resolve-method-name';
 import { getCompoundFieldName } from '../helpers/generator/get-compound-field-name';
+import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
 
 export function generateModelBaseService(
   project: Project,
@@ -193,7 +193,7 @@ return this.prisma.client.${modelDelegateName}
     sourceFilePath,
     {
       statements: [
-        CodeComment.GenratedFileComment,
+        GENERATED_FILE_COMMENT,
         ...optimizeImports(imports, className),
         classDeclaration,
       ],

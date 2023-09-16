@@ -3,8 +3,8 @@ import { GeneratorOptions } from '../types/generator';
 import { getBaseDirectoryPath } from '../helpers/path/get-base-directory-path';
 import { getBaseIndexPath } from '../helpers/path/get-base-index-path';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
-import { CodeComment } from '../enums/code-comment';
 import { BASE_FILE_KINDS } from '../contants/file-kind.const';
+import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
 
 export function generateIndexFiles(
   project: Project,
@@ -29,7 +29,7 @@ export function generateIndexFiles(
     project.createSourceFile(
       indexFilePath,
       {
-        statements: [CodeComment.GenratedFileComment, ...exports],
+        statements: [GENERATED_FILE_COMMENT, ...exports],
       },
       {
         overwrite: true,
@@ -47,7 +47,7 @@ export function generateIndexFiles(
   project.createSourceFile(
     baseIndexFilePath,
     {
-      statements: [CodeComment.GenratedFileComment, ...exports],
+      statements: [GENERATED_FILE_COMMENT, ...exports],
     },
     {
       overwrite: true,
