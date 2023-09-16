@@ -25,7 +25,7 @@ export async function generateModelService(
     srcPath,
     config: {
       prisma,
-      dangerous: { overwriteCustomFiles },
+      generator: { overwriteCustomFiles },
     },
     gitChangedFiles,
   } = generatorOptions;

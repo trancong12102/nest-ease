@@ -5,7 +5,7 @@ const nestEaseConfig: GeneratorConfig = {
     clientPath: 'prisma-client/index',
     servicePath: 'prisma/prisma.service',
   },
-  dangerous: {
+  generator: {
     overwriteCustomFiles: true,
   },
 };

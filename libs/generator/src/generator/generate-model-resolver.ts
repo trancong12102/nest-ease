@@ -24,7 +24,7 @@ export async function generateModelResolver(
   const {
     srcPath,
     config: {
-      dangerous: { overwriteCustomFiles },
+      generator: { overwriteCustomFiles },
     },
     gitChangedFiles,
   } = generatorOptions;

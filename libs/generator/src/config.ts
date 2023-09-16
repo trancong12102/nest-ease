@@ -9,7 +9,7 @@ export const ConfigSchema = z.object({
     clientPath: z.string(),
     servicePath: z.string(),
   }),
-  dangerous: z.object({
+  generator: z.object({
     overwriteCustomFiles: z.boolean().optional(),
   }),
 });

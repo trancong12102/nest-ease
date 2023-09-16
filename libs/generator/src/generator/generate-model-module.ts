@@ -21,7 +21,7 @@ export async function generateModelModule(
   const {
     srcPath,
     config: {
-      dangerous: { overwriteCustomFiles },
+      generator: { overwriteCustomFiles },
     },
     gitChangedFiles,
   } = generatorOptions;
