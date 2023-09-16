@@ -7,7 +7,6 @@ import {
 import { GeneratorOptions } from '../types/generator';
 import { FieldNamespace } from '../types/dmmf';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
-import { BaseFileKind } from '../enums/base-file-kind';
 import { CodeComment } from '../enums/code-comment';
 import { buildEnumDocumentationOptions } from '../helpers/documentation/build-enum-documentation-options';
 
@@ -19,7 +18,7 @@ export function generateEnumType(
 ) {
   const { dmmf, srcPath } = options;
 
-  const sourceFilePath = getBaseChildFilePath(srcPath, name, BaseFileKind.Enum);
+  const sourceFilePath = getBaseChildFilePath(srcPath, name, 'enum');
   if (project.getSourceFile(sourceFilePath)) {
     return;
   }

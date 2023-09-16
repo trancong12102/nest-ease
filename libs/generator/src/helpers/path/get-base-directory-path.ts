@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { BaseFileKind } from '../../enums/base-file-kind';
+import { BaseFileKind } from '../../types/file-kind';
 
 export function getBaseDirectoryPath(srcPath: string, kind?: BaseFileKind) {
   const baseDirectoryPath = join(srcPath, 'nest-ease/base');

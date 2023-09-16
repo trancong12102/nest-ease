@@ -1,10 +1,10 @@
 import { ExportDeclarationStructure, Project, StructureKind } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator';
-import { BaseFileKind } from '../enums/base-file-kind';
 import { getBaseDirectoryPath } from '../helpers/path/get-base-directory-path';
 import { getBaseIndexPath } from '../helpers/path/get-base-index-path';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
 import { CodeComment } from '../enums/code-comment';
+import { BASE_FILE_KINDS } from '../contants/file-kind.const';
 
 export function generateIndexFiles(
   project: Project,
@@ -14,7 +14,7 @@ export function generateIndexFiles(
   const projectFiles = project.getSourceFiles();
   const indexFilePaths: string[] = [];
 
-  for (const kind of Object.values(BaseFileKind)) {
+  for (const kind of BASE_FILE_KINDS) {
     const indexParentDir = getBaseDirectoryPath(srcPath, kind);
     const indexFilePath = getBaseIndexPath(srcPath, kind);
     const exports: ExportDeclarationStructure[] = projectFiles

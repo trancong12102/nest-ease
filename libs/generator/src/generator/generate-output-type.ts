@@ -8,12 +8,12 @@ import {
 import { GeneratorOptions } from '../types/generator';
 import { FieldNamespace, SchemaField } from '../types/dmmf';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
-import { BaseFileKind } from '../enums/base-file-kind';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { CodeComment } from '../enums/code-comment';
 import { generatePrismaType } from './generate-prisma-type';
 import { getPropertyDeclaration } from '../helpers/generator/get-property-declaration';
 import { buildModelDocumentations } from '../helpers/documentation/build-model-documentations';
+import { BaseFileKind } from '../types/file-kind';
 
 export function generateOutputType(
   project: Project,
@@ -25,7 +25,7 @@ export function generateOutputType(
   const model = dmmf.getModel(name);
   const { documentation, fields: fieldDocumentations } =
     buildModelDocumentations(model);
-  const kind = dmmf.isModel(name) ? BaseFileKind.Model : BaseFileKind.Output;
+  const kind: BaseFileKind = dmmf.isModel(name) ? 'model' : 'output';
   const sourceFilePath = getBaseChildFilePath(srcPath, name, kind);
   if (project.getSourceFile(sourceFilePath)) {
     return;
@@ -49,9 +49,7 @@ export function generateOutputType(
   }
 
   const fields =
-    kind === BaseFileKind.Model
-      ? removeCountAndRelationFields(type.fields)
-      : type.fields;
+    kind === 'model' ? removeCountAndRelationFields(type.fields) : type.fields;
 
   for (const field of fields) {
     const { imports: propertyImports, property } = getPropertyDeclaration(

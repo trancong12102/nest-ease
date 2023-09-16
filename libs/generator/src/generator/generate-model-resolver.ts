@@ -8,9 +8,7 @@ import {
 import { GeneratorOptions } from '../types/generator';
 import { ModelMapping } from '../types/dmmf';
 import { getClassname } from '../helpers/path/get-classname';
-import { ModuleFileKind } from '../enums/module-file-kind';
 import { getModuleChildFilePath } from '../helpers/path/get-module-child-file-path';
-import { BaseFileKind } from '../enums/base-file-kind';
 import { getBaseIndexPath } from '../helpers/path/get-base-index-path';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
 import { isPathExists } from '../utils/is-path-exists';
@@ -32,28 +30,25 @@ export async function generateModelResolver(
     model: { name: modelName },
   } = modelMapping;
 
-  const classname = getClassname(modelName, ModuleFileKind.Resolver);
+  const classname = getClassname(modelName, 'resolver');
   const sourceFilePath = getModuleChildFilePath(
     srcPath,
     modelName,
     classname,
-    ModuleFileKind.Resolver
+    'resolver'
   );
   if (!overwriteCustomFiles && (await isPathExists(sourceFilePath))) {
     return;
   }
   assertGitStatusClean(gitChangedFiles, sourceFilePath);
 
-  const baseResolverClassname = getClassname(
-    modelName,
-    BaseFileKind.BaseResolver
-  );
-  const serviceClassname = getClassname(modelName, ModuleFileKind.Service);
+  const baseResolverClassname = getClassname(modelName, 'base-resolver');
+  const serviceClassname = getClassname(modelName, 'service');
   const serviceFilepath = getModuleChildFilePath(
     srcPath,
     modelName,
     serviceClassname,
-    ModuleFileKind.Service
+    'service'
   );
   const baseIndexFilepath = getBaseIndexPath(srcPath);
 

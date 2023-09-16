@@ -1,5 +1,5 @@
-import { FileKind } from '../../enums/file-kind';
 import { kebabCase } from 'case-anything';
+import { FileKind } from '../../types/file-kind';
 
 export function getFilenameFromClass(className: string, kind: FileKind) {
   const basename = kebabCase(className).replace(new RegExp(`-${kind}$`), '');

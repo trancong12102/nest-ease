@@ -1,5 +1,5 @@
 import { dirname, relative } from 'path';
-import { FileKind } from '../../enums/file-kind';
+import { FILE_KINDS } from '../../contants/file-kind.const';
 
 export function getImportModuleSpecifier(
   importDest: string,
@@ -11,7 +11,7 @@ export function getImportModuleSpecifier(
     .replace(/\.ts$/, '')
     .replace(/\/index$/, '')
     .replace(/^index$/, '.')
-    .replace(new RegExp(`(${Object.values(FileKind).join('|')})/.*`), '$1');
+    .replace(new RegExp(`(${Object.values(FILE_KINDS).join('|')})/.*`), '$1');
 
   return relativePath.startsWith('../') ? relativePath : `./${relativePath}`;
 }

@@ -12,7 +12,6 @@ import { generateModelMappingTypes } from './generate-model-mapping-types';
 import { generateModelService } from './generate-model-service';
 import { generateModelResolver } from './generate-model-resolver';
 import { getClassname } from '../helpers/path/get-classname';
-import { ModuleFileKind } from '../enums/module-file-kind';
 import { getModuleChildFilePath } from '../helpers/path/get-module-child-file-path';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
 import { CodeComment } from '../enums/code-comment';
@@ -26,19 +25,19 @@ export async function generateNestEaseModule(
     srcPath,
   } = options;
 
-  const classname = getClassname('NestEase', ModuleFileKind.Module);
+  const classname = getClassname('NestEase', 'module');
   const sourceFilePath = getModuleChildFilePath(
     srcPath,
     'NestEase',
     classname,
-    ModuleFileKind.Module
+    'module'
   );
-  const prismaModuleClassname = getClassname('Prisma', ModuleFileKind.Module);
+  const prismaModuleClassname = getClassname('Prisma', 'module');
   const prismaModuleFilepath = getModuleChildFilePath(
     srcPath,
     'Prisma',
     prismaModuleClassname,
-    ModuleFileKind.Module
+    'module'
   );
 
   const imports: ImportDeclarationStructure[] = [
@@ -58,7 +57,7 @@ export async function generateNestEaseModule(
   ];
 
   const modelClassnames = modelMappings
-    .map(({ model: { name } }) => getClassname(name, ModuleFileKind.Module))
+    .map(({ model: { name } }) => getClassname(name, 'module'))
     .concat(prismaModuleClassname)
     .join(', ');
 
@@ -73,12 +72,12 @@ export async function generateNestEaseModule(
     const {
       model: { name: modelName },
     } = modelMapping;
-    const modelModuleClassname = getClassname(modelName, ModuleFileKind.Module);
+    const modelModuleClassname = getClassname(modelName, 'module');
     const modelModuleFilepath = getModuleChildFilePath(
       srcPath,
       modelName,
       modelModuleClassname,
-      ModuleFileKind.Module
+      'module'
     );
 
     imports.push({

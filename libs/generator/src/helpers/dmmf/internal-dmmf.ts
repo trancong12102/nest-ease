@@ -13,8 +13,8 @@ import {
 import { CacheManager } from '../cache/cache-manager';
 import { pluralize } from '../../utils/pluralize';
 import { camelCase } from 'case-anything';
-import { BaseFileKind } from '../../enums/base-file-kind';
 import { ModelOperationType } from '../../enums/model-operation-type';
+import { BaseFileKind } from '../../types/file-kind';
 
 export class InternalDmmf {
   private readonly _modelMappings: ModelMapping[];
@@ -71,11 +71,11 @@ export class InternalDmmf {
   ): BaseFileKind {
     switch (location) {
       case 'outputObjectTypes':
-        return this.isModel(name) ? BaseFileKind.Model : BaseFileKind.Output;
+        return this.isModel(name) ? 'model' : 'output';
       case 'inputObjectTypes':
-        return BaseFileKind.Input;
+        return 'input';
       case 'enumTypes':
-        return BaseFileKind.Enum;
+        return 'enum';
       default:
         throw new Error(`Unknown file kind for: ${location}:${name}`);
     }

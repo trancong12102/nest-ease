@@ -15,7 +15,6 @@ import { getImportModuleSpecifier } from '../import/get-import-module-specifier'
 import { getPropertyType } from './get-property-type';
 import { getGraphqlType } from './get-graphql-type';
 import { InternalDmmf } from '../dmmf/internal-dmmf';
-import { BaseFileKind } from '../../enums/base-file-kind';
 import { getCompoundFieldName } from './get-compound-field-name';
 
 export function getFieldMetadata({
@@ -62,7 +61,7 @@ export function getFieldMetadata({
   ];
   const decorators: DecoratorStructure[] = [];
 
-  if (kind === BaseFileKind.Input) {
+  if (kind === 'input') {
     imports.push({
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: 'class-transformer',
@@ -99,8 +98,7 @@ export function getFieldMetadata({
       )) &&
       !isList);
 
-  const propertyType =
-    kind === BaseFileKind.Enum ? `keyof typeof ${type}` : type;
+  const propertyType = kind === 'enum' ? `keyof typeof ${type}` : type;
 
   return {
     imports,

@@ -7,7 +7,6 @@ import {
 import { GeneratorOptions } from '../types/generator';
 import { ModelMapping } from '../types/dmmf';
 import { getClassname } from '../helpers/path/get-classname';
-import { ModuleFileKind } from '../enums/module-file-kind';
 import { getModuleChildFilePath } from '../helpers/path/get-module-child-file-path';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
 import { isPathExists } from '../utils/is-path-exists';
@@ -29,31 +28,31 @@ export async function generateModelModule(
     model: { name: modelName },
   } = modelMapping;
 
-  const classname = getClassname(modelName, ModuleFileKind.Module);
+  const classname = getClassname(modelName, 'module');
   const sourceFilePath = getModuleChildFilePath(
     srcPath,
     modelName,
     classname,
-    ModuleFileKind.Module
+    'module'
   );
   if (!overwriteCustomFiles && (await isPathExists(sourceFilePath))) {
     return;
   }
   assertGitStatusClean(gitChangedFiles, sourceFilePath);
 
-  const serviceClassname = getClassname(modelName, ModuleFileKind.Service);
+  const serviceClassname = getClassname(modelName, 'service');
   const serviceFilepath = getModuleChildFilePath(
     srcPath,
     modelName,
     serviceClassname,
-    ModuleFileKind.Service
+    'service'
   );
-  const resolverClassname = getClassname(modelName, ModuleFileKind.Resolver);
+  const resolverClassname = getClassname(modelName, 'resolver');
   const resolverFilepath = getModuleChildFilePath(
     srcPath,
     modelName,
     resolverClassname,
-    ModuleFileKind.Resolver
+    'resolver'
   );
 
   const imports: ImportDeclarationStructure[] = [

@@ -8,7 +8,6 @@ import {
 import { GeneratorOptions } from '../types/generator';
 import { FieldNamespace } from '../types/dmmf';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
-import { BaseFileKind } from '../enums/base-file-kind';
 import { selectInputType } from '../helpers/dmmf/select-input-type';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { generatePrismaType } from './generate-prisma-type';
@@ -23,11 +22,7 @@ export function generateInputObjectType(
 ) {
   const { dmmf, srcPath } = options;
 
-  const sourceFilePath = getBaseChildFilePath(
-    srcPath,
-    name,
-    BaseFileKind.Input
-  );
+  const sourceFilePath = getBaseChildFilePath(srcPath, name, 'input');
   if (project.getSourceFile(sourceFilePath)) {
     return;
   }

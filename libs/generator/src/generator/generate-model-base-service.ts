@@ -12,8 +12,6 @@ import { GeneratorOptions } from '../types/generator';
 import { Model, ModelMapping } from '../types/dmmf';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { getClassname } from '../helpers/path/get-classname';
-import { BaseFileKind } from '../enums/base-file-kind';
-import { ModuleFileKind } from '../enums/module-file-kind';
 import { CodeComment } from '../enums/code-comment';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
@@ -38,13 +36,13 @@ export function generateModelBaseService(
   const { model, operations } = modelMapping;
   const { name: modelName } = model;
   const modelDelegateName = camelCase(modelName);
-  const className = getClassname(modelName, BaseFileKind.BaseService);
+  const className = getClassname(modelName, 'base-service');
   const sourceFilePath = getBaseChildFilePath(
     srcPath,
     className,
-    BaseFileKind.BaseService
+    'base-service'
   );
-  const prismaServiceClassname = getClassname('prisma', ModuleFileKind.Service);
+  const prismaServiceClassname = getClassname('Prisma', 'service');
   const imports: ImportDeclarationStructure[] = [
     {
       kind: StructureKind.ImportDeclaration,
@@ -135,7 +133,7 @@ export function generateModelBaseService(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        getBaseChildFilePath(srcPath, type, BaseFileKind.Model)
+        getBaseChildFilePath(srcPath, type, 'model')
       ),
       namedImports: [type],
     });

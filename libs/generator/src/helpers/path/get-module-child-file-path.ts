@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { getFilenameFromClass } from './get-filename-from-class';
-import { ModuleFileKind } from '../../enums/module-file-kind';
 import { kebabCase } from 'case-anything';
+import { ModuleFileKind } from '../../types/file-kind';
 
 export function getModuleChildFilePath(
   srcPath: string,

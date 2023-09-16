@@ -12,7 +12,6 @@ import { GeneratorOptions } from '../types/generator';
 import { ModelMapping } from '../types/dmmf';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { getClassname } from '../helpers/path/get-classname';
-import { BaseFileKind } from '../enums/base-file-kind';
 import { CodeComment } from '../enums/code-comment';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
@@ -30,20 +29,17 @@ export function generateModelBaseResolver(
   const { srcPath } = generatorOptions;
   const { model, operations } = modelMapping;
   const { name: modelName } = model;
-  const className = getClassname(modelName, BaseFileKind.BaseResolver);
+  const className = getClassname(modelName, 'base-resolver');
   const sourceFilePath = getBaseChildFilePath(
     srcPath,
     className,
-    BaseFileKind.BaseResolver
+    'base-resolver'
   );
-  const baseServiceClassname = getClassname(
-    modelName,
-    BaseFileKind.BaseService
-  );
+  const baseServiceClassname = getClassname(modelName, 'base-service');
   const baseServiceFilepath = getBaseChildFilePath(
     srcPath,
     baseServiceClassname,
-    BaseFileKind.BaseService
+    'base-service'
   );
 
   const imports: ImportDeclarationStructure[] = [
@@ -64,7 +60,7 @@ export function generateModelBaseResolver(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        getBaseChildFilePath(srcPath, modelName, BaseFileKind.Model)
+        getBaseChildFilePath(srcPath, modelName, 'model')
       ),
       namedImports: [modelName],
     },
@@ -104,7 +100,7 @@ export function generateModelBaseResolver(
     const argsTypeFilepath = getBaseChildFilePath(
       srcPath,
       argsTypeName,
-      BaseFileKind.Args
+      'args'
     );
     imports.push({
       kind: StructureKind.ImportDeclaration,
@@ -194,11 +190,7 @@ export function generateModelBaseResolver(
         kind: StructureKind.ImportDeclaration,
         moduleSpecifier: getImportModuleSpecifier(
           sourceFilePath,
-          getBaseChildFilePath(
-            srcPath,
-            findManyArgsTypeClassname,
-            BaseFileKind.Args
-          )
+          getBaseChildFilePath(srcPath, findManyArgsTypeClassname, 'args')
         ),
         namedImports: [findManyArgsTypeClassname],
       });
@@ -208,7 +200,7 @@ export function generateModelBaseResolver(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        getBaseChildFilePath(srcPath, type, BaseFileKind.Model)
+        getBaseChildFilePath(srcPath, type, 'model')
       ),
       namedImports: [type],
     });

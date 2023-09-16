@@ -1,6 +1,9 @@
-import { FileKind } from '../../enums/file-kind';
 import { pascalCase } from 'case-anything';
+import { FileKind } from '../../types/file-kind';
 
-export function getClassname(name: string, kind: FileKind) {
+export function getClassname(
+  name: string | 'Prisma' | 'NestEase',
+  kind: FileKind
+) {
   return pascalCase(`${name}-${kind}`);
 }

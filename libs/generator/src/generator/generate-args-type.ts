@@ -8,7 +8,6 @@ import {
 import { SchemaArg } from '../types/dmmf';
 import { GeneratorOptions } from '../types/generator';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
-import { BaseFileKind } from '../enums/base-file-kind';
 import { selectInputType } from '../helpers/dmmf/select-input-type';
 import { CodeComment } from '../enums/code-comment';
 import { optimizeImports } from '../helpers/import/optimize-imports';
@@ -22,7 +21,7 @@ export function generateArgsType(
   name: string
 ) {
   const { srcPath } = options;
-  const sourceFilePath = getBaseChildFilePath(srcPath, name, BaseFileKind.Args);
+  const sourceFilePath = getBaseChildFilePath(srcPath, name, 'args');
   if (project.getSourceFile(sourceFilePath)) {
     return;
   }

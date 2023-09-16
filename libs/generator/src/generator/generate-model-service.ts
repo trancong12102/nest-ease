@@ -8,10 +8,8 @@ import {
 import { GeneratorOptions } from '../types/generator';
 import { ModelMapping } from '../types/dmmf';
 import { getClassname } from '../helpers/path/get-classname';
-import { ModuleFileKind } from '../enums/module-file-kind';
 import { getModuleChildFilePath } from '../helpers/path/get-module-child-file-path';
 import { getBaseIndexPath } from '../helpers/path/get-base-index-path';
-import { BaseFileKind } from '../enums/base-file-kind';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
 import { isPathExists } from '../utils/is-path-exists';
 import { assertGitStatusClean } from '../helpers/git/assert-git-status-clean';
@@ -33,23 +31,20 @@ export async function generateModelService(
     model: { name: modelName },
   } = modelMapping;
 
-  const classname = getClassname(modelName, ModuleFileKind.Service);
+  const classname = getClassname(modelName, 'service');
   const sourceFilePath = getModuleChildFilePath(
     srcPath,
     modelName,
     classname,
-    ModuleFileKind.Service
+    'service'
   );
   if (!overwriteCustomFiles && (await isPathExists(sourceFilePath))) {
     return;
   }
   assertGitStatusClean(gitChangedFiles, sourceFilePath);
 
-  const baseServiceClassname = getClassname(
-    modelName,
-    BaseFileKind.BaseService
-  );
-  const prismaServiceClassname = getClassname('prisma', ModuleFileKind.Service);
+  const baseServiceClassname = getClassname(modelName, 'base-service');
+  const prismaServiceClassname = getClassname('Prisma', 'service');
   const baseIndexFilepath = getBaseIndexPath(srcPath);
 
   const imports: ImportDeclarationStructure[] = [

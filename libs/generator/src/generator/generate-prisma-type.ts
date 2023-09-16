@@ -19,10 +19,6 @@ export function generatePrismaType(
     throw new Error(`Namespace is required ${location}:${namespace}:${type}`);
   }
 
-  if (typeof type !== 'string') {
-    throw new Error(`Type must be a string ${location}:${namespace}:${type}`);
-  }
-
   if (location === 'outputObjectTypes') {
     return generateOutputType(project, options, namespace, type);
   }
