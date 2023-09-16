@@ -20,7 +20,6 @@ import { getImportModuleSpecifier } from '../helpers/import/get-import-module-sp
 import { getFieldMetadata } from '../helpers/generator/get-field-metadata';
 import { camelCase } from 'case-anything';
 import { getPropertyType } from '../helpers/generator/get-property-type';
-import { CommonModule } from '../enums/common-module';
 import { getResolveMethodName } from '../helpers/generator/get-resolve-method-name';
 import { getCompoundFieldName } from '../helpers/generator/get-compound-field-name';
 
@@ -61,7 +60,7 @@ export function generateModelBaseService(
         sourceFilePath,
         prismaClientPath
       ),
-      namedImports: [CommonModule.Prisma],
+      namedImports: ['Prisma'],
     },
   ];
   const methods: MethodDeclarationStructure[] = [];

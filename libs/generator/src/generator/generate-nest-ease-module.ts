@@ -13,7 +13,6 @@ import { generateModelService } from './generate-model-service';
 import { generateModelResolver } from './generate-model-resolver';
 import { getClassname } from '../helpers/path/get-classname';
 import { ModuleFileKind } from '../enums/module-file-kind';
-import { CommonModule } from '../enums/common-module';
 import { getModuleChildFilePath } from '../helpers/path/get-module-child-file-path';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
 import { CodeComment } from '../enums/code-comment';
@@ -27,20 +26,17 @@ export async function generateNestEaseModule(
     srcPath,
   } = options;
 
-  const classname = getClassname(CommonModule.NestEase, ModuleFileKind.Module);
+  const classname = getClassname('NestEase', ModuleFileKind.Module);
   const sourceFilePath = getModuleChildFilePath(
     srcPath,
-    CommonModule.NestEase,
+    'NestEase',
     classname,
     ModuleFileKind.Module
   );
-  const prismaModuleClassname = getClassname(
-    CommonModule.Prisma,
-    ModuleFileKind.Module
-  );
+  const prismaModuleClassname = getClassname('Prisma', ModuleFileKind.Module);
   const prismaModuleFilepath = getModuleChildFilePath(
     srcPath,
-    CommonModule.Prisma,
+    'Prisma',
     prismaModuleClassname,
     ModuleFileKind.Module
   );
@@ -118,7 +114,11 @@ export async function generateNestEaseModule(
   project.createSourceFile(
     sourceFilePath,
     {
-      statements: [CodeComment.GenratedFileComment, ...imports, classDeclaration],
+      statements: [
+        CodeComment.GenratedFileComment,
+        ...imports,
+        classDeclaration,
+      ],
     },
     {
       overwrite: true,
