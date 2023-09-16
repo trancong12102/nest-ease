@@ -29,9 +29,14 @@ export async function getGeneratorOptions(
     );
   }
 
+  const config = await getGeneratorConfig(srcPath);
+  const {
+    generator: { overwriteCustomFiles },
+  } = config;
+
   return {
-    config: await getGeneratorConfig(srcPath),
-    gitChangedFiles: await getGitChangedFiles(),
+    config,
+    gitChangedFiles: overwriteCustomFiles ? await getGitChangedFiles() : [],
     dmmf: new InternalDmmf(dmmf),
     srcPath,
     projectRootPath,
