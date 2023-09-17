@@ -37,7 +37,7 @@ export class InternalDmmf {
     namespace: FieldNamespace,
     name: string
   ): ReturnType | undefined {
-    return this._cache.resolve(
+    return this._cache.wrap(
       `getNonPrimitiveType:${location}:${namespace}:${name}`,
       () => {
         const typeList = (this.dmmf.schema[location][namespace] ||
@@ -51,7 +51,7 @@ export class InternalDmmf {
     Location extends DatamodelTypeLocation,
     ReturnType extends DatamodelType<Location>
   >(location: Location, name: string): ReturnType | undefined {
-    return this._cache.resolve(`getDatamodelType:${location}:${name}`, () => {
+    return this._cache.wrap(`getDatamodelType:${location}:${name}`, () => {
       const typeList = (this.dmmf.datamodel[location] || []) as ReturnType[];
       return typeList.find((t) => t.name === name);
     });
@@ -148,7 +148,7 @@ export class InternalDmmf {
   }
 
   private getSchemaField(type: ModelOperationType, name: string) {
-    return this._cache.resolve(`getSchemaField:${type}:${name}`, () => {
+    return this._cache.wrap(`getSchemaField:${type}:${name}`, () => {
       const objectType = this.getNonPrimitiveType(
         'outputObjectTypes',
         'prisma',

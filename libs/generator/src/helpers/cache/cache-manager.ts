@@ -13,7 +13,7 @@ export class CacheManager {
     this._cacheMap[key] = value;
   }
 
-  resolve<T>(key: string, fn: () => T): T {
+  wrap<T>(key: string, fn: () => T): T {
     const cached = this.get<T>(key);
     if (cached) {
       return cached;
