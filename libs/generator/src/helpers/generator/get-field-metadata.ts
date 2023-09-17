@@ -61,7 +61,7 @@ export function getFieldMetadata({
   ];
   const decorators: DecoratorStructure[] = [];
 
-  if (kind === 'input') {
+  if (kind === 'Input') {
     imports.push({
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: 'class-transformer',
@@ -98,7 +98,7 @@ export function getFieldMetadata({
       )) &&
       !isList);
 
-  const propertyType = kind === 'enum' ? `keyof typeof ${type}` : type;
+  const propertyType = kind === 'Enum' ? `keyof typeof ${type}` : type;
 
   return {
     imports,

@@ -22,31 +22,31 @@ export async function generateModelModule(
     model: { name: modelName },
   } = modelMapping;
 
-  const classname = getClassname(modelName, 'module');
+  const classname = getClassname(modelName, 'Module');
   const sourceFilePath = getModuleChildFilePath(
     srcPath,
     modelName,
     classname,
-    'module'
+    'Module'
   );
   if (!overwriteCustomFiles && (await isPathExists(sourceFilePath))) {
     return;
   }
   assertGitStatusClean(gitChangedFiles, sourceFilePath);
 
-  const serviceClassname = getClassname(modelName, 'service');
+  const serviceClassname = getClassname(modelName, 'Service');
   const serviceFilepath = getModuleChildFilePath(
     srcPath,
     modelName,
     serviceClassname,
-    'service'
+    'Service'
   );
-  const resolverClassname = getClassname(modelName, 'resolver');
+  const resolverClassname = getClassname(modelName, 'Resolver');
   const resolverFilepath = getModuleChildFilePath(
     srcPath,
     modelName,
     resolverClassname,
-    'resolver'
+    'Resolver'
   );
 
   const imports: ImportDeclarationStructure[] = [

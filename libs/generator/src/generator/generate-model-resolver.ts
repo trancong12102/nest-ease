@@ -24,25 +24,25 @@ export async function generateModelResolver(
     model: { name: modelName },
   } = modelMapping;
 
-  const classname = getClassname(modelName, 'resolver');
+  const classname = getClassname(modelName, 'Resolver');
   const sourceFilePath = getModuleChildFilePath(
     srcPath,
     modelName,
     classname,
-    'resolver'
+    'Resolver'
   );
   if (!overwriteCustomFiles && (await isPathExists(sourceFilePath))) {
     return;
   }
   assertGitStatusClean(gitChangedFiles, sourceFilePath);
 
-  const baseResolverClassname = getClassname(modelName, 'base-resolver');
-  const serviceClassname = getClassname(modelName, 'service');
+  const baseResolverClassname = getClassname(modelName, 'BaseResolver');
+  const serviceClassname = getClassname(modelName, 'Service');
   const serviceFilepath = getModuleChildFilePath(
     srcPath,
     modelName,
     serviceClassname,
-    'service'
+    'Service'
   );
   const baseIndexFilepath = getBaseIndexPath(srcPath);
 

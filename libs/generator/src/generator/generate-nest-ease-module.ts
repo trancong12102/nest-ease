@@ -25,19 +25,19 @@ export async function generateNestEaseModule(
     srcPath,
   } = options;
 
-  const classname = getClassname('NestEase', 'module');
+  const classname = getClassname('NestEase', 'Module');
   const sourceFilePath = getModuleChildFilePath(
     srcPath,
     'NestEase',
     classname,
-    'module'
+    'Module'
   );
-  const prismaModuleClassname = getClassname('Prisma', 'module');
+  const prismaModuleClassname = getClassname('Prisma', 'Module');
   const prismaModuleFilepath = getModuleChildFilePath(
     srcPath,
     'Prisma',
     prismaModuleClassname,
-    'module'
+    'Module'
   );
 
   const imports: ImportDeclarationStructure[] = [
@@ -57,7 +57,7 @@ export async function generateNestEaseModule(
   ];
 
   const modelClassnames = modelMappings
-    .map(({ model: { name } }) => getClassname(name, 'module'))
+    .map(({ model: { name } }) => getClassname(name, 'Module'))
     .concat(prismaModuleClassname)
     .join(', ');
 
@@ -72,12 +72,12 @@ export async function generateNestEaseModule(
     const {
       model: { name: modelName },
     } = modelMapping;
-    const modelModuleClassname = getClassname(modelName, 'module');
+    const modelModuleClassname = getClassname(modelName, 'Module');
     const modelModuleFilepath = getModuleChildFilePath(
       srcPath,
       modelName,
       modelModuleClassname,
-      'module'
+      'Module'
     );
 
     imports.push({

@@ -18,7 +18,7 @@ export function generateEnumType(
 ) {
   const { dmmf, srcPath } = options;
 
-  const sourceFilePath = getBaseChildFilePath(srcPath, name, 'enum');
+  const sourceFilePath = getBaseChildFilePath(srcPath, name, 'Enum');
   if (project.getSourceFile(sourceFilePath)) {
     return;
   }

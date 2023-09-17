@@ -25,7 +25,7 @@ export function generateOutputType(
   const model = dmmf.getModel(name);
   const { documentation, fields: fieldDocumentations } =
     buildModelDocumentations(model);
-  const kind: BaseFileKind = dmmf.isModel(name) ? 'model' : 'output';
+  const kind: BaseFileKind = dmmf.isModel(name) ? 'Model' : 'Output';
   const sourceFilePath = getBaseChildFilePath(srcPath, name, kind);
   if (project.getSourceFile(sourceFilePath)) {
     return;
@@ -49,7 +49,7 @@ export function generateOutputType(
   }
 
   const fields =
-    kind === 'model' ? removeCountAndRelationFields(type.fields) : type.fields;
+    kind === 'Model' ? removeCountAndRelationFields(type.fields) : type.fields;
 
   for (const field of fields) {
     const { imports: propertyImports, property } = getPropertyDeclaration(

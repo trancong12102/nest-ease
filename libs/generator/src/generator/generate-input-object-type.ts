@@ -22,7 +22,7 @@ export function generateInputObjectType(
 ) {
   const { dmmf, srcPath } = options;
 
-  const sourceFilePath = getBaseChildFilePath(srcPath, name, 'input');
+  const sourceFilePath = getBaseChildFilePath(srcPath, name, 'Input');
   if (project.getSourceFile(sourceFilePath)) {
     return;
   }

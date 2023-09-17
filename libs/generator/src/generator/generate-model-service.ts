@@ -25,20 +25,20 @@ export async function generateModelService(
     model: { name: modelName },
   } = modelMapping;
 
-  const classname = getClassname(modelName, 'service');
+  const classname = getClassname(modelName, 'Service');
   const sourceFilePath = getModuleChildFilePath(
     srcPath,
     modelName,
     classname,
-    'service'
+    'Service'
   );
   if (!overwriteCustomFiles && (await isPathExists(sourceFilePath))) {
     return;
   }
   assertGitStatusClean(gitChangedFiles, sourceFilePath);
 
-  const baseServiceClassname = getClassname(modelName, 'base-service');
-  const prismaServiceClassname = getClassname('Prisma', 'service');
+  const baseServiceClassname = getClassname(modelName, 'BaseService');
+  const prismaServiceClassname = getClassname('Prisma', 'Service');
   const baseIndexFilepath = getBaseIndexPath(srcPath);
 
   const imports: ImportDeclarationStructure[] = [

@@ -30,13 +30,13 @@ export function generateModelBaseService(
   const { model, operations } = modelMapping;
   const { name: modelName } = model;
   const modelDelegateName = camelCase(modelName);
-  const className = getClassname(modelName, 'base-service');
+  const className = getClassname(modelName, 'BaseService');
   const sourceFilePath = getBaseChildFilePath(
     srcPath,
     className,
-    'base-service'
+    'BaseService'
   );
-  const prismaServiceClassname = getClassname('Prisma', 'service');
+  const prismaServiceClassname = getClassname('Prisma', 'Service');
   const imports: ImportDeclarationStructure[] = [
     {
       kind: StructureKind.ImportDeclaration,
@@ -127,7 +127,7 @@ export function generateModelBaseService(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        getBaseChildFilePath(srcPath, type, 'model')
+        getBaseChildFilePath(srcPath, type, 'Model')
       ),
       namedImports: [type],
     });

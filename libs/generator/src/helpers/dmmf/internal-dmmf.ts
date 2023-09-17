@@ -71,11 +71,11 @@ export class InternalDmmf {
   ): BaseFileKind {
     switch (location) {
       case 'outputObjectTypes':
-        return this.isModel(name) ? 'model' : 'output';
+        return this.isModel(name) ? 'Model' : 'Output';
       case 'inputObjectTypes':
-        return 'input';
+        return 'Input';
       case 'enumTypes':
-        return 'enum';
+        return 'Enum';
       default:
         throw new Error(`Unknown file kind for: ${location}:${name}`);
     }

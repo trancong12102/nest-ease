@@ -21,7 +21,7 @@ export function generateArgsType(
   name: string
 ) {
   const { srcPath } = options;
-  const sourceFilePath = getBaseChildFilePath(srcPath, name, 'args');
+  const sourceFilePath = getBaseChildFilePath(srcPath, name, 'Args');
   if (project.getSourceFile(sourceFilePath)) {
     return;
   }

@@ -29,17 +29,17 @@ export function generateModelBaseResolver(
   const { srcPath } = generatorOptions;
   const { model, operations } = modelMapping;
   const { name: modelName } = model;
-  const className = getClassname(modelName, 'base-resolver');
+  const className = getClassname(modelName, 'BaseResolver');
   const sourceFilePath = getBaseChildFilePath(
     srcPath,
     className,
-    'base-resolver'
+    'BaseResolver'
   );
-  const baseServiceClassname = getClassname(modelName, 'base-service');
+  const baseServiceClassname = getClassname(modelName, 'BaseService');
   const baseServiceFilepath = getBaseChildFilePath(
     srcPath,
     baseServiceClassname,
-    'base-service'
+    'BaseService'
   );
 
   const imports: ImportDeclarationStructure[] = [
@@ -60,7 +60,7 @@ export function generateModelBaseResolver(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        getBaseChildFilePath(srcPath, modelName, 'model')
+        getBaseChildFilePath(srcPath, modelName, 'Model')
       ),
       namedImports: [modelName],
     },
@@ -100,7 +100,7 @@ export function generateModelBaseResolver(
     const argsTypeFilepath = getBaseChildFilePath(
       srcPath,
       argsTypeName,
-      'args'
+      'Args'
     );
     imports.push({
       kind: StructureKind.ImportDeclaration,
@@ -190,7 +190,7 @@ export function generateModelBaseResolver(
         kind: StructureKind.ImportDeclaration,
         moduleSpecifier: getImportModuleSpecifier(
           sourceFilePath,
-          getBaseChildFilePath(srcPath, findManyArgsTypeClassname, 'args')
+          getBaseChildFilePath(srcPath, findManyArgsTypeClassname, 'Args')
         ),
         namedImports: [findManyArgsTypeClassname],
       });
@@ -200,7 +200,7 @@ export function generateModelBaseResolver(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        getBaseChildFilePath(srcPath, type, 'model')
+        getBaseChildFilePath(srcPath, type, 'Model')
       ),
       namedImports: [type],
     });
