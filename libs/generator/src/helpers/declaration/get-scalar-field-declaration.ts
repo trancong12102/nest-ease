@@ -1,12 +1,15 @@
 import { StructureKind } from 'ts-morph';
-import { FieldMetadata, PropertyTypeOptions } from '../../types/generator.type';
-import { getPropertyType } from './get-property-type';
-import { getGraphqlType } from './get-graphql-type';
+import {
+  FieldDeclaration,
+  PropertyTypeOptions,
+} from '../../types/generator.type';
+import { getPropertyType } from '../type/get-property-type';
+import { getGraphqlType } from '../type/get-graphql-type';
 
-export function getScalarFieldMetadata(
+export function getScalarFieldDeclaration(
   name: string,
   propertyOptions: PropertyTypeOptions
-): FieldMetadata {
+): FieldDeclaration {
   const { isList } = propertyOptions;
 
   switch (name) {

@@ -4,10 +4,10 @@ import {
   TypePropertyDeclaration,
 } from '../../types/generator.type';
 import { SchemaArg } from '../../types/dmmf.type';
-import { getFieldMetadata } from './get-field-metadata';
+import { getFieldDeclaration } from './get-field-declaration';
 import { selectInputType } from '../dmmf/select-input-type';
 
-export function getSchemaArgPropertyDeclaration(
+export function getSchemaArgDeclaration(
   sourceFilePath: string,
   generatorOptions: GeneratorOptions,
   field: SchemaArg,
@@ -18,17 +18,18 @@ export function getSchemaArgPropertyDeclaration(
   const inputType = selectInputType(inputTypes);
   const { type, location, namespace, isList } = inputType;
 
-  const { imports, decorators, propertyType, graphqlType } = getFieldMetadata({
-    type,
-    generatorOptions,
-    location,
-    namespace,
-    importDest: sourceFilePath,
-    propertyOptions: {
-      isList,
-      isNullable,
-    },
-  });
+  const { imports, decorators, propertyType, graphqlType } =
+    getFieldDeclaration({
+      type,
+      generatorOptions,
+      location,
+      namespace,
+      importDest: sourceFilePath,
+      propertyOptions: {
+        isList,
+        isNullable,
+      },
+    });
 
   return {
     imports,

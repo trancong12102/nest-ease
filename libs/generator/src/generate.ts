@@ -1,10 +1,11 @@
-import { Project } from 'ts-morph';
-import path from 'path';
-import { GeneratorOptions } from './types/generator.type';
-import { generateNestEaseModule } from './generator/generate-nest-ease-module';
-import { generateIndexFiles } from './generator/generate-index-files';
-import { getBaseDirectoryPath } from './helpers/path/get-base-directory-path';
 import { remove } from 'fs-extra';
+import path from 'path';
+import { Project } from 'ts-morph';
+import { generateIndexFiles } from './generator/generate-index-files';
+import { generateNestEaseModule } from './generator/generate-nest-ease-module';
+import { getBaseDirectoryPath } from './helpers/path/get-base-directory-path';
+import { GeneratorOptions } from './types/generator.type';
+import { formatProject } from './helpers/generator/format-project';
 
 export async function generate(options: GeneratorOptions) {
   const { projectRootPath, srcPath } = options;
@@ -15,6 +16,7 @@ export async function generate(options: GeneratorOptions) {
   await generateNestEaseModule(project, options);
   generateIndexFiles(project, options);
 
+  await formatProject(project);
   await remove(getBaseDirectoryPath(srcPath));
   await project.save();
 }

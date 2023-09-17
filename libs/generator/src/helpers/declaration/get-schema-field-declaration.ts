@@ -4,9 +4,9 @@ import {
   TypePropertyDeclaration,
 } from '../../types/generator.type';
 import { SchemaField } from '../../types/dmmf.type';
-import { getFieldMetadata } from './get-field-metadata';
+import { getFieldDeclaration } from './get-field-declaration';
 
-export function getSchemaFieldPropertyDeclaration(
+export function getSchemaFieldDeclaration(
   sourceFilePath: string,
   generatorOptions: GeneratorOptions,
   field: SchemaField,
@@ -15,17 +15,18 @@ export function getSchemaFieldPropertyDeclaration(
   const { outputType, name, isNullable } = field;
   const { isList, location, namespace, type } = outputType;
 
-  const { imports, decorators, propertyType, graphqlType } = getFieldMetadata({
-    type,
-    location,
-    namespace,
-    importDest: sourceFilePath,
-    generatorOptions,
-    propertyOptions: {
-      isList,
-      isNullable,
-    },
-  });
+  const { imports, decorators, propertyType, graphqlType } =
+    getFieldDeclaration({
+      type,
+      location,
+      namespace,
+      importDest: sourceFilePath,
+      generatorOptions,
+      propertyOptions: {
+        isList,
+        isNullable,
+      },
+    });
 
   return {
     imports,

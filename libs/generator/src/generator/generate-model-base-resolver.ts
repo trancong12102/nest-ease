@@ -14,10 +14,10 @@ import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { getClassname } from '../helpers/path/get-classname';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
-import { getFieldMetadata } from '../helpers/generator/get-field-metadata';
-import { getPropertyType } from '../helpers/generator/get-property-type';
+import { getFieldDeclaration } from '../helpers/declaration/get-field-declaration';
+import { getPropertyType } from '../helpers/type/get-property-type';
 import { getResolveMethodName } from '../helpers/generator/get-resolve-method-name';
-import { getGraphqlType } from '../helpers/generator/get-graphql-type';
+import { getGraphqlType } from '../helpers/type/get-graphql-type';
 import { camelCase } from 'case-anything';
 import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
 
@@ -82,7 +82,7 @@ export function generateModelBaseResolver(
       propertyType,
       imports: propertyImports,
       graphqlType,
-    } = getFieldMetadata({
+    } = getFieldDeclaration({
       type,
       location,
       namespace,

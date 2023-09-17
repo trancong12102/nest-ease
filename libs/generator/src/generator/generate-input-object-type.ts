@@ -11,8 +11,8 @@ import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { selectInputType } from '../helpers/dmmf/select-input-type';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { generatePrismaType } from './generate-prisma-type';
-import { getPropertyDeclaration } from '../helpers/generator/get-property-declaration';
 import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
+import { getSchemaArgDeclaration } from '../helpers/declaration/get-schema-arg-declaration';
 
 export function generateInputObjectType(
   project: Project,
@@ -57,7 +57,7 @@ export function generateInputObjectType(
   }
 
   for (const field of fields) {
-    const { imports: propertyImports, property } = getPropertyDeclaration(
+    const { imports: propertyImports, property } = getSchemaArgDeclaration(
       sourceFilePath,
       options,
       field

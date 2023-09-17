@@ -1,7 +1,7 @@
 import { FieldLocation, FieldNamespace, Model } from '../../types/dmmf.type';
-import { getScalarFieldMetadata } from './get-scalar-field-metadata';
+import { getScalarFieldDeclaration } from './get-scalar-field-declaration';
 import {
-  FieldMetadata,
+  FieldDeclaration,
   GeneratorOptions,
   PropertyTypeOptions,
 } from '../../types/generator.type';
@@ -12,12 +12,12 @@ import {
 } from 'ts-morph';
 import { getBaseChildFilePath } from '../path/get-base-child-file-path';
 import { getImportModuleSpecifier } from '../import/get-import-module-specifier';
-import { getPropertyType } from './get-property-type';
-import { getGraphqlType } from './get-graphql-type';
+import { getPropertyType } from '../type/get-property-type';
+import { getGraphqlType } from '../type/get-graphql-type';
 import { InternalDmmf } from '../dmmf/internal-dmmf';
-import { getCompoundFieldName } from './get-compound-field-name';
+import { getCompoundFieldName } from '../generator/get-compound-field-name';
 
-export function getFieldMetadata({
+export function getFieldDeclaration({
   type,
   location,
   namespace,
@@ -33,7 +33,7 @@ export function getFieldMetadata({
   isNullable?: boolean;
   fixCircular?: boolean;
   propertyOptions: PropertyTypeOptions;
-}): FieldMetadata {
+}): FieldDeclaration {
   const { isList, fixCircular } = propertyOptions;
 
   if (location === 'fieldRefTypes') {
@@ -41,7 +41,7 @@ export function getFieldMetadata({
   }
 
   if (location === 'scalar') {
-    return getScalarFieldMetadata(type, propertyOptions);
+    return getScalarFieldDeclaration(type, propertyOptions);
   }
 
   if (!namespace) {

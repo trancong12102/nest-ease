@@ -133,6 +133,9 @@ devDependencies:
   '@types/node':
     specifier: ~18.7.23
     version: 18.7.23
+  '@types/prettier':
+    specifier: ^2.7.3
+    version: 2.7.3
   '@types/uuid':
     specifier: ^9.0.4
     version: 9.0.4
@@ -3738,6 +3741,10 @@ packages:
 
   /@types/parse-json@4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
+    dev: true
+
+  /@types/prettier@2.7.3:
+    resolution: {integrity: sha512-+68kP9yzs4LMp7VNh8gdzMSPZFL44MLGqiHWvttYJe+6qnuVr4Ek9wSBQoveqY/r+LwjCcU29kNVkidwim+kYA==}
     dev: true
 
   /@types/qs@6.9.8:

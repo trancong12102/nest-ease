@@ -10,10 +10,10 @@ import { FieldNamespace, SchemaField } from '../types/dmmf.type';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { generatePrismaType } from './generate-prisma-type';
-import { getPropertyDeclaration } from '../helpers/generator/get-property-declaration';
 import { buildModelDocumentations } from '../helpers/documentation/build-model-documentations';
 import { BaseFileKind } from '../types/file-kind.type';
 import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
+import { getSchemaFieldDeclaration } from '../helpers/declaration/get-schema-field-declaration';
 
 export function generateOutputType(
   project: Project,
@@ -52,7 +52,7 @@ export function generateOutputType(
     kind === 'Model' ? removeCountAndRelationFields(type.fields) : type.fields;
 
   for (const field of fields) {
-    const { imports: propertyImports, property } = getPropertyDeclaration(
+    const { imports: propertyImports, property } = getSchemaFieldDeclaration(
       sourceFilePath,
       options,
       field,

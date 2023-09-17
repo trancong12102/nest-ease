@@ -14,7 +14,7 @@ export type GeneratorOptions = {
   gitChangedFiles: string[];
 } & GeneratorConfig;
 
-export type FieldMetadata = {
+export type FieldDeclaration = {
   propertyType: string;
   graphqlType: string;
   imports: ImportDeclarationStructure[];
