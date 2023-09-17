@@ -40,7 +40,9 @@ export class UserBaseService {
   ): Promise<Array<Post>> {
     return this.prisma.client.user
       .findUniqueOrThrow({
-        where: { id: parent.id },
+        where: {
+          id: parent.id,
+        },
       })
       .posts(args);
   }
@@ -48,7 +50,9 @@ export class UserBaseService {
   resolveParent(parent: User): Promise<User | null> {
     return this.prisma.client.user
       .findUniqueOrThrow({
-        where: { id: parent.id },
+        where: {
+          id: parent.id,
+        },
       })
       .parent();
   }
@@ -59,7 +63,9 @@ export class UserBaseService {
   ): Promise<Array<User>> {
     return this.prisma.client.user
       .findUniqueOrThrow({
-        where: { id: parent.id },
+        where: {
+          id: parent.id,
+        },
       })
       .children(args);
   }
@@ -70,7 +76,9 @@ export class UserBaseService {
   ): Promise<Array<Post>> {
     return this.prisma.client.user
       .findUniqueOrThrow({
-        where: { id: parent.id },
+        where: {
+          id: parent.id,
+        },
       })
       .anotherPosts(args);
   }

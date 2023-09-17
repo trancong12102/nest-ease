@@ -42,7 +42,9 @@ export class CategoryBaseService {
   ): Promise<Array<Post>> {
     return this.prisma.client.category
       .findUniqueOrThrow({
-        where: { id: parent.id },
+        where: {
+          id: parent.id,
+        },
       })
       .posts(args);
   }
@@ -50,7 +52,9 @@ export class CategoryBaseService {
   resolveMetadata(parent: Category): Promise<CategoryMetadata | null> {
     return this.prisma.client.category
       .findUniqueOrThrow({
-        where: { id: parent.id },
+        where: {
+          id: parent.id,
+        },
       })
       .metadata();
   }

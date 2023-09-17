@@ -47,7 +47,9 @@ export class CategoryMetadataBaseService {
   resolveCategory(parent: CategoryMetadata): Promise<Category> {
     return this.prisma.client.categoryMetadata
       .findUniqueOrThrow({
-        where: { id: parent.id },
+        where: {
+          id: parent.id,
+        },
       })
       .category();
   }

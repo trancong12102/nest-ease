@@ -1,5 +1,6 @@
 import {
   ClassDeclarationStructure,
+  CodeBlockWriter,
   ImportDeclarationStructure,
   MethodDeclarationStructure,
   OptionalKind,
@@ -137,13 +138,15 @@ export function generateModelBaseService(
       parameters,
       returnType: propertyType,
       statements: [
-        `
+        (writer) => {
+          writer.writeLine(`
 return this.prisma.client.${modelDelegateName}
 .findUniqueOrThrow({
-  where: ${getResolveParentWhere(model)}
+  where: ${getResolveParentWhereStatement(model)}
 })
 .${name}(${isList ? 'args' : ''});
-        `,
+        `);
+        },
       ],
     });
   }
@@ -198,19 +201,23 @@ return this.prisma.client.${modelDelegateName}
   );
 }
 
-function getResolveParentWhere(model: Model) {
+function getResolveParentWhereStatement(model: Model) {
   const { primaryKey, fields } = model;
+  const writer = new CodeBlockWriter();
 
   if (primaryKey) {
     const compoundField = getCompoundFieldName(primaryKey);
-    let where = `{ ${compoundField}: { `;
 
-    for (const field of fields) {
-      where += `${field}: parent.${field}, `;
-    }
-    where += `}}`;
+    writer.block(() => {
+      writer.write(`${compoundField}: `);
+      writer.block(() => {
+        for (const field of fields) {
+          writer.writeLine(`${field.name}: parent.${field.name},`);
+        }
+      });
+    });
 
-    return where;
+    return writer.toString();
   }
 
   const idField = fields.find((f) => f.isId);
@@ -218,5 +225,9 @@ function getResolveParentWhere(model: Model) {
     throw new Error(`Cannot find id field ${model.name}`);
   }
 
-  return `{ ${idField.name}: parent.${idField.name}, }`;
+  writer.block(() => {
+    writer.writeLine(`${idField.name}: parent.${idField.name},`);
+  });
+
+  return writer.toString();
 }

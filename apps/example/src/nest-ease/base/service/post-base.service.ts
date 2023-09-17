@@ -37,7 +37,9 @@ export class PostBaseService {
   resolveAuthor(parent: Post): Promise<User> {
     return this.prisma.client.post
       .findUniqueOrThrow({
-        where: { id: parent.id },
+        where: {
+          id: parent.id,
+        },
       })
       .author();
   }
@@ -45,7 +47,9 @@ export class PostBaseService {
   resolveAnotherAuthor(parent: Post): Promise<User> {
     return this.prisma.client.post
       .findUniqueOrThrow({
-        where: { id: parent.id },
+        where: {
+          id: parent.id,
+        },
       })
       .anotherAuthor();
   }
@@ -56,7 +60,9 @@ export class PostBaseService {
   ): Promise<Array<Category>> {
     return this.prisma.client.post
       .findUniqueOrThrow({
-        where: { id: parent.id },
+        where: {
+          id: parent.id,
+        },
       })
       .categories(args);
   }
