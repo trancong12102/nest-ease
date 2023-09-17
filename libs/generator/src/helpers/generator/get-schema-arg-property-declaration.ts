@@ -2,8 +2,8 @@ import { StructureKind } from 'ts-morph';
 import {
   GeneratorOptions,
   TypePropertyDeclaration,
-} from '../../types/generator';
-import { SchemaArg } from '../../types/dmmf';
+} from '../../types/generator.type';
+import { SchemaArg } from '../../types/dmmf.type';
 import { getFieldMetadata } from './get-field-metadata';
 import { selectInputType } from '../dmmf/select-input-type';
 

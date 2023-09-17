@@ -1,4 +1,4 @@
-import { DatamodelEnum, EnumValue } from '../../types/dmmf';
+import { DatamodelEnum, EnumValue } from '../../types/dmmf.type';
 import { EnumOptions } from '@nestjs/graphql';
 
 export function buildEnumDocumentationOptions(

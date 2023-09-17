@@ -1,10 +1,10 @@
-import { FieldLocation, FieldNamespace, Model } from '../../types/dmmf';
+import { FieldLocation, FieldNamespace, Model } from '../../types/dmmf.type';
 import { getScalarFieldMetadata } from './get-scalar-field-metadata';
 import {
   FieldMetadata,
   GeneratorOptions,
   PropertyTypeOptions,
-} from '../../types/generator';
+} from '../../types/generator.type';
 import {
   DecoratorStructure,
   ImportDeclarationStructure,

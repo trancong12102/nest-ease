@@ -1,5 +1,5 @@
 import { pascalCase } from 'case-anything';
-import { FileKind } from '../../types/file-kind';
+import { FileKind } from '../../types/file-kind.type';
 
 export function getClassname(
   name: string | 'Prisma' | 'NestEase',

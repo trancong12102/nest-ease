@@ -1,4 +1,4 @@
-import { Model } from '../../types/dmmf';
+import { Model } from '../../types/dmmf.type';
 
 export function buildModelDocumentations(model?: Model): {
   documentation?: string;

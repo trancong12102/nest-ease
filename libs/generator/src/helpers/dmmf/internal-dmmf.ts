@@ -10,11 +10,11 @@ import {
   FieldLocation,
   Model,
   ModelOperationType,
-} from '../../types/dmmf';
+} from '../../types/dmmf.type';
 import { CacheManager } from '../cache/cache-manager';
 import { pluralize } from '../../utils/pluralize';
 import { camelCase } from 'case-anything';
-import { BaseFileKind } from '../../types/file-kind';
+import { BaseFileKind } from '../../types/file-kind.type';
 
 export class InternalDmmf {
   private readonly _modelMappings: ModelMapping[];

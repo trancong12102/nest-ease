@@ -1,8 +1,8 @@
-import { SchemaArg, SchemaField } from '../../types/dmmf';
+import { SchemaArg, SchemaField } from '../../types/dmmf.type';
 import {
   GeneratorOptions,
   TypePropertyDeclaration,
-} from '../../types/generator';
+} from '../../types/generator.type';
 import { getSchemaArgPropertyDeclaration } from './get-schema-arg-property-declaration';
 import { getSchemaFieldPropertyDeclaration } from './get-schema-field-property-declaration';
 

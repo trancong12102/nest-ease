@@ -2,8 +2,8 @@ import { StructureKind } from 'ts-morph';
 import {
   GeneratorOptions,
   TypePropertyDeclaration,
-} from '../../types/generator';
-import { SchemaField } from '../../types/dmmf';
+} from '../../types/generator.type';
+import { SchemaField } from '../../types/dmmf.type';
 import { getFieldMetadata } from './get-field-metadata';
 
 export function getSchemaFieldPropertyDeclaration(

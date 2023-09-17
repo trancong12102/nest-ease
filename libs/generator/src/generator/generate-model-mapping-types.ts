@@ -1,6 +1,6 @@
 import { Project } from 'ts-morph';
-import { GeneratorOptions } from '../types/generator';
-import { ModelMapping } from '../types/dmmf';
+import { GeneratorOptions } from '../types/generator.type';
+import { ModelMapping } from '../types/dmmf.type';
 import { generatePrismaType } from './generate-prisma-type';
 import { generateArgsType } from './generate-args-type';
 

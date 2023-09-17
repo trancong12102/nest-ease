@@ -4,7 +4,7 @@ import {
   Project,
   StructureKind,
 } from 'ts-morph';
-import { GeneratorOptions } from '../types/generator';
+import { GeneratorOptions } from '../types/generator.type';
 import { generateModelModule } from './generate-model-module';
 import { generateModelBaseService } from './generate-model-base-service';
 import { generateModelBaseResolver } from './generate-model-base-resolver';

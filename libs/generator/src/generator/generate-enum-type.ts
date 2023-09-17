@@ -4,8 +4,8 @@ import {
   Project,
   StructureKind,
 } from 'ts-morph';
-import { GeneratorOptions } from '../types/generator';
-import { FieldNamespace } from '../types/dmmf';
+import { GeneratorOptions } from '../types/generator.type';
+import { FieldNamespace } from '../types/dmmf.type';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { buildEnumDocumentationOptions } from '../helpers/documentation/build-enum-documentation-options';
 import { GENERATED_FILE_COMMENT } from '../contants/comment.const';

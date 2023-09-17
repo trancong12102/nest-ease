@@ -8,8 +8,8 @@ import {
   Scope,
   StructureKind,
 } from 'ts-morph';
-import { GeneratorOptions } from '../types/generator';
-import { ModelMapping } from '../types/dmmf';
+import { GeneratorOptions } from '../types/generator.type';
+import { ModelMapping } from '../types/dmmf.type';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { getClassname } from '../helpers/path/get-classname';
 import { optimizeImports } from '../helpers/import/optimize-imports';

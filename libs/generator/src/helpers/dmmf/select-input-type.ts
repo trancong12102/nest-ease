@@ -1,4 +1,4 @@
-import { InputTypeRef } from '../../types/dmmf';
+import { InputTypeRef } from '../../types/dmmf.type';
 
 export function selectInputType(inputTypes: InputTypeRef[]): InputTypeRef {
   const rankedInputTypes = inputTypes

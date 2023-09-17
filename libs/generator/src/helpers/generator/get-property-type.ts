@@ -1,4 +1,4 @@
-import { PropertyTypeOptions } from '../../types/generator';
+import { PropertyTypeOptions } from '../../types/generator.type';
 
 export function getPropertyType(
   type: string,

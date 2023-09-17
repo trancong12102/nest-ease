@@ -4,8 +4,8 @@ import {
   Project,
   StructureKind,
 } from 'ts-morph';
-import { GeneratorOptions } from '../types/generator';
-import { ModelMapping } from '../types/dmmf';
+import { GeneratorOptions } from '../types/generator.type';
+import { ModelMapping } from '../types/dmmf.type';
 import { getClassname } from '../helpers/path/get-classname';
 import { getModuleChildFilePath } from '../helpers/path/get-module-child-file-path';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';

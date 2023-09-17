@@ -1,5 +1,5 @@
 import { ExportDeclarationStructure, Project, StructureKind } from 'ts-morph';
-import { GeneratorOptions } from '../types/generator';
+import { GeneratorOptions } from '../types/generator.type';
 import { getBaseDirectoryPath } from '../helpers/path/get-base-directory-path';
 import { getBaseIndexPath } from '../helpers/path/get-base-index-path';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';

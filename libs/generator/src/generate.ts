@@ -1,6 +1,6 @@
 import { Project } from 'ts-morph';
 import path from 'path';
-import { GeneratorOptions } from './types/generator';
+import { GeneratorOptions } from './types/generator.type';
 import { generateNestEaseModule } from './generator/generate-nest-ease-module';
 import { generateIndexFiles } from './generator/generate-index-files';
 import { getBaseDirectoryPath } from './helpers/path/get-base-directory-path';

@@ -5,8 +5,8 @@ import {
   PropertyDeclarationStructure,
   StructureKind,
 } from 'ts-morph';
-import { SchemaArg } from '../types/dmmf';
-import { GeneratorOptions } from '../types/generator';
+import { SchemaArg } from '../types/dmmf.type';
+import { GeneratorOptions } from '../types/generator.type';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { selectInputType } from '../helpers/dmmf/select-input-type';
 import { optimizeImports } from '../helpers/import/optimize-imports';

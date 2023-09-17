@@ -1,7 +1,7 @@
 import { GeneratorOptions as PrismaGeneratorOptions } from '@prisma/generator-helper';
 import * as path from 'path';
 import { InternalDmmf } from '../dmmf/internal-dmmf';
-import { GeneratorOptions } from '../../types/generator';
+import { GeneratorOptions } from '../../types/generator.type';
 import { getGeneratorConfig } from '../../config';
 import { getGitChangedFiles } from '../git/get-git-changed-files';
 import { parseEnvValue } from '@prisma/internals';

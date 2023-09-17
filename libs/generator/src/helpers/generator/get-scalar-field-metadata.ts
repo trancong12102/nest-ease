@@ -1,5 +1,5 @@
 import { StructureKind } from 'ts-morph';
-import { FieldMetadata, PropertyTypeOptions } from '../../types/generator';
+import { FieldMetadata, PropertyTypeOptions } from '../../types/generator.type';
 import { getPropertyType } from './get-property-type';
 import { getGraphqlType } from './get-graphql-type';
 

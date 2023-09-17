@@ -5,14 +5,14 @@ import {
   PropertyDeclarationStructure,
   StructureKind,
 } from 'ts-morph';
-import { GeneratorOptions } from '../types/generator';
-import { FieldNamespace, SchemaField } from '../types/dmmf';
+import { GeneratorOptions } from '../types/generator.type';
+import { FieldNamespace, SchemaField } from '../types/dmmf.type';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { generatePrismaType } from './generate-prisma-type';
 import { getPropertyDeclaration } from '../helpers/generator/get-property-declaration';
 import { buildModelDocumentations } from '../helpers/documentation/build-model-documentations';
-import { BaseFileKind } from '../types/file-kind';
+import { BaseFileKind } from '../types/file-kind.type';
 import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
 
 export function generateOutputType(
