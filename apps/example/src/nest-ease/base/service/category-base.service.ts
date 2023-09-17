@@ -36,6 +36,10 @@ export class CategoryBaseService {
     return this.prisma.client.category.findMany(args);
   }
 
+  count(args: Prisma.CategoryCountArgs): Promise<number> {
+    return this.prisma.client.category.count(args);
+  }
+
   resolvePosts(
     parent: Category,
     args: Prisma.PostFindManyArgs
@@ -57,9 +61,5 @@ export class CategoryBaseService {
         },
       })
       .metadata();
-  }
-
-  count(args: Prisma.CategoryCountArgs): Promise<number> {
-    return this.prisma.client.category.count(args);
   }
 }

@@ -44,6 +44,10 @@ export class CategoryMetadataBaseService {
     return this.prisma.client.categoryMetadata.findMany(args);
   }
 
+  count(args: Prisma.CategoryMetadataCountArgs): Promise<number> {
+    return this.prisma.client.categoryMetadata.count(args);
+  }
+
   resolveCategory(parent: CategoryMetadata): Promise<Category> {
     return this.prisma.client.categoryMetadata
       .findUniqueOrThrow({
@@ -52,9 +56,5 @@ export class CategoryMetadataBaseService {
         },
       })
       .category();
-  }
-
-  count(args: Prisma.CategoryMetadataCountArgs): Promise<number> {
-    return this.prisma.client.categoryMetadata.count(args);
   }
 }

@@ -140,6 +140,34 @@ export function generateModelBaseResolver(
     });
   }
 
+  methods.push({
+    kind: StructureKind.Method,
+    name: camelCase(`${modelName}Count`),
+    returnType: 'Promise<number>',
+    parameters: [
+      {
+        kind: StructureKind.Parameter,
+        name: 'args',
+        type: `${modelName}FindManyArgs`,
+        decorators: [
+          {
+            kind: StructureKind.Decorator,
+            name: 'Args',
+            arguments: [],
+          },
+        ],
+      },
+    ],
+    decorators: [
+      {
+        kind: StructureKind.Decorator,
+        name: 'Query',
+        arguments: [`() => Number`],
+      },
+    ],
+    statements: [`return this.service.count(args);`],
+  });
+
   const relations = model.fields.filter((f) => f.relationName);
   if (relations.length > 0) {
     imports.push({
@@ -225,34 +253,6 @@ return this.service.${getResolveMethodName(name)}(parent${
       ],
     });
   }
-
-  methods.push({
-    kind: StructureKind.Method,
-    name: camelCase(`${modelName}Count`),
-    returnType: 'Promise<number>',
-    parameters: [
-      {
-        kind: StructureKind.Parameter,
-        name: 'args',
-        type: `${modelName}FindManyArgs`,
-        decorators: [
-          {
-            kind: StructureKind.Decorator,
-            name: 'Args',
-            arguments: [],
-          },
-        ],
-      },
-    ],
-    decorators: [
-      {
-        kind: StructureKind.Decorator,
-        name: 'Query',
-        arguments: [`() => Number`],
-      },
-    ],
-    statements: [`return this.service.count(args);`],
-  });
 
   const classDeclaration: ClassDeclarationStructure = {
     kind: StructureKind.Class,

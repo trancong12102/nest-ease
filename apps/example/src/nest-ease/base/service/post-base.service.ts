@@ -34,6 +34,10 @@ export class PostBaseService {
     return this.prisma.client.post.findMany(args);
   }
 
+  count(args: Prisma.PostCountArgs): Promise<number> {
+    return this.prisma.client.post.count(args);
+  }
+
   resolveAuthor(parent: Post): Promise<User> {
     return this.prisma.client.post
       .findUniqueOrThrow({
@@ -65,9 +69,5 @@ export class PostBaseService {
         },
       })
       .categories(args);
-  }
-
-  count(args: Prisma.PostCountArgs): Promise<number> {
-    return this.prisma.client.post.count(args);
   }
 }

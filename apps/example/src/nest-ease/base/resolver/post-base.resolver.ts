@@ -57,6 +57,11 @@ export class PostBaseResolver {
     return this.service.findMany(args);
   }
 
+  @Query(() => Number)
+  postCount(@Args() args: PostFindManyArgs): Promise<number> {
+    return this.service.count(args);
+  }
+
   @ResolveField(() => User, { nullable: false })
   author(@Parent() parent: Post): Promise<User> {
     return this.service.resolveAuthor(parent);
@@ -73,10 +78,5 @@ export class PostBaseResolver {
     @Args() args: CategoryFindManyArgs
   ): Promise<Array<Category>> {
     return this.service.resolveCategories(parent, args);
-  }
-
-  @Query(() => Number)
-  postCount(@Args() args: PostFindManyArgs): Promise<number> {
-    return this.service.count(args);
   }
 }

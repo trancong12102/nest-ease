@@ -34,6 +34,10 @@ export class UserBaseService {
     return this.prisma.client.user.findMany(args);
   }
 
+  count(args: Prisma.UserCountArgs): Promise<number> {
+    return this.prisma.client.user.count(args);
+  }
+
   resolvePosts(
     parent: User,
     args: Prisma.PostFindManyArgs
@@ -81,9 +85,5 @@ export class UserBaseService {
         },
       })
       .anotherPosts(args);
-  }
-
-  count(args: Prisma.UserCountArgs): Promise<number> {
-    return this.prisma.client.user.count(args);
   }
 }

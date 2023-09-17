@@ -66,15 +66,15 @@ export class CategoryMetadataBaseResolver {
     return this.service.findMany(args);
   }
 
-  @ResolveField(() => Category, { nullable: false })
-  category(@Parent() parent: CategoryMetadata): Promise<Category> {
-    return this.service.resolveCategory(parent);
-  }
-
   @Query(() => Number)
   categoryMetadataCount(
     @Args() args: CategoryMetadataFindManyArgs
   ): Promise<number> {
     return this.service.count(args);
+  }
+
+  @ResolveField(() => Category, { nullable: false })
+  category(@Parent() parent: CategoryMetadata): Promise<Category> {
+    return this.service.resolveCategory(parent);
   }
 }
