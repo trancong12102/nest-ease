@@ -27,7 +27,7 @@ export function generateModelBaseService(
   generatorOptions: GeneratorOptions,
   modelMapping: ModelMapping
 ) {
-  const { srcPath, prismaServicePath, prismaClientPath } = generatorOptions;
+  const { srcPath, prismaServicePath } = generatorOptions;
   const { model, operations } = modelMapping;
   const { name: modelName } = model;
   const modelDelegateName = camelCase(modelName);
@@ -46,14 +46,6 @@ export function generateModelBaseService(
         prismaServicePath
       ),
       namedImports: [prismaServiceClassname],
-    },
-    {
-      kind: StructureKind.ImportDeclaration,
-      moduleSpecifier: getImportModuleSpecifier(
-        sourceFilePath,
-        prismaClientPath
-      ),
-      namedImports: ['Prisma'],
     },
   ];
   const methods: MethodDeclarationStructure[] = [];
@@ -80,7 +72,14 @@ export function generateModelBaseService(
         isPromise: true,
       },
     });
-    imports.push(...propertyImports);
+    imports.push(...propertyImports, {
+      kind: StructureKind.ImportDeclaration,
+      moduleSpecifier: getImportModuleSpecifier(
+        sourceFilePath,
+        getBaseChildFilePath(srcPath, argsTypeName, 'Args')
+      ),
+      namedImports: [argsTypeName],
+    });
 
     methods.push({
       kind: StructureKind.Method,
@@ -91,7 +90,7 @@ export function generateModelBaseService(
         {
           kind: StructureKind.Parameter,
           name: 'args',
-          type: `Prisma.${argsTypeName}`,
+          type: argsTypeName,
         },
       ],
       statements: [
@@ -108,7 +107,7 @@ export function generateModelBaseService(
       {
         kind: StructureKind.Parameter,
         name: 'args',
-        type: `Prisma.${model.name}CountArgs`,
+        type: `${model.name}FindManyArgs`,
       },
     ],
     statements: [`return this.prisma.client.${modelDelegateName}.count(args);`],
@@ -131,10 +130,19 @@ export function generateModelBaseService(
       },
     ];
     if (isList) {
+      const findManyArgsTypeClassname = `${type}FindManyArgs`;
       parameters.push({
         kind: StructureKind.Parameter,
         name: 'args',
-        type: `Prisma.${type}FindManyArgs`,
+        type: findManyArgsTypeClassname,
+      });
+      imports.push({
+        kind: StructureKind.ImportDeclaration,
+        moduleSpecifier: getImportModuleSpecifier(
+          sourceFilePath,
+          getBaseChildFilePath(srcPath, findManyArgsTypeClassname, 'Args')
+        ),
+        namedImports: [findManyArgsTypeClassname],
       });
     }
 
