@@ -8,9 +8,11 @@ import {
   StandaloneDeleteArgs,
   StandaloneDeleteManyArgs,
   StandaloneFindUniqueArgs,
+  StandaloneCountArgs,
   StandaloneFindManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
+import { Int } from '@nestjs/graphql';
 
 export class StandaloneBaseService {
   constructor(protected readonly prisma: PrismaService) {}
@@ -37,11 +39,11 @@ export class StandaloneBaseService {
     return this.prisma.client.standalone.findUnique(args);
   }
 
-  async findMany(args: StandaloneFindManyArgs): Promise<Array<Standalone>> {
-    return this.prisma.client.standalone.findMany(args);
+  async count(args: StandaloneCountArgs): Promise<number> {
+    return this.prisma.client.standalone.count(args);
   }
 
-  count(args: StandaloneFindManyArgs): Promise<number> {
-    return this.prisma.client.standalone.count(args);
+  async findMany(args: StandaloneFindManyArgs): Promise<Array<Standalone>> {
+    return this.prisma.client.standalone.findMany(args);
   }
 }

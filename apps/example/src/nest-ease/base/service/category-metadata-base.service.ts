@@ -8,9 +8,11 @@ import {
   CategoryMetadataDeleteArgs,
   CategoryMetadataDeleteManyArgs,
   CategoryMetadataFindUniqueArgs,
+  CategoryMetadataCountArgs,
   CategoryMetadataFindManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
+import { Int } from '@nestjs/graphql';
 
 export class CategoryMetadataBaseService {
   constructor(protected readonly prisma: PrismaService) {}
@@ -43,14 +45,14 @@ export class CategoryMetadataBaseService {
     return this.prisma.client.categoryMetadata.findUnique(args);
   }
 
+  async count(args: CategoryMetadataCountArgs): Promise<number> {
+    return this.prisma.client.categoryMetadata.count(args);
+  }
+
   async findMany(
     args: CategoryMetadataFindManyArgs
   ): Promise<Array<CategoryMetadata>> {
     return this.prisma.client.categoryMetadata.findMany(args);
-  }
-
-  count(args: CategoryMetadataFindManyArgs): Promise<number> {
-    return this.prisma.client.categoryMetadata.count(args);
   }
 
   resolveCategory(parent: CategoryMetadata): Promise<Category> {

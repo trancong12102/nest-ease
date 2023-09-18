@@ -8,10 +8,12 @@ import {
   CategoryDeleteArgs,
   CategoryDeleteManyArgs,
   CategoryFindUniqueArgs,
+  CategoryCountArgs,
   CategoryFindManyArgs,
   PostFindManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
+import { Int } from '@nestjs/graphql';
 
 export class CategoryBaseService {
   constructor(protected readonly prisma: PrismaService) {}
@@ -36,12 +38,12 @@ export class CategoryBaseService {
     return this.prisma.client.category.findUnique(args);
   }
 
-  async findMany(args: CategoryFindManyArgs): Promise<Array<Category>> {
-    return this.prisma.client.category.findMany(args);
+  async count(args: CategoryCountArgs): Promise<number> {
+    return this.prisma.client.category.count(args);
   }
 
-  count(args: CategoryFindManyArgs): Promise<number> {
-    return this.prisma.client.category.count(args);
+  async findMany(args: CategoryFindManyArgs): Promise<Array<Category>> {
+    return this.prisma.client.category.findMany(args);
   }
 
   resolvePosts(parent: Category, args: PostFindManyArgs): Promise<Array<Post>> {

@@ -6,6 +6,7 @@ import {
   Query,
   Mutation,
   Args,
+  Int,
   Parent,
   ResolveField,
 } from '@nestjs/graphql';
@@ -16,6 +17,7 @@ import {
   UserDeleteArgs,
   UserDeleteManyArgs,
   UserFindUniqueArgs,
+  UserCountArgs,
   UserFindManyArgs,
   PostFindManyArgs,
 } from '../args';
@@ -52,14 +54,14 @@ export class UserBaseResolver {
     return this.service.findUnique(args);
   }
 
+  @Query(() => Int, { nullable: false })
+  async userCount(@Args() args: UserCountArgs): Promise<number> {
+    return this.service.count(args);
+  }
+
   @Query(() => [User], { nullable: false })
   async userList(@Args() args: UserFindManyArgs): Promise<Array<User>> {
     return this.service.findMany(args);
-  }
-
-  @Query(() => Number)
-  userCount(@Args() args: UserFindManyArgs): Promise<number> {
-    return this.service.count(args);
   }
 
   @ResolveField(() => [Post], { nullable: false })

@@ -6,6 +6,7 @@ import {
   Query,
   Mutation,
   Args,
+  Int,
   Parent,
   ResolveField,
 } from '@nestjs/graphql';
@@ -16,6 +17,7 @@ import {
   CategoryMetadataDeleteArgs,
   CategoryMetadataDeleteManyArgs,
   CategoryMetadataFindUniqueArgs,
+  CategoryMetadataCountArgs,
   CategoryMetadataFindManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
@@ -59,18 +61,18 @@ export class CategoryMetadataBaseResolver {
     return this.service.findUnique(args);
   }
 
+  @Query(() => Int, { nullable: false })
+  async categoryMetadataCount(
+    @Args() args: CategoryMetadataCountArgs
+  ): Promise<number> {
+    return this.service.count(args);
+  }
+
   @Query(() => [CategoryMetadata], { nullable: false })
   async categoryMetadataList(
     @Args() args: CategoryMetadataFindManyArgs
   ): Promise<Array<CategoryMetadata>> {
     return this.service.findMany(args);
-  }
-
-  @Query(() => Number)
-  categoryMetadataCount(
-    @Args() args: CategoryMetadataFindManyArgs
-  ): Promise<number> {
-    return this.service.count(args);
   }
 
   @ResolveField(() => Category, { nullable: false })

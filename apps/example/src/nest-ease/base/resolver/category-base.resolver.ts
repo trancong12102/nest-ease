@@ -6,6 +6,7 @@ import {
   Query,
   Mutation,
   Args,
+  Int,
   Parent,
   ResolveField,
 } from '@nestjs/graphql';
@@ -16,6 +17,7 @@ import {
   CategoryDeleteArgs,
   CategoryDeleteManyArgs,
   CategoryFindUniqueArgs,
+  CategoryCountArgs,
   CategoryFindManyArgs,
   PostFindManyArgs,
 } from '../args';
@@ -58,16 +60,16 @@ export class CategoryBaseResolver {
     return this.service.findUnique(args);
   }
 
+  @Query(() => Int, { nullable: false })
+  async categoryCount(@Args() args: CategoryCountArgs): Promise<number> {
+    return this.service.count(args);
+  }
+
   @Query(() => [Category], { nullable: false })
   async categoryList(
     @Args() args: CategoryFindManyArgs
   ): Promise<Array<Category>> {
     return this.service.findMany(args);
-  }
-
-  @Query(() => Number)
-  categoryCount(@Args() args: CategoryFindManyArgs): Promise<number> {
-    return this.service.count(args);
   }
 
   @ResolveField(() => [Post], { nullable: false })
