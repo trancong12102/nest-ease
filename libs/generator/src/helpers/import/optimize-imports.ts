@@ -28,7 +28,7 @@ export function optimizeImports(
       return {
         ...first,
         kind: StructureKind.ImportDeclaration,
-        namedImports: group.map((i) => i.namedImports).flat(),
+        namedImports: Array.from(new Set(group.flatMap((i) => i.namedImports))),
       };
     });
 }

@@ -62,7 +62,12 @@ CREATE TABLE "Standalone" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "name" TEXT NOT NULL,
     "jsonField" JSONB NOT NULL,
-    "scalarList" TEXT[],
+    "stringList" TEXT[],
+    "decimalField" DECIMAL(65,30) NOT NULL,
+    "floatField" DOUBLE PRECISION NOT NULL,
+    "bytesField" BYTEA NOT NULL,
+    "bigIntField" BIGINT NOT NULL,
+    "dateTimeField" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Standalone_pkey" PRIMARY KEY ("id")
 );

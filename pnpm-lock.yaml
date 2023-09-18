@@ -53,6 +53,9 @@ dependencies:
   graphql-scalars:
     specifier: ^1.22.2
     version: 1.22.2(graphql@16.8.0)
+  prisma-graphql-type-decimal:
+    specifier: ^3.0.0
+    version: 3.0.0(@prisma/client@5.3.1)(graphql@16.8.0)
   ramda:
     specifier: ^0.29.0
     version: 0.29.0
@@ -9398,6 +9401,16 @@ packages:
       ansi-styles: 5.2.0
       react-is: 18.2.0
     dev: true
+
+  /prisma-graphql-type-decimal@3.0.0(@prisma/client@5.3.1)(graphql@16.8.0):
+    resolution: {integrity: sha512-jrALv8ShVZoBBNyIOBCxwRoLM/DAOSD/OBKTWeJa9UigQXUTZniNXvLd4fLXwm+3v00A7cOZ1fFh3b74Ndgxhw==}
+    peerDependencies:
+      '@prisma/client': '>=4.12 <=5'
+      graphql: '16'
+    dependencies:
+      '@prisma/client': 5.3.1(prisma@5.3.1)
+      graphql: 16.8.0
+    dev: false
 
   /prisma@5.3.1:
     resolution: {integrity: sha512-Wp2msQIlMPHe+5k5Od6xnsI/WNG7UJGgFUJgqv/ygc7kOECZapcSz/iU4NIEzISs3H1W9sFLjAPbg/gOqqtB7A==}

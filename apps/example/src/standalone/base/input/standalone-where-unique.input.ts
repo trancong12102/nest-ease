@@ -6,6 +6,10 @@ import { DateTimeFilter } from '../../../prisma/base/input/date-time-filter.inpu
 import { StringFilter } from '../../../prisma/base/input/string-filter.input';
 import { JsonFilter } from '../../../prisma/base/input/json-filter.input';
 import { StringNullableListFilter } from '../../../prisma/base/input/string-nullable-list-filter.input';
+import { DecimalFilter } from '../../../prisma/base/input/decimal-filter.input';
+import { FloatFilter } from '../../../prisma/base/input/float-filter.input';
+import { BytesFilter } from '../../../prisma/base/input/bytes-filter.input';
+import { BigIntFilter } from '../../../prisma/base/input/big-int-filter.input';
 
 @InputType()
 export class StandaloneWhereUniqueInput {
@@ -46,5 +50,20 @@ export class StandaloneWhereUniqueInput {
     nullable: true,
     description: undefined,
   })
-  scalarList?: StringNullableListFilter | null;
+  stringList?: StringNullableListFilter | null;
+  @Type(() => DecimalFilter)
+  @Field(() => DecimalFilter, { nullable: true, description: undefined })
+  decimalField?: DecimalFilter | null;
+  @Type(() => FloatFilter)
+  @Field(() => FloatFilter, { nullable: true, description: undefined })
+  floatField?: FloatFilter | null;
+  @Type(() => BytesFilter)
+  @Field(() => BytesFilter, { nullable: true, description: undefined })
+  bytesField?: BytesFilter | null;
+  @Type(() => BigIntFilter)
+  @Field(() => BigIntFilter, { nullable: true, description: undefined })
+  bigIntField?: BigIntFilter | null;
+  @Type(() => DateTimeFilter)
+  @Field(() => DateTimeFilter, { nullable: true, description: undefined })
+  dateTimeField?: DateTimeFilter | null;
 }

@@ -91,10 +91,15 @@ model CategoryMetadata {
 }
 
 model Standalone {
-  id         Int      @id @default(autoincrement())
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  name       String
-  jsonField  Json
-  scalarList String[]
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  name          String
+  jsonField     Json
+  stringList    String[]
+  decimalField  Decimal
+  floatField    Float
+  bytesField    Bytes
+  bigIntField   BigInt
+  dateTimeField DateTime
 }

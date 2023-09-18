@@ -15,5 +15,15 @@ export class StandaloneOrderByWithRelationInput {
   @Field(() => SortOrder, { nullable: true, description: undefined })
   jsonField?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  scalarList?: keyof typeof SortOrder | null;
+  stringList?: keyof typeof SortOrder | null;
+  @Field(() => SortOrder, { nullable: true, description: undefined })
+  decimalField?: keyof typeof SortOrder | null;
+  @Field(() => SortOrder, { nullable: true, description: undefined })
+  floatField?: keyof typeof SortOrder | null;
+  @Field(() => SortOrder, { nullable: true, description: undefined })
+  bytesField?: keyof typeof SortOrder | null;
+  @Field(() => SortOrder, { nullable: true, description: undefined })
+  bigIntField?: keyof typeof SortOrder | null;
+  @Field(() => SortOrder, { nullable: true, description: undefined })
+  dateTimeField?: keyof typeof SortOrder | null;
 }

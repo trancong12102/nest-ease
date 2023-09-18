@@ -7,7 +7,12 @@ export enum StandaloneScalarFieldEnum {
   updatedAt = 'updatedAt',
   name = 'name',
   jsonField = 'jsonField',
-  scalarList = 'scalarList',
+  stringList = 'stringList',
+  decimalField = 'decimalField',
+  floatField = 'floatField',
+  bytesField = 'bytesField',
+  bigIntField = 'bigIntField',
+  dateTimeField = 'dateTimeField',
 }
 
 registerEnumType(StandaloneScalarFieldEnum, {

@@ -5,7 +5,11 @@ import { Type } from 'class-transformer';
 import { StringFieldUpdateOperationsInput } from '../../../prisma/base/input/string-field-update-operations.input';
 import { GraphQLJSON } from 'graphql-scalars';
 import type { JsonValue } from 'type-fest';
-import { StandaloneUpdatescalarListInput } from './standalone-updatescalar-list.input';
+import { StandaloneUpdatestringListInput } from './standalone-updatestring-list.input';
+import { DecimalFieldUpdateOperationsInput } from '../../../prisma/base/input/decimal-field-update-operations.input';
+import { FloatFieldUpdateOperationsInput } from '../../../prisma/base/input/float-field-update-operations.input';
+import { BytesFieldUpdateOperationsInput } from '../../../prisma/base/input/bytes-field-update-operations.input';
+import { BigIntFieldUpdateOperationsInput } from '../../../prisma/base/input/big-int-field-update-operations.input';
 
 @InputType()
 export class StandaloneUpdateManyMutationInput {
@@ -29,10 +33,40 @@ export class StandaloneUpdateManyMutationInput {
   name?: StringFieldUpdateOperationsInput | null;
   @Field(() => GraphQLJSON, { nullable: true, description: undefined })
   jsonField?: JsonValue | null;
-  @Type(() => StandaloneUpdatescalarListInput)
-  @Field(() => StandaloneUpdatescalarListInput, {
+  @Type(() => StandaloneUpdatestringListInput)
+  @Field(() => StandaloneUpdatestringListInput, {
     nullable: true,
     description: undefined,
   })
-  scalarList?: StandaloneUpdatescalarListInput | null;
+  stringList?: StandaloneUpdatestringListInput | null;
+  @Type(() => DecimalFieldUpdateOperationsInput)
+  @Field(() => DecimalFieldUpdateOperationsInput, {
+    nullable: true,
+    description: undefined,
+  })
+  decimalField?: DecimalFieldUpdateOperationsInput | null;
+  @Type(() => FloatFieldUpdateOperationsInput)
+  @Field(() => FloatFieldUpdateOperationsInput, {
+    nullable: true,
+    description: undefined,
+  })
+  floatField?: FloatFieldUpdateOperationsInput | null;
+  @Type(() => BytesFieldUpdateOperationsInput)
+  @Field(() => BytesFieldUpdateOperationsInput, {
+    nullable: true,
+    description: undefined,
+  })
+  bytesField?: BytesFieldUpdateOperationsInput | null;
+  @Type(() => BigIntFieldUpdateOperationsInput)
+  @Field(() => BigIntFieldUpdateOperationsInput, {
+    nullable: true,
+    description: undefined,
+  })
+  bigIntField?: BigIntFieldUpdateOperationsInput | null;
+  @Type(() => DateTimeFieldUpdateOperationsInput)
+  @Field(() => DateTimeFieldUpdateOperationsInput, {
+    nullable: true,
+    description: undefined,
+  })
+  dateTimeField?: DateTimeFieldUpdateOperationsInput | null;
 }

@@ -87,7 +87,7 @@ export function getScalarPropertyDeclaration(
         property: {
           kind: StructureKind.Property,
           name,
-          type: getPropertyType('string', options),
+          type: getPropertyType('bigint | number', options),
         },
       };
     case 'Decimal':
@@ -103,11 +103,16 @@ export function getScalarPropertyDeclaration(
             namedImports: ['Transform', 'Type'],
             moduleSpecifier: 'class-transformer',
           },
+          {
+            kind: StructureKind.ImportDeclaration,
+            namedImports: ['Decimal'],
+            moduleSpecifier: '@prisma/client/runtime/library',
+          },
         ],
         property: {
           kind: StructureKind.Property,
           name,
-          type: getPropertyType('string', options),
+          type: getPropertyType('Decimal', options),
           decorators: [
             {
               kind: StructureKind.Decorator,
