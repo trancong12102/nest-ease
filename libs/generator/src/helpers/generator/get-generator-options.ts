@@ -28,6 +28,7 @@ export async function getGeneratorOptions(
       `Unable to find output in prisma-client-js generator in schema.prisma`
     );
   }
+  const prismaClientOutputPath = parseEnvValue(prismaClientGeneratorOutput);
 
   const config = await getGeneratorConfig(srcPath);
   const { overwriteCustomFiles } = config;
@@ -38,10 +39,10 @@ export async function getGeneratorOptions(
     dmmf: new InternalDmmf(dmmf),
     srcPath,
     projectRootPath,
-    prismaClientPath: path.resolve(
-      schemaPath,
-      parseEnvValue(prismaClientGeneratorOutput),
-      'index'
-    ),
+    prismaClientPath: prismaClientOutputPath.includes(
+      'node_modules/@prisma/client'
+    )
+      ? '@prisma/client'
+      : path.resolve(schemaPath, prismaClientOutputPath, 'index'),
   };
 }
