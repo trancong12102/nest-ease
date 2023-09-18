@@ -99,20 +99,6 @@ export function generateModelBaseService(
     });
   }
 
-  methods.push({
-    kind: StructureKind.Method,
-    name: 'count',
-    returnType: 'Promise<number>',
-    parameters: [
-      {
-        kind: StructureKind.Parameter,
-        name: 'args',
-        type: `${model.name}FindManyArgs`,
-      },
-    ],
-    statements: [`return this.prisma.client.${modelDelegateName}.count(args);`],
-  });
-
   const relations = model.fields.filter((f) => f.relationName);
   for (const relation of relations) {
     const { type, isList, isRequired, name } = relation;

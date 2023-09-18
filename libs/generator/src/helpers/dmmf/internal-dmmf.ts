@@ -137,6 +137,23 @@ export class InternalDmmf {
         schemaField: this.getSchemaField('Query', `findUnique${modelName}`),
       },
       {
+        name: 'count',
+        type: 'Query',
+        argsTypeName: `${modelName}CountArgs`,
+        resolverMethod: `${camelCase(modelName)}Count`,
+        serviceMethod: 'count',
+        schemaField: {
+          name: 'count',
+          outputType: {
+            type: 'Int',
+            location: 'scalar',
+            isList: false,
+          },
+          isNullable: false,
+          args: this.getSchemaField('Query', `findMany${modelName}`).args,
+        },
+      },
+      {
         name: 'findMany',
         type: 'Query',
         argsTypeName: `${modelName}FindManyArgs`,

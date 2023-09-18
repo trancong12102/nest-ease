@@ -25,7 +25,7 @@ export interface ModelOperation {
     | 'updateOne'
     | 'deleteOne'
     | 'deleteMany'
-    | 'aggregate';
+    | 'count';
   schemaField: SchemaField;
   resolverMethod: string;
   serviceMethod:
@@ -35,7 +35,7 @@ export interface ModelOperation {
     | 'update'
     | 'delete'
     | 'deleteMany'
-    | 'aggregate';
+    | 'count';
   argsTypeName: string;
 }
 
