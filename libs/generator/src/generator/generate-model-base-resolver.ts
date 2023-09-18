@@ -17,7 +17,7 @@ import { getImportModuleSpecifier } from '../helpers/import/get-import-module-sp
 import { getPropertyType } from '../helpers/type/get-property-type';
 import { getResolveMethodName } from '../helpers/generator/get-resolve-method-name';
 import { getGraphqlType } from '../helpers/type/get-graphql-type';
-import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
+import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getFieldPropertyDeclaration } from '../helpers/declaration/get-field-property-declaration';
 import { getFieldGraphqlDeclaration } from '../helpers/declaration/get-field-graphql-declaration';
 
@@ -267,7 +267,7 @@ return this.service.${getResolveMethodName(name)}(parent${
     sourceFilePath,
     {
       statements: [
-        GENERATED_FILE_COMMENT,
+        GENERATED_WARNING_COMMENT,
         ...optimizeImports(imports, className),
         classDeclaration,
       ],

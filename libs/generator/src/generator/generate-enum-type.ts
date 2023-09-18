@@ -8,7 +8,7 @@ import { GeneratorOptions } from '../types/generator.type';
 import { FieldNamespace } from '../types/dmmf.type';
 import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { buildEnumDocumentationOptions } from '../helpers/documentation/build-enum-documentation-options';
-import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
+import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 
 export function generateEnumType(
   project: Project,
@@ -62,7 +62,7 @@ export function generateEnumType(
   sourceFile.set({
     kind: StructureKind.SourceFile,
     statements: [
-      GENERATED_FILE_COMMENT,
+      GENERATED_WARNING_COMMENT,
       ...imports,
       enumStructure,
       `registerEnumType(${name}, { name: '${name}', description: ${JSON.stringify(

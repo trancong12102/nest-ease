@@ -13,11 +13,18 @@ export function getScalarPropertyDeclaration(
   switch (type) {
     case 'Json':
       return {
-        imports: [],
+        imports: [
+          {
+            kind: StructureKind.ImportDeclaration,
+            namedImports: ['JsonValue'],
+            moduleSpecifier: 'type-fest',
+            isTypeOnly: true,
+          },
+        ],
         property: {
           kind: StructureKind.Property,
           name,
-          type: getPropertyType('any', options),
+          type: getPropertyType('JsonValue', options),
         },
       };
     case 'Int':

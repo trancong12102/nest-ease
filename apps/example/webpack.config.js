@@ -10,8 +10,17 @@ module.exports = composePlugins(withNx(), (config) => {
   const {
     module: { rules },
   } = config;
+
   combinedConfig.module.rules = rules
-    .filter((r) => !r.loader?.match(/(ts-loader)/))
+    .filter((r) => !r.loader?.match(/ts-loader/))
+    .map((r) =>
+      r.loader?.match(/source-map-loader/)
+        ? {
+            ...r,
+            exclude: /@prisma-client/,
+          }
+        : r
+    )
     .concat([
       {
         test: /\.ts$/,

@@ -1,33 +1,61 @@
 import { ImportDeclarationStructure, StructureKind } from 'ts-morph';
+import { groupBy, uniqBy } from 'ramda';
 
-export const optimizeImports = (
+export function optimizeImports(
   imports: ImportDeclarationStructure[],
   self: string
-): ImportDeclarationStructure[] => {
-  const importMap: Record<string, string[]> = {};
+): ImportDeclarationStructure[] {
+  const importsWithoutSelf = uniqBy((i) => createImportKey(i), imports)
+    .map((i) => ({
+      ...i,
+      namedImports: (i.namedImports as string[])?.filter((ni) => ni !== self),
+    }))
+    .filter((i) => i.namedImports?.length > 0);
 
-  for (const importStructure of imports) {
-    const { moduleSpecifier } = importStructure;
-    if (!Array.isArray(importStructure.namedImports)) {
-      throw new Error('Named imports must be an string array');
+  const groupedImports = groupBy(
+    (i) => createImportKey(i, false),
+    importsWithoutSelf
+  );
+
+  return Object.values(groupedImports)
+    .filter((g) => !!g)
+    .map((group) => {
+      const first = group?.[0];
+      if (!first) {
+        throw new Error('Cannot find first import');
+      }
+
+      return {
+        ...first,
+        kind: StructureKind.ImportDeclaration,
+        namedImports: group.map((i) => i.namedImports).flat(),
+      };
+    });
+}
+
+function createImportKey(
+  importDeclaration: ImportDeclarationStructure,
+  withNamedImports = true
+): string {
+  const {
+    namedImports,
+    namespaceImport,
+    defaultImport,
+    moduleSpecifier,
+    isTypeOnly,
+  } = importDeclaration;
+
+  if (!Array.isArray(namedImports)) {
+    throw new Error('Named imports must be an array');
+  }
+  for (const namedImport of namedImports) {
+    if (typeof namedImport !== 'string') {
+      throw new Error('Named import must be a string');
     }
-
-    const namedImports = importStructure.namedImports as string[];
-
-    importMap[moduleSpecifier] = (importMap[moduleSpecifier] || []).concat(
-      namedImports
-    );
   }
 
-  return Object.entries(importMap)
-    .map(([moduleSpecifier, namedImports]) => ({
-      moduleSpecifier,
-      namedImports: new Set(namedImports.filter((ni) => ni !== self)),
-    }))
-    .filter((i) => i.namedImports.size > 0)
-    .map(({ namedImports, moduleSpecifier }) => ({
-      kind: StructureKind.ImportDeclaration,
-      moduleSpecifier,
-      namedImports: Array.from(namedImports),
-    }));
-};
+  const namedImportsKey = namedImports.join(',');
+  const othersKey = `${moduleSpecifier}_${namespaceImport}_${defaultImport}_${isTypeOnly}`;
+
+  return withNamedImports ? `${namedImportsKey}_${othersKey}` : othersKey;
+}

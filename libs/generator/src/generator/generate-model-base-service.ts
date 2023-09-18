@@ -19,7 +19,7 @@ import { camelCase } from 'case-anything';
 import { getPropertyType } from '../helpers/type/get-property-type';
 import { getResolveMethodName } from '../helpers/generator/get-resolve-method-name';
 import { getCompoundFieldName } from '../helpers/generator/get-compound-field-name';
-import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
+import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getFieldPropertyDeclaration } from '../helpers/declaration/get-field-property-declaration';
 
 export function generateModelBaseService(
@@ -188,7 +188,7 @@ return this.prisma.client.${modelDelegateName}
     sourceFilePath,
     {
       statements: [
-        GENERATED_FILE_COMMENT,
+        GENERATED_WARNING_COMMENT,
         ...optimizeImports(imports, className),
         classDeclaration,
       ],

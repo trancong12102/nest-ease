@@ -12,7 +12,7 @@ import { optimizeImports } from '../helpers/import/optimize-imports';
 import { generatePrismaType } from './generate-prisma-type';
 import { buildModelDocumentations } from '../helpers/documentation/build-model-documentations';
 import { BaseFileKind } from '../types/file-kind.type';
-import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
+import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getSchemaFieldDeclaration } from '../helpers/declaration/get-schema-field-declaration';
 
 export function generateOutputType(
@@ -80,7 +80,7 @@ export function generateOutputType(
   sourceFile.set({
     kind: StructureKind.SourceFile,
     statements: [
-      GENERATED_FILE_COMMENT,
+      GENERATED_WARNING_COMMENT,
       ...optimizeImports(imports, name),
       classDeclaration,
     ],
