@@ -15,10 +15,12 @@ import {
   CategoryMetadataCreateArgs,
   CategoryMetadataUpdateArgs,
   CategoryMetadataDeleteArgs,
-  CategoryMetadataDeleteManyArgs,
   CategoryMetadataFindUniqueArgs,
   CategoryMetadataCountArgs,
   CategoryMetadataFindManyArgs,
+  CategoryMetadataCreateManyArgs,
+  CategoryMetadataUpdateManyArgs,
+  CategoryMetadataDeleteManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
 
@@ -47,13 +49,6 @@ export class CategoryMetadataBaseResolver {
     return this.service.delete(args);
   }
 
-  @Mutation(() => AffectedRowsOutput, { nullable: false })
-  async deleteCategoryMetadataList(
-    @Args() args: CategoryMetadataDeleteManyArgs
-  ): Promise<AffectedRowsOutput> {
-    return this.service.deleteMany(args);
-  }
-
   @Query(() => CategoryMetadata, { nullable: true })
   async categoryMetadata(
     @Args() args: CategoryMetadataFindUniqueArgs
@@ -73,6 +68,27 @@ export class CategoryMetadataBaseResolver {
     @Args() args: CategoryMetadataFindManyArgs
   ): Promise<Array<CategoryMetadata>> {
     return this.service.findMany(args);
+  }
+
+  @Mutation(() => AffectedRowsOutput, { nullable: false })
+  async createCategoryMetadataList(
+    @Args() args: CategoryMetadataCreateManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.service.createMany(args);
+  }
+
+  @Mutation(() => AffectedRowsOutput, { nullable: false })
+  async updateCategoryMetadataList(
+    @Args() args: CategoryMetadataUpdateManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.service.updateMany(args);
+  }
+
+  @Mutation(() => AffectedRowsOutput, { nullable: false })
+  async deleteCategoryMetadataList(
+    @Args() args: CategoryMetadataDeleteManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.service.deleteMany(args);
   }
 
   @ResolveField(() => Category, { nullable: false })

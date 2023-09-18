@@ -15,10 +15,12 @@ import {
   CategoryCreateArgs,
   CategoryUpdateArgs,
   CategoryDeleteArgs,
-  CategoryDeleteManyArgs,
   CategoryFindUniqueArgs,
   CategoryCountArgs,
   CategoryFindManyArgs,
+  CategoryCreateManyArgs,
+  CategoryUpdateManyArgs,
+  CategoryDeleteManyArgs,
   PostFindManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
@@ -46,13 +48,6 @@ export class CategoryBaseResolver {
     return this.service.delete(args);
   }
 
-  @Mutation(() => AffectedRowsOutput, { nullable: false })
-  async deleteCategoryList(
-    @Args() args: CategoryDeleteManyArgs
-  ): Promise<AffectedRowsOutput> {
-    return this.service.deleteMany(args);
-  }
-
   @Query(() => Category, { nullable: true })
   async category(
     @Args() args: CategoryFindUniqueArgs
@@ -70,6 +65,27 @@ export class CategoryBaseResolver {
     @Args() args: CategoryFindManyArgs
   ): Promise<Array<Category>> {
     return this.service.findMany(args);
+  }
+
+  @Mutation(() => AffectedRowsOutput, { nullable: false })
+  async createCategoryList(
+    @Args() args: CategoryCreateManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.service.createMany(args);
+  }
+
+  @Mutation(() => AffectedRowsOutput, { nullable: false })
+  async updateCategoryList(
+    @Args() args: CategoryUpdateManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.service.updateMany(args);
+  }
+
+  @Mutation(() => AffectedRowsOutput, { nullable: false })
+  async deleteCategoryList(
+    @Args() args: CategoryDeleteManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.service.deleteMany(args);
   }
 
   @ResolveField(() => [Post], { nullable: false })

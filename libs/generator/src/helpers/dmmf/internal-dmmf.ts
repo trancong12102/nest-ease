@@ -121,14 +121,6 @@ export class InternalDmmf {
         schemaField: this.getSchemaField('Mutation', `deleteOne${modelName}`),
       },
       {
-        name: 'deleteMany',
-        type: 'Mutation',
-        argsTypeName: `${modelName}DeleteManyArgs`,
-        resolverMethod: `delete${pluralize(modelName)}`,
-        serviceMethod: 'deleteMany',
-        schemaField: this.getSchemaField('Mutation', `deleteMany${modelName}`),
-      },
-      {
         name: 'findUnique',
         type: 'Query',
         argsTypeName: `${modelName}FindUniqueArgs`,
@@ -160,6 +152,30 @@ export class InternalDmmf {
         resolverMethod: camelCase(pluralize(modelName)),
         serviceMethod: 'findMany',
         schemaField: this.getSchemaField('Query', `findMany${modelName}`),
+      },
+      {
+        name: 'createMany',
+        type: 'Mutation',
+        argsTypeName: `${modelName}CreateManyArgs`,
+        resolverMethod: camelCase(`create_${pluralize(modelName)}`),
+        serviceMethod: 'createMany',
+        schemaField: this.getSchemaField('Mutation', `createMany${modelName}`),
+      },
+      {
+        name: 'updateMany',
+        type: 'Mutation',
+        argsTypeName: `${modelName}UpdateManyArgs`,
+        resolverMethod: camelCase(`update_${pluralize(modelName)}`),
+        serviceMethod: 'updateMany',
+        schemaField: this.getSchemaField('Mutation', `updateMany${modelName}`),
+      },
+      {
+        name: 'deleteMany',
+        type: 'Mutation',
+        argsTypeName: `${modelName}DeleteManyArgs`,
+        resolverMethod: `delete${pluralize(modelName)}`,
+        serviceMethod: 'deleteMany',
+        schemaField: this.getSchemaField('Mutation', `deleteMany${modelName}`),
       },
     ];
   }

@@ -6,10 +6,12 @@ import {
   StandaloneCreateArgs,
   StandaloneUpdateArgs,
   StandaloneDeleteArgs,
-  StandaloneDeleteManyArgs,
   StandaloneFindUniqueArgs,
   StandaloneCountArgs,
   StandaloneFindManyArgs,
+  StandaloneCreateManyArgs,
+  StandaloneUpdateManyArgs,
+  StandaloneDeleteManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
 
@@ -28,12 +30,6 @@ export class StandaloneBaseService {
     return this.prisma.client.standalone.delete(args);
   }
 
-  async deleteMany(
-    args: StandaloneDeleteManyArgs
-  ): Promise<AffectedRowsOutput> {
-    return this.prisma.client.standalone.deleteMany(args);
-  }
-
   async findUnique(args: StandaloneFindUniqueArgs): Promise<Standalone | null> {
     return this.prisma.client.standalone.findUnique(args);
   }
@@ -44,5 +40,23 @@ export class StandaloneBaseService {
 
   async findMany(args: StandaloneFindManyArgs): Promise<Array<Standalone>> {
     return this.prisma.client.standalone.findMany(args);
+  }
+
+  async createMany(
+    args: StandaloneCreateManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.prisma.client.standalone.createMany(args);
+  }
+
+  async updateMany(
+    args: StandaloneUpdateManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.prisma.client.standalone.updateMany(args);
+  }
+
+  async deleteMany(
+    args: StandaloneDeleteManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.prisma.client.standalone.deleteMany(args);
   }
 }

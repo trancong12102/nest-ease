@@ -6,10 +6,12 @@ import {
   PostCreateArgs,
   PostUpdateArgs,
   PostDeleteArgs,
-  PostDeleteManyArgs,
   PostFindUniqueArgs,
   PostCountArgs,
   PostFindManyArgs,
+  PostCreateManyArgs,
+  PostUpdateManyArgs,
+  PostDeleteManyArgs,
   CategoryFindManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
@@ -29,10 +31,6 @@ export class PostBaseService {
     return this.prisma.client.post.delete(args);
   }
 
-  async deleteMany(args: PostDeleteManyArgs): Promise<AffectedRowsOutput> {
-    return this.prisma.client.post.deleteMany(args);
-  }
-
   async findUnique(args: PostFindUniqueArgs): Promise<Post | null> {
     return this.prisma.client.post.findUnique(args);
   }
@@ -43,6 +41,18 @@ export class PostBaseService {
 
   async findMany(args: PostFindManyArgs): Promise<Array<Post>> {
     return this.prisma.client.post.findMany(args);
+  }
+
+  async createMany(args: PostCreateManyArgs): Promise<AffectedRowsOutput> {
+    return this.prisma.client.post.createMany(args);
+  }
+
+  async updateMany(args: PostUpdateManyArgs): Promise<AffectedRowsOutput> {
+    return this.prisma.client.post.updateMany(args);
+  }
+
+  async deleteMany(args: PostDeleteManyArgs): Promise<AffectedRowsOutput> {
+    return this.prisma.client.post.deleteMany(args);
   }
 
   resolveAuthor(parent: Post): Promise<User> {

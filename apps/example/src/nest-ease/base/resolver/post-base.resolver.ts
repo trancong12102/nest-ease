@@ -15,10 +15,12 @@ import {
   PostCreateArgs,
   PostUpdateArgs,
   PostDeleteArgs,
-  PostDeleteManyArgs,
   PostFindUniqueArgs,
   PostCountArgs,
   PostFindManyArgs,
+  PostCreateManyArgs,
+  PostUpdateManyArgs,
+  PostDeleteManyArgs,
   CategoryFindManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
@@ -42,13 +44,6 @@ export class PostBaseResolver {
     return this.service.delete(args);
   }
 
-  @Mutation(() => AffectedRowsOutput, { nullable: false })
-  async deletePostList(
-    @Args() args: PostDeleteManyArgs
-  ): Promise<AffectedRowsOutput> {
-    return this.service.deleteMany(args);
-  }
-
   @Query(() => Post, { nullable: true })
   async post(@Args() args: PostFindUniqueArgs): Promise<Post | null> {
     return this.service.findUnique(args);
@@ -62,6 +57,27 @@ export class PostBaseResolver {
   @Query(() => [Post], { nullable: false })
   async postList(@Args() args: PostFindManyArgs): Promise<Array<Post>> {
     return this.service.findMany(args);
+  }
+
+  @Mutation(() => AffectedRowsOutput, { nullable: false })
+  async createPostList(
+    @Args() args: PostCreateManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.service.createMany(args);
+  }
+
+  @Mutation(() => AffectedRowsOutput, { nullable: false })
+  async updatePostList(
+    @Args() args: PostUpdateManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.service.updateMany(args);
+  }
+
+  @Mutation(() => AffectedRowsOutput, { nullable: false })
+  async deletePostList(
+    @Args() args: PostDeleteManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.service.deleteMany(args);
   }
 
   @ResolveField(() => User, { nullable: false })

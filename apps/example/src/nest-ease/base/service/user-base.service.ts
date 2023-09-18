@@ -6,10 +6,12 @@ import {
   UserCreateArgs,
   UserUpdateArgs,
   UserDeleteArgs,
-  UserDeleteManyArgs,
   UserFindUniqueArgs,
   UserCountArgs,
   UserFindManyArgs,
+  UserCreateManyArgs,
+  UserUpdateManyArgs,
+  UserDeleteManyArgs,
   PostFindManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
@@ -29,10 +31,6 @@ export class UserBaseService {
     return this.prisma.client.user.delete(args);
   }
 
-  async deleteMany(args: UserDeleteManyArgs): Promise<AffectedRowsOutput> {
-    return this.prisma.client.user.deleteMany(args);
-  }
-
   async findUnique(args: UserFindUniqueArgs): Promise<User | null> {
     return this.prisma.client.user.findUnique(args);
   }
@@ -43,6 +41,18 @@ export class UserBaseService {
 
   async findMany(args: UserFindManyArgs): Promise<Array<User>> {
     return this.prisma.client.user.findMany(args);
+  }
+
+  async createMany(args: UserCreateManyArgs): Promise<AffectedRowsOutput> {
+    return this.prisma.client.user.createMany(args);
+  }
+
+  async updateMany(args: UserUpdateManyArgs): Promise<AffectedRowsOutput> {
+    return this.prisma.client.user.updateMany(args);
+  }
+
+  async deleteMany(args: UserDeleteManyArgs): Promise<AffectedRowsOutput> {
+    return this.prisma.client.user.deleteMany(args);
   }
 
   resolvePosts(parent: User, args: PostFindManyArgs): Promise<Array<Post>> {

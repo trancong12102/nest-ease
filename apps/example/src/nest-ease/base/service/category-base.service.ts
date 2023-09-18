@@ -6,10 +6,12 @@ import {
   CategoryCreateArgs,
   CategoryUpdateArgs,
   CategoryDeleteArgs,
-  CategoryDeleteManyArgs,
   CategoryFindUniqueArgs,
   CategoryCountArgs,
   CategoryFindManyArgs,
+  CategoryCreateManyArgs,
+  CategoryUpdateManyArgs,
+  CategoryDeleteManyArgs,
   PostFindManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
@@ -29,10 +31,6 @@ export class CategoryBaseService {
     return this.prisma.client.category.delete(args);
   }
 
-  async deleteMany(args: CategoryDeleteManyArgs): Promise<AffectedRowsOutput> {
-    return this.prisma.client.category.deleteMany(args);
-  }
-
   async findUnique(args: CategoryFindUniqueArgs): Promise<Category | null> {
     return this.prisma.client.category.findUnique(args);
   }
@@ -43,6 +41,18 @@ export class CategoryBaseService {
 
   async findMany(args: CategoryFindManyArgs): Promise<Array<Category>> {
     return this.prisma.client.category.findMany(args);
+  }
+
+  async createMany(args: CategoryCreateManyArgs): Promise<AffectedRowsOutput> {
+    return this.prisma.client.category.createMany(args);
+  }
+
+  async updateMany(args: CategoryUpdateManyArgs): Promise<AffectedRowsOutput> {
+    return this.prisma.client.category.updateMany(args);
+  }
+
+  async deleteMany(args: CategoryDeleteManyArgs): Promise<AffectedRowsOutput> {
+    return this.prisma.client.category.deleteMany(args);
   }
 
   resolvePosts(parent: Category, args: PostFindManyArgs): Promise<Array<Post>> {

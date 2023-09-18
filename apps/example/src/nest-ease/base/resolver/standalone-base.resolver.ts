@@ -7,10 +7,12 @@ import {
   StandaloneCreateArgs,
   StandaloneUpdateArgs,
   StandaloneDeleteArgs,
-  StandaloneDeleteManyArgs,
   StandaloneFindUniqueArgs,
   StandaloneCountArgs,
   StandaloneFindManyArgs,
+  StandaloneCreateManyArgs,
+  StandaloneUpdateManyArgs,
+  StandaloneDeleteManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
 
@@ -39,13 +41,6 @@ export class StandaloneBaseResolver {
     return this.service.delete(args);
   }
 
-  @Mutation(() => AffectedRowsOutput, { nullable: false })
-  async deleteStandaloneList(
-    @Args() args: StandaloneDeleteManyArgs
-  ): Promise<AffectedRowsOutput> {
-    return this.service.deleteMany(args);
-  }
-
   @Query(() => Standalone, { nullable: true })
   async standalone(
     @Args() args: StandaloneFindUniqueArgs
@@ -63,5 +58,26 @@ export class StandaloneBaseResolver {
     @Args() args: StandaloneFindManyArgs
   ): Promise<Array<Standalone>> {
     return this.service.findMany(args);
+  }
+
+  @Mutation(() => AffectedRowsOutput, { nullable: false })
+  async createStandaloneList(
+    @Args() args: StandaloneCreateManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.service.createMany(args);
+  }
+
+  @Mutation(() => AffectedRowsOutput, { nullable: false })
+  async updateStandaloneList(
+    @Args() args: StandaloneUpdateManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.service.updateMany(args);
+  }
+
+  @Mutation(() => AffectedRowsOutput, { nullable: false })
+  async deleteStandaloneList(
+    @Args() args: StandaloneDeleteManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.service.deleteMany(args);
   }
 }

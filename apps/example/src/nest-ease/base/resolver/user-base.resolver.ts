@@ -15,10 +15,12 @@ import {
   UserCreateArgs,
   UserUpdateArgs,
   UserDeleteArgs,
-  UserDeleteManyArgs,
   UserFindUniqueArgs,
   UserCountArgs,
   UserFindManyArgs,
+  UserCreateManyArgs,
+  UserUpdateManyArgs,
+  UserDeleteManyArgs,
   PostFindManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
@@ -42,13 +44,6 @@ export class UserBaseResolver {
     return this.service.delete(args);
   }
 
-  @Mutation(() => AffectedRowsOutput, { nullable: false })
-  async deleteUserList(
-    @Args() args: UserDeleteManyArgs
-  ): Promise<AffectedRowsOutput> {
-    return this.service.deleteMany(args);
-  }
-
   @Query(() => User, { nullable: true })
   async user(@Args() args: UserFindUniqueArgs): Promise<User | null> {
     return this.service.findUnique(args);
@@ -62,6 +57,27 @@ export class UserBaseResolver {
   @Query(() => [User], { nullable: false })
   async userList(@Args() args: UserFindManyArgs): Promise<Array<User>> {
     return this.service.findMany(args);
+  }
+
+  @Mutation(() => AffectedRowsOutput, { nullable: false })
+  async createUserList(
+    @Args() args: UserCreateManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.service.createMany(args);
+  }
+
+  @Mutation(() => AffectedRowsOutput, { nullable: false })
+  async updateUserList(
+    @Args() args: UserUpdateManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.service.updateMany(args);
+  }
+
+  @Mutation(() => AffectedRowsOutput, { nullable: false })
+  async deleteUserList(
+    @Args() args: UserDeleteManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.service.deleteMany(args);
   }
 
   @ResolveField(() => [Post], { nullable: false })

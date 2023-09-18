@@ -6,10 +6,12 @@ import {
   CategoryMetadataCreateArgs,
   CategoryMetadataUpdateArgs,
   CategoryMetadataDeleteArgs,
-  CategoryMetadataDeleteManyArgs,
   CategoryMetadataFindUniqueArgs,
   CategoryMetadataCountArgs,
   CategoryMetadataFindManyArgs,
+  CategoryMetadataCreateManyArgs,
+  CategoryMetadataUpdateManyArgs,
+  CategoryMetadataDeleteManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
 
@@ -32,12 +34,6 @@ export class CategoryMetadataBaseService {
     return this.prisma.client.categoryMetadata.delete(args);
   }
 
-  async deleteMany(
-    args: CategoryMetadataDeleteManyArgs
-  ): Promise<AffectedRowsOutput> {
-    return this.prisma.client.categoryMetadata.deleteMany(args);
-  }
-
   async findUnique(
     args: CategoryMetadataFindUniqueArgs
   ): Promise<CategoryMetadata | null> {
@@ -52,6 +48,24 @@ export class CategoryMetadataBaseService {
     args: CategoryMetadataFindManyArgs
   ): Promise<Array<CategoryMetadata>> {
     return this.prisma.client.categoryMetadata.findMany(args);
+  }
+
+  async createMany(
+    args: CategoryMetadataCreateManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.prisma.client.categoryMetadata.createMany(args);
+  }
+
+  async updateMany(
+    args: CategoryMetadataUpdateManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.prisma.client.categoryMetadata.updateMany(args);
+  }
+
+  async deleteMany(
+    args: CategoryMetadataDeleteManyArgs
+  ): Promise<AffectedRowsOutput> {
+    return this.prisma.client.categoryMetadata.deleteMany(args);
   }
 
   resolveCategory(parent: CategoryMetadata): Promise<Category> {
