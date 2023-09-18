@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import path from 'path';
 import { Project } from 'ts-morph';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidV4 } from 'uuid';
 import * as os from 'os';
 
 export const ConfigSchema = z.object({
@@ -17,7 +17,7 @@ export async function getGeneratorConfig(
   const configTsPath = getConfigPath(srcPath);
   const project = new Project({
     compilerOptions: {
-      outDir: path.resolve(os.tmpdir(), uuidv4()),
+      outDir: path.resolve(os.tmpdir(), uuidV4()),
       declaration: false,
       esModuleInterop: true,
     },

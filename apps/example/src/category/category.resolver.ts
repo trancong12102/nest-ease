@@ -1,5 +1,6 @@
 import { Resolver } from '@nestjs/graphql';
-import { CategoryBaseResolver, Category } from '../nest-ease/base';
+import { CategoryBaseResolver } from './base/category-base.resolver';
+import { Category } from './base/model/category.model';
 import { CategoryService } from './category.service';
 
 @Resolver(() => Category)

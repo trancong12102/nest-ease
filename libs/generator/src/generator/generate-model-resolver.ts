@@ -7,12 +7,11 @@ import {
 } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator.type';
 import { ModelMapping } from '../types/dmmf.type';
-import { getClassname } from '../helpers/path/get-classname';
-import { getModuleChildFilePath } from '../helpers/path/get-module-child-file-path';
-import { getBaseIndexPath } from '../helpers/path/get-base-index-path';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
 import { isPathExists } from '../utils/is-path-exists';
 import { assertGitStatusClean } from '../helpers/git/assert-git-status-clean';
+import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
+import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 
 export async function generateModelResolver(
   project: Project,
@@ -24,11 +23,17 @@ export async function generateModelResolver(
     model: { name: modelName },
   } = modelMapping;
 
-  const classname = getClassname(modelName, 'Resolver');
-  const sourceFilePath = getModuleChildFilePath(
+  const modelFilePath = getSourceFilePath(
     srcPath,
     modelName,
-    classname,
+    modelName,
+    'Model'
+  );
+  const className = getModuleFileClassName(modelName, 'Resolver');
+  const sourceFilePath = getSourceFilePath(
+    srcPath,
+    modelName,
+    className,
     'Resolver'
   );
   if (!overwriteCustomFiles && (await isPathExists(sourceFilePath))) {
@@ -36,15 +41,24 @@ export async function generateModelResolver(
   }
   assertGitStatusClean(gitChangedFiles, sourceFilePath);
 
-  const baseResolverClassname = getClassname(modelName, 'BaseResolver');
-  const serviceClassname = getClassname(modelName, 'Service');
-  const serviceFilepath = getModuleChildFilePath(
+  const baseResolverClassName = getModuleFileClassName(
+    modelName,
+    'Resolver',
+    true
+  );
+  const baseResolverFilePath = getSourceFilePath(
     srcPath,
     modelName,
-    serviceClassname,
+    baseResolverClassName,
+    'Resolver'
+  );
+  const serviceClassName = getModuleFileClassName(modelName, 'Service');
+  const serviceFilePath = getSourceFilePath(
+    srcPath,
+    modelName,
+    serviceClassName,
     'Service'
   );
-  const baseIndexFilepath = getBaseIndexPath(srcPath);
 
   const imports: ImportDeclarationStructure[] = [
     {
@@ -56,25 +70,30 @@ export async function generateModelResolver(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        baseIndexFilepath
+        baseResolverFilePath
       ),
-      namedImports: [baseResolverClassname, modelName],
+      namedImports: [baseResolverClassName],
+    },
+    {
+      kind: StructureKind.ImportDeclaration,
+      moduleSpecifier: getImportModuleSpecifier(sourceFilePath, modelFilePath),
+      namedImports: [modelName],
     },
     {
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        serviceFilepath
+        serviceFilePath
       ),
-      namedImports: [serviceClassname],
+      namedImports: [serviceClassName],
     },
   ];
 
   const classDeclaration: ClassDeclarationStructure = {
     kind: StructureKind.Class,
-    name: classname,
+    name: className,
     isExported: true,
-    extends: baseResolverClassname,
+    extends: baseResolverClassName,
     decorators: [
       {
         kind: StructureKind.Decorator,
@@ -87,7 +106,7 @@ export async function generateModelResolver(
         parameters: [
           {
             name: 'service',
-            type: serviceClassname,
+            type: serviceClassName,
             isReadonly: true,
             scope: Scope.Protected,
           },

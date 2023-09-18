@@ -7,26 +7,29 @@ import {
 } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator.type';
 import { FieldNamespace, SchemaField } from '../types/dmmf.type';
-import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { generatePrismaType } from './generate-prisma-type';
 import { buildModelDocumentations } from '../helpers/documentation/build-model-documentations';
-import { BaseFileKind } from '../types/file-kind.type';
 import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getSchemaFieldDeclaration } from '../helpers/declaration/get-schema-field-declaration';
+import { TypeFileKind } from '../types/file-kind.type';
+import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 
 export function generateOutputType(
   project: Project,
   options: GeneratorOptions,
   namespace: FieldNamespace,
-  name: string
+  modelName: string
 ) {
   const { srcPath, dmmf } = options;
-  const model = dmmf.getModel(name);
+  const model = dmmf.getModel(modelName);
   const { documentation, fields: fieldDocumentations } =
     buildModelDocumentations(model);
-  const kind: BaseFileKind = dmmf.isModel(name) ? 'Model' : 'Output';
-  const sourceFilePath = getBaseChildFilePath(srcPath, name, kind);
+  const kind: TypeFileKind = dmmf.isModel(modelName) ? 'Model' : 'Output';
+  const module =
+    (kind === 'Model' ? modelName : dmmf.getModelNameOfOutputType(modelName)) ||
+    'Prisma';
+  const sourceFilePath = getSourceFilePath(srcPath, module, modelName, kind);
   if (project.getSourceFile(sourceFilePath)) {
     return;
   }
@@ -43,9 +46,13 @@ export function generateOutputType(
   ];
   const properties: PropertyDeclarationStructure[] = [];
 
-  const type = dmmf.getNonPrimitiveType('outputObjectTypes', namespace, name);
+  const type = dmmf.getNonPrimitiveType(
+    'outputObjectTypes',
+    namespace,
+    modelName
+  );
   if (!type) {
-    throw new Error(`Cannot find output type ${name}`);
+    throw new Error(`Cannot find output type ${modelName}`);
   }
 
   const fields =
@@ -64,7 +71,7 @@ export function generateOutputType(
 
   const classDeclaration: ClassDeclarationStructure = {
     kind: StructureKind.Class,
-    name,
+    name: modelName,
     isExported: true,
     decorators: [
       {
@@ -81,7 +88,7 @@ export function generateOutputType(
     kind: StructureKind.SourceFile,
     statements: [
       GENERATED_WARNING_COMMENT,
-      ...optimizeImports(imports, name),
+      ...optimizeImports(imports, modelName),
       classDeclaration,
     ],
   });

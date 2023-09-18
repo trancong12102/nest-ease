@@ -6,19 +6,20 @@ import {
 } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator.type';
 import { FieldNamespace } from '../types/dmmf.type';
-import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { buildEnumDocumentationOptions } from '../helpers/documentation/build-enum-documentation-options';
 import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
+import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 
 export function generateEnumType(
   project: Project,
   options: GeneratorOptions,
   namespace: FieldNamespace,
-  name: string
+  enumName: string
 ) {
   const { dmmf, srcPath } = options;
+  const module = dmmf.getModelNameOfEnumType(enumName) || 'Prisma';
 
-  const sourceFilePath = getBaseChildFilePath(srcPath, name, 'Enum');
+  const sourceFilePath = getSourceFilePath(srcPath, module, enumName, 'Enum');
   if (project.getSourceFile(sourceFilePath)) {
     return;
   }
@@ -26,13 +27,13 @@ export function generateEnumType(
     overwrite: true,
   });
 
-  const type = dmmf.getNonPrimitiveType('enumTypes', namespace, name);
+  const type = dmmf.getNonPrimitiveType('enumTypes', namespace, enumName);
   if (!type) {
-    throw new Error(`Cannot find enum type ${name}`);
+    throw new Error(`Cannot find enum type ${enumName}`);
   }
 
   const { values } = type;
-  const datamodelEnum = dmmf.getDatamodelType('enums', name);
+  const datamodelEnum = dmmf.getDatamodelType('enums', enumName);
   const { description, valuesMap } =
     buildEnumDocumentationOptions(datamodelEnum);
 
@@ -47,7 +48,7 @@ export function generateEnumType(
   const enumStructure: EnumDeclarationStructure = {
     kind: StructureKind.Enum,
     isExported: true,
-    name,
+    name: enumName,
     members: values.map((value) => {
       const comment = valuesMap?.[value]?.description;
 
@@ -65,7 +66,7 @@ export function generateEnumType(
       GENERATED_WARNING_COMMENT,
       ...imports,
       enumStructure,
-      `registerEnumType(${name}, { name: '${name}', description: ${JSON.stringify(
+      `registerEnumType(${enumName}, { name: '${enumName}', description: ${JSON.stringify(
         description
       )}, valuesMap: ${JSON.stringify(valuesMap)} })`,
     ],

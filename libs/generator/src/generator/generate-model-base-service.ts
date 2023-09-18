@@ -11,8 +11,6 @@ import {
 } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator.type';
 import { Model, ModelMapping } from '../types/dmmf.type';
-import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
-import { getClassname } from '../helpers/path/get-classname';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
 import { camelCase } from 'case-anything';
@@ -21,6 +19,8 @@ import { getResolveMethodName } from '../helpers/generator/get-resolve-method-na
 import { getCompoundFieldName } from '../helpers/generator/get-compound-field-name';
 import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getFieldPropertyDeclaration } from '../helpers/declaration/get-field-property-declaration';
+import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
+import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 
 export function generateModelBaseService(
   project: Project,
@@ -31,13 +31,14 @@ export function generateModelBaseService(
   const { model, operations } = modelMapping;
   const { name: modelName } = model;
   const modelDelegateName = camelCase(modelName);
-  const className = getClassname(modelName, 'BaseService');
-  const sourceFilePath = getBaseChildFilePath(
+  const className = getModuleFileClassName(modelName, 'Service', true);
+  const sourceFilePath = getSourceFilePath(
     srcPath,
+    modelName,
     className,
-    'BaseService'
+    'Service'
   );
-  const prismaServiceClassname = getClassname('Prisma', 'Service');
+  const prismaServiceClassname = getModuleFileClassName('Prisma', 'Service');
   const imports: ImportDeclarationStructure[] = [
     {
       kind: StructureKind.ImportDeclaration,
@@ -76,11 +77,17 @@ export function generateModelBaseService(
         isPromise: true,
       },
     });
+    const argTypeFilePath = getSourceFilePath(
+      srcPath,
+      modelName,
+      argsTypeName,
+      'Args'
+    );
     imports.push(...propertyImports, {
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        getBaseChildFilePath(srcPath, argsTypeName, 'Args')
+        argTypeFilePath
       ),
       namedImports: [argsTypeName],
     });
@@ -105,8 +112,15 @@ export function generateModelBaseService(
 
   const relations = model.fields.filter((f) => f.relationName);
   for (const relation of relations) {
-    const { type, isList, isRequired, name } = relation;
-    const propertyType = getPropertyType(type, {
+    const { type: relationModelName, isList, isRequired, name } = relation;
+    const relationModelFilePath = getSourceFilePath(
+      srcPath,
+      relationModelName,
+      relationModelName,
+      'Model'
+    );
+
+    const propertyType = getPropertyType(relationModelName, {
       isList,
       isNullable: !isRequired,
       isPromise: true,
@@ -120,19 +134,25 @@ export function generateModelBaseService(
       },
     ];
     if (isList) {
-      const findManyArgsTypeClassname = `${type}FindManyArgs`;
+      const findManyArgsTypeName = `${relationModelName}FindManyArgs`;
+      const findManyArgsTypeFilePath = getSourceFilePath(
+        srcPath,
+        relationModelName,
+        findManyArgsTypeName,
+        'Args'
+      );
       parameters.push({
         kind: StructureKind.Parameter,
         name: 'args',
-        type: findManyArgsTypeClassname,
+        type: findManyArgsTypeName,
       });
       imports.push({
         kind: StructureKind.ImportDeclaration,
         moduleSpecifier: getImportModuleSpecifier(
           sourceFilePath,
-          getBaseChildFilePath(srcPath, findManyArgsTypeClassname, 'Args')
+          findManyArgsTypeFilePath
         ),
-        namedImports: [findManyArgsTypeClassname],
+        namedImports: [findManyArgsTypeName],
       });
     }
 
@@ -140,9 +160,9 @@ export function generateModelBaseService(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        getBaseChildFilePath(srcPath, type, 'Model')
+        relationModelFilePath
       ),
-      namedImports: [type],
+      namedImports: [relationModelName],
     });
     methods.push({
       kind: StructureKind.Method,

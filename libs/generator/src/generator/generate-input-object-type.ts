@@ -7,22 +7,29 @@ import {
 } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator.type';
 import { FieldNamespace } from '../types/dmmf.type';
-import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { selectInputType } from '../helpers/dmmf/select-input-type';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { generatePrismaType } from './generate-prisma-type';
 import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getSchemaArgDeclaration } from '../helpers/declaration/get-schema-arg-declaration';
+import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 
 export function generateInputObjectType(
   project: Project,
   options: GeneratorOptions,
   namespace: FieldNamespace,
-  name: string
+  inputTypeName: string
 ) {
   const { dmmf, srcPath } = options;
 
-  const sourceFilePath = getBaseChildFilePath(srcPath, name, 'Input');
+  const module = dmmf.getModelNameOfInputType(inputTypeName) || 'Prisma';
+
+  const sourceFilePath = getSourceFilePath(
+    srcPath,
+    module,
+    inputTypeName,
+    'Input'
+  );
   if (project.getSourceFile(sourceFilePath)) {
     return;
   }
@@ -38,13 +45,17 @@ export function generateInputObjectType(
   ];
   const properties: PropertyDeclarationStructure[] = [];
 
-  const type = dmmf.getNonPrimitiveType('inputObjectTypes', namespace, name);
+  const type = dmmf.getNonPrimitiveType(
+    'inputObjectTypes',
+    namespace,
+    inputTypeName
+  );
   if (!type) {
-    throw new Error(`Cannot find enum type ${name}`);
+    throw new Error(`Cannot find enum type ${inputTypeName}`);
   }
 
   const { fields } = type;
-  const isNestedInputType = getIsNestedInputType(name);
+  const isNestedInputType = getIsNestedInputType(inputTypeName);
 
   const shouldImportHideField =
     isNestedInputType && fields.some((f) => getIsHiddenField(f.name));
@@ -77,7 +88,7 @@ export function generateInputObjectType(
 
   const classDeclaration: ClassDeclarationStructure = {
     kind: StructureKind.Class,
-    name,
+    name: inputTypeName,
     isExported: true,
     decorators: [
       {
@@ -93,7 +104,7 @@ export function generateInputObjectType(
     kind: StructureKind.SourceFile,
     statements: [
       GENERATED_WARNING_COMMENT,
-      ...optimizeImports(imports, name),
+      ...optimizeImports(imports, inputTypeName),
       classDeclaration,
     ],
   });

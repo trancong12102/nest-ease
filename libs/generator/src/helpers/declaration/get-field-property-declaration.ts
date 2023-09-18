@@ -3,7 +3,6 @@ import {
   GetFieldPropertyDeclarationArgs,
   PropertyTypeDeclaration,
 } from '../../types/generator.type';
-import { getBaseChildFilePath } from '../path/get-base-child-file-path';
 import {
   DecoratorStructure,
   ImportDeclarationStructure,
@@ -14,6 +13,7 @@ import { getPropertyType } from '../type/get-property-type';
 import { InternalDmmf } from '../dmmf/internal-dmmf';
 import { getCompoundFieldName } from '../generator/get-compound-field-name';
 import { getScalarPropertyDeclaration } from './get-scalar-property-declaration';
+import { getSourceFilePath } from '../path/get-source-file-path';
 
 export function getFieldPropertyDeclaration(
   args: GetFieldPropertyDeclarationArgs
@@ -43,7 +43,8 @@ export function getFieldPropertyDeclaration(
   }
 
   const kind = dmmf.getNonPrimitiveTypeFileKind(type, location);
-  const typeFilepath = getBaseChildFilePath(srcPath, type, kind);
+  const module = dmmf.getModelNameOfType(type, kind) || 'Prisma';
+  const typeFilepath = getSourceFilePath(srcPath, module, type, kind);
   const isModel = dmmf.isModel(type);
 
   const imports: ImportDeclarationStructure[] = [

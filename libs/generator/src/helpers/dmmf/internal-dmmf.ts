@@ -14,7 +14,12 @@ import {
 import { CacheManager } from '../cache/cache-manager';
 import { pluralize } from '../../utils/pluralize';
 import { camelCase } from 'case-anything';
-import { BaseFileKind } from '../../types/file-kind.type';
+import {
+  ENUM_INPUT_NAME_REGEX_LIST,
+  ENUM_NAME_REGEX_LIST,
+  INPUT_NAME_REGEX_LIST,
+} from '../../contants/type-name-regex-list';
+import { TypeFileKind } from '../../types/file-kind.type';
 
 export class InternalDmmf {
   private readonly _modelMappings: ModelMapping[];
@@ -27,6 +32,94 @@ export class InternalDmmf {
   constructor(private readonly dmmf: PrismaDMMF) {
     this._cache = new CacheManager();
     this._modelMappings = this.getModelMappings();
+  }
+
+  getModelNameOfType(typeName: string, kind: TypeFileKind): string | undefined {
+    return this._cache.wrap(`getModelName:${typeName}:${kind}`, () => {
+      switch (kind) {
+        case 'Model':
+          return typeName;
+        case 'Input':
+          return this.getModelNameOfInputType(typeName);
+        case 'Enum':
+          return this.getModelNameOfEnumType(typeName);
+        case 'Output':
+          return this.getModelNameOfOutputType(typeName);
+        default:
+          throw new Error(`Unknown kind: ${kind}`);
+      }
+    });
+  }
+
+  getModelNameOfOutputType(typeName: string): string | undefined {
+    return this._cache.wrap(`getModelOfOutputType:${typeName}`, () => {
+      // TODO: now we use only AffectedRows type
+
+      return undefined;
+    });
+  }
+
+  getModelNameOfInputType(typeName: string): string | undefined {
+    return this._cache.wrap(`getModelOfInputType:${typeName}`, () => {
+      const regex = INPUT_NAME_REGEX_LIST.find((regex) => regex.test(typeName));
+      const { model } = regex?.exec(typeName)?.groups || {};
+
+      const datamodelModel = model ? this.getModel(model) : undefined;
+      const modelName = datamodelModel?.name;
+      if (modelName) {
+        return modelName;
+      }
+
+      const enumName = this.getEnumNameOfInputType(typeName);
+      if (!enumName) {
+        return undefined;
+      }
+
+      return this.getModelNameOfEnumType(enumName);
+    });
+  }
+
+  getEnumNameOfInputType(typeName: string): string | undefined {
+    return this._cache.wrap(`getEnumOfInputType:${typeName}`, () => {
+      const regex = ENUM_INPUT_NAME_REGEX_LIST.find((regex) =>
+        regex.test(typeName)
+      );
+      const { enum: enumName } = regex?.exec(typeName)?.groups || {};
+      if (!enumName) {
+        return undefined;
+      }
+
+      const datamodelEnum = this.getDatamodelType('enums', enumName);
+
+      return datamodelEnum?.name;
+    });
+  }
+
+  getModelNameOfEnumType(typeName: string): string | undefined {
+    return this._cache.wrap(`getModelOfEnumType:${typeName}`, () => {
+      const { model: models } = this.dmmf.schema.outputObjectTypes;
+
+      const modelOutput = models.find(({ fields }) =>
+        fields.some(
+          ({ outputType: { type, location } }) =>
+            location === 'enumTypes' && type === typeName
+        )
+      );
+
+      const modelName = modelOutput?.name;
+      if (modelName) {
+        return modelName;
+      }
+
+      const regex = ENUM_NAME_REGEX_LIST.find((regex) => regex.test(typeName));
+      const { model } = regex?.exec(typeName)?.groups || {};
+      if (!model) {
+        return undefined;
+      }
+
+      const datamodelModel = this.getModel(model);
+      return datamodelModel?.name;
+    });
   }
 
   getNonPrimitiveType<
@@ -68,7 +161,7 @@ export class InternalDmmf {
   getNonPrimitiveTypeFileKind(
     name: string,
     location: FieldLocation
-  ): BaseFileKind {
+  ): TypeFileKind {
     switch (location) {
       case 'outputObjectTypes':
         return this.isModel(name) ? 'Model' : 'Output';

@@ -1,5 +1,6 @@
 import { Resolver } from '@nestjs/graphql';
-import { PostBaseResolver, Post } from '../nest-ease/base';
+import { PostBaseResolver } from './base/post-base.resolver';
+import { Post } from './base/model/post.model';
 import { PostService } from './post.service';
 
 @Resolver(() => Post)

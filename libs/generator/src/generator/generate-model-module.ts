@@ -6,11 +6,11 @@ import {
 } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator.type';
 import { ModelMapping } from '../types/dmmf.type';
-import { getClassname } from '../helpers/path/get-classname';
-import { getModuleChildFilePath } from '../helpers/path/get-module-child-file-path';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
 import { isPathExists } from '../utils/is-path-exists';
 import { assertGitStatusClean } from '../helpers/git/assert-git-status-clean';
+import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
+import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 
 export async function generateModelModule(
   project: Project,
@@ -22,11 +22,11 @@ export async function generateModelModule(
     model: { name: modelName },
   } = modelMapping;
 
-  const classname = getClassname(modelName, 'Module');
-  const sourceFilePath = getModuleChildFilePath(
+  const className = getModuleFileClassName(modelName, 'Module');
+  const sourceFilePath = getSourceFilePath(
     srcPath,
     modelName,
-    classname,
+    className,
     'Module'
   );
   if (!overwriteCustomFiles && (await isPathExists(sourceFilePath))) {
@@ -34,18 +34,18 @@ export async function generateModelModule(
   }
   assertGitStatusClean(gitChangedFiles, sourceFilePath);
 
-  const serviceClassname = getClassname(modelName, 'Service');
-  const serviceFilepath = getModuleChildFilePath(
+  const serviceClassName = getModuleFileClassName(modelName, 'Service');
+  const serviceFilePath = getSourceFilePath(
     srcPath,
     modelName,
-    serviceClassname,
+    serviceClassName,
     'Service'
   );
-  const resolverClassname = getClassname(modelName, 'Resolver');
-  const resolverFilepath = getModuleChildFilePath(
+  const resolverClassName = getModuleFileClassName(modelName, 'Resolver');
+  const resolverFilePath = getSourceFilePath(
     srcPath,
     modelName,
-    resolverClassname,
+    resolverClassName,
     'Resolver'
   );
 
@@ -59,23 +59,23 @@ export async function generateModelModule(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        serviceFilepath
+        serviceFilePath
       ),
-      namedImports: [serviceClassname],
+      namedImports: [serviceClassName],
     },
     {
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        resolverFilepath
+        resolverFilePath
       ),
-      namedImports: [resolverClassname],
+      namedImports: [resolverClassName],
     },
   ];
 
   const classDeclaration: ClassDeclarationStructure = {
     kind: StructureKind.Class,
-    name: classname,
+    name: className,
     isExported: true,
     decorators: [
       {
@@ -85,9 +85,9 @@ export async function generateModelModule(
           (writer) => {
             writer.block(() => {
               writer.writeLine(
-                `providers: [${serviceClassname}, ${resolverClassname}],`
+                `providers: [${serviceClassName}, ${resolverClassName}],`
               );
-              writer.writeLine(`exports: [${serviceClassname}],`);
+              writer.writeLine(`exports: [${serviceClassName}],`);
             });
           },
         ],

@@ -7,12 +7,11 @@ import {
 } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator.type';
 import { ModelMapping } from '../types/dmmf.type';
-import { getClassname } from '../helpers/path/get-classname';
-import { getModuleChildFilePath } from '../helpers/path/get-module-child-file-path';
-import { getBaseIndexPath } from '../helpers/path/get-base-index-path';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
 import { isPathExists } from '../utils/is-path-exists';
 import { assertGitStatusClean } from '../helpers/git/assert-git-status-clean';
+import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
+import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 
 export async function generateModelService(
   project: Project,
@@ -25,11 +24,11 @@ export async function generateModelService(
     model: { name: modelName },
   } = modelMapping;
 
-  const classname = getClassname(modelName, 'Service');
-  const sourceFilePath = getModuleChildFilePath(
+  const className = getModuleFileClassName(modelName, 'Service');
+  const sourceFilePath = getSourceFilePath(
     srcPath,
     modelName,
-    classname,
+    className,
     'Service'
   );
   if (!overwriteCustomFiles && (await isPathExists(sourceFilePath))) {
@@ -37,9 +36,18 @@ export async function generateModelService(
   }
   assertGitStatusClean(gitChangedFiles, sourceFilePath);
 
-  const baseServiceClassname = getClassname(modelName, 'BaseService');
-  const prismaServiceClassname = getClassname('Prisma', 'Service');
-  const baseIndexFilepath = getBaseIndexPath(srcPath);
+  const baseServiceClassName = getModuleFileClassName(
+    modelName,
+    'Service',
+    true
+  );
+  const baseServiceFilePath = getSourceFilePath(
+    srcPath,
+    modelName,
+    baseServiceClassName,
+    'Service'
+  );
+  const prismaServiceClassName = getModuleFileClassName('Prisma', 'Service');
 
   const imports: ImportDeclarationStructure[] = [
     {
@@ -51,9 +59,9 @@ export async function generateModelService(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        baseIndexFilepath
+        baseServiceFilePath
       ),
-      namedImports: [baseServiceClassname],
+      namedImports: [baseServiceClassName],
     },
     {
       kind: StructureKind.ImportDeclaration,
@@ -61,15 +69,15 @@ export async function generateModelService(
         sourceFilePath,
         prismaServicePath
       ),
-      namedImports: [prismaServiceClassname],
+      namedImports: [prismaServiceClassName],
     },
   ];
 
   const classDeclaration: ClassDeclarationStructure = {
     kind: StructureKind.Class,
-    name: classname,
+    name: className,
     isExported: true,
-    extends: baseServiceClassname,
+    extends: baseServiceClassName,
     decorators: [
       {
         kind: StructureKind.Decorator,
@@ -82,7 +90,7 @@ export async function generateModelService(
         parameters: [
           {
             name: 'prisma',
-            type: prismaServiceClassname,
+            type: prismaServiceClassName,
             isReadonly: true,
             scope: Scope.Protected,
           },

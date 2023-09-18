@@ -10,8 +10,6 @@ import {
 } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator.type';
 import { ModelMapping } from '../types/dmmf.type';
-import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
-import { getClassname } from '../helpers/path/get-classname';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
 import { getPropertyType } from '../helpers/type/get-property-type';
@@ -20,26 +18,41 @@ import { getGraphqlType } from '../helpers/type/get-graphql-type';
 import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getFieldPropertyDeclaration } from '../helpers/declaration/get-field-property-declaration';
 import { getFieldGraphqlDeclaration } from '../helpers/declaration/get-field-graphql-declaration';
+import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
+import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 
 export function generateModelBaseResolver(
   project: Project,
   generatorOptions: GeneratorOptions,
   modelMapping: ModelMapping
 ) {
-  const { srcPath } = generatorOptions;
+  const { srcPath, dmmf } = generatorOptions;
   const { model, operations } = modelMapping;
   const { name: modelName } = model;
-  const className = getClassname(modelName, 'BaseResolver');
-  const sourceFilePath = getBaseChildFilePath(
+  const className = getModuleFileClassName(modelName, 'Resolver', true);
+
+  const sourceFilePath = getSourceFilePath(
     srcPath,
+    modelName,
     className,
-    'BaseResolver'
+    'Resolver'
   );
-  const baseServiceClassname = getClassname(modelName, 'BaseService');
-  const baseServiceFilepath = getBaseChildFilePath(
+  const baseServiceClassName = getModuleFileClassName(
+    modelName,
+    'Service',
+    true
+  );
+  const baseServiceFilePath = getSourceFilePath(
     srcPath,
-    baseServiceClassname,
-    'BaseService'
+    modelName,
+    baseServiceClassName,
+    'Service'
+  );
+  const modelFilePath = getSourceFilePath(
+    srcPath,
+    modelName,
+    modelName,
+    'Model'
   );
 
   const imports: ImportDeclarationStructure[] = [
@@ -47,9 +60,9 @@ export function generateModelBaseResolver(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        baseServiceFilepath
+        baseServiceFilePath
       ),
-      namedImports: [baseServiceClassname],
+      namedImports: [baseServiceClassName],
     },
     {
       kind: StructureKind.ImportDeclaration,
@@ -58,10 +71,7 @@ export function generateModelBaseResolver(
     },
     {
       kind: StructureKind.ImportDeclaration,
-      moduleSpecifier: getImportModuleSpecifier(
-        sourceFilePath,
-        getBaseChildFilePath(srcPath, modelName, 'Model')
-      ),
+      moduleSpecifier: getImportModuleSpecifier(sourceFilePath, modelFilePath),
       namedImports: [modelName],
     },
   ];
@@ -106,8 +116,9 @@ export function generateModelBaseResolver(
 
     imports.push(...propertyImports, ...graphqlImports);
 
-    const argsTypeFilepath = getBaseChildFilePath(
+    const argsTypeFilePath = getSourceFilePath(
       srcPath,
+      modelName,
       argsTypeName,
       'Args'
     );
@@ -115,7 +126,7 @@ export function generateModelBaseResolver(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        argsTypeFilepath
+        argsTypeFilePath
       ),
       namedImports: [argsTypeName],
     });
@@ -159,9 +170,17 @@ export function generateModelBaseResolver(
   }
 
   for (const relation of relations) {
-    const { type, isList, isRequired, name } = relation;
-    const graphqlType = getGraphqlType(type, isList);
-    const propertyType = getPropertyType(type, {
+    const { type: relationModelName, isList, isRequired, name } = relation;
+    const relationModule =
+      dmmf.getModelNameOfType(relationModelName, 'Model') || 'Prisma';
+    const relationModelFilePath = getSourceFilePath(
+      srcPath,
+      relationModule,
+      relationModelName,
+      'Model'
+    );
+    const graphqlType = getGraphqlType(relationModelName, isList);
+    const propertyType = getPropertyType(relationModelName, {
       isList,
       isNullable: !isRequired,
       isPromise: true,
@@ -182,11 +201,17 @@ export function generateModelBaseResolver(
       },
     ];
     if (isList) {
-      const findManyArgsTypeClassname = `${type}FindManyArgs`;
+      const findManyArgsType = `${relationModelName}FindManyArgs`;
+      const findManyArgsTypeFilePath = getSourceFilePath(
+        srcPath,
+        relationModelName,
+        findManyArgsType,
+        'Args'
+      );
       parameters.push({
         kind: StructureKind.Parameter,
         name: 'args',
-        type: findManyArgsTypeClassname,
+        type: findManyArgsType,
         decorators: [
           {
             kind: StructureKind.Decorator,
@@ -199,9 +224,9 @@ export function generateModelBaseResolver(
         kind: StructureKind.ImportDeclaration,
         moduleSpecifier: getImportModuleSpecifier(
           sourceFilePath,
-          getBaseChildFilePath(srcPath, findManyArgsTypeClassname, 'Args')
+          findManyArgsTypeFilePath
         ),
-        namedImports: [findManyArgsTypeClassname],
+        namedImports: [findManyArgsType],
       });
     }
 
@@ -209,9 +234,9 @@ export function generateModelBaseResolver(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        getBaseChildFilePath(srcPath, type, 'Model')
+        relationModelFilePath
       ),
-      namedImports: [type],
+      namedImports: [relationModelName],
     });
     methods.push({
       kind: StructureKind.Method,
@@ -246,7 +271,7 @@ return this.service.${getResolveMethodName(name)}(parent${
           {
             kind: StructureKind.Parameter,
             name: 'service',
-            type: baseServiceClassname,
+            type: baseServiceClassName,
             isReadonly: true,
             scope: Scope.Protected,
           },

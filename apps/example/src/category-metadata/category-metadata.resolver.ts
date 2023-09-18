@@ -1,8 +1,6 @@
 import { Resolver } from '@nestjs/graphql';
-import {
-  CategoryMetadataBaseResolver,
-  CategoryMetadata,
-} from '../nest-ease/base';
+import { CategoryMetadataBaseResolver } from './base/category-metadata-base.resolver';
+import { CategoryMetadata } from './base/model/category-metadata.model';
 import { CategoryMetadataService } from './category-metadata.service';
 
 @Resolver(() => CategoryMetadata)

@@ -11,10 +11,10 @@ import { generateModelBaseResolver } from './generate-model-base-resolver';
 import { generateModelMappingTypes } from './generate-model-mapping-types';
 import { generateModelService } from './generate-model-service';
 import { generateModelResolver } from './generate-model-resolver';
-import { getClassname } from '../helpers/path/get-classname';
-import { getModuleChildFilePath } from '../helpers/path/get-module-child-file-path';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
 import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
+import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
+import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 
 export async function generateNestEaseModule(
   project: Project,
@@ -25,18 +25,11 @@ export async function generateNestEaseModule(
     srcPath,
   } = options;
 
-  const classname = getClassname('NestEase', 'Module');
-  const sourceFilePath = getModuleChildFilePath(
+  const className = getModuleFileClassName('NestEase', 'Module');
+  const sourceFilePath = getSourceFilePath(
     srcPath,
     'NestEase',
-    classname,
-    'Module'
-  );
-  const prismaModuleClassname = getClassname('Prisma', 'Module');
-  const prismaModuleFilepath = getModuleChildFilePath(
-    srcPath,
-    'Prisma',
-    prismaModuleClassname,
+    className,
     'Module'
   );
 
@@ -46,19 +39,10 @@ export async function generateNestEaseModule(
       moduleSpecifier: '@nestjs/common',
       namedImports: ['Module'],
     },
-    {
-      kind: StructureKind.ImportDeclaration,
-      moduleSpecifier: getImportModuleSpecifier(
-        sourceFilePath,
-        prismaModuleFilepath
-      ),
-      namedImports: [prismaModuleClassname],
-    },
   ];
 
   const modelClassnames = modelMappings
-    .map(({ model: { name } }) => getClassname(name, 'Module'))
-    .concat(prismaModuleClassname)
+    .map(({ model: { name } }) => getModuleFileClassName(name, 'Module'))
     .join(', ');
 
   for (const modelMapping of modelMappings) {
@@ -72,8 +56,8 @@ export async function generateNestEaseModule(
     const {
       model: { name: modelName },
     } = modelMapping;
-    const modelModuleClassname = getClassname(modelName, 'Module');
-    const modelModuleFilepath = getModuleChildFilePath(
+    const modelModuleClassname = getModuleFileClassName(modelName, 'Module');
+    const modelModuleFilepath = getSourceFilePath(
       srcPath,
       modelName,
       modelModuleClassname,
@@ -92,7 +76,7 @@ export async function generateNestEaseModule(
 
   const classDeclaration: ClassDeclarationStructure = {
     kind: StructureKind.Class,
-    name: classname,
+    name: className,
     isExported: true,
     decorators: [
       {

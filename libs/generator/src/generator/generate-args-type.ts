@@ -5,23 +5,32 @@ import {
   PropertyDeclarationStructure,
   StructureKind,
 } from 'ts-morph';
-import { SchemaArg } from '../types/dmmf.type';
+import { ModelOperation } from '../types/dmmf.type';
 import { GeneratorOptions } from '../types/generator.type';
-import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { selectInputType } from '../helpers/dmmf/select-input-type';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { generatePrismaType } from './generate-prisma-type';
 import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getSchemaArgDeclaration } from '../helpers/declaration/get-schema-arg-declaration';
+import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 
 export function generateArgsType(
   project: Project,
   options: GeneratorOptions,
-  args: SchemaArg[],
-  name: string
+  operation: ModelOperation,
+  modelName: string
 ) {
+  const {
+    argsTypeName,
+    schemaField: { args },
+  } = operation;
   const { srcPath } = options;
-  const sourceFilePath = getBaseChildFilePath(srcPath, name, 'Args');
+  const sourceFilePath = getSourceFilePath(
+    srcPath,
+    modelName,
+    argsTypeName,
+    'Args'
+  );
   if (project.getSourceFile(sourceFilePath)) {
     return;
   }
@@ -50,7 +59,7 @@ export function generateArgsType(
 
   const classDeclaration: ClassDeclarationStructure = {
     kind: StructureKind.Class,
-    name,
+    name: argsTypeName,
     isExported: true,
     decorators: [
       {
@@ -65,7 +74,7 @@ export function generateArgsType(
     kind: StructureKind.SourceFile,
     statements: [
       GENERATED_WARNING_COMMENT,
-      ...optimizeImports(imports, name),
+      ...optimizeImports(imports, argsTypeName),
       classDeclaration,
     ],
   });

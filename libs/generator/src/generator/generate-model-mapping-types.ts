@@ -9,12 +9,13 @@ export function generateModelMappingTypes(
   options: GeneratorOptions,
   modelMapping: ModelMapping
 ) {
-  const { operations } = modelMapping;
+  const { model, operations } = modelMapping;
 
   for (const operation of operations) {
-    const { schemaField, argsTypeName } = operation;
-    const { args, outputType } = schemaField;
+    const {
+      schemaField: { outputType },
+    } = operation;
     generatePrismaType(project, options, outputType);
-    generateArgsType(project, options, args, argsTypeName);
+    generateArgsType(project, options, operation, model.name);
   }
 }

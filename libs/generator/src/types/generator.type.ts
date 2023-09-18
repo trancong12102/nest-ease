@@ -1,6 +1,5 @@
 import { InternalDmmf } from '../helpers/dmmf/internal-dmmf';
 import {
-  DecoratorStructure,
   ImportDeclarationStructure,
   PropertyDeclarationStructure,
 } from 'ts-morph';
@@ -14,13 +13,6 @@ export type GeneratorOptions = {
   prismaClientPath: string;
   gitChangedFiles: string[];
 } & GeneratorConfig;
-
-export type FieldDeclaration = {
-  propertyType: string;
-  graphqlType: string;
-  imports: ImportDeclarationStructure[];
-  decorators: DecoratorStructure[];
-};
 
 export type PropertyTypeOptions = {
   isList?: boolean;
