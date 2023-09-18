@@ -1,39 +1,33 @@
-import { FieldLocation, FieldNamespace, Model } from '../../types/dmmf.type';
-import { getScalarFieldDeclaration } from './get-scalar-field-declaration';
+import { Model } from '../../types/dmmf.type';
 import {
-  FieldDeclaration,
-  GeneratorOptions,
-  PropertyTypeOptions,
+  GetFieldPropertyDeclarationArgs,
+  PropertyTypeDeclaration,
 } from '../../types/generator.type';
+import { getBaseChildFilePath } from '../path/get-base-child-file-path';
 import {
   DecoratorStructure,
   ImportDeclarationStructure,
   StructureKind,
 } from 'ts-morph';
-import { getBaseChildFilePath } from '../path/get-base-child-file-path';
 import { getImportModuleSpecifier } from '../import/get-import-module-specifier';
 import { getPropertyType } from '../type/get-property-type';
-import { getGraphqlType } from '../type/get-graphql-type';
 import { InternalDmmf } from '../dmmf/internal-dmmf';
 import { getCompoundFieldName } from '../generator/get-compound-field-name';
+import { getScalarPropertyDeclaration } from './get-scalar-property-declaration';
 
-export function getFieldDeclaration({
-  type,
-  location,
-  namespace,
-  propertyOptions,
-  generatorOptions: { dmmf, srcPath, prismaClientPath },
-  importDest,
-}: {
-  type: string;
-  location: FieldLocation;
-  namespace?: FieldNamespace;
-  importDest: string;
-  generatorOptions: GeneratorOptions;
-  isNullable?: boolean;
-  fixCircular?: boolean;
-  propertyOptions: PropertyTypeOptions;
-}): FieldDeclaration {
+export function getFieldPropertyDeclaration(
+  args: GetFieldPropertyDeclarationArgs
+): PropertyTypeDeclaration {
+  const {
+    name,
+    type,
+    location,
+    namespace,
+    propertyOptions,
+    generatorOptions: { dmmf, srcPath, prismaClientPath },
+    importDest,
+  } = args;
+
   const { isList, fixCircular } = propertyOptions;
 
   if (location === 'fieldRefTypes') {
@@ -41,7 +35,7 @@ export function getFieldDeclaration({
   }
 
   if (location === 'scalar') {
-    return getScalarFieldDeclaration(type, propertyOptions);
+    return getScalarPropertyDeclaration(name, type, propertyOptions);
   }
 
   if (!namespace) {
@@ -102,14 +96,17 @@ export function getFieldDeclaration({
 
   return {
     imports,
-    decorators,
-    propertyType: isWhereUniqueInput
-      ? getAtLeastPropertyType(dmmf, type)
-      : getPropertyType(propertyType, {
-          ...propertyOptions,
-          fixCircular: handleCircular,
-        }),
-    graphqlType: getGraphqlType(type, isList),
+    property: {
+      kind: StructureKind.Property,
+      decorators,
+      name,
+      type: isWhereUniqueInput
+        ? getAtLeastPropertyType(dmmf, type)
+        : getPropertyType(propertyType, {
+            ...propertyOptions,
+            fixCircular: handleCircular,
+          }),
+    },
   };
 }
 

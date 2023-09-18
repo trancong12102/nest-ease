@@ -14,12 +14,12 @@ import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { getClassname } from '../helpers/path/get-classname';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
-import { getFieldDeclaration } from '../helpers/declaration/get-field-declaration';
 import { getPropertyType } from '../helpers/type/get-property-type';
 import { getResolveMethodName } from '../helpers/generator/get-resolve-method-name';
 import { getGraphqlType } from '../helpers/type/get-graphql-type';
-import { camelCase } from 'case-anything';
 import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
+import { getFieldPropertyDeclaration } from '../helpers/declaration/get-field-property-declaration';
+import { getFieldGraphqlDeclaration } from '../helpers/declaration/get-field-graphql-declaration';
 
 export function generateModelBaseResolver(
   project: Project,
@@ -79,10 +79,10 @@ export function generateModelBaseResolver(
       type: operationType,
     } = operation;
     const {
-      propertyType,
+      property: { type: propertyType },
       imports: propertyImports,
-      graphqlType,
-    } = getFieldDeclaration({
+    } = getFieldPropertyDeclaration({
+      name: resolverMethod,
       type,
       location,
       namespace,
@@ -95,7 +95,16 @@ export function generateModelBaseResolver(
         isPromise: true,
       },
     });
-    imports.push(...propertyImports);
+    const { imports: graphqlImports, type: graphqlType } =
+      getFieldGraphqlDeclaration({
+        type,
+        location,
+        isList,
+        importDest: sourceFilePath,
+        generatorOptions,
+      });
+
+    imports.push(...propertyImports, ...graphqlImports);
 
     const argsTypeFilepath = getBaseChildFilePath(
       srcPath,

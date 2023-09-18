@@ -12,7 +12,6 @@ import {
   StandaloneFindManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
-import { Int } from '@nestjs/graphql';
 
 export class StandaloneBaseService {
   constructor(protected readonly prisma: PrismaService) {}

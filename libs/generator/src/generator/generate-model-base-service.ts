@@ -15,12 +15,12 @@ import { getBaseChildFilePath } from '../helpers/path/get-base-child-file-path';
 import { getClassname } from '../helpers/path/get-classname';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
-import { getFieldDeclaration } from '../helpers/declaration/get-field-declaration';
 import { camelCase } from 'case-anything';
 import { getPropertyType } from '../helpers/type/get-property-type';
 import { getResolveMethodName } from '../helpers/generator/get-resolve-method-name';
 import { getCompoundFieldName } from '../helpers/generator/get-compound-field-name';
 import { GENERATED_FILE_COMMENT } from '../contants/comment.const';
+import { getFieldPropertyDeclaration } from '../helpers/declaration/get-field-property-declaration';
 
 export function generateModelBaseService(
   project: Project,
@@ -59,7 +59,11 @@ export function generateModelBaseService(
       },
       serviceMethod,
     } = operation;
-    const { propertyType, imports: propertyImports } = getFieldDeclaration({
+    const {
+      property: { type: propertyType },
+      imports: propertyImports,
+    } = getFieldPropertyDeclaration({
+      name: serviceMethod,
       type,
       location,
       namespace,

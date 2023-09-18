@@ -5,6 +5,7 @@ import {
   PropertyDeclarationStructure,
 } from 'ts-morph';
 import { GeneratorConfig } from '../config';
+import { FieldLocation, FieldNamespace } from './dmmf.type';
 
 export type GeneratorOptions = {
   dmmf: InternalDmmf;
@@ -28,7 +29,28 @@ export type PropertyTypeOptions = {
   isPromise?: boolean;
 };
 
-export type TypePropertyDeclaration = {
+export type PropertyTypeDeclaration = {
   imports: ImportDeclarationStructure[];
   property: PropertyDeclarationStructure;
 };
+
+export type GraphqlTypeDeclaration = {
+  imports: ImportDeclarationStructure[];
+  type: string;
+};
+
+export type GetFieldPropertyDeclarationArgs = {
+  name: string;
+  type: string;
+  location: FieldLocation;
+  namespace?: FieldNamespace;
+  importDest: string;
+  generatorOptions: GeneratorOptions;
+  propertyOptions: PropertyTypeOptions;
+};
+
+export type GetFieldGraphqlDeclarationArgs = Pick<
+  GetFieldPropertyDeclarationArgs,
+  'type' | 'location' | 'importDest' | 'generatorOptions'
+> &
+  Pick<PropertyTypeOptions, 'isList'>;

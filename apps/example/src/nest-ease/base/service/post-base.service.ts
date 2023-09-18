@@ -13,7 +13,6 @@ import {
   CategoryFindManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
-import { Int } from '@nestjs/graphql';
 
 export class PostBaseService {
   constructor(protected readonly prisma: PrismaService) {}

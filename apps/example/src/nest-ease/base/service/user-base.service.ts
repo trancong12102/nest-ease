@@ -13,7 +13,6 @@ import {
   PostFindManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
-import { Int } from '@nestjs/graphql';
 
 export class UserBaseService {
   constructor(protected readonly prisma: PrismaService) {}

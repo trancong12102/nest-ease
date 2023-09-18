@@ -12,7 +12,6 @@ import {
   CategoryMetadataFindManyArgs,
 } from '../args';
 import { AffectedRowsOutput } from '../output';
-import { Int } from '@nestjs/graphql';
 
 export class CategoryMetadataBaseService {
   constructor(protected readonly prisma: PrismaService) {}

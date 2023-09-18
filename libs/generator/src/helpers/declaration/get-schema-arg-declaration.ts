@@ -1,44 +1,54 @@
 import { StructureKind } from 'ts-morph';
 import {
   GeneratorOptions,
-  TypePropertyDeclaration,
+  PropertyTypeDeclaration,
 } from '../../types/generator.type';
 import { SchemaArg } from '../../types/dmmf.type';
-import { getFieldDeclaration } from './get-field-declaration';
 import { selectInputType } from '../dmmf/select-input-type';
+import { getFieldPropertyDeclaration } from './get-field-property-declaration';
+import { getFieldGraphqlDeclaration } from './get-field-graphql-declaration';
 
 export function getSchemaArgDeclaration(
   sourceFilePath: string,
   generatorOptions: GeneratorOptions,
   field: SchemaArg,
   comment?: string
-): TypePropertyDeclaration {
+): PropertyTypeDeclaration {
   const { inputTypes, isRequired, name } = field;
   const isNullable = !isRequired;
   const inputType = selectInputType(inputTypes);
   const { type, location, namespace, isList } = inputType;
 
-  const { imports, decorators, propertyType, graphqlType } =
-    getFieldDeclaration({
+  const { imports: propertyImports, property } = getFieldPropertyDeclaration({
+    name,
+    type,
+    location,
+    namespace,
+    importDest: sourceFilePath,
+    propertyOptions: {
+      isList,
+      isNullable,
+    },
+    generatorOptions,
+  });
+
+  const { imports: graphqlImports, type: graphqlType } =
+    getFieldGraphqlDeclaration({
       type,
-      generatorOptions,
       location,
-      namespace,
+      isList,
       importDest: sourceFilePath,
-      propertyOptions: {
-        isList,
-        isNullable,
-      },
+      generatorOptions,
     });
 
+  const { decorators } = property;
+
   return {
-    imports,
+    imports: [...graphqlImports, ...propertyImports],
     property: {
-      kind: StructureKind.Property,
-      name,
-      type: propertyType,
+      ...property,
       decorators: [
-        ...decorators,
+        ...(decorators || []),
         {
           kind: StructureKind.Decorator,
           name: 'Field',
