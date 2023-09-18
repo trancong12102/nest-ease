@@ -15,6 +15,8 @@ import { getImportModuleSpecifier } from '../helpers/import/get-import-module-sp
 import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
+import consola from 'consola';
+import { colorize } from 'consola/utils';
 
 export async function generateNestEaseModule(
   project: Project,
@@ -46,6 +48,11 @@ export async function generateNestEaseModule(
     .join(', ');
 
   for (const modelMapping of modelMappings) {
+    const {
+      model: { name: modelName },
+    } = modelMapping;
+    consola.info(`Generating ${colorize('blue', modelName)} module...`);
+
     generateModelMappingTypes(project, options, modelMapping);
     generateModelBaseService(project, options, modelMapping);
     generateModelBaseResolver(project, options, modelMapping);
@@ -53,9 +60,6 @@ export async function generateNestEaseModule(
     await generateModelService(project, options, modelMapping);
     await generateModelResolver(project, options, modelMapping);
 
-    const {
-      model: { name: modelName },
-    } = modelMapping;
     const modelModuleClassname = getModuleFileClassName(modelName, 'Module');
     const modelModuleFilepath = getSourceFilePath(
       srcPath,
