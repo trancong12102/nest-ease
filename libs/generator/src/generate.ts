@@ -62,5 +62,5 @@ Please check the following documentation for more details: ${colorize(
   await formatProject(project);
   logger.info('Saving generated files...');
   await project.save();
-  logger.success(colorize('green', 'All modules are generated successfully!'));
+  logger.success(colorize('green', 'NestEase Generator finished!'));
 }
