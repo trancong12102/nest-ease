@@ -11,23 +11,20 @@ export function selectInputType(inputTypes: InputTypeRef[]): InputTypeRef {
       }
 
       if (location === 'scalar') {
-        rank -= 1;
-      }
-
-      if (location === 'fieldRefTypes') {
-        rank -= 2;
+        rank -= 3;
       }
 
       if (
-        type.includes('Unchecked') ||
         type === 'JsonNullValueInput' ||
-        type === 'JsonNullValueFilter'
+        type === 'JsonNullValueFilter' ||
+        location === 'fieldRefTypes' ||
+        type.match(/.+?Unchecked(Create|Update).+?Input$/)
       ) {
-        rank -= 5;
+        rank -= 10;
       }
 
       if (type.includes('RelationFilter')) {
-        rank += 1;
+        rank += 5;
       }
 
       return {
