@@ -25,10 +25,6 @@ export class PostOrderByWithRelationInput {
   updatedAt?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
   postKind?: keyof typeof SortOrder | null;
-  @Field(() => SortOrder, { nullable: true, description: undefined })
-  jsonField?: keyof typeof SortOrder | null;
-  @Field(() => SortOrder, { nullable: true, description: undefined })
-  scalarList?: keyof typeof SortOrder | null;
   @Type(() => UserOrderByWithRelationInput)
   @Field(() => UserOrderByWithRelationInput, {
     nullable: true,

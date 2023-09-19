@@ -22,7 +22,7 @@ export class UserOrderByWithRelationInput {
   @Field(() => SortOrder, { nullable: true, description: undefined })
   parentId?: keyof typeof SortOrder | null;
   @Field(() => SortOrder, { nullable: true, description: undefined })
-  toMapField?: keyof typeof SortOrder | null;
+  mappedField?: keyof typeof SortOrder | null;
   @Type(() => PostOrderByRelationAggregateInput)
   @Field(() => PostOrderByRelationAggregateInput, {
     nullable: true,

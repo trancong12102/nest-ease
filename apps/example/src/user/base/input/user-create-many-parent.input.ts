@@ -17,5 +17,5 @@ export class UserCreateManyParentInput {
   @Field(() => Date, { nullable: true, description: undefined })
   updatedAt?: Date | string | null;
   @Field(() => String, { nullable: false, description: undefined })
-  toMapField!: string;
+  mappedField!: string;
 }

@@ -7,8 +7,6 @@ import { StringNullableFilter } from '../../../prisma/base/input/string-nullable
 import { BoolFilter } from '../../../prisma/base/input/bool-filter.input';
 import { DateTimeFilter } from '../../../prisma/base/input/date-time-filter.input';
 import { EnumPostKindFilter } from './enum-post-kind-filter.input';
-import { JsonFilter } from '../../../prisma/base/input/json-filter.input';
-import { StringNullableListFilter } from '../../../prisma/base/input/string-nullable-list-filter.input';
 
 @InputType()
 export class PostScalarWhereInput {
@@ -57,13 +55,4 @@ export class PostScalarWhereInput {
   @Type(() => EnumPostKindFilter)
   @Field(() => EnumPostKindFilter, { nullable: true, description: undefined })
   postKind?: EnumPostKindFilter | null;
-  @Type(() => JsonFilter)
-  @Field(() => JsonFilter, { nullable: true, description: undefined })
-  jsonField?: JsonFilter | null;
-  @Type(() => StringNullableListFilter)
-  @Field(() => StringNullableListFilter, {
-    nullable: true,
-    description: undefined,
-  })
-  scalarList?: StringNullableListFilter | null;
 }

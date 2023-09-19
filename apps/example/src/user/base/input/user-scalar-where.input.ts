@@ -51,5 +51,5 @@ export class UserScalarWhereInput {
   parentId?: IntNullableFilter | null;
   @Type(() => StringFilter)
   @Field(() => StringFilter, { nullable: true, description: undefined })
-  toMapField?: StringFilter | null;
+  mappedField?: StringFilter | null;
 }

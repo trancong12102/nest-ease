@@ -6,9 +6,6 @@ import { NullableStringFieldUpdateOperationsInput } from '../../../prisma/base/i
 import { BoolFieldUpdateOperationsInput } from '../../../prisma/base/input/bool-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../../../prisma/base/input/date-time-field-update-operations.input';
 import { PostKind } from '../enum/post-kind.enum';
-import { GraphQLJSON } from 'graphql-scalars';
-import type { JsonValue } from 'type-fest';
-import { PostUpdatescalarListInput } from './post-updatescalar-list.input';
 
 @InputType()
 export class PostUpdateManyMutationInput {
@@ -44,12 +41,4 @@ export class PostUpdateManyMutationInput {
   updatedAt?: DateTimeFieldUpdateOperationsInput | null;
   @Field(() => PostKind, { nullable: true, description: undefined })
   postKind?: keyof typeof PostKind | null;
-  @Field(() => GraphQLJSON, { nullable: true, description: undefined })
-  jsonField?: JsonValue | null;
-  @Type(() => PostUpdatescalarListInput)
-  @Field(() => PostUpdatescalarListInput, {
-    nullable: true,
-    description: undefined,
-  })
-  scalarList?: PostUpdatescalarListInput | null;
 }

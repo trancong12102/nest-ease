@@ -3,6 +3,7 @@ import { InputType, Field, Int } from '@nestjs/graphql';
 import { CategoryMetadataWhereInput } from './category-metadata-where.input';
 import { Type } from 'class-transformer';
 import { DateTimeFilter } from '../../../prisma/base/input/date-time-filter.input';
+import { JsonNullableListFilter } from '../../../prisma/base/input/json-nullable-list-filter.input';
 import { CategoryRelationFilter } from '../../../category/base/input/category-relation-filter.input';
 
 @InputType()
@@ -35,6 +36,12 @@ export class CategoryMetadataWhereUniqueInput {
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
   updatedAt?: DateTimeFilter | null;
+  @Type(() => JsonNullableListFilter)
+  @Field(() => JsonNullableListFilter, {
+    nullable: true,
+    description: undefined,
+  })
+  metadata?: JsonNullableListFilter | null;
   @Type(() => CategoryRelationFilter)
   @Field(() => CategoryRelationFilter, {
     nullable: true,

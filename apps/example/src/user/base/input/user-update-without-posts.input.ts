@@ -42,7 +42,7 @@ export class UserUpdateWithoutPostsInput {
     nullable: true,
     description: undefined,
   })
-  toMapField?: StringFieldUpdateOperationsInput | null;
+  mappedField?: StringFieldUpdateOperationsInput | null;
   @Type(() => UserUpdateOneWithoutChildrenNestedInput)
   @Field(() => UserUpdateOneWithoutChildrenNestedInput, {
     nullable: true,

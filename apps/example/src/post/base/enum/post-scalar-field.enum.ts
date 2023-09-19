@@ -11,8 +11,6 @@ export enum PostScalarFieldEnum {
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
   postKind = 'postKind',
-  jsonField = 'jsonField',
-  scalarList = 'scalarList',
 }
 
 registerEnumType(PostScalarFieldEnum, {

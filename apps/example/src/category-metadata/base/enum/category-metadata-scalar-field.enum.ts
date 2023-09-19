@@ -6,6 +6,7 @@ export enum CategoryMetadataScalarFieldEnum {
   categoryId = 'categoryId',
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
+  metadata = 'metadata',
 }
 
 registerEnumType(CategoryMetadataScalarFieldEnum, {

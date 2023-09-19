@@ -31,5 +31,5 @@ export class User {
   @Field(() => Int, { nullable: true, description: undefined })
   parentId?: number | null;
   @Field(() => String, { nullable: false, description: undefined })
-  toMapField!: string;
+  mappedField!: string;
 }

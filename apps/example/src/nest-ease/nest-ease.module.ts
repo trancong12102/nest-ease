@@ -4,7 +4,7 @@ import { UserModule } from '../user/user.module';
 import { PostModule } from '../post/post.module';
 import { CategoryModule } from '../category/category.module';
 import { CategoryMetadataModule } from '../category-metadata/category-metadata.module';
-import { StandaloneModule } from '../standalone/standalone.module';
+import { StandaloneModelModule } from '../standalone-model/standalone-model.module';
 
 @Module({
   imports: [
@@ -12,14 +12,14 @@ import { StandaloneModule } from '../standalone/standalone.module';
     PostModule,
     CategoryModule,
     CategoryMetadataModule,
-    StandaloneModule,
+    StandaloneModelModule,
   ],
   exports: [
     UserModule,
     PostModule,
     CategoryModule,
     CategoryMetadataModule,
-    StandaloneModule,
+    StandaloneModelModule,
   ],
 })
 export class NestEaseModule {}

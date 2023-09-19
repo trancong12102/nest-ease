@@ -19,7 +19,7 @@ export class UserCreateWithoutPostsInput {
   @Field(() => Date, { nullable: true, description: undefined })
   updatedAt?: Date | string | null;
   @Field(() => String, { nullable: false, description: undefined })
-  toMapField!: string;
+  mappedField!: string;
   @Type(() => UserCreateNestedOneWithoutChildrenInput)
   @Field(() => UserCreateNestedOneWithoutChildrenInput, {
     nullable: true,

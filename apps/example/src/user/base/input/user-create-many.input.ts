@@ -19,5 +19,5 @@ export class UserCreateManyInput {
   @Field(() => Int, { nullable: true, description: undefined })
   parentId?: number | null;
   @Field(() => String, { nullable: false, description: undefined })
-  toMapField!: string;
+  mappedField!: string;
 }

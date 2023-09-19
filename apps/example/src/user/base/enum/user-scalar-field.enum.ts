@@ -9,7 +9,7 @@ export enum UserScalarFieldEnum {
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
   parentId = 'parentId',
-  toMapField = 'toMapField',
+  mappedField = 'mappedField',
 }
 
 registerEnumType(UserScalarFieldEnum, {

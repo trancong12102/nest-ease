@@ -17,7 +17,9 @@ export async function parseGeneratorConfig(
   srcPath: string
 ): Promise<GeneratorConfig> {
   const configTsPath = getConfigPath(srcPath);
-  logger.info(`Parsing ${stylize(configTsPath, 'green')}...`);
+  logger.info(
+    `Parsing generator config from ${stylize(configTsPath, 'green')}...`
+  );
   const project = new Project({
     compilerOptions: {
       outDir: path.resolve(os.tmpdir(), uuidV4()),

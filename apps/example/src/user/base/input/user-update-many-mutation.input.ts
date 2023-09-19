@@ -39,5 +39,5 @@ export class UserUpdateManyMutationInput {
     nullable: true,
     description: undefined,
   })
-  toMapField?: StringFieldUpdateOperationsInput | null;
+  mappedField?: StringFieldUpdateOperationsInput | null;
 }

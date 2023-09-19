@@ -43,7 +43,7 @@ export class UserWhereUniqueInput {
   parentId?: IntNullableFilter | null;
   @Type(() => StringFilter)
   @Field(() => StringFilter, { nullable: true, description: undefined })
-  toMapField?: StringFilter | null;
+  mappedField?: StringFilter | null;
   @Type(() => PostListRelationFilter)
   @Field(() => PostListRelationFilter, {
     nullable: true,

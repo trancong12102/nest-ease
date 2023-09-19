@@ -19,7 +19,7 @@ export class UserCreateWithoutChildrenInput {
   @Field(() => Date, { nullable: true, description: undefined })
   updatedAt?: Date | string | null;
   @Field(() => String, { nullable: false, description: undefined })
-  toMapField!: string;
+  mappedField!: string;
   @Type(() => PostCreateNestedManyWithoutAuthorInput)
   @Field(() => PostCreateNestedManyWithoutAuthorInput, {
     nullable: true,

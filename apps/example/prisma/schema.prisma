@@ -47,7 +47,7 @@ model User {
   children     User[]   @relation("UserToUser")
   /// Another Many to many relation with Post
   anotherPosts Post[]   @relation("AnotherUserToPost")
-  toMapField   String   @map("toMapFieldMapped")
+  mappedField  String   @map("mapped_field")
 }
 
 model Post {
@@ -66,8 +66,6 @@ model Post {
   /// Many to many relation with Category
   categories      Category[]
   postKind        PostKind
-  jsonField       Json
-  scalarList      String[]
 }
 
 model Category {
@@ -88,18 +86,24 @@ model CategoryMetadata {
   categoryId Int      @unique
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+  metadata   Json[]
 }
 
-model Standalone {
-  id            Int      @id @default(autoincrement())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+model StandaloneModel {
+  id            Int        @id @default(autoincrement())
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
   name          String
   jsonField     Json
+  jsonList      Json[]
   stringList    String[]
   decimalField  Decimal
+  decimalList   Decimal[]
   floatField    Float
   bytesField    Bytes
+  bytesList     Bytes[]
   bigIntField   BigInt
+  bigIntList    BigInt[]
   dateTimeField DateTime
+  dateTimeList  DateTime[]
 }

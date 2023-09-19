@@ -2,6 +2,7 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { DateTimeFieldUpdateOperationsInput } from '../../../prisma/base/input/date-time-field-update-operations.input';
 import { Type } from 'class-transformer';
+import { CategoryMetadataUpdatemetadataInput } from './category-metadata-updatemetadata.input';
 import { CategoryUpdateOneRequiredWithoutMetadataNestedInput } from '../../../category/base/input/category-update-one-required-without-metadata-nested.input';
 
 @InputType()
@@ -18,6 +19,12 @@ export class CategoryMetadataUpdateInput {
     description: undefined,
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | null;
+  @Type(() => CategoryMetadataUpdatemetadataInput)
+  @Field(() => CategoryMetadataUpdatemetadataInput, {
+    nullable: true,
+    description: undefined,
+  })
+  metadata?: CategoryMetadataUpdatemetadataInput | null;
   @Type(() => CategoryUpdateOneRequiredWithoutMetadataNestedInput)
   @Field(() => CategoryUpdateOneRequiredWithoutMetadataNestedInput, {
     nullable: true,

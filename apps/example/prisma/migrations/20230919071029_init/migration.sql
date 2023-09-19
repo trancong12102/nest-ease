@@ -13,7 +13,7 @@ CREATE TABLE "User" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "parentId" INTEGER,
-    "toMapFieldMapped" TEXT NOT NULL,
+    "mapped_field" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -29,8 +29,6 @@ CREATE TABLE "Post" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "postKind" "PostKind" NOT NULL,
-    "jsonField" JSONB NOT NULL,
-    "scalarList" TEXT[],
 
     CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
 );
@@ -51,25 +49,31 @@ CREATE TABLE "CategoryMetadata" (
     "categoryId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "metadata" JSONB[],
 
     CONSTRAINT "CategoryMetadata_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Standalone" (
+CREATE TABLE "StandaloneModel" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "name" TEXT NOT NULL,
     "jsonField" JSONB NOT NULL,
+    "jsonList" JSONB[],
     "stringList" TEXT[],
     "decimalField" DECIMAL(65,30) NOT NULL,
+    "decimalList" DECIMAL(65,30)[],
     "floatField" DOUBLE PRECISION NOT NULL,
     "bytesField" BYTEA NOT NULL,
+    "bytesList" BYTEA[],
     "bigIntField" BIGINT NOT NULL,
+    "bigIntList" BIGINT[],
     "dateTimeField" TIMESTAMP(3) NOT NULL,
+    "dateTimeList" TIMESTAMP(3)[],
 
-    CONSTRAINT "Standalone_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "StandaloneModel_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
