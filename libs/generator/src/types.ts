@@ -1,0 +1,1 @@
+export { GeneratorConfig } from './config';

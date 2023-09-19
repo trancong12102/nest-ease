@@ -1,2 +1,2 @@
-export * from './generate';
-export * from './config';
+export { generate } from './generate';
+export * from './types';

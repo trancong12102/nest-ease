@@ -1,4 +1,5 @@
 import { DMMF } from '@prisma/generator-helper';
+import { ValueOf } from 'type-fest';
 
 export type PrismaDMMF = DMMF.Document;
 export type Model = DMMF.Model;
@@ -16,30 +17,24 @@ export type EnumValue = DMMF.EnumValue;
 
 export type ModelOperationType = 'Mutation' | 'Query';
 
+export type ModelOperationServiceMethodMap = {
+  createOne: 'create';
+  findUnique: 'findUnique';
+  findMany: 'findMany';
+  updateOne: 'update';
+  deleteOne: 'delete';
+  deleteMany: 'deleteMany';
+  count: 'count';
+  createMany: 'createMany';
+  updateMany: 'updateMany';
+};
+
 export interface ModelOperation {
   type: ModelOperationType;
-  name:
-    | 'createOne'
-    | 'findUnique'
-    | 'findMany'
-    | 'updateOne'
-    | 'deleteOne'
-    | 'deleteMany'
-    | 'count'
-    | 'createMany'
-    | 'updateMany';
+  name: keyof ModelOperationServiceMethodMap;
   schemaField: SchemaField;
   resolverMethod: string;
-  serviceMethod:
-    | 'create'
-    | 'findUnique'
-    | 'findMany'
-    | 'update'
-    | 'delete'
-    | 'deleteMany'
-    | 'count'
-    | 'createMany'
-    | 'updateMany';
+  serviceMethod: ValueOf<ModelOperationServiceMethodMap>;
   argsTypeName: string;
 }
 
