@@ -22,7 +22,7 @@
     "@types/ramda": "^0.29.4",
     "@types/uuid": "^9.0.4",
     "@types/fs-extra": "^11.0.2",
-    "type-fest": "^4.0.0"
+    "type-fest": "^4.3.1"
   },
   "type": "commonjs",
   "main": "./src/index.js",
