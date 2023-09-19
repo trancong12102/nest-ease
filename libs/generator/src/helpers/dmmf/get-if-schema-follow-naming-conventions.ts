@@ -1,7 +1,7 @@
 import { camelCase, pascalCase } from 'case-anything';
 import { Model } from '../../types/dmmf.type';
 
-export function getIfSchemaFollowNamingConvention(models: Model[]): boolean {
+export function getIfSchemaFollowNamingConventions(models: Model[]): boolean {
   for (const model of models) {
     const { name: modelName } = model;
     if (modelName !== pascalCase(modelName)) {

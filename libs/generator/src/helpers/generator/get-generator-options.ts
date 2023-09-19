@@ -2,9 +2,11 @@ import { GeneratorOptions as PrismaGeneratorOptions } from '@prisma/generator-he
 import * as path from 'path';
 import { InternalDmmf } from '../dmmf/internal-dmmf';
 import { GeneratorOptions } from '../../types/generator.type';
-import { getGeneratorConfig } from '../../config';
+import { parseGeneratorConfig } from '../../config';
 import { getGitChangedFiles } from '../git/get-git-changed-files';
 import { parseEnvValue } from '@prisma/internals';
+import { logger, logWarning } from '../../utils/logger';
+import { colorize } from 'consola/utils';
 
 export async function getGeneratorOptions(
   prismaOptions: PrismaGeneratorOptions
@@ -30,7 +32,7 @@ export async function getGeneratorOptions(
   }
   const prismaClientOutputPath = parseEnvValue(prismaClientGeneratorOutput);
 
-  const config = await getGeneratorConfig(srcPath);
+  const config = await parseGeneratorConfig(srcPath);
   const { overwriteCustomFiles } = config;
 
   return {

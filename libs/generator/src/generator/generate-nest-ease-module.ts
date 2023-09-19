@@ -16,7 +16,7 @@ import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 import consola from 'consola';
-import { colorize } from 'consola/utils';
+import { stylize } from '../utils/logger';
 
 export async function generateNestEaseModule(
   project: Project,
@@ -51,7 +51,7 @@ export async function generateNestEaseModule(
     const {
       model: { name: modelName },
     } = modelMapping;
-    consola.info(`Generating ${colorize('blue', modelName)} module...`);
+    consola.info(`Generating ${stylize(modelName, 'blue')} module...`);
 
     generateModelMappingTypes(project, options, modelMapping);
     generateModelBaseService(project, options, modelMapping);

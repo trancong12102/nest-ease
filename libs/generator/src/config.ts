@@ -1,10 +1,9 @@
 import { z } from 'zod';
 import path from 'path';
-import { Project } from 'ts-morph';
+import { ModuleKind, Project } from 'ts-morph';
 import { v4 as uuidV4 } from 'uuid';
 import * as os from 'os';
-import { logger } from './utils/logger';
-import { colorize } from 'consola/utils';
+import { logger, stylize } from './utils/logger';
 
 export const ConfigSchema = z.object({
   prismaServicePath: z.string(),
@@ -14,16 +13,17 @@ export const ConfigSchema = z.object({
 export type GeneratorConfig = z.infer<typeof ConfigSchema>;
 export const CONFIG_FILE_NAME = 'nest-ease.config.ts';
 
-export async function getGeneratorConfig(
+export async function parseGeneratorConfig(
   srcPath: string
 ): Promise<GeneratorConfig> {
   const configTsPath = getConfigPath(srcPath);
-  logger.info(`Parsing ${colorize('green', configTsPath)}...`);
+  logger.info(`Parsing ${stylize(configTsPath, 'green')}...`);
   const project = new Project({
     compilerOptions: {
       outDir: path.resolve(os.tmpdir(), uuidV4()),
       declaration: false,
       esModuleInterop: true,
+      module: ModuleKind.CommonJS,
     },
   });
   project.addSourceFileAtPath(configTsPath);
@@ -40,13 +40,20 @@ export async function getGeneratorConfig(
   }
   const configJsPath = configJsOutput.getFilePath();
 
-  const config = (await import(configJsPath)).default;
+  const config: GeneratorConfig = (await import(configJsPath)).default;
 
-  const parsedConfig = ConfigSchema.parse(config);
-  const { prismaServicePath } = parsedConfig;
+  try {
+    ConfigSchema.parse(config);
+  } catch (error) {
+    throw new Error(
+      `Invalid ${CONFIG_FILE_NAME}:\n${(error as { message: string }).message}`
+    );
+  }
+
+  const { prismaServicePath } = config;
 
   return {
-    ...parsedConfig,
+    ...config,
     prismaServicePath: path.resolve(srcPath, prismaServicePath),
   };
 }

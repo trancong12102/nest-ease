@@ -1,3 +1,3 @@
 import pkg from '../../package.json';
 
-export const { version } = pkg;
+export const version = `v${pkg.version}`;
