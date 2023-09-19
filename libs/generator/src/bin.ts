@@ -8,7 +8,7 @@ generatorHandler({
   onManifest() {
     return {
       defaultOutput: '../src',
-      prettyName: 'NestEase Generator',
+      prettyName: 'NestEase Module',
       version: version,
     };
   },
