@@ -7,14 +7,14 @@ import { logger } from './utils/logger';
 import { box, colorize } from 'consola/utils';
 import { getIfSchemaFollowNamingConvention } from './helpers/dmmf/get-if-schema-follow-naming-convention';
 import { getGeneratorOptions } from './helpers/generator/get-generator-options';
-import pkg from '../package.json';
+import { version } from './utils/version';
 
 export async function generate(prismaOptions: PrismaGeneratorOptions) {
   logger.log(
     box(
       colorize(
         'bold',
-        `NestEase Generator ${colorize('magenta', `v${pkg.version}`)}`
+        `NestEase Generator ${colorize('magenta', `v${version}`)}`
       ),
       {
         style: {
