@@ -5,8 +5,6 @@ import { GeneratorOptions } from '../../types/generator.type';
 import { parseGeneratorConfig } from '../../config';
 import { getGitChangedFiles } from '../git/get-git-changed-files';
 import { parseEnvValue } from '@prisma/internals';
-import { logger, logWarning } from '../../utils/logger';
-import { colorize } from 'consola/utils';
 
 export async function getGeneratorOptions(
   prismaOptions: PrismaGeneratorOptions
