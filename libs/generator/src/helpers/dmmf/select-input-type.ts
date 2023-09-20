@@ -18,7 +18,8 @@ export function selectInputType(inputTypes: InputTypeRef[]): InputTypeRef {
         type === 'JsonNullValueInput' ||
         type === 'JsonNullValueFilter' ||
         location === 'fieldRefTypes' ||
-        type.match(/.+?Unchecked(Create|Update).+?Input$/)
+        type.match(/.+?Unchecked(Create|Update).+?Input$/) ||
+        type === 'Null'
       ) {
         rank -= 10;
       }
