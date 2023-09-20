@@ -80,9 +80,6 @@ dependencies:
   tslib:
     specifier: ^2.6.2
     version: 2.6.2
-  uuid:
-    specifier: ^9.0.1
-    version: 9.0.1
   zod:
     specifier: ^3.22.2
     version: 3.22.2
@@ -148,9 +145,6 @@ devDependencies:
   '@types/ramda':
     specifier: ^0.29.4
     version: 0.29.4
-  '@types/uuid':
-    specifier: ^9.0.4
-    version: 9.0.4
   '@typescript-eslint/eslint-plugin':
     specifier: ^5.62.0
     version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.46.0)(typescript@5.1.6)
@@ -3814,10 +3808,6 @@ packages:
 
   /@types/stack-utils@2.0.1:
     resolution: {integrity: sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==}
-    dev: true
-
-  /@types/uuid@9.0.4:
-    resolution: {integrity: sha512-zAuJWQflfx6dYJM62vna+Sn5aeSWhh3OB+wfUEACNcqUSc0AGc5JKl+ycL1vrH7frGTXhJchYjE1Hak8L819dA==}
     dev: true
 
   /@types/ws@8.5.5:

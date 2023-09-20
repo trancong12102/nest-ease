@@ -2,14 +2,14 @@
 
 import { generatorHandler } from '@prisma/generator-helper';
 import { generate } from './generate';
-import { version } from './utils/version';
+import pkg from '../package.json';
 
 generatorHandler({
   onManifest() {
     return {
       defaultOutput: '../src',
       prettyName: 'NestEase Module',
-      version: version,
+      version: pkg.version,
     };
   },
 

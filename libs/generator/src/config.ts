@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import path from 'path';
 import { ModuleKind, Project } from 'ts-morph';
-import { v4 as uuidV4 } from 'uuid';
 import * as os from 'os';
 import { logger, stylize } from './utils/logger';
+import * as crypto from 'crypto';
 
 export const ConfigSchema = z.object({
   prismaServicePath: z.string(),
@@ -22,7 +22,7 @@ export async function parseGeneratorConfig(
   );
   const project = new Project({
     compilerOptions: {
-      outDir: path.resolve(os.tmpdir(), uuidV4()),
+      outDir: path.resolve(os.tmpdir(), crypto.randomUUID()),
       declaration: false,
       esModuleInterop: true,
       module: ModuleKind.CommonJS,
