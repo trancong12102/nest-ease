@@ -21,14 +21,13 @@ import { getFieldPropertyDeclaration } from '../helpers/declaration/get-field-pr
 import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 import { ProjectStructure } from '../helpers/project-structure/project-structure';
-import { logger, stylize } from '../utils/logger';
 
 export function generateModelBaseService(
   project: ProjectStructure,
   generatorOptions: GeneratorOptions,
   modelMapping: ModelMapping
 ) {
-  const { srcPath, prismaServicePath, dmmf } = generatorOptions;
+  const { srcPath, prismaServicePath } = generatorOptions;
   const { model, operations } = modelMapping;
   const { name: modelName } = model;
   const modelDelegateName = camelCase(modelName);
@@ -41,12 +40,6 @@ export function generateModelBaseService(
   );
   project.createSourceFile(sourceFilePath);
 
-  if (!dmmf.getIsDatamodelTypeChanged('models', modelName)) {
-    logger.info(stylize(`Skipping unchanged service ${className}`, 'dim'));
-    return;
-  }
-
-  logger.info(stylize(`Generating service ${className}...`, 'dim'));
   const prismaServiceClassname = getModuleFileClassName('Prisma', 'Service');
   const imports: ImportDeclarationStructure[] = [
     {

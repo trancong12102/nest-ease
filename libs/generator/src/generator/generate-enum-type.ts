@@ -8,7 +8,6 @@ import { FieldNamespace } from '../types/dmmf.type';
 import { buildEnumDocumentationOptions } from '../helpers/documentation/build-enum-documentation-options';
 import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
-import { logger, stylize } from '../utils/logger';
 import { ProjectStructure } from '../helpers/project-structure/project-structure';
 
 export function generateEnumType(
@@ -25,12 +24,6 @@ export function generateEnumType(
     return;
   }
   project.createSourceFile(sourceFilePath);
-
-  if (!dmmf.getIsNonPrimitiveTypeChanged('enumTypes', namespace, enumName)) {
-    logger.info(stylize(`Skipping unchanged enum ${enumName}`, 'dim'));
-    return;
-  }
-  logger.info(stylize(`Generating enum type ${enumName}...`, 'dim'));
 
   const type = dmmf.getNonPrimitiveType('enumTypes', namespace, enumName);
   if (!type) {

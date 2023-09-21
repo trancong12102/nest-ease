@@ -12,7 +12,6 @@ import { assertGitStatusClean } from '../helpers/git/assert-git-status-clean';
 import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 import { ProjectStructure } from '../helpers/project-structure/project-structure';
-import { logger, stylize } from '../utils/logger';
 
 export async function generateModelResolver(
   project: ProjectStructure,
@@ -31,7 +30,6 @@ export async function generateModelResolver(
     'Model'
   );
   const className = getModuleFileClassName(modelName, 'Resolver');
-  logger.info(stylize(`Generating resolver ${className}...`, 'dim'));
   const sourceFilePath = getSourceFilePath(
     srcPath,
     modelName,

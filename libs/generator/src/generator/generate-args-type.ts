@@ -13,7 +13,6 @@ import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getSchemaArgDeclaration } from '../helpers/declaration/get-schema-arg-declaration';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 import { ProjectStructure } from '../helpers/project-structure/project-structure';
-import { logger, stylize } from '../utils/logger';
 import { generatePropertyTypes } from './generate-property-types';
 
 export function generateArgsType(
@@ -22,9 +21,9 @@ export function generateArgsType(
   operation: ModelOperation,
   modelName: string
 ) {
-  const { argsTypeName, schemaField, type: operationType } = operation;
-  const { args, name: schemaFieldName } = schemaField;
-  const { srcPath, dmmf } = options;
+  const { argsTypeName, schemaField } = operation;
+  const { args } = schemaField;
+  const { srcPath } = options;
   const sourceFilePath = getSourceFilePath(
     srcPath,
     modelName,
@@ -37,12 +36,6 @@ export function generateArgsType(
 
   project.createSourceFile(sourceFilePath);
 
-  if (!dmmf.getIsSchemaFieldChanged(operationType, schemaFieldName)) {
-    logger.info(stylize(`Skipping unchanged args ${argsTypeName}`, 'dim'));
-    generatePropertyTypes(project, options, args);
-  }
-
-  logger.info(stylize(`Generating args type ${argsTypeName}...`, 'dim'));
   const imports: ImportDeclarationStructure[] = [
     {
       kind: StructureKind.ImportDeclaration,

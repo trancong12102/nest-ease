@@ -30,7 +30,6 @@ export async function generateRootModule(
   } = options;
 
   const className = getModuleFileClassName(MODULE, 'Module');
-  logger.info(stylize(`Generating module ${className}...`, 'dim'));
   const sourceFilePath = getSourceFilePath(
     srcPath,
     MODULE,
@@ -39,14 +38,6 @@ export async function generateRootModule(
   );
   project.createSourceFile(sourceFilePath);
   await generateModelMappingsTypes(project, options, modelMappings);
-
-  const isSomeModelChanged = modelMappings.some(({ model: { name } }) =>
-    options.dmmf.getIsDatamodelTypeChanged('models', name)
-  );
-  if (!isSomeModelChanged) {
-    logger.info(stylize(`Skipping unchanged module ${className}`, 'dim'));
-    return;
-  }
 
   const imports: ImportDeclarationStructure[] = [
     {
@@ -118,7 +109,7 @@ async function generateModelMappingsTypes(
     const {
       model: { name: modelName },
     } = modelMapping;
-    logger.info(`Generating ${stylize(modelName, 'blue')} module...`);
+    logger.info(`Generating ${stylize(modelName, 'blue', 'bold')} module...`);
 
     generateModelMappingTypes(project, options, modelMapping);
     generateModelBaseService(project, options, modelMapping);

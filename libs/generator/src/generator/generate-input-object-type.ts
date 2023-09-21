@@ -12,7 +12,6 @@ import { getSchemaArgDeclaration } from '../helpers/declaration/get-schema-arg-d
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 import { generatePropertyTypes } from './generate-property-types';
 import { ProjectStructure } from '../helpers/project-structure/project-structure';
-import { logger, stylize } from '../utils/logger';
 
 export function generateInputObjectType(
   project: ProjectStructure,
@@ -44,19 +43,6 @@ export function generateInputObjectType(
     throw new Error(`Cannot find input type ${inputTypeName}`);
   }
   const { fields } = type;
-
-  if (
-    !dmmf.getIsNonPrimitiveTypeChanged(
-      'inputObjectTypes',
-      namespace,
-      inputTypeName
-    )
-  ) {
-    logger.info(stylize(`Skipping unchanged input ${inputTypeName}`, 'dim'));
-    generatePropertyTypes(project, options, fields);
-    return;
-  }
-  logger.info(stylize(`Generating input type ${inputTypeName}...`, 'dim'));
 
   const imports: ImportDeclarationStructure[] = [
     {

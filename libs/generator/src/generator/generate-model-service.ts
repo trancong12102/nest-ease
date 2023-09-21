@@ -12,7 +12,6 @@ import { assertGitStatusClean } from '../helpers/git/assert-git-status-clean';
 import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 import { ProjectStructure } from '../helpers/project-structure/project-structure';
-import { logger, stylize } from '../utils/logger';
 
 export async function generateModelService(
   project: ProjectStructure,
@@ -26,7 +25,6 @@ export async function generateModelService(
   } = modelMapping;
 
   const className = getModuleFileClassName(modelName, 'Service');
-  logger.info(stylize(`Generating service ${className}...`, 'dim'));
   const sourceFilePath = getSourceFilePath(
     srcPath,
     modelName,

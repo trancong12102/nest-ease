@@ -20,7 +20,6 @@ import { getFieldGraphqlDeclaration } from '../helpers/declaration/get-field-gra
 import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 import { ProjectStructure } from '../helpers/project-structure/project-structure';
-import { logger, stylize } from '../utils/logger';
 
 export function generateModelBaseResolver(
   project: ProjectStructure,
@@ -38,13 +37,6 @@ export function generateModelBaseResolver(
     'Resolver'
   );
   project.createSourceFile(sourceFilePath);
-
-  if (!dmmf.getIsDatamodelTypeChanged('models', modelName)) {
-    logger.info(stylize(`Skipping unchanged resolver ${className}`, 'dim'));
-    return;
-  }
-
-  logger.info(stylize(`Generating resolver ${className}...`, 'dim'));
 
   const baseServiceClassName = getModuleFileClassName(
     modelName,

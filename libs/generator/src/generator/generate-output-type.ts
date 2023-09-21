@@ -14,7 +14,6 @@ import { TypeFileKind } from '../types/file-kind.type';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 import { generatePropertyTypes } from './generate-property-types';
 import { ProjectStructure } from '../helpers/project-structure/project-structure';
-import { logger, stylize } from '../utils/logger';
 
 export function generateOutputType(
   project: ProjectStructure,
@@ -49,19 +48,6 @@ export function generateOutputType(
   const type =
     kind === 'Model' ? removeCountAndRelationFields(typeFound) : typeFound;
   const { fields } = type;
-
-  if (
-    !dmmf.getIsNonPrimitiveTypeChanged(
-      'outputObjectTypes',
-      namespace,
-      modelName
-    )
-  ) {
-    logger.info(stylize(`Skipping unchanged output ${modelName}`, 'dim'));
-    generatePropertyTypes(project, options, type);
-    return;
-  }
-  logger.info(stylize(`Generating output type ${modelName}...`, 'dim'));
 
   const imports: ImportDeclarationStructure[] = [
     {
