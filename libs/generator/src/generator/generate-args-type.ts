@@ -1,7 +1,6 @@
 import {
   ClassDeclarationStructure,
   ImportDeclarationStructure,
-  Project,
   PropertyDeclarationStructure,
   StructureKind,
 } from 'ts-morph';
@@ -13,9 +12,11 @@ import { generatePrismaType } from './generate-prisma-type';
 import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getSchemaArgDeclaration } from '../helpers/declaration/get-schema-arg-declaration';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
+import { ProjectStructure } from '../helpers/project-structure/project-structure';
+import { logger, stylize } from '../utils/logger';
 
 export function generateArgsType(
-  project: Project,
+  project: ProjectStructure,
   options: GeneratorOptions,
   operation: ModelOperation,
   modelName: string
@@ -31,13 +32,12 @@ export function generateArgsType(
     argsTypeName,
     'Args'
   );
-  if (project.getSourceFile(sourceFilePath)) {
+  if (project.isSourceFileExists(sourceFilePath)) {
     return;
   }
+  logger.info(stylize(`Generating args type ${argsTypeName}...`, 'dim'));
 
-  const sourceFile = project.createSourceFile(sourceFilePath, undefined, {
-    overwrite: true,
-  });
+  project.createSourceFile(sourceFilePath);
   const imports: ImportDeclarationStructure[] = [
     {
       kind: StructureKind.ImportDeclaration,
@@ -70,7 +70,7 @@ export function generateArgsType(
     ],
     properties,
   };
-  sourceFile.set({
+  project.setSourceFile(sourceFilePath, {
     kind: StructureKind.SourceFile,
     statements: [
       GENERATED_WARNING_COMMENT,

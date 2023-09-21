@@ -20,6 +20,7 @@ import {
   INPUT_NAME_REGEX_LIST,
 } from '../../contants/type-name-regex-list';
 import { TypeFileKind } from '../../types/file-kind.type';
+import { deepEqual } from 'fast-equals';
 
 export class InternalDmmf {
   private readonly _modelMappings: ModelMapping[];
@@ -29,7 +30,11 @@ export class InternalDmmf {
     return this._modelMappings;
   }
 
-  constructor(private readonly dmmf: PrismaDMMF) {
+  constructor(
+    private readonly dmmf: PrismaDMMF,
+    private readonly oldDmmf?: PrismaDMMF
+  ) {
+    this.dmmf = dmmf;
     this._cache = new CacheManager();
     this._modelMappings = this.getModelMappings();
   }
@@ -122,18 +127,53 @@ export class InternalDmmf {
     });
   }
 
+  getIsNonPrimitiveTypeChanged<Location extends NonPrimitiveTypeLocation>(
+    location: Location,
+    namespace: FieldNamespace,
+    name: string
+  ): boolean {
+    return this._cache.wrap(
+      `isNonPrimitiveTypeChanged:${location}:${namespace}:${name}`,
+      () => {
+        if (!this.oldDmmf) {
+          return true;
+        }
+
+        const currentType = this.getNonPrimitiveType(location, namespace, name);
+        if (!currentType) {
+          throw new Error(`Cannot find ${location}:${namespace}:${name}`);
+        }
+
+        const oldType = this.getNonPrimitiveType(
+          location,
+          namespace,
+          name,
+          'OldDMMF'
+        );
+
+        return !deepEqual(currentType, oldType);
+      }
+    );
+  }
+
   getNonPrimitiveType<
     Location extends NonPrimitiveTypeLocation,
     ReturnType extends NonPrimitiveType<Location>
   >(
     location: Location,
     namespace: FieldNamespace,
-    name: string
+    name: string,
+    from: DmmfKind = 'CurrentDMMF'
   ): ReturnType | undefined {
+    const dmmf =
+      (from === 'CurrentDMMF' ? this.dmmf : this.oldDmmf) || this.dmmf;
+    const dmmfCacheKey: DmmfKind =
+      from === 'OldDMMF' && !!this.oldDmmf ? 'OldDMMF' : 'CurrentDMMF';
+
     return this._cache.wrap(
-      `getNonPrimitiveType:${location}:${namespace}:${name}`,
+      `getNonPrimitiveType:${location}:${namespace}:${name}:${dmmfCacheKey}`,
       () => {
-        const typeList = (this.dmmf.schema[location][namespace] ||
+        const typeList = (dmmf.schema[location][namespace] ||
           []) as ReturnType[];
         return typeList.find((t) => t.name === name);
       }
@@ -294,3 +334,5 @@ export class InternalDmmf {
     });
   }
 }
+
+type DmmfKind = 'CurrentDMMF' | 'OldDMMF';

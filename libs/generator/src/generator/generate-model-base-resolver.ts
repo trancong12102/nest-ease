@@ -4,7 +4,6 @@ import {
   MethodDeclarationStructure,
   OptionalKind,
   ParameterDeclarationStructure,
-  Project,
   Scope,
   StructureKind,
 } from 'ts-morph';
@@ -20,9 +19,11 @@ import { getFieldPropertyDeclaration } from '../helpers/declaration/get-field-pr
 import { getFieldGraphqlDeclaration } from '../helpers/declaration/get-field-graphql-declaration';
 import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
+import { ProjectStructure } from '../helpers/project-structure/project-structure';
+import { logger, stylize } from '../utils/logger';
 
 export function generateModelBaseResolver(
-  project: Project,
+  project: ProjectStructure,
   generatorOptions: GeneratorOptions,
   modelMapping: ModelMapping
 ) {
@@ -30,6 +31,7 @@ export function generateModelBaseResolver(
   const { model, operations } = modelMapping;
   const { name: modelName } = model;
   const className = getModuleFileClassName(modelName, 'Resolver', true);
+  logger.info(stylize(`Generating resolver ${className}...`, 'dim'));
 
   const sourceFilePath = getSourceFilePath(
     srcPath,
@@ -288,17 +290,12 @@ return this.service.${getResolveMethodName(name)}(parent${
     methods,
   };
 
-  project.createSourceFile(
-    sourceFilePath,
-    {
-      statements: [
-        GENERATED_WARNING_COMMENT,
-        ...optimizeImports(imports, className),
-        classDeclaration,
-      ],
-    },
-    {
-      overwrite: true,
-    }
-  );
+  project.createSourceFile(sourceFilePath, {
+    kind: StructureKind.SourceFile,
+    statements: [
+      GENERATED_WARNING_COMMENT,
+      ...optimizeImports(imports, className),
+      classDeclaration,
+    ],
+  });
 }

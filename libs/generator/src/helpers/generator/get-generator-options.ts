@@ -6,6 +6,8 @@ import { parseGeneratorConfig } from '../../config';
 import { getGitChangedFiles } from '../git/get-git-changed-files';
 import { parseEnvValue } from '@prisma/internals';
 import { logger, logWarning, stylize } from '../../utils/logger';
+import { getOldDmmf } from '../dmmf/get-old-dmmf';
+import { getPrvPrismaDmmfPath } from '../path/get-prv-prisma-dmmf-path';
 
 export async function getGeneratorOptions(
   prismaOptions: PrismaGeneratorOptions
@@ -16,6 +18,31 @@ export async function getGeneratorOptions(
   const srcPath = path.resolve(projectRootPath, 'src');
 
   logger.info(`Project root path: ${stylize(projectRootPath, 'green')}`);
+
+  logger.info(
+    `Looking for ${stylize('DMMF', 'blue', 'bold')} at ${stylize(
+      getPrvPrismaDmmfPath(projectRootPath),
+      'green'
+    )}...`
+  );
+  const oldDmmf = await getOldDmmf(projectRootPath);
+  if (oldDmmf) {
+    logger.info(
+      `Found ${stylize(
+        'DMMF',
+        'blue',
+        'bold'
+      )}, generator will use it for caching when possible!`
+    );
+  } else {
+    logWarning(
+      `Not found ${stylize(
+        'DMMF',
+        'blue',
+        'bold'
+      )}, generator will still work but without caching!`
+    );
+  }
 
   const prismaClientGenerator = otherGenerators.find(
     ({ provider }) => parseEnvValue(provider) === 'prisma-client-js'
@@ -48,7 +75,7 @@ export async function getGeneratorOptions(
   return {
     ...config,
     gitChangedFiles: overwriteCustomFiles ? await getGitChangedFiles() : [],
-    dmmf: new InternalDmmf(dmmf),
+    dmmf: new InternalDmmf(dmmf, oldDmmf),
     srcPath,
     projectRootPath,
     prismaClientPath: prismaClientOutputPath.includes(

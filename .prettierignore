@@ -3,3 +3,4 @@
 /coverage
 pnpm-lock.yaml
 @prisma-client
+dmmf.json

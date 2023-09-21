@@ -1,27 +1,29 @@
 import {
   ClassDeclarationStructure,
   ImportDeclarationStructure,
-  Project,
   PropertyDeclarationStructure,
   StructureKind,
 } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator.type';
 import { FieldNamespace, SchemaField } from '../types/dmmf.type';
 import { optimizeImports } from '../helpers/import/optimize-imports';
-import { generatePrismaType } from './generate-prisma-type';
 import { buildModelDocumentations } from '../helpers/documentation/build-model-documentations';
 import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getSchemaFieldDeclaration } from '../helpers/declaration/get-schema-field-declaration';
 import { TypeFileKind } from '../types/file-kind.type';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
+import { generatePropertyTypes } from './generate-property-types';
+import { ProjectStructure } from '../helpers/project-structure/project-structure';
+import { logger, stylize } from '../utils/logger';
 
 export function generateOutputType(
-  project: Project,
+  project: ProjectStructure,
   options: GeneratorOptions,
   namespace: FieldNamespace,
   modelName: string
 ) {
   const { srcPath, dmmf } = options;
+
   const model = dmmf.getModel(modelName);
   const { documentation, fields: fieldDocumentations } =
     buildModelDocumentations(model);
@@ -29,22 +31,12 @@ export function generateOutputType(
   const module =
     (kind === 'Model' ? modelName : dmmf.getModelNameOfOutputType(modelName)) ||
     'Prisma';
+
   const sourceFilePath = getSourceFilePath(srcPath, module, modelName, kind);
-  if (project.getSourceFile(sourceFilePath)) {
+  if (project.isSourceFileExists(sourceFilePath)) {
     return;
   }
-
-  const sourceFile = project.createSourceFile(sourceFilePath, undefined, {
-    overwrite: true,
-  });
-  const imports: ImportDeclarationStructure[] = [
-    {
-      kind: StructureKind.ImportDeclaration,
-      moduleSpecifier: '@nestjs/graphql',
-      namedImports: ['ObjectType', 'Field'],
-    },
-  ];
-  const properties: PropertyDeclarationStructure[] = [];
+  project.createSourceFile(sourceFilePath);
 
   const type = dmmf.getNonPrimitiveType(
     'outputObjectTypes',
@@ -54,6 +46,28 @@ export function generateOutputType(
   if (!type) {
     throw new Error(`Cannot find output type ${modelName}`);
   }
+
+  if (
+    !dmmf.getIsNonPrimitiveTypeChanged(
+      'outputObjectTypes',
+      namespace,
+      modelName
+    )
+  ) {
+    logger.info(stylize(`Skipping unchanged output ${modelName}`, 'dim'));
+    generatePropertyTypes(project, options, type);
+    return;
+  }
+  logger.info(stylize(`Generating output type ${modelName}...`, 'dim'));
+
+  const imports: ImportDeclarationStructure[] = [
+    {
+      kind: StructureKind.ImportDeclaration,
+      moduleSpecifier: '@nestjs/graphql',
+      namedImports: ['ObjectType', 'Field'],
+    },
+  ];
+  const properties: PropertyDeclarationStructure[] = [];
 
   const fields =
     kind === 'Model' ? removeCountAndRelationFields(type.fields) : type.fields;
@@ -84,7 +98,7 @@ export function generateOutputType(
     docs: documentation ? [documentation] : [],
   };
 
-  sourceFile.set({
+  project.setSourceFile(sourceFilePath, {
     kind: StructureKind.SourceFile,
     statements: [
       GENERATED_WARNING_COMMENT,
@@ -93,10 +107,7 @@ export function generateOutputType(
     ],
   });
 
-  for (const field of fields) {
-    const { outputType } = field;
-    generatePrismaType(project, options, outputType);
-  }
+  generatePropertyTypes(project, options, type);
 }
 
 function removeCountAndRelationFields(fields: SchemaField[]) {

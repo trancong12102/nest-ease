@@ -1,11 +1,11 @@
-import { Project } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator.type';
 import { ModelMapping } from '../types/dmmf.type';
 import { generatePrismaType } from './generate-prisma-type';
 import { generateArgsType } from './generate-args-type';
+import { ProjectStructure } from '../helpers/project-structure/project-structure';
 
 export function generateModelMappingTypes(
-  project: Project,
+  project: ProjectStructure,
   options: GeneratorOptions,
   modelMapping: ModelMapping
 ) {

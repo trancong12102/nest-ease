@@ -1,7 +1,6 @@
 import {
   ClassDeclarationStructure,
   ImportDeclarationStructure,
-  Project,
   StructureKind,
 } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator.type';
@@ -16,10 +15,11 @@ import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 import consola from 'consola';
-import { stylize } from '../utils/logger';
+import { logger, stylize } from '../utils/logger';
+import { ProjectStructure } from '../helpers/project-structure/project-structure';
 
 export async function generateNestEaseModule(
-  project: Project,
+  project: ProjectStructure,
   options: GeneratorOptions
 ) {
   const {
@@ -28,6 +28,7 @@ export async function generateNestEaseModule(
   } = options;
 
   const className = getModuleFileClassName('NestEase', 'Module');
+  logger.info(stylize(`Generating module ${className}...`, 'dim'));
   const sourceFilePath = getSourceFilePath(
     srcPath,
     'NestEase',
@@ -98,13 +99,8 @@ export async function generateNestEaseModule(
     ],
   };
 
-  project.createSourceFile(
-    sourceFilePath,
-    {
-      statements: [GENERATED_WARNING_COMMENT, ...imports, classDeclaration],
-    },
-    {
-      overwrite: true,
-    }
-  );
+  project.createSourceFile(sourceFilePath, {
+    kind: StructureKind.SourceFile,
+    statements: [GENERATED_WARNING_COMMENT, ...imports, classDeclaration],
+  });
 }

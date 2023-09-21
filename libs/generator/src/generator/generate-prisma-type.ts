@@ -1,12 +1,12 @@
 import { InputTypeRef, OutputTypeRef } from '../types/dmmf.type';
 import { generateOutputType } from './generate-output-type';
-import { Project } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator.type';
 import { generateEnumType } from './generate-enum-type';
 import { generateInputObjectType } from './generate-input-object-type';
+import { ProjectStructure } from '../helpers/project-structure/project-structure';
 
 export function generatePrismaType(
-  project: Project,
+  project: ProjectStructure,
   options: GeneratorOptions,
   ref: OutputTypeRef | InputTypeRef
 ) {

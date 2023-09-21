@@ -5,7 +5,6 @@ import {
   MethodDeclarationStructure,
   OptionalKind,
   ParameterDeclarationStructure,
-  Project,
   Scope,
   StructureKind,
 } from 'ts-morph';
@@ -21,9 +20,11 @@ import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getFieldPropertyDeclaration } from '../helpers/declaration/get-field-property-declaration';
 import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
+import { ProjectStructure } from '../helpers/project-structure/project-structure';
+import { logger, stylize } from '../utils/logger';
 
 export function generateModelBaseService(
-  project: Project,
+  project: ProjectStructure,
   generatorOptions: GeneratorOptions,
   modelMapping: ModelMapping
 ) {
@@ -32,6 +33,7 @@ export function generateModelBaseService(
   const { name: modelName } = model;
   const modelDelegateName = camelCase(modelName);
   const className = getModuleFileClassName(modelName, 'Service', true);
+  logger.info(stylize(`Generating service ${className}...`, 'dim'));
   const sourceFilePath = getSourceFilePath(
     srcPath,
     modelName,
@@ -204,19 +206,14 @@ return this.prisma.client.${modelDelegateName}
     methods,
   };
 
-  project.createSourceFile(
-    sourceFilePath,
-    {
-      statements: [
-        GENERATED_WARNING_COMMENT,
-        ...optimizeImports(imports, className),
-        classDeclaration,
-      ],
-    },
-    {
-      overwrite: true,
-    }
-  );
+  project.createSourceFile(sourceFilePath, {
+    kind: StructureKind.SourceFile,
+    statements: [
+      GENERATED_WARNING_COMMENT,
+      ...optimizeImports(imports, className),
+      classDeclaration,
+    ],
+  });
 }
 
 function getResolveParentWhereStatement(model: Model) {

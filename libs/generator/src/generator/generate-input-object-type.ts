@@ -1,21 +1,21 @@
 import {
   ClassDeclarationStructure,
   ImportDeclarationStructure,
-  Project,
   PropertyDeclarationStructure,
   StructureKind,
 } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator.type';
 import { FieldNamespace } from '../types/dmmf.type';
-import { selectInputType } from '../helpers/dmmf/select-input-type';
 import { optimizeImports } from '../helpers/import/optimize-imports';
-import { generatePrismaType } from './generate-prisma-type';
 import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getSchemaArgDeclaration } from '../helpers/declaration/get-schema-arg-declaration';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
+import { generatePropertyTypes } from './generate-property-types';
+import { ProjectStructure } from '../helpers/project-structure/project-structure';
+import { logger, stylize } from '../utils/logger';
 
 export function generateInputObjectType(
-  project: Project,
+  project: ProjectStructure,
   options: GeneratorOptions,
   namespace: FieldNamespace,
   inputTypeName: string
@@ -30,12 +30,33 @@ export function generateInputObjectType(
     inputTypeName,
     'Input'
   );
-  if (project.getSourceFile(sourceFilePath)) {
+  if (project.isSourceFileExists(sourceFilePath)) {
     return;
   }
-  const sourceFile = project.createSourceFile(sourceFilePath, undefined, {
-    overwrite: true,
-  });
+  project.createSourceFile(sourceFilePath);
+
+  const type = dmmf.getNonPrimitiveType(
+    'inputObjectTypes',
+    namespace,
+    inputTypeName
+  );
+  if (!type) {
+    throw new Error(`Cannot find input type ${inputTypeName}`);
+  }
+
+  if (
+    !dmmf.getIsNonPrimitiveTypeChanged(
+      'inputObjectTypes',
+      namespace,
+      inputTypeName
+    )
+  ) {
+    logger.info(stylize(`Skipping unchanged input ${inputTypeName}`, 'dim'));
+    generatePropertyTypes(project, options, type);
+    return;
+  }
+  logger.info(stylize(`Generating input type ${inputTypeName}...`, 'dim'));
+
   const imports: ImportDeclarationStructure[] = [
     {
       kind: StructureKind.ImportDeclaration,
@@ -44,15 +65,6 @@ export function generateInputObjectType(
     },
   ];
   const properties: PropertyDeclarationStructure[] = [];
-
-  const type = dmmf.getNonPrimitiveType(
-    'inputObjectTypes',
-    namespace,
-    inputTypeName
-  );
-  if (!type) {
-    throw new Error(`Cannot find enum type ${inputTypeName}`);
-  }
 
   const { fields } = type;
   const isNestedInputType = getIsNestedInputType(inputTypeName);
@@ -84,7 +96,7 @@ export function generateInputObjectType(
     properties,
   };
 
-  sourceFile.set({
+  project.setSourceFile(sourceFilePath, {
     kind: StructureKind.SourceFile,
     statements: [
       GENERATED_WARNING_COMMENT,
@@ -93,11 +105,7 @@ export function generateInputObjectType(
     ],
   });
 
-  for (const field of fields) {
-    const { inputTypes } = field;
-    const inputType = selectInputType(inputTypes);
-    generatePrismaType(project, options, inputType);
-  }
+  generatePropertyTypes(project, options, type);
 }
 
 function getIsNestedInputType(inputType: string) {
