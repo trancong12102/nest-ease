@@ -1,5 +1,4 @@
-import path from 'path';
-import { generateNestEaseModule } from './generator/generate-nest-ease-module';
+import { generateRootModule } from './generator/generate-root-module';
 import { PrismaGeneratorOptions } from './types/generator.type';
 import { logError, logger, stylize } from './utils/logger';
 import { getGeneratorOptions } from './helpers/generator/get-generator-options';
@@ -17,12 +16,9 @@ export async function generate(prismaOptions: PrismaGeneratorOptions) {
     const options = await getGeneratorOptions(prismaOptions);
     const { projectRootPath } = options;
 
-    const project = new ProjectStructure(
-      path.resolve(projectRootPath, 'tsconfig.json')
-    );
-    await generateNestEaseModule(project, options);
+    const project = new ProjectStructure(projectRootPath);
+    await generateRootModule(project, options);
 
-    logger.info('Formatting and saving project...');
     await project.save();
     const prvPrismaDmmfPath = getPrvPrismaDmmfPath(projectRootPath);
     logger.info(

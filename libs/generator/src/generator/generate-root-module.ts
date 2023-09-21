@@ -14,11 +14,12 @@ import { getImportModuleSpecifier } from '../helpers/import/get-import-module-sp
 import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
-import consola from 'consola';
 import { logger, stylize } from '../utils/logger';
 import { ProjectStructure } from '../helpers/project-structure/project-structure';
 
-export async function generateNestEaseModule(
+const MODULE = 'NestEase';
+
+export async function generateRootModule(
   project: ProjectStructure,
   options: GeneratorOptions
 ) {
@@ -27,11 +28,11 @@ export async function generateNestEaseModule(
     srcPath,
   } = options;
 
-  const className = getModuleFileClassName('NestEase', 'Module');
+  const className = getModuleFileClassName(MODULE, 'Module');
   logger.info(stylize(`Generating module ${className}...`, 'dim'));
   const sourceFilePath = getSourceFilePath(
     srcPath,
-    'NestEase',
+    MODULE,
     className,
     'Module'
   );
@@ -52,7 +53,7 @@ export async function generateNestEaseModule(
     const {
       model: { name: modelName },
     } = modelMapping;
-    consola.info(`Generating ${stylize(modelName, 'blue')} module...`);
+    logger.info(`Generating ${stylize(modelName, 'blue')} module...`);
 
     generateModelMappingTypes(project, options, modelMapping);
     generateModelBaseService(project, options, modelMapping);
