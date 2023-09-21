@@ -5,7 +5,7 @@ import {
   StructureKind,
 } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator.type';
-import { FieldNamespace, SchemaField } from '../types/dmmf.type';
+import { FieldNamespace, OutputType } from '../types/dmmf.type';
 import { optimizeImports } from '../helpers/import/optimize-imports';
 import { buildModelDocumentations } from '../helpers/documentation/build-model-documentations';
 import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
@@ -38,14 +38,17 @@ export function generateOutputType(
   }
   project.createSourceFile(sourceFilePath);
 
-  const type = dmmf.getNonPrimitiveType(
+  const typeFound = dmmf.getNonPrimitiveType(
     'outputObjectTypes',
     namespace,
     modelName
   );
-  if (!type) {
+  if (!typeFound) {
     throw new Error(`Cannot find output type ${modelName}`);
   }
+  const type =
+    kind === 'Model' ? removeCountAndRelationFields(typeFound) : typeFound;
+  const { fields } = type;
 
   if (
     !dmmf.getIsNonPrimitiveTypeChanged(
@@ -68,9 +71,6 @@ export function generateOutputType(
     },
   ];
   const properties: PropertyDeclarationStructure[] = [];
-
-  const fields =
-    kind === 'Model' ? removeCountAndRelationFields(type.fields) : type.fields;
 
   for (const field of fields) {
     const { imports: propertyImports, property } = getSchemaFieldDeclaration(
@@ -110,12 +110,17 @@ export function generateOutputType(
   generatePropertyTypes(project, options, type);
 }
 
-function removeCountAndRelationFields(fields: SchemaField[]) {
-  return fields.filter(
-    ({ name, outputType: { location, namespace } }) =>
-      !(
-        name === '_count' ||
-        (location === 'outputObjectTypes' && namespace === 'model')
-      )
-  );
+function removeCountAndRelationFields(outputType: OutputType): OutputType {
+  const { fields } = outputType;
+
+  return {
+    ...outputType,
+    fields: fields.filter(
+      ({ name, outputType: { location, namespace } }) =>
+        !(
+          name === '_count' ||
+          (location === 'outputObjectTypes' && namespace === 'model')
+        )
+    ),
+  };
 }
