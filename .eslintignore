@@ -1,3 +1,4 @@
 node_modules
 @prisma-client
 **/base/**/*
+nest-ease.module.ts

@@ -7,7 +7,6 @@ import { importStringAsModule } from './utils/import-string-as-module';
 
 export const ConfigSchema = z.object({
   prismaServicePath: z.string(),
-  overwriteCustomFiles: z.boolean().default(false),
 });
 
 export type GeneratorConfig = z.infer<typeof ConfigSchema>;

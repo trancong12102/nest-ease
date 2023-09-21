@@ -4,7 +4,7 @@ import { InternalDmmf } from '../dmmf/internal-dmmf';
 import { GeneratorOptions } from '../../types/generator.type';
 import { parseGeneratorConfig } from '../../config';
 import { parseEnvValue } from '@prisma/internals';
-import { logger, logWarning, stylize } from '../../utils/logger';
+import { logger, stylize } from '../../utils/logger';
 
 export async function getGeneratorOptions(
   prismaOptions: PrismaGeneratorOptions
@@ -33,16 +33,6 @@ export async function getGeneratorOptions(
   const prismaClientOutputPath = parseEnvValue(prismaClientGeneratorOutput);
 
   const config = await parseGeneratorConfig(srcPath);
-  const { overwriteCustomFiles } = config;
-
-  if (overwriteCustomFiles) {
-    logWarning(
-      `${stylize('overwriteCustomFiles', 'blue')} option is ${stylize(
-        'ENABLED',
-        'red'
-      )}, all your custom code files will be ${stylize('OVERWRITTEN', 'red')}!`
-    );
-  }
 
   return {
     ...config,

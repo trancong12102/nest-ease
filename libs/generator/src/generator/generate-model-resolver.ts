@@ -7,17 +7,17 @@ import {
 import { GeneratorOptions } from '../types/generator.type';
 import { ModelMapping } from '../types/dmmf.type';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
-import { isPathExists } from '../utils/is-path-exists';
 import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 import { ProjectStructure } from '../helpers/project-structure/project-structure';
+import { exists } from 'fs-extra';
 
 export async function generateModelResolver(
   project: ProjectStructure,
   generatorOptions: GeneratorOptions,
   modelMapping: ModelMapping
 ) {
-  const { srcPath, overwriteCustomFiles } = generatorOptions;
+  const { srcPath } = generatorOptions;
   const {
     model: { name: modelName },
   } = modelMapping;
@@ -35,7 +35,7 @@ export async function generateModelResolver(
     className,
     'Resolver'
   );
-  if (!overwriteCustomFiles && (await isPathExists(sourceFilePath))) {
+  if (await exists(sourceFilePath)) {
     return;
   }
 

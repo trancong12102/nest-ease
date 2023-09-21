@@ -7,17 +7,17 @@ import {
 import { GeneratorOptions } from '../types/generator.type';
 import { ModelMapping } from '../types/dmmf.type';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
-import { isPathExists } from '../utils/is-path-exists';
 import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 import { ProjectStructure } from '../helpers/project-structure/project-structure';
+import { exists } from 'fs-extra';
 
 export async function generateModelService(
   project: ProjectStructure,
   generatorOptions: GeneratorOptions,
   modelMapping: ModelMapping
 ) {
-  const { srcPath, overwriteCustomFiles, prismaServicePath } = generatorOptions;
+  const { srcPath, prismaServicePath } = generatorOptions;
   const {
     model: { name: modelName },
   } = modelMapping;
@@ -29,7 +29,7 @@ export async function generateModelService(
     className,
     'Service'
   );
-  if (!overwriteCustomFiles && (await isPathExists(sourceFilePath))) {
+  if (await exists(sourceFilePath)) {
     return;
   }
 
