@@ -6,9 +6,7 @@ import {
 } from 'ts-morph';
 import { ModelOperation } from '../types/dmmf.type';
 import { GeneratorOptions } from '../types/generator.type';
-import { selectInputType } from '../helpers/dmmf/select-input-type';
 import { optimizeImports } from '../helpers/import/optimize-imports';
-import { generatePrismaType } from './generate-prisma-type';
 import { GENERATED_WARNING_COMMENT } from '../contants/comment.const';
 import { getSchemaArgDeclaration } from '../helpers/declaration/get-schema-arg-declaration';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
@@ -76,12 +74,6 @@ export function generateArgsType(
       classDeclaration,
     ],
   });
-
-  for (const field of args) {
-    const { inputTypes } = field;
-    const inputType = selectInputType(inputTypes);
-    generatePrismaType(project, options, inputType);
-  }
 
   generatePropertyTypes(project, options, args);
 }
