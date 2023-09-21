@@ -47,14 +47,18 @@ export function getSchemaArgDeclaration(
     generatorOptions,
   });
 
-  const { imports: graphqlImports, type: graphqlType } =
-    getFieldGraphqlDeclaration({
-      type,
-      location,
-      isList,
-      importDest: sourceFilePath,
-      generatorOptions,
-    });
+  const { imports: graphqlImports, type: graphqlType } = isHiddenField
+    ? {
+        imports: [],
+        type: '',
+      }
+    : getFieldGraphqlDeclaration({
+        type,
+        location,
+        isList,
+        importDest: sourceFilePath,
+        generatorOptions,
+      });
 
   const { decorators } = property;
 
