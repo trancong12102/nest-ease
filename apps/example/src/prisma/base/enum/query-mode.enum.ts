@@ -3,11 +3,7 @@ import { registerEnumType } from '@nestjs/graphql';
 
 export enum QueryMode {
   'default' = 'default',
-  insensitive = 'insensitive',
+  insensitive = 'insensitive'
 }
 
-registerEnumType(QueryMode, {
-  name: 'QueryMode',
-  description: undefined,
-  valuesMap: undefined,
-});
+registerEnumType(QueryMode, { name: 'QueryMode', description: undefined, valuesMap: undefined })

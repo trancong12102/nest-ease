@@ -3,7 +3,6 @@ import * as path from 'path';
 import { InternalDmmf } from '../dmmf/internal-dmmf';
 import { GeneratorOptions } from '../../types/generator.type';
 import { parseGeneratorConfig } from '../../config';
-import { getGitChangedFiles } from '../git/get-git-changed-files';
 import { parseEnvValue } from '@prisma/internals';
 import { logger, logWarning, stylize } from '../../utils/logger';
 
@@ -47,7 +46,6 @@ export async function getGeneratorOptions(
 
   return {
     ...config,
-    gitChangedFiles: overwriteCustomFiles ? await getGitChangedFiles() : [],
     dmmf: new InternalDmmf(dmmf),
     srcPath,
     projectRootPath,

@@ -10,33 +10,18 @@ import { CategoryMetadataScalarFieldEnum } from '../enum/category-metadata-scala
 @ArgsType()
 export class CategoryMetadataCountArgs {
   @Type(() => CategoryMetadataWhereInput)
-  @Field(() => CategoryMetadataWhereInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => CategoryMetadataWhereInput, { nullable: true, description: undefined })
   where?: Omit<CategoryMetadataWhereInput, never> | null;
   @Type(() => CategoryMetadataOrderByWithRelationInput)
-  @Field(() => [CategoryMetadataOrderByWithRelationInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [CategoryMetadataOrderByWithRelationInput], { nullable: true, description: undefined })
   orderBy?: Array<CategoryMetadataOrderByWithRelationInput> | null;
   @Type(() => CategoryMetadataWhereUniqueInput)
-  @Field(() => CategoryMetadataWhereUniqueInput, {
-    nullable: true,
-    description: undefined,
-  })
-  cursor?: Prisma.AtLeast<
-    CategoryMetadataWhereUniqueInput,
-    'id' | 'categoryId'
-  >;
+  @Field(() => CategoryMetadataWhereUniqueInput, { nullable: true, description: undefined })
+  cursor?: Prisma.AtLeast<CategoryMetadataWhereUniqueInput, 'id' | 'categoryId'>;
   @Field(() => Int, { nullable: true, description: undefined })
   take?: number | null;
   @Field(() => Int, { nullable: true, description: undefined })
   skip?: number | null;
-  @Field(() => [CategoryMetadataScalarFieldEnum], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [CategoryMetadataScalarFieldEnum], { nullable: true, description: undefined })
   distinct?: Array<keyof typeof CategoryMetadataScalarFieldEnum> | null;
 }

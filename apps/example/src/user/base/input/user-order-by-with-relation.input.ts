@@ -24,27 +24,15 @@ export class UserOrderByWithRelationInput {
   @Field(() => SortOrder, { nullable: true, description: undefined })
   mappedField?: keyof typeof SortOrder | null;
   @Type(() => PostOrderByRelationAggregateInput)
-  @Field(() => PostOrderByRelationAggregateInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => PostOrderByRelationAggregateInput, { nullable: true, description: undefined })
   posts?: PostOrderByRelationAggregateInput | null;
   @Type(() => UserOrderByWithRelationInput)
-  @Field(() => UserOrderByWithRelationInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => UserOrderByWithRelationInput, { nullable: true, description: undefined })
   parent?: Omit<UserOrderByWithRelationInput, never> | null;
   @Type(() => UserOrderByRelationAggregateInput)
-  @Field(() => UserOrderByRelationAggregateInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => UserOrderByRelationAggregateInput, { nullable: true, description: undefined })
   children?: UserOrderByRelationAggregateInput | null;
   @Type(() => PostOrderByRelationAggregateInput)
-  @Field(() => PostOrderByRelationAggregateInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => PostOrderByRelationAggregateInput, { nullable: true, description: undefined })
   anotherPosts?: PostOrderByRelationAggregateInput | null;
 }

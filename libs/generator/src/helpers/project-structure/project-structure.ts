@@ -1,5 +1,10 @@
-import { Project, SourceFileStructure, StructureKind } from 'ts-morph';
-import { prettierFormat } from '../../utils/prettier-format';
+import {
+  IndentationText,
+  Project,
+  QuoteKind,
+  SourceFileStructure,
+  StructureKind,
+} from 'ts-morph';
 import path from 'path';
 import { glob } from 'glob';
 import { remove } from 'fs-extra';
@@ -13,6 +18,12 @@ export class ProjectStructure {
   constructor(projectSourcePath: string) {
     this.project = new Project({
       tsConfigFilePath: path.resolve(projectSourcePath, 'tsconfig.json'),
+      manipulationSettings: {
+        insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces: true,
+        useTrailingCommas: true,
+        quoteKind: QuoteKind.Single,
+        indentationText: IndentationText.TwoSpaces,
+      },
     });
   }
 
@@ -67,7 +78,6 @@ export class ProjectStructure {
   async save() {
     await this.removeUnusedBaseFiles();
 
-    logger.info('Formatting generated files...');
     for (const [filePath, structure] of Object.entries(
       this._projectStructure
     )) {
@@ -75,12 +85,9 @@ export class ProjectStructure {
         continue;
       }
 
-      const sourceFile = this.project.createSourceFile(filePath, structure, {
+      this.project.createSourceFile(filePath, structure, {
         overwrite: true,
       });
-      sourceFile.replaceWithText(
-        await prettierFormat(sourceFile.getFullText(), filePath)
-      );
     }
 
     logger.info('Saving project...');

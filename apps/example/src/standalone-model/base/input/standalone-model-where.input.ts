@@ -19,22 +19,13 @@ import { DateTimeNullableListFilter } from '../../../prisma/base/input/date-time
 @InputType()
 export class StandaloneModelWhereInput {
   @Type(() => StandaloneModelWhereInput)
-  @Field(() => [StandaloneModelWhereInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [StandaloneModelWhereInput], { nullable: true, description: undefined })
   AND?: Array<StandaloneModelWhereInput> | null;
   @Type(() => StandaloneModelWhereInput)
-  @Field(() => [StandaloneModelWhereInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [StandaloneModelWhereInput], { nullable: true, description: undefined })
   OR?: Array<StandaloneModelWhereInput> | null;
   @Type(() => StandaloneModelWhereInput)
-  @Field(() => [StandaloneModelWhereInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [StandaloneModelWhereInput], { nullable: true, description: undefined })
   NOT?: Array<StandaloneModelWhereInput> | null;
   @Type(() => IntFilter)
   @Field(() => IntFilter, { nullable: true, description: undefined })
@@ -52,25 +43,16 @@ export class StandaloneModelWhereInput {
   @Field(() => JsonFilter, { nullable: true, description: undefined })
   jsonField?: JsonFilter | null;
   @Type(() => JsonNullableListFilter)
-  @Field(() => JsonNullableListFilter, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => JsonNullableListFilter, { nullable: true, description: undefined })
   jsonList?: JsonNullableListFilter | null;
   @Type(() => StringNullableListFilter)
-  @Field(() => StringNullableListFilter, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => StringNullableListFilter, { nullable: true, description: undefined })
   stringList?: StringNullableListFilter | null;
   @Type(() => DecimalFilter)
   @Field(() => DecimalFilter, { nullable: true, description: undefined })
   decimalField?: DecimalFilter | null;
   @Type(() => DecimalNullableListFilter)
-  @Field(() => DecimalNullableListFilter, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => DecimalNullableListFilter, { nullable: true, description: undefined })
   decimalList?: DecimalNullableListFilter | null;
   @Type(() => FloatFilter)
   @Field(() => FloatFilter, { nullable: true, description: undefined })
@@ -79,27 +61,18 @@ export class StandaloneModelWhereInput {
   @Field(() => BytesFilter, { nullable: true, description: undefined })
   bytesField?: BytesFilter | null;
   @Type(() => BytesNullableListFilter)
-  @Field(() => BytesNullableListFilter, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => BytesNullableListFilter, { nullable: true, description: undefined })
   bytesList?: BytesNullableListFilter | null;
   @Type(() => BigIntFilter)
   @Field(() => BigIntFilter, { nullable: true, description: undefined })
   bigIntField?: BigIntFilter | null;
   @Type(() => BigIntNullableListFilter)
-  @Field(() => BigIntNullableListFilter, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => BigIntNullableListFilter, { nullable: true, description: undefined })
   bigIntList?: BigIntNullableListFilter | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
   dateTimeField?: DateTimeFilter | null;
   @Type(() => DateTimeNullableListFilter)
-  @Field(() => DateTimeNullableListFilter, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => DateTimeNullableListFilter, { nullable: true, description: undefined })
   dateTimeList?: DateTimeNullableListFilter | null;
 }

@@ -7,9 +7,6 @@ import { Prisma } from '../../../@prisma-client';
 @ArgsType()
 export class CategoryFindUniqueArgs {
   @Type(() => CategoryWhereUniqueInput)
-  @Field(() => CategoryWhereUniqueInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => CategoryWhereUniqueInput, { nullable: false, description: undefined })
   where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
 }

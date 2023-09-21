@@ -29,9 +29,6 @@ export class StringNullableFilter {
   @Field(() => QueryMode, { nullable: true, description: undefined })
   mode?: keyof typeof QueryMode | null;
   @Type(() => NestedStringNullableFilter)
-  @Field(() => NestedStringNullableFilter, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => NestedStringNullableFilter, { nullable: true, description: undefined })
   not?: NestedStringNullableFilter | null;
 }

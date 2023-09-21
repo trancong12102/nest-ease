@@ -9,10 +9,7 @@ import { Prisma } from '../../../@prisma-client';
 @InputType()
 export class UserCreateNestedOneWithoutPostsInput {
   @Type(() => UserCreateWithoutPostsInput)
-  @Field(() => UserCreateWithoutPostsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => UserCreateWithoutPostsInput, { nullable: true, description: undefined })
   create?: UserCreateWithoutPostsInput | null;
   @Type(() => UserCreateOrConnectWithoutPostsInput)
   @HideField()

@@ -2,10 +2,7 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { GraphQLJSON, GraphQLByte, GraphQLBigInt } from 'graphql-scalars';
 import type { JsonValue } from 'type-fest';
-import {
-  GraphQLDecimal,
-  transformToDecimal,
-} from 'prisma-graphql-type-decimal';
+import { GraphQLDecimal, transformToDecimal } from 'prisma-graphql-type-decimal';
 import { Transform, Type } from 'class-transformer';
 import { Decimal } from '@prisma/client/runtime/library';
 

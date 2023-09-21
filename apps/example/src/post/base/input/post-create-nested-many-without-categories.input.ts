@@ -9,18 +9,12 @@ import { Prisma } from '../../../@prisma-client';
 @InputType()
 export class PostCreateNestedManyWithoutCategoriesInput {
   @Type(() => PostCreateWithoutCategoriesInput)
-  @Field(() => [PostCreateWithoutCategoriesInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [PostCreateWithoutCategoriesInput], { nullable: true, description: undefined })
   create?: Array<PostCreateWithoutCategoriesInput> | null;
   @Type(() => PostCreateOrConnectWithoutCategoriesInput)
   @HideField()
   connectOrCreate?: Array<PostCreateOrConnectWithoutCategoriesInput> | null;
   @Type(() => PostWhereUniqueInput)
-  @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [PostWhereUniqueInput], { nullable: true, description: undefined })
   connect?: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
 }

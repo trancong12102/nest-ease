@@ -20,9 +20,6 @@ export class IntNullableFilter {
   @Field(() => Int, { nullable: true, description: undefined })
   gte?: number | null;
   @Type(() => NestedIntNullableFilter)
-  @Field(() => NestedIntNullableFilter, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => NestedIntNullableFilter, { nullable: true, description: undefined })
   not?: NestedIntNullableFilter | null;
 }

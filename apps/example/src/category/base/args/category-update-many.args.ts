@@ -7,10 +7,7 @@ import { CategoryWhereInput } from '../input/category-where.input';
 @ArgsType()
 export class CategoryUpdateManyArgs {
   @Type(() => CategoryUpdateManyMutationInput)
-  @Field(() => CategoryUpdateManyMutationInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => CategoryUpdateManyMutationInput, { nullable: false, description: undefined })
   data!: CategoryUpdateManyMutationInput;
   @Type(() => CategoryWhereInput)
   @Field(() => CategoryWhereInput, { nullable: true, description: undefined })

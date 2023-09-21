@@ -8,15 +8,9 @@ import { CategoryUpdateWithoutPostsInput } from './category-update-without-posts
 @InputType()
 export class CategoryUpdateWithWhereUniqueWithoutPostsInput {
   @Type(() => CategoryWhereUniqueInput)
-  @Field(() => CategoryWhereUniqueInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => CategoryWhereUniqueInput, { nullable: false, description: undefined })
   where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
   @Type(() => CategoryUpdateWithoutPostsInput)
-  @Field(() => CategoryUpdateWithoutPostsInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => CategoryUpdateWithoutPostsInput, { nullable: false, description: undefined })
   data!: CategoryUpdateWithoutPostsInput;
 }

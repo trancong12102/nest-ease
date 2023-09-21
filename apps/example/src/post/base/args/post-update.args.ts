@@ -11,9 +11,6 @@ export class PostUpdateArgs {
   @Field(() => PostUpdateInput, { nullable: false, description: undefined })
   data!: PostUpdateInput;
   @Type(() => PostWhereUniqueInput)
-  @Field(() => PostWhereUniqueInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => PostWhereUniqueInput, { nullable: false, description: undefined })
   where!: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
 }

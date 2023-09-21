@@ -7,9 +7,6 @@ import { Prisma } from '../../../@prisma-client';
 @ArgsType()
 export class PostFindUniqueArgs {
   @Type(() => PostWhereUniqueInput)
-  @Field(() => PostWhereUniqueInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => PostWhereUniqueInput, { nullable: false, description: undefined })
   where!: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
 }

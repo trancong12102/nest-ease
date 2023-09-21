@@ -10,10 +10,7 @@ import { Prisma } from '../../../@prisma-client';
 @InputType()
 export class UserCreateNestedManyWithoutParentInput {
   @Type(() => UserCreateWithoutParentInput)
-  @Field(() => [UserCreateWithoutParentInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [UserCreateWithoutParentInput], { nullable: true, description: undefined })
   create?: Array<UserCreateWithoutParentInput> | null;
   @Type(() => UserCreateOrConnectWithoutParentInput)
   @HideField()
@@ -22,9 +19,6 @@ export class UserCreateNestedManyWithoutParentInput {
   @HideField()
   createMany?: UserCreateManyParentInputEnvelope | null;
   @Type(() => UserWhereUniqueInput)
-  @Field(() => [UserWhereUniqueInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [UserWhereUniqueInput], { nullable: true, description: undefined })
   connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
 }

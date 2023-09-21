@@ -10,9 +10,6 @@ export class CategoryMetadataCreateWithoutCategoryInput {
   @Field(() => Date, { nullable: true, description: undefined })
   updatedAt?: Date | string | null;
   @Type(() => CategoryMetadataCreatemetadataInput)
-  @Field(() => CategoryMetadataCreatemetadataInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => CategoryMetadataCreatemetadataInput, { nullable: true, description: undefined })
   metadata?: CategoryMetadataCreatemetadataInput | null;
 }

@@ -7,9 +7,6 @@ import { Prisma } from '../../../@prisma-client';
 @ArgsType()
 export class UserFindUniqueArgs {
   @Type(() => UserWhereUniqueInput)
-  @Field(() => UserWhereUniqueInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => UserWhereUniqueInput, { nullable: false, description: undefined })
   where!: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
 }

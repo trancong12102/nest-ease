@@ -7,21 +7,12 @@ import { DateTimeFieldUpdateOperationsInput } from '../../../prisma/base/input/d
 @InputType()
 export class CategoryUpdateManyMutationInput {
   @Type(() => StringFieldUpdateOperationsInput)
-  @Field(() => StringFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true, description: undefined })
   name?: StringFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
-  @Field(() => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true, description: undefined })
   createdAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
-  @Field(() => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true, description: undefined })
   updatedAt?: DateTimeFieldUpdateOperationsInput | null;
 }

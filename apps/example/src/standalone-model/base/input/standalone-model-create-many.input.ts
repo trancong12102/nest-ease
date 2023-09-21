@@ -5,10 +5,7 @@ import type { JsonValue } from 'type-fest';
 import { StandaloneModelCreatejsonListInput } from './standalone-model-createjson-list.input';
 import { Type, Transform } from 'class-transformer';
 import { StandaloneModelCreatestringListInput } from './standalone-model-createstring-list.input';
-import {
-  GraphQLDecimal,
-  transformToDecimal,
-} from 'prisma-graphql-type-decimal';
+import { GraphQLDecimal, transformToDecimal } from 'prisma-graphql-type-decimal';
 import { Decimal } from '@prisma/client/runtime/library';
 import { StandaloneModelCreatedecimalListInput } from './standalone-model-createdecimal-list.input';
 import { StandaloneModelCreatebytesListInput } from './standalone-model-createbytes-list.input';
@@ -28,51 +25,33 @@ export class StandaloneModelCreateManyInput {
   @Field(() => GraphQLJSON, { nullable: false, description: undefined })
   jsonField!: JsonValue;
   @Type(() => StandaloneModelCreatejsonListInput)
-  @Field(() => StandaloneModelCreatejsonListInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => StandaloneModelCreatejsonListInput, { nullable: true, description: undefined })
   jsonList?: StandaloneModelCreatejsonListInput | null;
   @Type(() => StandaloneModelCreatestringListInput)
-  @Field(() => StandaloneModelCreatestringListInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => StandaloneModelCreatestringListInput, { nullable: true, description: undefined })
   stringList?: StandaloneModelCreatestringListInput | null;
   @Type(() => Object)
   @Transform(transformToDecimal)
   @Field(() => GraphQLDecimal, { nullable: false, description: undefined })
   decimalField!: Decimal;
   @Type(() => StandaloneModelCreatedecimalListInput)
-  @Field(() => StandaloneModelCreatedecimalListInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => StandaloneModelCreatedecimalListInput, { nullable: true, description: undefined })
   decimalList?: StandaloneModelCreatedecimalListInput | null;
   @Field(() => Number, { nullable: false, description: undefined })
   floatField!: number;
   @Field(() => GraphQLByte, { nullable: false, description: undefined })
   bytesField!: Buffer;
   @Type(() => StandaloneModelCreatebytesListInput)
-  @Field(() => StandaloneModelCreatebytesListInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => StandaloneModelCreatebytesListInput, { nullable: true, description: undefined })
   bytesList?: StandaloneModelCreatebytesListInput | null;
   @Field(() => GraphQLBigInt, { nullable: false, description: undefined })
   bigIntField!: bigint | number;
   @Type(() => StandaloneModelCreatebigIntListInput)
-  @Field(() => StandaloneModelCreatebigIntListInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => StandaloneModelCreatebigIntListInput, { nullable: true, description: undefined })
   bigIntList?: StandaloneModelCreatebigIntListInput | null;
   @Field(() => Date, { nullable: false, description: undefined })
   dateTimeField!: Date | string;
   @Type(() => StandaloneModelCreatedateTimeListInput)
-  @Field(() => StandaloneModelCreatedateTimeListInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => StandaloneModelCreatedateTimeListInput, { nullable: true, description: undefined })
   dateTimeList?: StandaloneModelCreatedateTimeListInput | null;
 }

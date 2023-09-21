@@ -8,15 +8,9 @@ import { Prisma } from '../../../@prisma-client';
 @ArgsType()
 export class StandaloneModelUpdateArgs {
   @Type(() => StandaloneModelUpdateInput)
-  @Field(() => StandaloneModelUpdateInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => StandaloneModelUpdateInput, { nullable: false, description: undefined })
   data!: StandaloneModelUpdateInput;
   @Type(() => StandaloneModelWhereUniqueInput)
-  @Field(() => StandaloneModelWhereUniqueInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => StandaloneModelWhereUniqueInput, { nullable: false, description: undefined })
   where!: Prisma.AtLeast<StandaloneModelWhereUniqueInput, 'id'>;
 }

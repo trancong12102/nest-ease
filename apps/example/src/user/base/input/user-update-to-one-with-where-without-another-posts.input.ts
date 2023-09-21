@@ -10,9 +10,6 @@ export class UserUpdateToOneWithWhereWithoutAnotherPostsInput {
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
   where?: Omit<UserWhereInput, never> | null;
   @Type(() => UserUpdateWithoutAnotherPostsInput)
-  @Field(() => UserUpdateWithoutAnotherPostsInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => UserUpdateWithoutAnotherPostsInput, { nullable: false, description: undefined })
   data!: UserUpdateWithoutAnotherPostsInput;
 }

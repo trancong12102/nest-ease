@@ -8,7 +8,6 @@ import { GeneratorOptions } from '../types/generator.type';
 import { ModelMapping } from '../types/dmmf.type';
 import { getImportModuleSpecifier } from '../helpers/import/get-import-module-specifier';
 import { isPathExists } from '../utils/is-path-exists';
-import { assertGitStatusClean } from '../helpers/git/assert-git-status-clean';
 import { getModuleFileClassName } from '../helpers/path/get-module-file-class-name';
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 import { ProjectStructure } from '../helpers/project-structure/project-structure';
@@ -18,8 +17,7 @@ export async function generateModelService(
   generatorOptions: GeneratorOptions,
   modelMapping: ModelMapping
 ) {
-  const { srcPath, overwriteCustomFiles, gitChangedFiles, prismaServicePath } =
-    generatorOptions;
+  const { srcPath, overwriteCustomFiles, prismaServicePath } = generatorOptions;
   const {
     model: { name: modelName },
   } = modelMapping;
@@ -34,7 +32,6 @@ export async function generateModelService(
   if (!overwriteCustomFiles && (await isPathExists(sourceFilePath))) {
     return;
   }
-  assertGitStatusClean(gitChangedFiles, sourceFilePath);
 
   const baseServiceClassName = getModuleFileClassName(
     modelName,

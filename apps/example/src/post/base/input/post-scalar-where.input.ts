@@ -11,22 +11,13 @@ import { EnumPostKindFilter } from './enum-post-kind-filter.input';
 @InputType()
 export class PostScalarWhereInput {
   @Type(() => PostScalarWhereInput)
-  @Field(() => [PostScalarWhereInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [PostScalarWhereInput], { nullable: true, description: undefined })
   AND?: Array<PostScalarWhereInput> | null;
   @Type(() => PostScalarWhereInput)
-  @Field(() => [PostScalarWhereInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [PostScalarWhereInput], { nullable: true, description: undefined })
   OR?: Array<PostScalarWhereInput> | null;
   @Type(() => PostScalarWhereInput)
-  @Field(() => [PostScalarWhereInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [PostScalarWhereInput], { nullable: true, description: undefined })
   NOT?: Array<PostScalarWhereInput> | null;
   @Type(() => IntFilter)
   @Field(() => IntFilter, { nullable: true, description: undefined })

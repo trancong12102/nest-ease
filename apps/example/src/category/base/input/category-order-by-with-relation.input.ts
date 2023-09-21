@@ -16,15 +16,9 @@ export class CategoryOrderByWithRelationInput {
   @Field(() => SortOrder, { nullable: true, description: undefined })
   updatedAt?: keyof typeof SortOrder | null;
   @Type(() => PostOrderByRelationAggregateInput)
-  @Field(() => PostOrderByRelationAggregateInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => PostOrderByRelationAggregateInput, { nullable: true, description: undefined })
   posts?: PostOrderByRelationAggregateInput | null;
   @Type(() => CategoryMetadataOrderByWithRelationInput)
-  @Field(() => CategoryMetadataOrderByWithRelationInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => CategoryMetadataOrderByWithRelationInput, { nullable: true, description: undefined })
   metadata?: Omit<CategoryMetadataOrderByWithRelationInput, never> | null;
 }

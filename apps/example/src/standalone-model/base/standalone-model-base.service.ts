@@ -13,27 +13,22 @@ import { StandaloneModelUpdateManyArgs } from './args/standalone-model-update-ma
 import { StandaloneModelDeleteManyArgs } from './args/standalone-model-delete-many.args';
 
 export class StandaloneModelBaseService {
-  constructor(protected readonly prisma: PrismaService) {}
+  constructor(protected readonly prisma: PrismaService) {
+  }
 
   async create(args: StandaloneModelCreateArgs): Promise<StandaloneModel> {
     return this.prisma.client.standaloneModel.create(args);
   }
 
-  async update(
-    args: StandaloneModelUpdateArgs
-  ): Promise<StandaloneModel | null> {
+  async update(args: StandaloneModelUpdateArgs): Promise<StandaloneModel | null> {
     return this.prisma.client.standaloneModel.update(args);
   }
 
-  async delete(
-    args: StandaloneModelDeleteArgs
-  ): Promise<StandaloneModel | null> {
+  async delete(args: StandaloneModelDeleteArgs): Promise<StandaloneModel | null> {
     return this.prisma.client.standaloneModel.delete(args);
   }
 
-  async findUnique(
-    args: StandaloneModelFindUniqueArgs
-  ): Promise<StandaloneModel | null> {
+  async findUnique(args: StandaloneModelFindUniqueArgs): Promise<StandaloneModel | null> {
     return this.prisma.client.standaloneModel.findUnique(args);
   }
 
@@ -41,27 +36,19 @@ export class StandaloneModelBaseService {
     return this.prisma.client.standaloneModel.count(args);
   }
 
-  async findMany(
-    args: StandaloneModelFindManyArgs
-  ): Promise<Array<StandaloneModel>> {
+  async findMany(args: StandaloneModelFindManyArgs): Promise<Array<StandaloneModel>> {
     return this.prisma.client.standaloneModel.findMany(args);
   }
 
-  async createMany(
-    args: StandaloneModelCreateManyArgs
-  ): Promise<AffectedRowsOutput> {
+  async createMany(args: StandaloneModelCreateManyArgs): Promise<AffectedRowsOutput> {
     return this.prisma.client.standaloneModel.createMany(args);
   }
 
-  async updateMany(
-    args: StandaloneModelUpdateManyArgs
-  ): Promise<AffectedRowsOutput> {
+  async updateMany(args: StandaloneModelUpdateManyArgs): Promise<AffectedRowsOutput> {
     return this.prisma.client.standaloneModel.updateMany(args);
   }
 
-  async deleteMany(
-    args: StandaloneModelDeleteManyArgs
-  ): Promise<AffectedRowsOutput> {
+  async deleteMany(args: StandaloneModelDeleteManyArgs): Promise<AffectedRowsOutput> {
     return this.prisma.client.standaloneModel.deleteMany(args);
   }
 }

@@ -8,15 +8,7 @@ export enum UserRole {
   /** UserRole ADMIN */
   ADMIN = 'ADMIN',
   /** UserRole MODERATOR */
-  MODERATOR = 'MODERATOR',
+  MODERATOR = 'MODERATOR'
 }
 
-registerEnumType(UserRole, {
-  name: 'UserRole',
-  description: 'UserRole Documentation',
-  valuesMap: {
-    USER: { description: 'UserRole USER' },
-    ADMIN: { description: 'UserRole ADMIN' },
-    MODERATOR: { description: 'UserRole MODERATOR' },
-  },
-});
+registerEnumType(UserRole, { name: 'UserRole', description: "UserRole Documentation", valuesMap: {"USER":{"description":"UserRole USER"},"ADMIN":{"description":"UserRole ADMIN"},"MODERATOR":{"description":"UserRole MODERATOR"}} })

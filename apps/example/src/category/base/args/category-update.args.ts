@@ -11,9 +11,6 @@ export class CategoryUpdateArgs {
   @Field(() => CategoryUpdateInput, { nullable: false, description: undefined })
   data!: CategoryUpdateInput;
   @Type(() => CategoryWhereUniqueInput)
-  @Field(() => CategoryWhereUniqueInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => CategoryWhereUniqueInput, { nullable: false, description: undefined })
   where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
 }

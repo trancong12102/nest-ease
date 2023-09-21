@@ -6,10 +6,7 @@ import { Type } from 'class-transformer';
 @ArgsType()
 export class CategoryMetadataCreateManyArgs {
   @Type(() => CategoryMetadataCreateManyInput)
-  @Field(() => [CategoryMetadataCreateManyInput], {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => [CategoryMetadataCreateManyInput], { nullable: false, description: undefined })
   data!: Array<CategoryMetadataCreateManyInput>;
   @Field(() => Boolean, { nullable: true, description: undefined })
   skipDuplicates?: boolean | null;

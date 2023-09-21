@@ -4,3 +4,4 @@
 pnpm-lock.yaml
 @prisma-client
 dmmf.json
+**/base/**/*

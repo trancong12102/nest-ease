@@ -6,10 +6,7 @@ import { Type } from 'class-transformer';
 @InputType()
 export class UserCreateManyParentInputEnvelope {
   @Type(() => UserCreateManyParentInput)
-  @Field(() => [UserCreateManyParentInput], {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => [UserCreateManyParentInput], { nullable: false, description: undefined })
   data!: Array<UserCreateManyParentInput>;
   @Field(() => Boolean, { nullable: true, description: undefined })
   skipDuplicates?: boolean | null;

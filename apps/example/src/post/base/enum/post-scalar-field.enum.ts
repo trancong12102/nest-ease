@@ -10,11 +10,7 @@ export enum PostScalarFieldEnum {
   anotherAuthorId = 'anotherAuthorId',
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
-  postKind = 'postKind',
+  postKind = 'postKind'
 }
 
-registerEnumType(PostScalarFieldEnum, {
-  name: 'PostScalarFieldEnum',
-  description: undefined,
-  valuesMap: undefined,
-});
+registerEnumType(PostScalarFieldEnum, { name: 'PostScalarFieldEnum', description: undefined, valuesMap: undefined })
