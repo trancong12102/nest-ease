@@ -3,7 +3,7 @@ import { Project } from 'ts-morph';
 import { generateNestEaseModule } from './generator/generate-nest-ease-module';
 import { PrismaGeneratorOptions } from './types/generator.type';
 import { formatProject } from './helpers/generator/format-project';
-import { logError, logger, logWarning, stylize } from './utils/logger';
+import { logError, logger, stylize } from './utils/logger';
 import { getGeneratorOptions } from './helpers/generator/get-generator-options';
 import { assertSchemaFollowNamingConventions } from './helpers/dmmf/assert-schema-follow-naming-conventions';
 
@@ -14,20 +14,7 @@ export async function generate(prismaOptions: PrismaGeneratorOptions) {
 
     logger.info('Getting generator options...');
     const options = await getGeneratorOptions(prismaOptions);
-    const { projectRootPath, overwriteCustomFiles } = options;
-    logger.info(`Project root path: ${stylize(projectRootPath, 'green')}`);
-
-    if (overwriteCustomFiles) {
-      logWarning(
-        `${stylize('overwriteCustomFiles', 'blue')} option is ${stylize(
-          'ENABLED',
-          'red'
-        )}, all your custom code files will be ${stylize(
-          'OVERWRITTEN',
-          'red'
-        )}!`
-      );
-    }
+    const { projectRootPath } = options;
 
     const project = new Project({
       tsConfigFilePath: path.resolve(projectRootPath, 'tsconfig.json'),

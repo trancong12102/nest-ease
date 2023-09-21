@@ -5,6 +5,7 @@ import { GeneratorOptions } from '../../types/generator.type';
 import { parseGeneratorConfig } from '../../config';
 import { getGitChangedFiles } from '../git/get-git-changed-files';
 import { parseEnvValue } from '@prisma/internals';
+import { logger, logWarning, stylize } from '../../utils/logger';
 
 export async function getGeneratorOptions(
   prismaOptions: PrismaGeneratorOptions
@@ -13,6 +14,8 @@ export async function getGeneratorOptions(
 
   const projectRootPath = path.resolve(schemaPath, '../..');
   const srcPath = path.resolve(projectRootPath, 'src');
+
+  logger.info(`Project root path: ${stylize(projectRootPath, 'green')}`);
 
   const prismaClientGenerator = otherGenerators.find(
     ({ provider }) => parseEnvValue(provider) === 'prisma-client-js'
@@ -32,6 +35,15 @@ export async function getGeneratorOptions(
 
   const config = await parseGeneratorConfig(srcPath);
   const { overwriteCustomFiles } = config;
+
+  if (overwriteCustomFiles) {
+    logWarning(
+      `${stylize('overwriteCustomFiles', 'blue')} option is ${stylize(
+        'ENABLED',
+        'red'
+      )}, all your custom code files will be ${stylize('OVERWRITTEN', 'red')}!`
+    );
+  }
 
   return {
     ...config,
