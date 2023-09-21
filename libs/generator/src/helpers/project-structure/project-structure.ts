@@ -10,14 +10,10 @@ export class ProjectStructure {
   private readonly _projectStructure: Record<string, SourceFileStructure> = {};
   private readonly project: Project;
 
-  constructor(private readonly projectSourcePath: string) {
+  constructor(projectSourcePath: string) {
     this.project = new Project({
       tsConfigFilePath: path.resolve(projectSourcePath, 'tsconfig.json'),
     });
-  }
-
-  addSourceFile(path: string, structure: SourceFileStructure) {
-    this._projectStructure[path] = structure;
   }
 
   getSourceFile(path: string) {
