@@ -40,10 +40,10 @@ export async function generateRootModule(
   project.createSourceFile(sourceFilePath);
   await generateModelMappingsTypes(project, options, modelMappings);
 
-  const anyModelChanged = modelMappings.some(({ model: { name } }) =>
+  const isSomeModelChanged = modelMappings.some(({ model: { name } }) =>
     options.dmmf.getIsDatamodelTypeChanged('models', name)
   );
-  if (!anyModelChanged) {
+  if (!isSomeModelChanged) {
     logger.info(stylize(`Skipping unchanged module ${className}`, 'dim'));
     return;
   }
