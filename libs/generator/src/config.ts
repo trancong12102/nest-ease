@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import path from 'path';
-import { ModuleKind, Project } from 'ts-morph';
-import * as os from 'os';
 import { logger, stylize } from './utils/logger';
-import * as crypto from 'crypto';
+import * as swc from '@swc/core';
+import { readFile } from 'fs-extra';
+import { importStringAsModule } from './utils/import-string-as-module';
 
 export const ConfigSchema = z.object({
   prismaServicePath: z.string(),
@@ -20,29 +20,28 @@ export async function parseGeneratorConfig(
   logger.info(
     `Parsing generator config from ${stylize(configTsPath, 'green')}...`
   );
-  const project = new Project({
-    compilerOptions: {
-      outDir: path.resolve(os.tmpdir(), crypto.randomUUID()),
-      declaration: false,
-      esModuleInterop: true,
-      module: ModuleKind.CommonJS,
+  const sourceCode = await readFile(configTsPath, 'utf-8');
+  const { code: emittedConfig } = await swc.transform(sourceCode, {
+    filename: configTsPath,
+    sourceMaps: false,
+    isModule: true,
+    module: {
+      type: 'commonjs',
+      importInterop: 'swc',
+    },
+    jsc: {
+      parser: {
+        syntax: 'typescript',
+        decorators: false,
+        tsx: false,
+        dynamicImport: false,
+      },
+      target: 'es2015',
     },
   });
-  project.addSourceFileAtPath(configTsPath);
-  await project.emit();
 
-  const configSourceFile = project.getSourceFileOrThrow(configTsPath);
-  const configEmitOutput = configSourceFile.getEmitOutput();
-  if (configEmitOutput.getEmitSkipped()) {
-    throw new Error(`Invalid ${CONFIG_FILE_NAME}`);
-  }
-  const configJsOutput = configEmitOutput.getOutputFiles()[0];
-  if (!configJsOutput) {
-    throw new Error(`Invalid ${CONFIG_FILE_NAME}`);
-  }
-  const configJsPath = configJsOutput.getFilePath();
-
-  const config: GeneratorConfig = (await import(configJsPath)).default;
+  const config: GeneratorConfig = (await importStringAsModule(emittedConfig))
+    .default;
 
   try {
     ConfigSchema.parse(config);
