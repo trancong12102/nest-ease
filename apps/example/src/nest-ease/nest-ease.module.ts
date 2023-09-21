@@ -7,19 +7,8 @@ import { CategoryMetadataModule } from '../category-metadata/category-metadata.m
 import { StandaloneModelModule } from '../standalone-model/standalone-model.module';
 
 @Module({
-  imports: [
-    UserModule,
-    PostModule,
-    CategoryModule,
-    CategoryMetadataModule,
-    StandaloneModelModule,
-  ],
-  exports: [
-    UserModule,
-    PostModule,
-    CategoryModule,
-    CategoryMetadataModule,
-    StandaloneModelModule,
-  ],
-})
-export class NestEaseModule {}
+    imports: [UserModule, PostModule, CategoryModule, CategoryMetadataModule, StandaloneModelModule],
+    exports: [UserModule, PostModule, CategoryModule, CategoryMetadataModule, StandaloneModelModule],
+  })
+export class NestEaseModule {
+}
