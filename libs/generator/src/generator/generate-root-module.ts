@@ -16,6 +16,7 @@ import { getModuleFileClassName } from '../helpers/path/get-module-file-class-na
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 import { logger, stylize } from '../utils/logger';
 import { ProjectStructure } from '../helpers/project-structure/project-structure';
+import { ModelMapping } from '../types/dmmf.type';
 
 const MODULE = 'NestEase';
 
@@ -36,6 +37,16 @@ export async function generateRootModule(
     className,
     'Module'
   );
+  project.createSourceFile(sourceFilePath);
+  await generateModelMappingsTypes(project, options, modelMappings);
+
+  const anyModelChanged = modelMappings.some(({ model: { name } }) =>
+    options.dmmf.getIsDatamodelTypeChanged('models', name)
+  );
+  if (!anyModelChanged) {
+    logger.info(stylize(`Skipping unchanged module ${className}`, 'dim'));
+    return;
+  }
 
   const imports: ImportDeclarationStructure[] = [
     {
@@ -53,14 +64,6 @@ export async function generateRootModule(
     const {
       model: { name: modelName },
     } = modelMapping;
-    logger.info(`Generating ${stylize(modelName, 'blue')} module...`);
-
-    generateModelMappingTypes(project, options, modelMapping);
-    generateModelBaseService(project, options, modelMapping);
-    generateModelBaseResolver(project, options, modelMapping);
-    await generateModelModule(project, options, modelMapping);
-    await generateModelService(project, options, modelMapping);
-    await generateModelResolver(project, options, modelMapping);
 
     const modelModuleClassname = getModuleFileClassName(modelName, 'Module');
     const modelModuleFilepath = getSourceFilePath(
@@ -100,8 +103,28 @@ export async function generateRootModule(
     ],
   };
 
-  project.createSourceFile(sourceFilePath, {
+  project.setSourceFile(sourceFilePath, {
     kind: StructureKind.SourceFile,
     statements: [GENERATED_WARNING_COMMENT, ...imports, classDeclaration],
   });
+}
+
+async function generateModelMappingsTypes(
+  project: ProjectStructure,
+  options: GeneratorOptions,
+  modelMappings: ModelMapping[]
+) {
+  for (const modelMapping of modelMappings) {
+    const {
+      model: { name: modelName },
+    } = modelMapping;
+    logger.info(`Generating ${stylize(modelName, 'blue')} module...`);
+
+    generateModelMappingTypes(project, options, modelMapping);
+    generateModelBaseService(project, options, modelMapping);
+    generateModelBaseResolver(project, options, modelMapping);
+    await generateModelModule(project, options, modelMapping);
+    await generateModelService(project, options, modelMapping);
+    await generateModelResolver(project, options, modelMapping);
+  }
 }

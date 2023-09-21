@@ -43,6 +43,7 @@ export function generateInputObjectType(
   if (!type) {
     throw new Error(`Cannot find input type ${inputTypeName}`);
   }
+  const { fields } = type;
 
   if (
     !dmmf.getIsNonPrimitiveTypeChanged(
@@ -52,7 +53,7 @@ export function generateInputObjectType(
     )
   ) {
     logger.info(stylize(`Skipping unchanged input ${inputTypeName}`, 'dim'));
-    generatePropertyTypes(project, options, type);
+    generatePropertyTypes(project, options, fields);
     return;
   }
   logger.info(stylize(`Generating input type ${inputTypeName}...`, 'dim'));
@@ -66,7 +67,6 @@ export function generateInputObjectType(
   ];
   const properties: PropertyDeclarationStructure[] = [];
 
-  const { fields } = type;
   const isNestedInputType = getIsNestedInputType(inputTypeName);
 
   for (const field of fields) {
@@ -105,7 +105,7 @@ export function generateInputObjectType(
     ],
   });
 
-  generatePropertyTypes(project, options, type);
+  generatePropertyTypes(project, options, fields);
 }
 
 function getIsNestedInputType(inputType: string) {

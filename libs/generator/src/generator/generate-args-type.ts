@@ -14,6 +14,7 @@ import { getSchemaArgDeclaration } from '../helpers/declaration/get-schema-arg-d
 import { getSourceFilePath } from '../helpers/path/get-source-file-path';
 import { ProjectStructure } from '../helpers/project-structure/project-structure';
 import { logger, stylize } from '../utils/logger';
+import { generatePropertyTypes } from './generate-property-types';
 
 export function generateArgsType(
   project: ProjectStructure,
@@ -21,11 +22,9 @@ export function generateArgsType(
   operation: ModelOperation,
   modelName: string
 ) {
-  const {
-    argsTypeName,
-    schemaField: { args },
-  } = operation;
-  const { srcPath } = options;
+  const { argsTypeName, schemaField, type: operationType } = operation;
+  const { args, name: schemaFieldName } = schemaField;
+  const { srcPath, dmmf } = options;
   const sourceFilePath = getSourceFilePath(
     srcPath,
     modelName,
@@ -35,9 +34,15 @@ export function generateArgsType(
   if (project.isSourceFileExists(sourceFilePath)) {
     return;
   }
-  logger.info(stylize(`Generating args type ${argsTypeName}...`, 'dim'));
 
   project.createSourceFile(sourceFilePath);
+
+  if (!dmmf.getIsSchemaFieldChanged(operationType, schemaFieldName)) {
+    logger.info(stylize(`Skipping unchanged args ${argsTypeName}`, 'dim'));
+    generatePropertyTypes(project, options, args);
+  }
+
+  logger.info(stylize(`Generating args type ${argsTypeName}...`, 'dim'));
   const imports: ImportDeclarationStructure[] = [
     {
       kind: StructureKind.ImportDeclaration,
@@ -84,4 +89,6 @@ export function generateArgsType(
     const inputType = selectInputType(inputTypes);
     generatePrismaType(project, options, inputType);
   }
+
+  generatePropertyTypes(project, options, args);
 }

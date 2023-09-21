@@ -31,14 +31,21 @@ export function generateModelBaseResolver(
   const { model, operations } = modelMapping;
   const { name: modelName } = model;
   const className = getModuleFileClassName(modelName, 'Resolver', true);
-  logger.info(stylize(`Generating resolver ${className}...`, 'dim'));
-
   const sourceFilePath = getSourceFilePath(
     srcPath,
     modelName,
     className,
     'Resolver'
   );
+  project.createSourceFile(sourceFilePath);
+
+  if (!dmmf.getIsDatamodelTypeChanged('models', modelName)) {
+    logger.info(stylize(`Skipping unchanged resolver ${className}`, 'dim'));
+    return;
+  }
+
+  logger.info(stylize(`Generating resolver ${className}...`, 'dim'));
+
   const baseServiceClassName = getModuleFileClassName(
     modelName,
     'Service',
@@ -290,7 +297,7 @@ return this.service.${getResolveMethodName(name)}(parent${
     methods,
   };
 
-  project.createSourceFile(sourceFilePath, {
+  project.setSourceFile(sourceFilePath, {
     kind: StructureKind.SourceFile,
     statements: [
       GENERATED_WARNING_COMMENT,

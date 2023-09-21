@@ -28,18 +28,25 @@ export function generateModelBaseService(
   generatorOptions: GeneratorOptions,
   modelMapping: ModelMapping
 ) {
-  const { srcPath, prismaServicePath } = generatorOptions;
+  const { srcPath, prismaServicePath, dmmf } = generatorOptions;
   const { model, operations } = modelMapping;
   const { name: modelName } = model;
   const modelDelegateName = camelCase(modelName);
   const className = getModuleFileClassName(modelName, 'Service', true);
-  logger.info(stylize(`Generating service ${className}...`, 'dim'));
   const sourceFilePath = getSourceFilePath(
     srcPath,
     modelName,
     className,
     'Service'
   );
+  project.createSourceFile(sourceFilePath);
+
+  if (!dmmf.getIsDatamodelTypeChanged('models', modelName)) {
+    logger.info(stylize(`Skipping unchanged service ${className}`, 'dim'));
+    return;
+  }
+
+  logger.info(stylize(`Generating service ${className}...`, 'dim'));
   const prismaServiceClassname = getModuleFileClassName('Prisma', 'Service');
   const imports: ImportDeclarationStructure[] = [
     {
@@ -206,7 +213,7 @@ return this.prisma.client.${modelDelegateName}
     methods,
   };
 
-  project.createSourceFile(sourceFilePath, {
+  project.setSourceFile(sourceFilePath, {
     kind: StructureKind.SourceFile,
     statements: [
       GENERATED_WARNING_COMMENT,

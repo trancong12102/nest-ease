@@ -32,7 +32,7 @@ export class InternalDmmf {
 
   constructor(
     private readonly dmmf: PrismaDMMF,
-    private readonly oldDmmf?: PrismaDMMF
+    private readonly prvDmmf?: PrismaDMMF
   ) {
     this.dmmf = dmmf;
     this._cache = new CacheManager();
@@ -135,7 +135,7 @@ export class InternalDmmf {
     return this._cache.wrap(
       `isNonPrimitiveTypeChanged:${location}:${namespace}:${name}`,
       () => {
-        if (!this.oldDmmf) {
+        if (!this.prvDmmf) {
           return true;
         }
 
@@ -148,7 +148,7 @@ export class InternalDmmf {
           location,
           namespace,
           name,
-          'OldDMMF'
+          'PreviousDMMF'
         );
 
         return !deepEqual(currentType, oldType);
@@ -165,10 +165,7 @@ export class InternalDmmf {
     name: string,
     from: DmmfKind = 'CurrentDMMF'
   ): ReturnType | undefined {
-    const dmmf =
-      (from === 'CurrentDMMF' ? this.dmmf : this.oldDmmf) || this.dmmf;
-    const dmmfCacheKey: DmmfKind =
-      from === 'OldDMMF' && !!this.oldDmmf ? 'OldDMMF' : 'CurrentDMMF';
+    const { dmmf, cacheKey: dmmfCacheKey } = this.getDmmfAndCacheKey(from);
 
     return this._cache.wrap(
       `getNonPrimitiveType:${location}:${namespace}:${name}:${dmmfCacheKey}`,
@@ -180,14 +177,60 @@ export class InternalDmmf {
     );
   }
 
+  getDmmfAndCacheKey(from: DmmfKind = 'CurrentDMMF'): {
+    dmmf: PrismaDMMF;
+    cacheKey: DmmfKind;
+  } {
+    const dmmf =
+      (from === 'CurrentDMMF' ? this.dmmf : this.prvDmmf) || this.dmmf;
+    const cacheKey: DmmfKind =
+      from === 'PreviousDMMF' && !!this.prvDmmf
+        ? 'PreviousDMMF'
+        : 'CurrentDMMF';
+
+    return { dmmf, cacheKey };
+  }
+
+  getIsDatamodelTypeChanged<Location extends DatamodelTypeLocation>(
+    location: Location,
+    name: string
+  ): boolean {
+    return this._cache.wrap(
+      `isDatamodelTypeChanged:${location}:${name}`,
+      () => {
+        if (!this.prvDmmf) {
+          return true;
+        }
+
+        const currentType = this.getDatamodelType(location, name);
+        if (!currentType) {
+          throw new Error(`Cannot find ${location}:${name}`);
+        }
+
+        const oldType = this.getDatamodelType(location, name, 'PreviousDMMF');
+
+        return !deepEqual(currentType, oldType);
+      }
+    );
+  }
+
   getDatamodelType<
     Location extends DatamodelTypeLocation,
     ReturnType extends DatamodelType<Location>
-  >(location: Location, name: string): ReturnType | undefined {
-    return this._cache.wrap(`getDatamodelType:${location}:${name}`, () => {
-      const typeList = (this.dmmf.datamodel[location] || []) as ReturnType[];
-      return typeList.find((t) => t.name === name);
-    });
+  >(
+    location: Location,
+    name: string,
+    from: DmmfKind = 'CurrentDMMF'
+  ): ReturnType | undefined {
+    const { dmmf, cacheKey: dmmfCacheKey } = this.getDmmfAndCacheKey(from);
+
+    return this._cache.wrap(
+      `getDatamodelType:${location}:${name}${dmmfCacheKey}`,
+      () => {
+        const typeList = (dmmf.datamodel[location] || []) as ReturnType[];
+        return typeList.find((t) => t.name === name);
+      }
+    );
   }
 
   getModel(name: string) {
@@ -268,7 +311,7 @@ export class InternalDmmf {
         resolverMethod: `${camelCase(modelName)}Count`,
         serviceMethod: 'count',
         schemaField: {
-          name: 'count',
+          name: `findMany${modelName}`,
           outputType: {
             type: 'Int',
             location: 'scalar',
@@ -313,26 +356,52 @@ export class InternalDmmf {
     ];
   }
 
-  private getSchemaField(type: ModelOperationType, name: string) {
-    return this._cache.wrap(`getSchemaField:${type}:${name}`, () => {
-      const objectType = this.getNonPrimitiveType(
-        'outputObjectTypes',
-        'prisma',
-        type
-      );
-      if (!objectType) {
-        throw new Error(`Could not find ${type} in outputObjectTypes`);
+  getIsSchemaFieldChanged(type: ModelOperationType, name: string) {
+    return this._cache.wrap(`isSchemaFieldChanged:${type}:${name}`, () => {
+      if (!this.prvDmmf) {
+        return true;
       }
 
-      const { fields } = objectType;
-      const field = fields.find((f) => f.name === name);
-      if (!field) {
-        throw new Error(`Could not find ${name} in ${type}`);
+      const currentField = this.getSchemaField(type, name);
+      if (!currentField) {
+        throw new Error(`Cannot find ${type}:${name}`);
       }
 
-      return field;
+      const oldField = this.getSchemaField(type, name, 'PreviousDMMF');
+
+      return !deepEqual(currentField, oldField);
     });
+  }
+
+  getSchemaField(
+    type: ModelOperationType,
+    name: string,
+    from: DmmfKind = 'CurrentDMMF'
+  ) {
+    const { cacheKey: dmmfCacheKey } = this.getDmmfAndCacheKey(from);
+    return this._cache.wrap(
+      `getSchemaField:${type}:${name}:${dmmfCacheKey}`,
+      () => {
+        const objectType = this.getNonPrimitiveType(
+          'outputObjectTypes',
+          'prisma',
+          type,
+          from
+        );
+        if (!objectType) {
+          throw new Error(`Could not find ${type} in outputObjectTypes`);
+        }
+
+        const { fields } = objectType;
+        const field = fields.find((f) => f.name === name);
+        if (!field) {
+          throw new Error(`Could not find ${name} in ${type}`);
+        }
+
+        return field;
+      }
+    );
   }
 }
 
-type DmmfKind = 'CurrentDMMF' | 'OldDMMF';
+type DmmfKind = 'CurrentDMMF' | 'PreviousDMMF';
