@@ -1,7 +1,7 @@
-import { StructureKind } from 'ts-morph';
+import { ImportDeclarationStructure, StructureKind } from 'ts-morph';
 import {
   GeneratorOptions,
-  PropertyTypeDeclaration,
+  PropertyDeclarationWithImports,
 } from '../../types/generator.type';
 import { SchemaArg } from '../../types/dmmf.type';
 import { selectInputType } from '../dmmf/select-input-type';
@@ -12,15 +12,30 @@ export function getSchemaArgDeclaration(
   sourceFilePath: string,
   generatorOptions: GeneratorOptions,
   field: SchemaArg,
-  comment?: string
-): PropertyTypeDeclaration {
-  const { inputTypes, isRequired, name } = field;
+  options?: {
+    documentation?: string;
+    isInNestedInputType?: boolean;
+  }
+): PropertyDeclarationWithImports {
+  const { documentation, isInNestedInputType } = options || {};
+  const { inputTypes, isRequired, name: propertyName } = field;
   const isNullable = !isRequired;
+  const isHiddenField =
+    isInNestedInputType && getIsNestedInputHiddenField(propertyName);
   const inputType = selectInputType(inputTypes);
   const { type, location, namespace, isList } = inputType;
+  const hiddenFieldImports: ImportDeclarationStructure[] = isHiddenField
+    ? [
+        {
+          kind: StructureKind.ImportDeclaration,
+          moduleSpecifier: '@nestjs/graphql',
+          namedImports: ['HideField'],
+        },
+      ]
+    : [];
 
   const { imports: propertyImports, property } = getFieldPropertyDeclaration({
-    name,
+    name: propertyName,
     type,
     location,
     namespace,
@@ -44,24 +59,41 @@ export function getSchemaArgDeclaration(
   const { decorators } = property;
 
   return {
-    imports: [...graphqlImports, ...propertyImports],
+    imports: [...graphqlImports, ...propertyImports, ...hiddenFieldImports],
     property: {
       ...property,
       decorators: [
         ...(decorators || []),
-        {
-          kind: StructureKind.Decorator,
-          name: 'Field',
-          arguments: [
-            `() => ${graphqlType}, { nullable: ${isNullable}, description: ${JSON.stringify(
-              comment
-            )} }`,
-          ],
-        },
+        isHiddenField
+          ? {
+              kind: StructureKind.Decorator,
+              name: 'HideField',
+              arguments: [],
+            }
+          : {
+              kind: StructureKind.Decorator,
+              name: 'Field',
+              arguments: [
+                `() => ${graphqlType}, { nullable: ${isNullable}, description: ${JSON.stringify(
+                  documentation
+                )} }`,
+              ],
+            },
       ],
       hasQuestionToken: isNullable,
       hasExclamationToken: !isNullable,
-      docs: comment ? [comment] : [],
+      docs: documentation ? [documentation] : [],
     },
   };
+}
+
+function getIsNestedInputHiddenField(name: string) {
+  return [
+    'connectOrCreate',
+    'deleteMany',
+    'set',
+    'updateMany',
+    'upsert',
+    'createMany',
+  ].includes(name);
 }

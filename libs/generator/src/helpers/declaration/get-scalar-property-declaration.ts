@@ -1,6 +1,6 @@
 import {
   PropertyTypeOptions,
-  PropertyTypeDeclaration,
+  PropertyDeclarationWithImports,
 } from '../../types/generator.type';
 import { StructureKind } from 'ts-morph';
 import { getPropertyType } from '../type/get-property-type';
@@ -9,7 +9,7 @@ export function getScalarPropertyDeclaration(
   name: string,
   type: string,
   options: PropertyTypeOptions
-): PropertyTypeDeclaration {
+): PropertyDeclarationWithImports {
   switch (type) {
     case 'Json':
       return {

@@ -1,7 +1,7 @@
 import { Model } from '../../types/dmmf.type';
 import {
   GetFieldPropertyDeclarationArgs,
-  PropertyTypeDeclaration,
+  PropertyDeclarationWithImports,
 } from '../../types/generator.type';
 import {
   DecoratorStructure,
@@ -17,7 +17,7 @@ import { getSourceFilePath } from '../path/get-source-file-path';
 
 export function getFieldPropertyDeclaration(
   args: GetFieldPropertyDeclarationArgs
-): PropertyTypeDeclaration {
+): PropertyDeclarationWithImports {
   const {
     name,
     type,

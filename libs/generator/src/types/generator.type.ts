@@ -22,7 +22,7 @@ export type PropertyTypeOptions = {
   isPromise?: boolean;
 };
 
-export type PropertyTypeDeclaration = {
+export type PropertyDeclarationWithImports = {
   imports: ImportDeclarationStructure[];
   property: PropertyDeclarationStructure;
 };

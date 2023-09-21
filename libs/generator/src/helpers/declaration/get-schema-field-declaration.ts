@@ -1,7 +1,7 @@
 import { StructureKind } from 'ts-morph';
 import {
   GeneratorOptions,
-  PropertyTypeDeclaration,
+  PropertyDeclarationWithImports,
 } from '../../types/generator.type';
 import { SchemaField } from '../../types/dmmf.type';
 import { getFieldPropertyDeclaration } from './get-field-property-declaration';
@@ -12,7 +12,7 @@ export function getSchemaFieldDeclaration(
   generatorOptions: GeneratorOptions,
   field: SchemaField,
   comment?: string
-): PropertyTypeDeclaration {
+): PropertyDeclarationWithImports {
   const { name, outputType, isNullable } = field;
   const { isList, location, namespace, type } = outputType;
 

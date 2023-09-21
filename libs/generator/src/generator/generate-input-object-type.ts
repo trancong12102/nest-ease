@@ -57,31 +57,15 @@ export function generateInputObjectType(
   const { fields } = type;
   const isNestedInputType = getIsNestedInputType(inputTypeName);
 
-  const shouldImportHideField =
-    isNestedInputType && fields.some((f) => getIsHiddenField(f.name));
-  if (shouldImportHideField) {
-    imports.push({
-      kind: StructureKind.ImportDeclaration,
-      moduleSpecifier: '@nestjs/graphql',
-      namedImports: ['HideField'],
-    });
-  }
-
   for (const field of fields) {
     const { imports: propertyImports, property } = getSchemaArgDeclaration(
       sourceFilePath,
       options,
-      field
+      field,
+      {
+        isInNestedInputType: isNestedInputType,
+      }
     );
-    if (isNestedInputType && getIsHiddenField(field.name)) {
-      property.decorators = (property.decorators || [])
-        .filter((d) => d.name !== 'Field')
-        .concat({
-          kind: StructureKind.Decorator,
-          name: 'HideField',
-          arguments: [],
-        });
-    }
     imports.push(...propertyImports);
     properties.push(property);
   }
@@ -116,17 +100,6 @@ export function generateInputObjectType(
   }
 }
 
-function getIsHiddenField(name: string) {
-  return [
-    'connectOrCreate',
-    'deleteMany',
-    'set',
-    'updateMany',
-    'upsert',
-    'createMany',
-  ].includes(name);
-}
-
 function getIsNestedInputType(inputType: string) {
-  return inputType.match(/.*?Nested.*?Input$/);
+  return /.*?Nested.*?Input$/.test(inputType);
 }
