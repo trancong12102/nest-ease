@@ -6,10 +6,12 @@ import {
   StructureKind,
 } from 'ts-morph';
 import path from 'path';
-import { glob } from 'glob';
 import { remove } from 'fs-extra';
 import { logger, logWarning, stylize } from '../../utils/logger';
 import { uniq } from 'ramda';
+import { glob } from 'fast-glob';
+
+const BASE_PATH_REGEX = /\/base\/.+$/;
 
 export class ProjectStructure {
   private readonly _projectStructure: Record<string, SourceFileStructure> = {};
@@ -47,16 +49,16 @@ export class ProjectStructure {
 
   async removeUnusedBaseFiles() {
     const basePaths = uniq(
-      Object.keys(this._projectStructure).map((p) =>
-        p.replace(/\/base\/.+$/, '/base')
-      )
+      Object.keys(this._projectStructure)
+        .filter((p) => BASE_PATH_REGEX.test(p))
+        .map((p) => p.replace(BASE_PATH_REGEX, '/base'))
     );
 
     const baseFiles = await glob(
       basePaths.map((p) => path.join(p, '**/*')),
       {
         absolute: true,
-        nodir: true,
+        onlyFiles: true,
       }
     );
 
