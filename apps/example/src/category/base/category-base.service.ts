@@ -55,7 +55,7 @@ export class CategoryBaseService {
     return this.prisma.client.category.deleteMany(args);
   }
 
-  resolvePosts(parent: Category, args: PostFindManyArgs): Promise<Array<Post>> {
+  async resolvePosts(parent: Category, args: PostFindManyArgs): Promise<Array<Post>> {
 
     return this.prisma.client.category
     .findUniqueOrThrow({
@@ -67,7 +67,7 @@ export class CategoryBaseService {
             
   }
 
-  resolveMetadata(parent: Category): Promise<CategoryMetadata | null> {
+  async resolveMetadata(parent: Category): Promise<CategoryMetadata | null> {
 
     return this.prisma.client.category
     .findUniqueOrThrow({

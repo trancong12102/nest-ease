@@ -53,7 +53,7 @@ export class CategoryMetadataBaseService {
     return this.prisma.client.categoryMetadata.deleteMany(args);
   }
 
-  resolveCategory(parent: CategoryMetadata): Promise<Category> {
+  async resolveCategory(parent: CategoryMetadata): Promise<Category> {
 
     return this.prisma.client.categoryMetadata
     .findUniqueOrThrow({

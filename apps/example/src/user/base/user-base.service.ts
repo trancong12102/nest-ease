@@ -54,7 +54,7 @@ export class UserBaseService {
     return this.prisma.client.user.deleteMany(args);
   }
 
-  resolvePosts(parent: User, args: PostFindManyArgs): Promise<Array<Post>> {
+  async resolvePosts(parent: User, args: PostFindManyArgs): Promise<Array<Post>> {
 
     return this.prisma.client.user
     .findUniqueOrThrow({
@@ -66,7 +66,7 @@ export class UserBaseService {
             
   }
 
-  resolveParent(parent: User): Promise<User | null> {
+  async resolveParent(parent: User): Promise<User | null> {
 
     return this.prisma.client.user
     .findUniqueOrThrow({
@@ -78,7 +78,7 @@ export class UserBaseService {
             
   }
 
-  resolveChildren(parent: User, args: UserFindManyArgs): Promise<Array<User>> {
+  async resolveChildren(parent: User, args: UserFindManyArgs): Promise<Array<User>> {
 
     return this.prisma.client.user
     .findUniqueOrThrow({
@@ -90,7 +90,7 @@ export class UserBaseService {
             
   }
 
-  resolveAnotherPosts(parent: User, args: PostFindManyArgs): Promise<Array<Post>> {
+  async resolveAnotherPosts(parent: User, args: PostFindManyArgs): Promise<Array<Post>> {
 
     return this.prisma.client.user
     .findUniqueOrThrow({

@@ -55,7 +55,7 @@ export class PostBaseService {
     return this.prisma.client.post.deleteMany(args);
   }
 
-  resolveAuthor(parent: Post): Promise<User> {
+  async resolveAuthor(parent: Post): Promise<User> {
 
     return this.prisma.client.post
     .findUniqueOrThrow({
@@ -67,7 +67,7 @@ export class PostBaseService {
             
   }
 
-  resolveAnotherAuthor(parent: Post): Promise<User> {
+  async resolveAnotherAuthor(parent: Post): Promise<User> {
 
     return this.prisma.client.post
     .findUniqueOrThrow({
@@ -79,7 +79,7 @@ export class PostBaseService {
             
   }
 
-  resolveCategories(parent: Post, args: CategoryFindManyArgs): Promise<Array<Category>> {
+  async resolveCategories(parent: Post, args: CategoryFindManyArgs): Promise<Array<Category>> {
 
     return this.prisma.client.post
     .findUniqueOrThrow({

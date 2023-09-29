@@ -3,8 +3,7 @@ import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly service: AppService) {
-  }
+  constructor(private readonly service: AppService) {}
 
   @Get()
   async hello(): Promise<string> {
