@@ -4,5 +4,3 @@
 pnpm-lock.yaml
 @prisma-client
 dmmf.json
-**/base/**/*
-nest-ease.module.ts

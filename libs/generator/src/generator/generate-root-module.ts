@@ -18,7 +18,7 @@ import { logger, stylize } from '../utils/logger';
 import { ProjectStructure } from '../helpers/project-structure/project-structure';
 import { ModelMapping } from '../types/dmmf.type';
 
-const MODULE = 'NestEase';
+export const ROOT_MODULE = 'NestEase';
 
 export async function generateRootModule(
   project: ProjectStructure,
@@ -29,10 +29,10 @@ export async function generateRootModule(
     srcPath,
   } = options;
 
-  const className = getModuleFileClassName(MODULE, 'Module');
+  const className = getModuleFileClassName(ROOT_MODULE, 'Module');
   const sourceFilePath = getSourceFilePath(
     srcPath,
-    MODULE,
+    ROOT_MODULE,
     className,
     'Module',
   );

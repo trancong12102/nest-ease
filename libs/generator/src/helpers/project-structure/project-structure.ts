@@ -7,9 +7,12 @@ import {
 } from 'ts-morph';
 import path from 'path';
 import { remove } from 'fs-extra';
-import { logger, logWarning, stylize } from '../../utils/logger';
+import { logger } from '../../utils/logger';
 import { uniq } from 'ramda';
-import { glob } from 'fast-glob';
+import { formatFile } from '../../utils/format-file';
+import { getSourceFileName } from '../path/get-source-file-name';
+import { getModuleFileClassName } from '../path/get-module-file-class-name';
+import { ROOT_MODULE } from '../../generator/generate-root-module';
 
 const BASE_PATH_REGEX = /\/base\/.+$/;
 
@@ -50,46 +53,33 @@ export class ProjectStructure {
   async removeUnusedBaseFiles() {
     const basePaths = uniq(
       Object.keys(this._projectStructure)
-        .filter((p) => BASE_PATH_REGEX.test(p))
+        .filter(
+          (p) =>
+            BASE_PATH_REGEX.test(p) ||
+            p.includes(
+              getSourceFileName(
+                getModuleFileClassName(ROOT_MODULE, 'Module'),
+                'Module',
+              ),
+            ),
+        )
         .map((p) => p.replace(BASE_PATH_REGEX, '/base')),
     );
 
-    const baseFiles = await glob(
-      basePaths.map((p) => path.join(p, '**/*')),
-      {
-        absolute: true,
-        onlyFiles: true,
-      },
-    );
-
-    const unusedBaseFiles = baseFiles.filter(
-      (p) => !this.isSourceFileExists(p),
-    );
-
-    if (unusedBaseFiles.length > 0) {
-      logWarning(
-        `The following redundant files will be removed: \n${stylize(
-          unusedBaseFiles.join('\n'),
-          'dim',
-        )}`,
-      );
-    }
-    await Promise.all(unusedBaseFiles.map(async (p) => remove(p)));
+    await Promise.all(basePaths.map(async (p) => remove(p)));
   }
 
   async save() {
     await this.removeUnusedBaseFiles();
 
+    logger.info('Creating and formatting source files...')
     for (const [filePath, structure] of Object.entries(
       this._projectStructure,
     )) {
-      if (!structure.statements) {
-        continue;
-      }
-
-      this.project.createSourceFile(filePath, structure, {
-        overwrite: true,
-      });
+      const sourceFile = this.project.createSourceFile(filePath, structure);
+      sourceFile.replaceWithText(
+        await formatFile(filePath, sourceFile.getFullText()),
+      );
     }
 
     logger.info('Saving project...');

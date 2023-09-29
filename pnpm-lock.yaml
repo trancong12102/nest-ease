@@ -50,9 +50,6 @@ dependencies:
   consola:
     specifier: ^3.2.3
     version: 3.2.3
-  fast-glob:
-    specifier: ^3.3.1
-    version: 3.3.1
   fs-extra:
     specifier: ^11.1.1
     version: 11.1.1
