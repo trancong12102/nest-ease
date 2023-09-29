@@ -50,7 +50,7 @@ export class ProjectStructure {
     };
   }
 
-  async removeUnusedBaseFiles() {
+  async removeBaseFiles() {
     const basePaths = uniq(
       Object.keys(this._projectStructure)
         .filter(
@@ -70,9 +70,9 @@ export class ProjectStructure {
   }
 
   async save() {
-    await this.removeUnusedBaseFiles();
+    await this.removeBaseFiles();
 
-    logger.info('Creating and formatting source files...')
+    logger.info('Creating and formatting source files...');
     for (const [filePath, structure] of Object.entries(
       this._projectStructure,
     )) {
