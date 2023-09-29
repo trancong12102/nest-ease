@@ -171,6 +171,7 @@ export function generateModelBaseService(
       name: getResolveMethodName(name),
       parameters,
       returnType: propertyType,
+      isAsync: true,
       statements: [
         (writer) => {
           writer.writeLine(`
