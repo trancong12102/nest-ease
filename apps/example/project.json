@@ -22,7 +22,7 @@
         },
         "production": {
           "mode": "production",
-          "sourceMap": false
+          "typeCheck": true
         }
       }
     },
@@ -30,7 +30,8 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "example:build"
+        "buildTarget": "example:build",
+        "inspect": false
       },
       "configurations": {
         "development": {

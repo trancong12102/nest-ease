@@ -98,7 +98,7 @@ devDependencies:
     specifier: ^10.2.6
     version: 10.2.6(@nestjs/common@10.2.6)(@nestjs/core@10.2.6)(@nestjs/platform-express@10.2.6)
   '@nx-tools/nx-prisma':
-    specifier: ^5.0.3
+    specifier: 5.0.3
     version: 5.0.3(@nx/devkit@16.9.1)(@nx/workspace@16.9.1)(prisma@5.3.1)(ts-node@10.9.1)(tslib@2.6.2)
   '@nx/eslint-plugin':
     specifier: 16.9.1
@@ -119,7 +119,7 @@ devDependencies:
     specifier: 16.9.1
     version: 16.9.1(@swc/core@1.3.90)(@types/node@18.7.23)(eslint@8.46.0)(nx@16.9.1)(ts-node@10.9.1)(typescript@5.1.6)(verdaccio@5.26.3)
   '@nx/rspack':
-    specifier: ^16.8.2
+    specifier: 16.8.2
     version: 16.8.2(@swc/core@1.3.90)(@types/node@18.7.23)(eslint@8.46.0)(less@4.2.0)(nx@16.9.1)(stylus@0.60.0)(typescript@5.1.6)(verdaccio@5.26.3)(webpack@5.88.2)
   '@nx/workspace':
     specifier: 16.9.1
@@ -4340,7 +4340,7 @@ packages:
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.1.6)
       eslint: 8.46.0
       eslint-scope: 5.1.1
-      semver: 7.5.3
+      semver: 7.5.4
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -5404,7 +5404,7 @@ packages:
   /builtins@5.0.1:
     resolution: {integrity: sha512-qwVpFEHNfhYJIzNRBvd2C1kyo6jz3ZSMPyyuR47OPdiKWlbYnZNyDWuyR175qDnAJLiCo5fBBqPb3RiXgWlkOQ==}
     dependencies:
-      semver: 7.5.3
+      semver: 7.5.4
     dev: true
 
   /busboy@1.6.0:
@@ -8190,7 +8190,7 @@ packages:
       acorn: 8.10.0
       eslint-visitor-keys: 3.4.3
       espree: 9.6.1
-      semver: 7.5.3
+      semver: 7.5.4
     dev: true
 
   /jsonc-parser@3.2.0:
@@ -8915,7 +8915,7 @@ packages:
     dependencies:
       hosted-git-info: 7.0.1
       proc-log: 3.0.0
-      semver: 7.5.3
+      semver: 7.5.4
       validate-npm-package-name: 5.0.0
     dev: true
 
