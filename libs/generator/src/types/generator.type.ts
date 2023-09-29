@@ -16,7 +16,6 @@ export type GeneratorOptions = {
 
 export type PropertyTypeOptions = {
   isList?: boolean;
-  fixCircular?: boolean;
   isNullable?: boolean;
   isPromise?: boolean;
 };

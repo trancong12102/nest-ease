@@ -28,8 +28,6 @@ export function getFieldPropertyDeclaration(
     importDest,
   } = args;
 
-  const { isList, fixCircular } = propertyOptions;
-
   if (location === 'fieldRefTypes') {
     throw new Error('Field ref types are not supported');
   }
@@ -45,7 +43,6 @@ export function getFieldPropertyDeclaration(
   const kind = dmmf.getNonPrimitiveTypeFileKind(type, location);
   const module = dmmf.getModelNameOfType(type, kind) || 'Prisma';
   const typeFilepath = getSourceFilePath(srcPath, module, type, kind);
-  const isModel = dmmf.isModel(type);
 
   const imports: ImportDeclarationStructure[] = [
     {
@@ -78,21 +75,6 @@ export function getFieldPropertyDeclaration(
     });
   }
 
-  const handleCircular =
-    fixCircular ??
-    ((isModel ||
-      !!(
-        type.match(/^.*?UpdateOneRequiredWithout.*?NestedInput$/) ||
-        type.match(/^.*?ListRelationFilter$/) ||
-        type.match(/^.*?WhereInput$/) ||
-        type.match(/^.*?OrderByWithRelationInput$/) ||
-        type.match(/^.*?CreateNestedManyWithout.*?Input$/) ||
-        type.match(/^.*?CreateNestedOneWithout.*?Input$/) ||
-        type.match(/^.*?UpdateOneWithout.*?NestedInput$/) ||
-        type.match(/^.*?UpdateManyWithout.*?NestedInput$/)
-      )) &&
-      !isList);
-
   const propertyType = kind === 'Enum' ? `keyof typeof ${type}` : type;
 
   return {
@@ -103,10 +85,7 @@ export function getFieldPropertyDeclaration(
       name,
       type: isWhereUniqueInput
         ? getAtLeastPropertyType(dmmf, type)
-        : getPropertyType(propertyType, {
-            ...propertyOptions,
-            fixCircular: handleCircular,
-          }),
+        : getPropertyType(propertyType, propertyOptions),
     },
   };
 }

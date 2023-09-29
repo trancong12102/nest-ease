@@ -75,7 +75,6 @@ export function generateModelBaseService(
       propertyOptions: {
         isList,
         isNullable,
-        fixCircular: false,
         isPromise: true,
       },
     });
