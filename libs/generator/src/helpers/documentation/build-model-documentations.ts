@@ -18,7 +18,7 @@ export function buildModelDocumentations(model?: Model): {
       ...acc,
       [field.name]: field.documentation,
     }),
-    {}
+    {},
   );
 
   return {

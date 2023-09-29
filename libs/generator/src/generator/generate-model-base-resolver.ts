@@ -24,7 +24,7 @@ import { ProjectStructure } from '../helpers/project-structure/project-structure
 export function generateModelBaseResolver(
   project: ProjectStructure,
   generatorOptions: GeneratorOptions,
-  modelMapping: ModelMapping
+  modelMapping: ModelMapping,
 ) {
   const { srcPath, dmmf } = generatorOptions;
   const { model, operations } = modelMapping;
@@ -34,26 +34,26 @@ export function generateModelBaseResolver(
     srcPath,
     modelName,
     className,
-    'Resolver'
+    'Resolver',
   );
   project.createSourceFile(sourceFilePath);
 
   const baseServiceClassName = getModuleFileClassName(
     modelName,
     'Service',
-    true
+    true,
   );
   const baseServiceFilePath = getSourceFilePath(
     srcPath,
     modelName,
     baseServiceClassName,
-    'Service'
+    'Service',
   );
   const modelFilePath = getSourceFilePath(
     srcPath,
     modelName,
     modelName,
-    'Model'
+    'Model',
   );
 
   const imports: ImportDeclarationStructure[] = [
@@ -61,7 +61,7 @@ export function generateModelBaseResolver(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        baseServiceFilePath
+        baseServiceFilePath,
       ),
       namedImports: [baseServiceClassName],
     },
@@ -121,13 +121,13 @@ export function generateModelBaseResolver(
       srcPath,
       modelName,
       argsTypeName,
-      'Args'
+      'Args',
     );
     imports.push({
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        argsTypeFilePath
+        argsTypeFilePath,
       ),
       namedImports: [argsTypeName],
     });
@@ -178,7 +178,7 @@ export function generateModelBaseResolver(
       srcPath,
       relationModule,
       relationModelName,
-      'Model'
+      'Model',
     );
     const graphqlType = getGraphqlType(relationModelName, isList);
     const propertyType = getPropertyType(relationModelName, {
@@ -207,7 +207,7 @@ export function generateModelBaseResolver(
         srcPath,
         relationModelName,
         findManyArgsType,
-        'Args'
+        'Args',
       );
       parameters.push({
         kind: StructureKind.Parameter,
@@ -225,7 +225,7 @@ export function generateModelBaseResolver(
         kind: StructureKind.ImportDeclaration,
         moduleSpecifier: getImportModuleSpecifier(
           sourceFilePath,
-          findManyArgsTypeFilePath
+          findManyArgsTypeFilePath,
         ),
         namedImports: [findManyArgsType],
       });
@@ -235,7 +235,7 @@ export function generateModelBaseResolver(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        relationModelFilePath
+        relationModelFilePath,
       ),
       namedImports: [relationModelName],
     });

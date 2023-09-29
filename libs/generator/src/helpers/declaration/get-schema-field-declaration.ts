@@ -11,7 +11,7 @@ export function getSchemaFieldDeclaration(
   sourceFilePath: string,
   generatorOptions: GeneratorOptions,
   field: SchemaField,
-  comment?: string
+  comment?: string,
 ): PropertyDeclarationWithImports {
   const { name, outputType, isNullable } = field;
   const { isList, location, namespace, type } = outputType;
@@ -51,7 +51,7 @@ export function getSchemaFieldDeclaration(
           name: 'Field',
           arguments: [
             `() => ${graphqlType}, { nullable: ${isNullable}, description: ${JSON.stringify(
-              comment
+              comment,
             )} }`,
           ],
         },

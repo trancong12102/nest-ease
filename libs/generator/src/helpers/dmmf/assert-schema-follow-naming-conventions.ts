@@ -12,8 +12,8 @@ export function assertSchemaFollowNamingConventions(dmmf: PrismaDMMF) {
       `Your schema does not follow the naming convention.
 Please check the following documentation for more details: ${stylize(
         'https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#naming-conventions',
-        'green'
-      )}`
+        'green',
+      )}`,
     );
   }
 }

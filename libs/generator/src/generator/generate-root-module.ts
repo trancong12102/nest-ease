@@ -22,7 +22,7 @@ const MODULE = 'NestEase';
 
 export async function generateRootModule(
   project: ProjectStructure,
-  options: GeneratorOptions
+  options: GeneratorOptions,
 ) {
   const {
     dmmf: { modelMappings },
@@ -34,7 +34,7 @@ export async function generateRootModule(
     srcPath,
     MODULE,
     className,
-    'Module'
+    'Module',
   );
   project.createSourceFile(sourceFilePath);
   await generateModelMappingsTypes(project, options, modelMappings);
@@ -61,14 +61,14 @@ export async function generateRootModule(
       srcPath,
       modelName,
       modelModuleClassname,
-      'Module'
+      'Module',
     );
 
     imports.push({
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        modelModuleFilepath
+        modelModuleFilepath,
       ),
       namedImports: [modelModuleClassname],
     });
@@ -103,7 +103,7 @@ export async function generateRootModule(
 async function generateModelMappingsTypes(
   project: ProjectStructure,
   options: GeneratorOptions,
-  modelMappings: ModelMapping[]
+  modelMappings: ModelMapping[],
 ) {
   for (const modelMapping of modelMappings) {
     const {

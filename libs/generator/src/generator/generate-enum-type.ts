@@ -14,7 +14,7 @@ export function generateEnumType(
   project: ProjectStructure,
   options: GeneratorOptions,
   namespace: FieldNamespace,
-  enumName: string
+  enumName: string,
 ) {
   const { dmmf, srcPath } = options;
   const module = dmmf.getModelNameOfEnumType(enumName) || 'Prisma';
@@ -65,7 +65,7 @@ export function generateEnumType(
       ...imports,
       enumStructure,
       `registerEnumType(${enumName}, { name: '${enumName}', description: ${JSON.stringify(
-        description
+        description,
       )}, valuesMap: ${JSON.stringify(valuesMap)} })`,
     ],
   });

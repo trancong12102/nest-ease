@@ -17,7 +17,7 @@ export function generateArgsType(
   project: ProjectStructure,
   options: GeneratorOptions,
   operation: ModelOperation,
-  modelName: string
+  modelName: string,
 ) {
   const { argsTypeName, schemaField } = operation;
   const { args } = schemaField;
@@ -26,7 +26,7 @@ export function generateArgsType(
     srcPath,
     modelName,
     argsTypeName,
-    'Args'
+    'Args',
   );
   if (project.isSourceFileExists(sourceFilePath)) {
     return;
@@ -47,7 +47,7 @@ export function generateArgsType(
     const { imports: propertyImports, property } = getSchemaArgDeclaration(
       sourceFilePath,
       options,
-      field
+      field,
     );
     imports.push(...propertyImports);
     properties.push(property);

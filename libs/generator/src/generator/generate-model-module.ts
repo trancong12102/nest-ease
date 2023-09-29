@@ -14,7 +14,7 @@ import { exists } from 'fs-extra';
 export async function generateModelModule(
   project: ProjectStructure,
   generatorOptions: GeneratorOptions,
-  modelMapping: ModelMapping
+  modelMapping: ModelMapping,
 ) {
   const { srcPath } = generatorOptions;
   const {
@@ -26,7 +26,7 @@ export async function generateModelModule(
     srcPath,
     modelName,
     className,
-    'Module'
+    'Module',
   );
   if (await exists(sourceFilePath)) {
     return;
@@ -37,14 +37,14 @@ export async function generateModelModule(
     srcPath,
     modelName,
     serviceClassName,
-    'Service'
+    'Service',
   );
   const resolverClassName = getModuleFileClassName(modelName, 'Resolver');
   const resolverFilePath = getSourceFilePath(
     srcPath,
     modelName,
     resolverClassName,
-    'Resolver'
+    'Resolver',
   );
 
   const imports: ImportDeclarationStructure[] = [
@@ -57,7 +57,7 @@ export async function generateModelModule(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        serviceFilePath
+        serviceFilePath,
       ),
       namedImports: [serviceClassName],
     },
@@ -65,7 +65,7 @@ export async function generateModelModule(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        resolverFilePath
+        resolverFilePath,
       ),
       namedImports: [resolverClassName],
     },
@@ -83,7 +83,7 @@ export async function generateModelModule(
           (writer) => {
             writer.block(() => {
               writer.writeLine(
-                `providers: [${serviceClassName}, ${resolverClassName}],`
+                `providers: [${serviceClassName}, ${resolverClassName}],`,
               );
               writer.writeLine(`exports: [${serviceClassName}],`);
             });

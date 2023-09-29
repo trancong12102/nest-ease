@@ -8,7 +8,7 @@ import { getPropertyType } from '../type/get-property-type';
 export function getScalarPropertyDeclaration(
   name: string,
   type: string,
-  options: PropertyTypeOptions
+  options: PropertyTypeOptions,
 ): PropertyDeclarationWithImports {
   switch (type) {
     case 'Json':

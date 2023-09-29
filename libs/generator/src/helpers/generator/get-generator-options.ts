@@ -7,7 +7,7 @@ import { parseEnvValue } from '@prisma/internals';
 import { logger, stylize } from '../../utils/logger';
 
 export async function getGeneratorOptions(
-  prismaOptions: PrismaGeneratorOptions
+  prismaOptions: PrismaGeneratorOptions,
 ): Promise<GeneratorOptions> {
   const { dmmf, schemaPath, otherGenerators } = prismaOptions;
 
@@ -17,17 +17,17 @@ export async function getGeneratorOptions(
   logger.info(`Project root path: ${stylize(projectRootPath, 'green')}`);
 
   const prismaClientGenerator = otherGenerators.find(
-    ({ provider }) => parseEnvValue(provider) === 'prisma-client-js'
+    ({ provider }) => parseEnvValue(provider) === 'prisma-client-js',
   );
   if (!prismaClientGenerator) {
     throw new Error(
-      `Unable to find prisma-client-js generator in schema.prisma`
+      `Unable to find prisma-client-js generator in schema.prisma`,
     );
   }
   const { output: prismaClientGeneratorOutput } = prismaClientGenerator;
   if (!prismaClientGeneratorOutput) {
     throw new Error(
-      `Unable to find output in prisma-client-js generator in schema.prisma`
+      `Unable to find output in prisma-client-js generator in schema.prisma`,
     );
   }
   const prismaClientOutputPath = parseEnvValue(prismaClientGeneratorOutput);
@@ -40,7 +40,7 @@ export async function getGeneratorOptions(
     srcPath,
     projectRootPath,
     prismaClientPath: prismaClientOutputPath.includes(
-      'node_modules/@prisma/client'
+      'node_modules/@prisma/client',
     )
       ? '@prisma/client'
       : path.resolve(schemaPath, prismaClientOutputPath, 'index'),

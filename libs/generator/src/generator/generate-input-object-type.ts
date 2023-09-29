@@ -17,7 +17,7 @@ export function generateInputObjectType(
   project: ProjectStructure,
   options: GeneratorOptions,
   namespace: FieldNamespace,
-  inputTypeName: string
+  inputTypeName: string,
 ) {
   const { dmmf, srcPath } = options;
 
@@ -27,7 +27,7 @@ export function generateInputObjectType(
     srcPath,
     module,
     inputTypeName,
-    'Input'
+    'Input',
   );
   if (project.isSourceFileExists(sourceFilePath)) {
     return;
@@ -37,7 +37,7 @@ export function generateInputObjectType(
   const type = dmmf.getNonPrimitiveType(
     'inputObjectTypes',
     namespace,
-    inputTypeName
+    inputTypeName,
   );
   if (!type) {
     throw new Error(`Cannot find input type ${inputTypeName}`);
@@ -62,7 +62,7 @@ export function generateInputObjectType(
       field,
       {
         isInNestedInputType: isNestedInputType,
-      }
+      },
     );
     imports.push(...propertyImports);
     properties.push(property);

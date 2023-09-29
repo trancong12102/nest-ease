@@ -15,7 +15,7 @@ import { exists } from 'fs-extra';
 export async function generateModelResolver(
   project: ProjectStructure,
   generatorOptions: GeneratorOptions,
-  modelMapping: ModelMapping
+  modelMapping: ModelMapping,
 ) {
   const { srcPath } = generatorOptions;
   const {
@@ -26,14 +26,14 @@ export async function generateModelResolver(
     srcPath,
     modelName,
     modelName,
-    'Model'
+    'Model',
   );
   const className = getModuleFileClassName(modelName, 'Resolver');
   const sourceFilePath = getSourceFilePath(
     srcPath,
     modelName,
     className,
-    'Resolver'
+    'Resolver',
   );
   if (await exists(sourceFilePath)) {
     return;
@@ -42,20 +42,20 @@ export async function generateModelResolver(
   const baseResolverClassName = getModuleFileClassName(
     modelName,
     'Resolver',
-    true
+    true,
   );
   const baseResolverFilePath = getSourceFilePath(
     srcPath,
     modelName,
     baseResolverClassName,
-    'Resolver'
+    'Resolver',
   );
   const serviceClassName = getModuleFileClassName(modelName, 'Service');
   const serviceFilePath = getSourceFilePath(
     srcPath,
     modelName,
     serviceClassName,
-    'Service'
+    'Service',
   );
 
   const imports: ImportDeclarationStructure[] = [
@@ -68,7 +68,7 @@ export async function generateModelResolver(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        baseResolverFilePath
+        baseResolverFilePath,
       ),
       namedImports: [baseResolverClassName],
     },
@@ -81,7 +81,7 @@ export async function generateModelResolver(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        serviceFilePath
+        serviceFilePath,
       ),
       namedImports: [serviceClassName],
     },

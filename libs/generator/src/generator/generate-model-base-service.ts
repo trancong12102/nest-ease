@@ -25,7 +25,7 @@ import { ProjectStructure } from '../helpers/project-structure/project-structure
 export function generateModelBaseService(
   project: ProjectStructure,
   generatorOptions: GeneratorOptions,
-  modelMapping: ModelMapping
+  modelMapping: ModelMapping,
 ) {
   const { srcPath, prismaServicePath } = generatorOptions;
   const { model, operations } = modelMapping;
@@ -36,7 +36,7 @@ export function generateModelBaseService(
     srcPath,
     modelName,
     className,
-    'Service'
+    'Service',
   );
   project.createSourceFile(sourceFilePath);
 
@@ -46,7 +46,7 @@ export function generateModelBaseService(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        prismaServicePath
+        prismaServicePath,
       ),
       namedImports: [prismaServiceClassname],
     },
@@ -83,13 +83,13 @@ export function generateModelBaseService(
       srcPath,
       modelName,
       argsTypeName,
-      'Args'
+      'Args',
     );
     imports.push(...propertyImports, {
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        argTypeFilePath
+        argTypeFilePath,
       ),
       namedImports: [argsTypeName],
     });
@@ -119,7 +119,7 @@ export function generateModelBaseService(
       srcPath,
       relationModelName,
       relationModelName,
-      'Model'
+      'Model',
     );
 
     const propertyType = getPropertyType(relationModelName, {
@@ -141,7 +141,7 @@ export function generateModelBaseService(
         srcPath,
         relationModelName,
         findManyArgsTypeName,
-        'Args'
+        'Args',
       );
       parameters.push({
         kind: StructureKind.Parameter,
@@ -152,7 +152,7 @@ export function generateModelBaseService(
         kind: StructureKind.ImportDeclaration,
         moduleSpecifier: getImportModuleSpecifier(
           sourceFilePath,
-          findManyArgsTypeFilePath
+          findManyArgsTypeFilePath,
         ),
         namedImports: [findManyArgsTypeName],
       });
@@ -162,7 +162,7 @@ export function generateModelBaseService(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        relationModelFilePath
+        relationModelFilePath,
       ),
       namedImports: [relationModelName],
     });

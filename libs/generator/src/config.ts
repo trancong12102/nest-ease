@@ -13,11 +13,11 @@ export type GeneratorConfig = z.infer<typeof ConfigSchema>;
 export const CONFIG_FILE_NAME = 'nest-ease.config.ts';
 
 export async function parseGeneratorConfig(
-  srcPath: string
+  srcPath: string,
 ): Promise<GeneratorConfig> {
   const configTsPath = getConfigPath(srcPath);
   logger.info(
-    `Parsing generator config from ${stylize(configTsPath, 'green')}...`
+    `Parsing generator config from ${stylize(configTsPath, 'green')}...`,
   );
   const sourceCode = await readFile(configTsPath, 'utf-8');
   const { code: emittedConfig } = await swc.transform(sourceCode, {
@@ -46,7 +46,7 @@ export async function parseGeneratorConfig(
     ConfigSchema.parse(config);
   } catch (error) {
     throw new Error(
-      `Invalid ${CONFIG_FILE_NAME}:\n${(error as { message: string }).message}`
+      `Invalid ${CONFIG_FILE_NAME}:\n${(error as { message: string }).message}`,
     );
   }
 

@@ -51,7 +51,7 @@ export class ProjectStructure {
     const basePaths = uniq(
       Object.keys(this._projectStructure)
         .filter((p) => BASE_PATH_REGEX.test(p))
-        .map((p) => p.replace(BASE_PATH_REGEX, '/base'))
+        .map((p) => p.replace(BASE_PATH_REGEX, '/base')),
     );
 
     const baseFiles = await glob(
@@ -59,19 +59,19 @@ export class ProjectStructure {
       {
         absolute: true,
         onlyFiles: true,
-      }
+      },
     );
 
     const unusedBaseFiles = baseFiles.filter(
-      (p) => !this.isSourceFileExists(p)
+      (p) => !this.isSourceFileExists(p),
     );
 
     if (unusedBaseFiles.length > 0) {
       logWarning(
         `The following redundant files will be removed: \n${stylize(
           unusedBaseFiles.join('\n'),
-          'dim'
-        )}`
+          'dim',
+        )}`,
       );
     }
     await Promise.all(unusedBaseFiles.map(async (p) => remove(p)));
@@ -81,7 +81,7 @@ export class ProjectStructure {
     await this.removeUnusedBaseFiles();
 
     for (const [filePath, structure] of Object.entries(
-      this._projectStructure
+      this._projectStructure,
     )) {
       if (!structure.statements) {
         continue;

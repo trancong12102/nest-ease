@@ -2,7 +2,7 @@ import { dirname, relative } from 'path';
 
 export function getImportModuleSpecifier(
   importDest: string,
-  targetPath: string
+  targetPath: string,
 ) {
   if (!/^(\.\/|\.\.\/|\/).+/.test(targetPath)) {
     return targetPath;

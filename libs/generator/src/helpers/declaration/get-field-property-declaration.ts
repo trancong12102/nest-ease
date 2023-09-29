@@ -16,7 +16,7 @@ import { getScalarPropertyDeclaration } from './get-scalar-property-declaration'
 import { getSourceFilePath } from '../path/get-source-file-path';
 
 export function getFieldPropertyDeclaration(
-  args: GetFieldPropertyDeclarationArgs
+  args: GetFieldPropertyDeclarationArgs,
 ): PropertyDeclarationWithImports {
   const {
     name,

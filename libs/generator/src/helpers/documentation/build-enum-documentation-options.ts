@@ -2,7 +2,7 @@ import { DatamodelEnum, EnumValue } from '../../types/dmmf.type';
 import { EnumOptions } from '@nestjs/graphql';
 
 export function buildEnumDocumentationOptions(
-  datamodelEnum?: DatamodelEnum
+  datamodelEnum?: DatamodelEnum,
 ): Pick<EnumOptions, 'description' | 'valuesMap'> {
   if (!datamodelEnum) {
     return {};
@@ -23,7 +23,7 @@ export function buildEnumDocumentationOptions(
           description: documentation,
         },
       }),
-      {}
+      {},
     ),
   };
 }

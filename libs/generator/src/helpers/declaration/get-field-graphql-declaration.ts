@@ -9,7 +9,7 @@ import { getScalarGraphqlDeclaration } from './get-scalar-graphql-declaration';
 import { getSourceFilePath } from '../path/get-source-file-path';
 
 export function getFieldGraphqlDeclaration(
-  args: GetFieldGraphqlDeclarationArgs
+  args: GetFieldGraphqlDeclarationArgs,
 ): GraphqlTypeDeclaration {
   const {
     type,

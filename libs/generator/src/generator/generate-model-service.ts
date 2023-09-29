@@ -15,7 +15,7 @@ import { exists } from 'fs-extra';
 export async function generateModelService(
   project: ProjectStructure,
   generatorOptions: GeneratorOptions,
-  modelMapping: ModelMapping
+  modelMapping: ModelMapping,
 ) {
   const { srcPath, prismaServicePath } = generatorOptions;
   const {
@@ -27,7 +27,7 @@ export async function generateModelService(
     srcPath,
     modelName,
     className,
-    'Service'
+    'Service',
   );
   if (await exists(sourceFilePath)) {
     return;
@@ -36,13 +36,13 @@ export async function generateModelService(
   const baseServiceClassName = getModuleFileClassName(
     modelName,
     'Service',
-    true
+    true,
   );
   const baseServiceFilePath = getSourceFilePath(
     srcPath,
     modelName,
     baseServiceClassName,
-    'Service'
+    'Service',
   );
   const prismaServiceClassName = getModuleFileClassName('Prisma', 'Service');
 
@@ -56,7 +56,7 @@ export async function generateModelService(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        baseServiceFilePath
+        baseServiceFilePath,
       ),
       namedImports: [baseServiceClassName],
     },
@@ -64,7 +64,7 @@ export async function generateModelService(
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: getImportModuleSpecifier(
         sourceFilePath,
-        prismaServicePath
+        prismaServicePath,
       ),
       namedImports: [prismaServiceClassName],
     },

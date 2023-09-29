@@ -15,7 +15,7 @@ export function getSchemaArgDeclaration(
   options?: {
     documentation?: string;
     isInNestedInputType?: boolean;
-  }
+  },
 ): PropertyDeclarationWithImports {
   const { documentation, isInNestedInputType } = options || {};
   const { inputTypes, isRequired, name: propertyName } = field;
@@ -79,7 +79,7 @@ export function getSchemaArgDeclaration(
               name: 'Field',
               arguments: [
                 `() => ${graphqlType}, { nullable: ${isNullable}, description: ${JSON.stringify(
-                  documentation
+                  documentation,
                 )} }`,
               ],
             },

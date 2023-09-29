@@ -7,7 +7,7 @@ import { ProjectStructure } from '../helpers/project-structure/project-structure
 export function generatePropertyTypes(
   project: ProjectStructure,
   options: GeneratorOptions,
-  type: OutputType | SchemaArg[]
+  type: OutputType | SchemaArg[],
 ) {
   if (
     typeof (type as Omit<OutputType, keyof SchemaArg[]>).fields !== 'undefined'

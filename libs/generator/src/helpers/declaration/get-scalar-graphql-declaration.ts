@@ -4,7 +4,7 @@ import { getGraphqlType } from '../type/get-graphql-type';
 
 export function getScalarGraphqlDeclaration(
   name: string,
-  isList?: boolean
+  isList?: boolean,
 ): GraphqlTypeDeclaration {
   switch (name) {
     case 'Json':

@@ -83,7 +83,7 @@ export class InternalDmmf {
   getEnumNameOfInputType(typeName: string): string | undefined {
     return this._cache.wrap(`getEnumOfInputType:${typeName}`, () => {
       const regex = ENUM_INPUT_NAME_REGEX_LIST.find((regex) =>
-        regex.test(typeName)
+        regex.test(typeName),
       );
       const { enum: enumName } = regex?.exec(typeName)?.groups || {};
       if (!enumName) {
@@ -103,8 +103,8 @@ export class InternalDmmf {
       const modelOutput = models.find(({ fields }) =>
         fields.some(
           ({ outputType: { type, location } }) =>
-            location === 'enumTypes' && type === typeName
-        )
+            location === 'enumTypes' && type === typeName,
+        ),
       );
 
       const modelName = modelOutput?.name;
@@ -125,11 +125,11 @@ export class InternalDmmf {
 
   getNonPrimitiveType<
     Location extends NonPrimitiveTypeLocation,
-    ReturnType extends NonPrimitiveType<Location>
+    ReturnType extends NonPrimitiveType<Location>,
   >(
     location: Location,
     namespace: FieldNamespace,
-    name: string
+    name: string,
   ): ReturnType | undefined {
     return this._cache.wrap(
       `getNonPrimitiveType:${location}:${namespace}:${name}`,
@@ -137,13 +137,13 @@ export class InternalDmmf {
         const typeList = (this.dmmf.schema[location][namespace] ||
           []) as ReturnType[];
         return typeList.find((t) => t.name === name);
-      }
+      },
     );
   }
 
   getDatamodelType<
     Location extends DatamodelTypeLocation,
-    ReturnType extends DatamodelType<Location>
+    ReturnType extends DatamodelType<Location>,
   >(location: Location, name: string): ReturnType | undefined {
     return this._cache.wrap(`getDatamodelType:${location}:${name}`, () => {
       const typeList = (this.dmmf.datamodel[location] || []) as ReturnType[];
@@ -161,7 +161,7 @@ export class InternalDmmf {
 
   getNonPrimitiveTypeFileKind(
     name: string,
-    location: FieldLocation
+    location: FieldLocation,
   ): TypeFileKind {
     switch (location) {
       case 'outputObjectTypes':
@@ -279,7 +279,7 @@ export class InternalDmmf {
       const objectType = this.getNonPrimitiveType(
         'outputObjectTypes',
         'prisma',
-        type
+        type,
       );
       if (!objectType) {
         throw new Error(`Could not find ${type} in outputObjectTypes`);

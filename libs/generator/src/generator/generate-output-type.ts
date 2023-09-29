@@ -19,7 +19,7 @@ export function generateOutputType(
   project: ProjectStructure,
   options: GeneratorOptions,
   namespace: FieldNamespace,
-  modelName: string
+  modelName: string,
 ) {
   const { srcPath, dmmf } = options;
 
@@ -40,7 +40,7 @@ export function generateOutputType(
   const typeFound = dmmf.getNonPrimitiveType(
     'outputObjectTypes',
     namespace,
-    modelName
+    modelName,
   );
   if (!typeFound) {
     throw new Error(`Cannot find output type ${modelName}`);
@@ -63,7 +63,7 @@ export function generateOutputType(
       sourceFilePath,
       options,
       field,
-      fieldDocumentations?.[field.name]
+      fieldDocumentations?.[field.name],
     );
     imports.push(...propertyImports);
     properties.push(property);
@@ -106,7 +106,7 @@ function removeCountAndRelationFields(outputType: OutputType): OutputType {
         !(
           name === '_count' ||
           (location === 'outputObjectTypes' && namespace === 'model')
-        )
+        ),
     ),
   };
 }

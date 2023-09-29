@@ -8,7 +8,7 @@ import { ProjectStructure } from '../helpers/project-structure/project-structure
 export function generatePrismaType(
   project: ProjectStructure,
   options: GeneratorOptions,
-  ref: OutputTypeRef | InputTypeRef
+  ref: OutputTypeRef | InputTypeRef,
 ) {
   const { location, namespace, type } = ref;
   if (location === 'scalar' || location === 'fieldRefTypes') {

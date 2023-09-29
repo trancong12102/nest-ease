@@ -7,7 +7,7 @@ import { ProjectStructure } from '../helpers/project-structure/project-structure
 export function generateModelMappingTypes(
   project: ProjectStructure,
   options: GeneratorOptions,
-  modelMapping: ModelMapping
+  modelMapping: ModelMapping,
 ) {
   const { model, operations } = modelMapping;
 

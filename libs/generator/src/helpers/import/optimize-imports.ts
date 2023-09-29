@@ -3,7 +3,7 @@ import { groupBy, uniqBy } from 'ramda';
 
 export function optimizeImports(
   imports: ImportDeclarationStructure[],
-  self: string
+  self: string,
 ): ImportDeclarationStructure[] {
   const importsWithoutSelf = uniqBy((i) => createImportKey(i), imports)
     .map((i) => ({
@@ -14,7 +14,7 @@ export function optimizeImports(
 
   const groupedImports = groupBy(
     (i) => createImportKey(i, false),
-    importsWithoutSelf
+    importsWithoutSelf,
   );
 
   return Object.values(groupedImports)
@@ -35,7 +35,7 @@ export function optimizeImports(
 
 function createImportKey(
   importDeclaration: ImportDeclarationStructure,
-  withNamedImports = true
+  withNamedImports = true,
 ): string {
   const {
     namedImports,

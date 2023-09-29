@@ -2,7 +2,7 @@ import { PropertyTypeOptions } from '../../types/generator.type';
 
 export function getPropertyType(
   type: string,
-  options: PropertyTypeOptions
+  options: PropertyTypeOptions,
 ): string {
   const { isList, isNullable, isPromise, fixCircular } = options;
   let result = type;

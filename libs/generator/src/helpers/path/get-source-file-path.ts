@@ -8,7 +8,7 @@ export function getSourceFilePath(
   srcPath: string,
   module: string,
   classname: string,
-  kind: FileKind
+  kind: FileKind,
 ) {
   const isModuleFileKind = MODULE_FILE_KINDS.includes(kind as ModuleFileKind);
 
@@ -21,6 +21,6 @@ export function getSourceFilePath(
     kebabCase(module),
     isInBaseDir ? 'base' : '',
     isModuleFileKind ? '' : kebabCase(kind),
-    getSourceFileName(classname, kind)
+    getSourceFileName(classname, kind),
   );
 }
