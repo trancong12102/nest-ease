@@ -17,14 +17,11 @@ export class CategoryCreateInput {
     nullable: true,
     description: undefined,
   })
-  posts?: Omit<PostCreateNestedManyWithoutCategoriesInput, never> | null;
+  posts?: PostCreateNestedManyWithoutCategoriesInput | null;
   @Type(() => CategoryMetadataCreateNestedOneWithoutCategoryInput)
   @Field(() => CategoryMetadataCreateNestedOneWithoutCategoryInput, {
     nullable: true,
     description: undefined,
   })
-  metadata?: Omit<
-    CategoryMetadataCreateNestedOneWithoutCategoryInput,
-    never
-  > | null;
+  metadata?: CategoryMetadataCreateNestedOneWithoutCategoryInput | null;
 }

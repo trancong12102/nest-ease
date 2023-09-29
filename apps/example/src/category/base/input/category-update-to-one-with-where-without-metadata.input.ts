@@ -8,7 +8,7 @@ import { CategoryUpdateWithoutMetadataInput } from './category-update-without-me
 export class CategoryUpdateToOneWithWhereWithoutMetadataInput {
   @Type(() => CategoryWhereInput)
   @Field(() => CategoryWhereInput, { nullable: true, description: undefined })
-  where?: Omit<CategoryWhereInput, never> | null;
+  where?: CategoryWhereInput | null;
   @Type(() => CategoryUpdateWithoutMetadataInput)
   @Field(() => CategoryUpdateWithoutMetadataInput, {
     nullable: false,

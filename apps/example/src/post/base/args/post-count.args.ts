@@ -11,7 +11,7 @@ import { PostScalarFieldEnum } from '../enum/post-scalar-field.enum';
 export class PostCountArgs {
   @Type(() => PostWhereInput)
   @Field(() => PostWhereInput, { nullable: true, description: undefined })
-  where?: Omit<PostWhereInput, never> | null;
+  where?: PostWhereInput | null;
   @Type(() => PostOrderByWithRelationInput)
   @Field(() => [PostOrderByWithRelationInput], {
     nullable: true,

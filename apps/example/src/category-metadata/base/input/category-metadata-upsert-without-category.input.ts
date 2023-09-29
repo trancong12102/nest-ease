@@ -24,5 +24,5 @@ export class CategoryMetadataUpsertWithoutCategoryInput {
     nullable: true,
     description: undefined,
   })
-  where?: Omit<CategoryMetadataWhereInput, never> | null;
+  where?: CategoryMetadataWhereInput | null;
 }

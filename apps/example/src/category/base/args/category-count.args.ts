@@ -11,7 +11,7 @@ import { CategoryScalarFieldEnum } from '../enum/category-scalar-field.enum';
 export class CategoryCountArgs {
   @Type(() => CategoryWhereInput)
   @Field(() => CategoryWhereInput, { nullable: true, description: undefined })
-  where?: Omit<CategoryWhereInput, never> | null;
+  where?: CategoryWhereInput | null;
   @Type(() => CategoryOrderByWithRelationInput)
   @Field(() => [CategoryOrderByWithRelationInput], {
     nullable: true,

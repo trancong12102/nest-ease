@@ -10,5 +10,5 @@ export class StandaloneModelDeleteManyArgs {
     nullable: true,
     description: undefined,
   })
-  where?: Omit<StandaloneModelWhereInput, never> | null;
+  where?: StandaloneModelWhereInput | null;
 }

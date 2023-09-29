@@ -32,7 +32,7 @@ export class CategoryWhereUniqueInput {
     nullable: true,
     description: undefined,
   })
-  posts?: Omit<PostListRelationFilter, never> | null;
+  posts?: PostListRelationFilter | null;
   @Type(() => CategoryMetadataNullableRelationFilter)
   @Field(() => CategoryMetadataNullableRelationFilter, {
     nullable: true,

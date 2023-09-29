@@ -59,5 +59,5 @@ export class PostWhereUniqueInput {
     nullable: true,
     description: undefined,
   })
-  categories?: Omit<CategoryListRelationFilter, never> | null;
+  categories?: CategoryListRelationFilter | null;
 }

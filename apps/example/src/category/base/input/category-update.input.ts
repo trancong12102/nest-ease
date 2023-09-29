@@ -31,14 +31,11 @@ export class CategoryUpdateInput {
     nullable: true,
     description: undefined,
   })
-  posts?: Omit<PostUpdateManyWithoutCategoriesNestedInput, never> | null;
+  posts?: PostUpdateManyWithoutCategoriesNestedInput | null;
   @Type(() => CategoryMetadataUpdateOneWithoutCategoryNestedInput)
   @Field(() => CategoryMetadataUpdateOneWithoutCategoryNestedInput, {
     nullable: true,
     description: undefined,
   })
-  metadata?: Omit<
-    CategoryMetadataUpdateOneWithoutCategoryNestedInput,
-    never
-  > | null;
+  metadata?: CategoryMetadataUpdateOneWithoutCategoryNestedInput | null;
 }

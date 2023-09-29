@@ -14,7 +14,7 @@ export class CategoryMetadataFindManyArgs {
     nullable: true,
     description: undefined,
   })
-  where?: Omit<CategoryMetadataWhereInput, never> | null;
+  where?: CategoryMetadataWhereInput | null;
   @Type(() => CategoryMetadataOrderByWithRelationInput)
   @Field(() => [CategoryMetadataOrderByWithRelationInput], {
     nullable: true,

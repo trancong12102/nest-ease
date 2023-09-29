@@ -21,5 +21,5 @@ export class CategoryMetadataCreateInput {
     nullable: false,
     description: undefined,
   })
-  category!: Omit<CategoryCreateNestedOneWithoutMetadataInput, never>;
+  category!: CategoryCreateNestedOneWithoutMetadataInput;
 }

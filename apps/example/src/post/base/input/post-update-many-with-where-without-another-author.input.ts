@@ -11,7 +11,7 @@ export class PostUpdateManyWithWhereWithoutAnotherAuthorInput {
     nullable: false,
     description: undefined,
   })
-  where!: Omit<PostScalarWhereInput, never>;
+  where!: PostScalarWhereInput;
   @Type(() => PostUpdateManyMutationInput)
   @Field(() => PostUpdateManyMutationInput, {
     nullable: false,

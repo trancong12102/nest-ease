@@ -11,7 +11,7 @@ export class CategoryMetadataUpdateToOneWithWhereWithoutCategoryInput {
     nullable: true,
     description: undefined,
   })
-  where?: Omit<CategoryMetadataWhereInput, never> | null;
+  where?: CategoryMetadataWhereInput | null;
   @Type(() => CategoryMetadataUpdateWithoutCategoryInput)
   @Field(() => CategoryMetadataUpdateWithoutCategoryInput, {
     nullable: false,

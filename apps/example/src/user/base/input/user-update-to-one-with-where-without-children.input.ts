@@ -8,7 +8,7 @@ import { UserUpdateWithoutChildrenInput } from './user-update-without-children.i
 export class UserUpdateToOneWithWhereWithoutChildrenInput {
   @Type(() => UserWhereInput)
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
-  where?: Omit<UserWhereInput, never> | null;
+  where?: UserWhereInput | null;
   @Type(() => UserUpdateWithoutChildrenInput)
   @Field(() => UserUpdateWithoutChildrenInput, {
     nullable: false,

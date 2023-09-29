@@ -7,11 +7,11 @@ import { Type } from 'class-transformer';
 export class PostListRelationFilter {
   @Type(() => PostWhereInput)
   @Field(() => PostWhereInput, { nullable: true, description: undefined })
-  every?: Omit<PostWhereInput, never> | null;
+  every?: PostWhereInput | null;
   @Type(() => PostWhereInput)
   @Field(() => PostWhereInput, { nullable: true, description: undefined })
-  some?: Omit<PostWhereInput, never> | null;
+  some?: PostWhereInput | null;
   @Type(() => PostWhereInput)
   @Field(() => PostWhereInput, { nullable: true, description: undefined })
-  none?: Omit<PostWhereInput, never> | null;
+  none?: PostWhereInput | null;
 }

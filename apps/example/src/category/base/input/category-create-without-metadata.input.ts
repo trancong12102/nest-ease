@@ -16,5 +16,5 @@ export class CategoryCreateWithoutMetadataInput {
     nullable: true,
     description: undefined,
   })
-  posts?: Omit<PostCreateNestedManyWithoutCategoriesInput, never> | null;
+  posts?: PostCreateNestedManyWithoutCategoriesInput | null;
 }

@@ -14,5 +14,5 @@ export class PostUpdateManyArgs {
   data!: PostUpdateManyMutationInput;
   @Type(() => PostWhereInput)
   @Field(() => PostWhereInput, { nullable: true, description: undefined })
-  where?: Omit<PostWhereInput, never> | null;
+  where?: PostWhereInput | null;
 }

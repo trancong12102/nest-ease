@@ -11,7 +11,7 @@ export class UserUpdateManyWithWhereWithoutParentInput {
     nullable: false,
     description: undefined,
   })
-  where!: Omit<UserScalarWhereInput, never>;
+  where!: UserScalarWhereInput;
   @Type(() => UserUpdateManyMutationInput)
   @Field(() => UserUpdateManyMutationInput, {
     nullable: false,

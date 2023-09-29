@@ -48,20 +48,17 @@ export class UserUpdateWithoutPostsInput {
     nullable: true,
     description: undefined,
   })
-  parent?: Omit<UserUpdateOneWithoutChildrenNestedInput, never> | null;
+  parent?: UserUpdateOneWithoutChildrenNestedInput | null;
   @Type(() => UserUpdateManyWithoutParentNestedInput)
   @Field(() => UserUpdateManyWithoutParentNestedInput, {
     nullable: true,
     description: undefined,
   })
-  children?: Omit<UserUpdateManyWithoutParentNestedInput, never> | null;
+  children?: UserUpdateManyWithoutParentNestedInput | null;
   @Type(() => PostUpdateManyWithoutAnotherAuthorNestedInput)
   @Field(() => PostUpdateManyWithoutAnotherAuthorNestedInput, {
     nullable: true,
     description: undefined,
   })
-  anotherPosts?: Omit<
-    PostUpdateManyWithoutAnotherAuthorNestedInput,
-    never
-  > | null;
+  anotherPosts?: PostUpdateManyWithoutAnotherAuthorNestedInput | null;
 }

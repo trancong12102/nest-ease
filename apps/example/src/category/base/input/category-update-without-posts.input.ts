@@ -30,8 +30,5 @@ export class CategoryUpdateWithoutPostsInput {
     nullable: true,
     description: undefined,
   })
-  metadata?: Omit<
-    CategoryMetadataUpdateOneWithoutCategoryNestedInput,
-    never
-  > | null;
+  metadata?: CategoryMetadataUpdateOneWithoutCategoryNestedInput | null;
 }

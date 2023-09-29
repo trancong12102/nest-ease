@@ -11,7 +11,7 @@ import { UserScalarFieldEnum } from '../enum/user-scalar-field.enum';
 export class UserFindManyArgs {
   @Type(() => UserWhereInput)
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
-  where?: Omit<UserWhereInput, never> | null;
+  where?: UserWhereInput | null;
   @Type(() => UserOrderByWithRelationInput)
   @Field(() => [UserOrderByWithRelationInput], {
     nullable: true,

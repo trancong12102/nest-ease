@@ -34,7 +34,7 @@ export class UserOrderByWithRelationInput {
     nullable: true,
     description: undefined,
   })
-  parent?: Omit<UserOrderByWithRelationInput, never> | null;
+  parent?: UserOrderByWithRelationInput | null;
   @Type(() => UserOrderByRelationAggregateInput)
   @Field(() => UserOrderByRelationAggregateInput, {
     nullable: true,

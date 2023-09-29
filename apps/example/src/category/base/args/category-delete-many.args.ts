@@ -7,5 +7,5 @@ import { Type } from 'class-transformer';
 export class CategoryDeleteManyArgs {
   @Type(() => CategoryWhereInput)
   @Field(() => CategoryWhereInput, { nullable: true, description: undefined })
-  where?: Omit<CategoryWhereInput, never> | null;
+  where?: CategoryWhereInput | null;
 }

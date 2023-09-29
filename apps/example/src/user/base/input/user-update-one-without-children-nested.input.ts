@@ -25,10 +25,10 @@ export class UserUpdateOneWithoutChildrenNestedInput {
   upsert?: UserUpsertWithoutChildrenInput | null;
   @Type(() => UserWhereInput)
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
-  disconnect?: Omit<UserWhereInput, never> | null;
+  disconnect?: UserWhereInput | null;
   @Type(() => UserWhereInput)
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
-  delete?: Omit<UserWhereInput, never> | null;
+  delete?: UserWhereInput | null;
   @Type(() => UserWhereUniqueInput)
   @Field(() => UserWhereUniqueInput, { nullable: true, description: undefined })
   connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;

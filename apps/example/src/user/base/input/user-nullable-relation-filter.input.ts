@@ -7,8 +7,8 @@ import { Type } from 'class-transformer';
 export class UserNullableRelationFilter {
   @Type(() => UserWhereInput)
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
-  is?: Omit<UserWhereInput, never> | null;
+  is?: UserWhereInput | null;
   @Type(() => UserWhereInput)
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
-  isNot?: Omit<UserWhereInput, never> | null;
+  isNot?: UserWhereInput | null;
 }

@@ -49,7 +49,7 @@ export class UserWhereUniqueInput {
     nullable: true,
     description: undefined,
   })
-  posts?: Omit<PostListRelationFilter, never> | null;
+  posts?: PostListRelationFilter | null;
   @Type(() => UserNullableRelationFilter)
   @Field(() => UserNullableRelationFilter, {
     nullable: true,
@@ -61,11 +61,11 @@ export class UserWhereUniqueInput {
     nullable: true,
     description: undefined,
   })
-  children?: Omit<UserListRelationFilter, never> | null;
+  children?: UserListRelationFilter | null;
   @Type(() => PostListRelationFilter)
   @Field(() => PostListRelationFilter, {
     nullable: true,
     description: undefined,
   })
-  anotherPosts?: Omit<PostListRelationFilter, never> | null;
+  anotherPosts?: PostListRelationFilter | null;
 }

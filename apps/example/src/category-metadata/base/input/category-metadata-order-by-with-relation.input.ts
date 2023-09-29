@@ -21,5 +21,5 @@ export class CategoryMetadataOrderByWithRelationInput {
     nullable: true,
     description: undefined,
   })
-  category?: Omit<CategoryOrderByWithRelationInput, never> | null;
+  category?: CategoryOrderByWithRelationInput | null;
 }

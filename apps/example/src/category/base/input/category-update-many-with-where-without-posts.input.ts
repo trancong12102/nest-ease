@@ -11,7 +11,7 @@ export class CategoryUpdateManyWithWhereWithoutPostsInput {
     nullable: false,
     description: undefined,
   })
-  where!: Omit<CategoryScalarWhereInput, never>;
+  where!: CategoryScalarWhereInput;
   @Type(() => CategoryUpdateManyMutationInput)
   @Field(() => CategoryUpdateManyMutationInput, {
     nullable: false,

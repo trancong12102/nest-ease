@@ -48,14 +48,11 @@ export class PostUpdateWithoutCategoriesInput {
     nullable: true,
     description: undefined,
   })
-  author?: Omit<UserUpdateOneRequiredWithoutPostsNestedInput, never> | null;
+  author?: UserUpdateOneRequiredWithoutPostsNestedInput | null;
   @Type(() => UserUpdateOneRequiredWithoutAnotherPostsNestedInput)
   @Field(() => UserUpdateOneRequiredWithoutAnotherPostsNestedInput, {
     nullable: true,
     description: undefined,
   })
-  anotherAuthor?: Omit<
-    UserUpdateOneRequiredWithoutAnotherPostsNestedInput,
-    never
-  > | null;
+  anotherAuthor?: UserUpdateOneRequiredWithoutAnotherPostsNestedInput | null;
 }

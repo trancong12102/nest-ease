@@ -25,17 +25,17 @@ export class PostCreateInput {
     nullable: false,
     description: undefined,
   })
-  author!: Omit<UserCreateNestedOneWithoutPostsInput, never>;
+  author!: UserCreateNestedOneWithoutPostsInput;
   @Type(() => UserCreateNestedOneWithoutAnotherPostsInput)
   @Field(() => UserCreateNestedOneWithoutAnotherPostsInput, {
     nullable: false,
     description: undefined,
   })
-  anotherAuthor!: Omit<UserCreateNestedOneWithoutAnotherPostsInput, never>;
+  anotherAuthor!: UserCreateNestedOneWithoutAnotherPostsInput;
   @Type(() => CategoryCreateNestedManyWithoutPostsInput)
   @Field(() => CategoryCreateNestedManyWithoutPostsInput, {
     nullable: true,
     description: undefined,
   })
-  categories?: Omit<CategoryCreateNestedManyWithoutPostsInput, never> | null;
+  categories?: CategoryCreateNestedManyWithoutPostsInput | null;
 }

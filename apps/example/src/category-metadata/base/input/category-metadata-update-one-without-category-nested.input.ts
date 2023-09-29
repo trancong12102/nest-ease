@@ -28,13 +28,13 @@ export class CategoryMetadataUpdateOneWithoutCategoryNestedInput {
     nullable: true,
     description: undefined,
   })
-  disconnect?: Omit<CategoryMetadataWhereInput, never> | null;
+  disconnect?: CategoryMetadataWhereInput | null;
   @Type(() => CategoryMetadataWhereInput)
   @Field(() => CategoryMetadataWhereInput, {
     nullable: true,
     description: undefined,
   })
-  delete?: Omit<CategoryMetadataWhereInput, never> | null;
+  delete?: CategoryMetadataWhereInput | null;
   @Type(() => CategoryMetadataWhereUniqueInput)
   @Field(() => CategoryMetadataWhereUniqueInput, {
     nullable: true,

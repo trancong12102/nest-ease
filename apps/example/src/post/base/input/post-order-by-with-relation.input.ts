@@ -30,13 +30,13 @@ export class PostOrderByWithRelationInput {
     nullable: true,
     description: undefined,
   })
-  author?: Omit<UserOrderByWithRelationInput, never> | null;
+  author?: UserOrderByWithRelationInput | null;
   @Type(() => UserOrderByWithRelationInput)
   @Field(() => UserOrderByWithRelationInput, {
     nullable: true,
     description: undefined,
   })
-  anotherAuthor?: Omit<UserOrderByWithRelationInput, never> | null;
+  anotherAuthor?: UserOrderByWithRelationInput | null;
   @Type(() => CategoryOrderByRelationAggregateInput)
   @Field(() => CategoryOrderByRelationAggregateInput, {
     nullable: true,

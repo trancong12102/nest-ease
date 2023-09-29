@@ -49,20 +49,17 @@ export class PostUpdateInput {
     nullable: true,
     description: undefined,
   })
-  author?: Omit<UserUpdateOneRequiredWithoutPostsNestedInput, never> | null;
+  author?: UserUpdateOneRequiredWithoutPostsNestedInput | null;
   @Type(() => UserUpdateOneRequiredWithoutAnotherPostsNestedInput)
   @Field(() => UserUpdateOneRequiredWithoutAnotherPostsNestedInput, {
     nullable: true,
     description: undefined,
   })
-  anotherAuthor?: Omit<
-    UserUpdateOneRequiredWithoutAnotherPostsNestedInput,
-    never
-  > | null;
+  anotherAuthor?: UserUpdateOneRequiredWithoutAnotherPostsNestedInput | null;
   @Type(() => CategoryUpdateManyWithoutPostsNestedInput)
   @Field(() => CategoryUpdateManyWithoutPostsNestedInput, {
     nullable: true,
     description: undefined,
   })
-  categories?: Omit<CategoryUpdateManyWithoutPostsNestedInput, never> | null;
+  categories?: CategoryUpdateManyWithoutPostsNestedInput | null;
 }

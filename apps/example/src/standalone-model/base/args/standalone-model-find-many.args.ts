@@ -14,7 +14,7 @@ export class StandaloneModelFindManyArgs {
     nullable: true,
     description: undefined,
   })
-  where?: Omit<StandaloneModelWhereInput, never> | null;
+  where?: StandaloneModelWhereInput | null;
   @Type(() => StandaloneModelOrderByWithRelationInput)
   @Field(() => [StandaloneModelOrderByWithRelationInput], {
     nullable: true,

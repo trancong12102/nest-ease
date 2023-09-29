@@ -17,5 +17,5 @@ export class StandaloneModelUpdateManyArgs {
     nullable: true,
     description: undefined,
   })
-  where?: Omit<StandaloneModelWhereInput, never> | null;
+  where?: StandaloneModelWhereInput | null;
 }
