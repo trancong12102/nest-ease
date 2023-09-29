@@ -8,9 +8,15 @@ import { UserCreateWithoutChildrenInput } from './user-create-without-children.i
 @InputType()
 export class UserCreateOrConnectWithoutChildrenInput {
   @Type(() => UserWhereUniqueInput)
-  @Field(() => UserWhereUniqueInput, { nullable: false, description: undefined })
+  @Field(() => UserWhereUniqueInput, {
+    nullable: false,
+    description: undefined,
+  })
   where!: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
   @Type(() => UserCreateWithoutChildrenInput)
-  @Field(() => UserCreateWithoutChildrenInput, { nullable: false, description: undefined })
+  @Field(() => UserCreateWithoutChildrenInput, {
+    nullable: false,
+    description: undefined,
+  })
   create!: UserCreateWithoutChildrenInput;
 }

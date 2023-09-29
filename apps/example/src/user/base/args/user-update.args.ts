@@ -11,6 +11,9 @@ export class UserUpdateArgs {
   @Field(() => UserUpdateInput, { nullable: false, description: undefined })
   data!: UserUpdateInput;
   @Type(() => UserWhereUniqueInput)
-  @Field(() => UserWhereUniqueInput, { nullable: false, description: undefined })
+  @Field(() => UserWhereUniqueInput, {
+    nullable: false,
+    description: undefined,
+  })
   where!: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
 }

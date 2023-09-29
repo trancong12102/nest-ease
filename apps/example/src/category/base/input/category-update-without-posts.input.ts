@@ -8,15 +8,30 @@ import { CategoryMetadataUpdateOneWithoutCategoryNestedInput } from '../../../ca
 @InputType()
 export class CategoryUpdateWithoutPostsInput {
   @Type(() => StringFieldUpdateOperationsInput)
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true, description: undefined })
+  @Field(() => StringFieldUpdateOperationsInput, {
+    nullable: true,
+    description: undefined,
+  })
   name?: StringFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true, description: undefined })
+  @Field(() => DateTimeFieldUpdateOperationsInput, {
+    nullable: true,
+    description: undefined,
+  })
   createdAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true, description: undefined })
+  @Field(() => DateTimeFieldUpdateOperationsInput, {
+    nullable: true,
+    description: undefined,
+  })
   updatedAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => CategoryMetadataUpdateOneWithoutCategoryNestedInput)
-  @Field(() => CategoryMetadataUpdateOneWithoutCategoryNestedInput, { nullable: true, description: undefined })
-  metadata?: Omit<CategoryMetadataUpdateOneWithoutCategoryNestedInput, never> | null;
+  @Field(() => CategoryMetadataUpdateOneWithoutCategoryNestedInput, {
+    nullable: true,
+    description: undefined,
+  })
+  metadata?: Omit<
+    CategoryMetadataUpdateOneWithoutCategoryNestedInput,
+    never
+  > | null;
 }

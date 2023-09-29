@@ -13,7 +13,10 @@ export class UserFindManyArgs {
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
   where?: Omit<UserWhereInput, never> | null;
   @Type(() => UserOrderByWithRelationInput)
-  @Field(() => [UserOrderByWithRelationInput], { nullable: true, description: undefined })
+  @Field(() => [UserOrderByWithRelationInput], {
+    nullable: true,
+    description: undefined,
+  })
   orderBy?: Array<UserOrderByWithRelationInput> | null;
   @Type(() => UserWhereUniqueInput)
   @Field(() => UserWhereUniqueInput, { nullable: true, description: undefined })
@@ -22,6 +25,9 @@ export class UserFindManyArgs {
   take?: number | null;
   @Field(() => Int, { nullable: true, description: undefined })
   skip?: number | null;
-  @Field(() => [UserScalarFieldEnum], { nullable: true, description: undefined })
+  @Field(() => [UserScalarFieldEnum], {
+    nullable: true,
+    description: undefined,
+  })
   distinct?: Array<keyof typeof UserScalarFieldEnum> | null;
 }

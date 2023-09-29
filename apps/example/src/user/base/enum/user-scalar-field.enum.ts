@@ -9,7 +9,11 @@ export enum UserScalarFieldEnum {
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
   parentId = 'parentId',
-  mappedField = 'mappedField'
+  mappedField = 'mappedField',
 }
 
-registerEnumType(UserScalarFieldEnum, { name: 'UserScalarFieldEnum', description: undefined, valuesMap: undefined })
+registerEnumType(UserScalarFieldEnum, {
+  name: 'UserScalarFieldEnum',
+  description: undefined,
+  valuesMap: undefined,
+});

@@ -8,9 +8,15 @@ import { PostCreateWithoutAnotherAuthorInput } from './post-create-without-anoth
 @InputType()
 export class PostCreateOrConnectWithoutAnotherAuthorInput {
   @Type(() => PostWhereUniqueInput)
-  @Field(() => PostWhereUniqueInput, { nullable: false, description: undefined })
+  @Field(() => PostWhereUniqueInput, {
+    nullable: false,
+    description: undefined,
+  })
   where!: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
   @Type(() => PostCreateWithoutAnotherAuthorInput)
-  @Field(() => PostCreateWithoutAnotherAuthorInput, { nullable: false, description: undefined })
+  @Field(() => PostCreateWithoutAnotherAuthorInput, {
+    nullable: false,
+    description: undefined,
+  })
   create!: PostCreateWithoutAnotherAuthorInput;
 }

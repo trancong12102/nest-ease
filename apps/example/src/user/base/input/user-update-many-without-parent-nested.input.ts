@@ -14,7 +14,10 @@ import { UserScalarWhereInput } from './user-scalar-where.input';
 @InputType()
 export class UserUpdateManyWithoutParentNestedInput {
   @Type(() => UserCreateWithoutParentInput)
-  @Field(() => [UserCreateWithoutParentInput], { nullable: true, description: undefined })
+  @Field(() => [UserCreateWithoutParentInput], {
+    nullable: true,
+    description: undefined,
+  })
   create?: Array<UserCreateWithoutParentInput> | null;
   @Type(() => UserCreateOrConnectWithoutParentInput)
   @HideField()
@@ -29,16 +32,28 @@ export class UserUpdateManyWithoutParentNestedInput {
   @HideField()
   set?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
   @Type(() => UserWhereUniqueInput)
-  @Field(() => [UserWhereUniqueInput], { nullable: true, description: undefined })
+  @Field(() => [UserWhereUniqueInput], {
+    nullable: true,
+    description: undefined,
+  })
   disconnect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
   @Type(() => UserWhereUniqueInput)
-  @Field(() => [UserWhereUniqueInput], { nullable: true, description: undefined })
+  @Field(() => [UserWhereUniqueInput], {
+    nullable: true,
+    description: undefined,
+  })
   delete?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
   @Type(() => UserWhereUniqueInput)
-  @Field(() => [UserWhereUniqueInput], { nullable: true, description: undefined })
+  @Field(() => [UserWhereUniqueInput], {
+    nullable: true,
+    description: undefined,
+  })
   connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
   @Type(() => UserUpdateWithWhereUniqueWithoutParentInput)
-  @Field(() => [UserUpdateWithWhereUniqueWithoutParentInput], { nullable: true, description: undefined })
+  @Field(() => [UserUpdateWithWhereUniqueWithoutParentInput], {
+    nullable: true,
+    description: undefined,
+  })
   update?: Array<UserUpdateWithWhereUniqueWithoutParentInput> | null;
   @Type(() => UserUpdateManyWithWhereWithoutParentInput)
   @HideField()

@@ -16,8 +16,7 @@ import { Post } from '../../post/base/model/post.model';
 import { CategoryMetadata } from '../../category-metadata/base/model/category-metadata.model';
 
 export class CategoryBaseService {
-  constructor(protected readonly prisma: PrismaService) {
-  }
+  constructor(protected readonly prisma: PrismaService) {}
 
   async create(args: CategoryCreateArgs): Promise<Category> {
     return this.prisma.client.category.create(args);
@@ -55,27 +54,26 @@ export class CategoryBaseService {
     return this.prisma.client.category.deleteMany(args);
   }
 
-  async resolvePosts(parent: Category, args: PostFindManyArgs): Promise<Array<Post>> {
-
+  async resolvePosts(
+    parent: Category,
+    args: PostFindManyArgs,
+  ): Promise<Array<Post>> {
     return this.prisma.client.category
-    .findUniqueOrThrow({
-      where: {
-        id: parent.id,
-    }
-    })
-    .posts(args);
-            
+      .findUniqueOrThrow({
+        where: {
+          id: parent.id,
+        },
+      })
+      .posts(args);
   }
 
   async resolveMetadata(parent: Category): Promise<CategoryMetadata | null> {
-
     return this.prisma.client.category
-    .findUniqueOrThrow({
-      where: {
-        id: parent.id,
-    }
-    })
-    .metadata();
-            
+      .findUniqueOrThrow({
+        where: {
+          id: parent.id,
+        },
+      })
+      .metadata();
   }
 }

@@ -8,10 +8,16 @@ import { CategoryWhereInput } from './category-where.input';
 @InputType()
 export class CategoryUpsertWithoutMetadataInput {
   @Type(() => CategoryUpdateWithoutMetadataInput)
-  @Field(() => CategoryUpdateWithoutMetadataInput, { nullable: false, description: undefined })
+  @Field(() => CategoryUpdateWithoutMetadataInput, {
+    nullable: false,
+    description: undefined,
+  })
   update!: CategoryUpdateWithoutMetadataInput;
   @Type(() => CategoryCreateWithoutMetadataInput)
-  @Field(() => CategoryCreateWithoutMetadataInput, { nullable: false, description: undefined })
+  @Field(() => CategoryCreateWithoutMetadataInput, {
+    nullable: false,
+    description: undefined,
+  })
   create!: CategoryCreateWithoutMetadataInput;
   @Type(() => CategoryWhereInput)
   @Field(() => CategoryWhereInput, { nullable: true, description: undefined })

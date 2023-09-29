@@ -8,9 +8,15 @@ import { Prisma } from '../../../@prisma-client';
 @ArgsType()
 export class CategoryMetadataUpdateArgs {
   @Type(() => CategoryMetadataUpdateInput)
-  @Field(() => CategoryMetadataUpdateInput, { nullable: false, description: undefined })
+  @Field(() => CategoryMetadataUpdateInput, {
+    nullable: false,
+    description: undefined,
+  })
   data!: CategoryMetadataUpdateInput;
   @Type(() => CategoryMetadataWhereUniqueInput)
-  @Field(() => CategoryMetadataWhereUniqueInput, { nullable: false, description: undefined })
+  @Field(() => CategoryMetadataWhereUniqueInput, {
+    nullable: false,
+    description: undefined,
+  })
   where!: Prisma.AtLeast<CategoryMetadataWhereUniqueInput, 'id' | 'categoryId'>;
 }

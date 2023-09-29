@@ -11,7 +11,10 @@ import { UserUpdateToOneWithWhereWithoutAnotherPostsInput } from './user-update-
 @InputType()
 export class UserUpdateOneRequiredWithoutAnotherPostsNestedInput {
   @Type(() => UserCreateWithoutAnotherPostsInput)
-  @Field(() => UserCreateWithoutAnotherPostsInput, { nullable: true, description: undefined })
+  @Field(() => UserCreateWithoutAnotherPostsInput, {
+    nullable: true,
+    description: undefined,
+  })
   create?: UserCreateWithoutAnotherPostsInput | null;
   @Type(() => UserCreateOrConnectWithoutAnotherPostsInput)
   @HideField()
@@ -23,6 +26,9 @@ export class UserUpdateOneRequiredWithoutAnotherPostsNestedInput {
   @Field(() => UserWhereUniqueInput, { nullable: true, description: undefined })
   connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
   @Type(() => UserUpdateToOneWithWhereWithoutAnotherPostsInput)
-  @Field(() => UserUpdateToOneWithWhereWithoutAnotherPostsInput, { nullable: true, description: undefined })
+  @Field(() => UserUpdateToOneWithWhereWithoutAnotherPostsInput, {
+    nullable: true,
+    description: undefined,
+  })
   update?: UserUpdateToOneWithWhereWithoutAnotherPostsInput | null;
 }

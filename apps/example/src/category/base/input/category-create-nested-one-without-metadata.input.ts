@@ -9,12 +9,18 @@ import { Prisma } from '../../../@prisma-client';
 @InputType()
 export class CategoryCreateNestedOneWithoutMetadataInput {
   @Type(() => CategoryCreateWithoutMetadataInput)
-  @Field(() => CategoryCreateWithoutMetadataInput, { nullable: true, description: undefined })
+  @Field(() => CategoryCreateWithoutMetadataInput, {
+    nullable: true,
+    description: undefined,
+  })
   create?: CategoryCreateWithoutMetadataInput | null;
   @Type(() => CategoryCreateOrConnectWithoutMetadataInput)
   @HideField()
   connectOrCreate?: CategoryCreateOrConnectWithoutMetadataInput | null;
   @Type(() => CategoryWhereUniqueInput)
-  @Field(() => CategoryWhereUniqueInput, { nullable: true, description: undefined })
+  @Field(() => CategoryWhereUniqueInput, {
+    nullable: true,
+    description: undefined,
+  })
   connect?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
 }

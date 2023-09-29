@@ -7,9 +7,15 @@ import { CategoryMetadataUpdateWithoutCategoryInput } from './category-metadata-
 @InputType()
 export class CategoryMetadataUpdateToOneWithWhereWithoutCategoryInput {
   @Type(() => CategoryMetadataWhereInput)
-  @Field(() => CategoryMetadataWhereInput, { nullable: true, description: undefined })
+  @Field(() => CategoryMetadataWhereInput, {
+    nullable: true,
+    description: undefined,
+  })
   where?: Omit<CategoryMetadataWhereInput, never> | null;
   @Type(() => CategoryMetadataUpdateWithoutCategoryInput)
-  @Field(() => CategoryMetadataUpdateWithoutCategoryInput, { nullable: false, description: undefined })
+  @Field(() => CategoryMetadataUpdateWithoutCategoryInput, {
+    nullable: false,
+    description: undefined,
+  })
   data!: CategoryMetadataUpdateWithoutCategoryInput;
 }

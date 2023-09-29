@@ -6,6 +6,9 @@ import { Type } from 'class-transformer';
 @ArgsType()
 export class CategoryMetadataCreateArgs {
   @Type(() => CategoryMetadataCreateInput)
-  @Field(() => CategoryMetadataCreateInput, { nullable: false, description: undefined })
+  @Field(() => CategoryMetadataCreateInput, {
+    nullable: false,
+    description: undefined,
+  })
   data!: CategoryMetadataCreateInput;
 }

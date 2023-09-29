@@ -12,7 +12,10 @@ import { CategoryMetadataUpdateToOneWithWhereWithoutCategoryInput } from './cate
 @InputType()
 export class CategoryMetadataUpdateOneWithoutCategoryNestedInput {
   @Type(() => CategoryMetadataCreateWithoutCategoryInput)
-  @Field(() => CategoryMetadataCreateWithoutCategoryInput, { nullable: true, description: undefined })
+  @Field(() => CategoryMetadataCreateWithoutCategoryInput, {
+    nullable: true,
+    description: undefined,
+  })
   create?: CategoryMetadataCreateWithoutCategoryInput | null;
   @Type(() => CategoryMetadataCreateOrConnectWithoutCategoryInput)
   @HideField()
@@ -21,15 +24,30 @@ export class CategoryMetadataUpdateOneWithoutCategoryNestedInput {
   @HideField()
   upsert?: CategoryMetadataUpsertWithoutCategoryInput | null;
   @Type(() => CategoryMetadataWhereInput)
-  @Field(() => CategoryMetadataWhereInput, { nullable: true, description: undefined })
+  @Field(() => CategoryMetadataWhereInput, {
+    nullable: true,
+    description: undefined,
+  })
   disconnect?: Omit<CategoryMetadataWhereInput, never> | null;
   @Type(() => CategoryMetadataWhereInput)
-  @Field(() => CategoryMetadataWhereInput, { nullable: true, description: undefined })
+  @Field(() => CategoryMetadataWhereInput, {
+    nullable: true,
+    description: undefined,
+  })
   delete?: Omit<CategoryMetadataWhereInput, never> | null;
   @Type(() => CategoryMetadataWhereUniqueInput)
-  @Field(() => CategoryMetadataWhereUniqueInput, { nullable: true, description: undefined })
-  connect?: Prisma.AtLeast<CategoryMetadataWhereUniqueInput, 'id' | 'categoryId'>;
+  @Field(() => CategoryMetadataWhereUniqueInput, {
+    nullable: true,
+    description: undefined,
+  })
+  connect?: Prisma.AtLeast<
+    CategoryMetadataWhereUniqueInput,
+    'id' | 'categoryId'
+  >;
   @Type(() => CategoryMetadataUpdateToOneWithWhereWithoutCategoryInput)
-  @Field(() => CategoryMetadataUpdateToOneWithWhereWithoutCategoryInput, { nullable: true, description: undefined })
+  @Field(() => CategoryMetadataUpdateToOneWithWhereWithoutCategoryInput, {
+    nullable: true,
+    description: undefined,
+  })
   update?: CategoryMetadataUpdateToOneWithWhereWithoutCategoryInput | null;
 }

@@ -8,9 +8,15 @@ import { PostUpdateWithoutAuthorInput } from './post-update-without-author.input
 @InputType()
 export class PostUpdateWithWhereUniqueWithoutAuthorInput {
   @Type(() => PostWhereUniqueInput)
-  @Field(() => PostWhereUniqueInput, { nullable: false, description: undefined })
+  @Field(() => PostWhereUniqueInput, {
+    nullable: false,
+    description: undefined,
+  })
   where!: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
   @Type(() => PostUpdateWithoutAuthorInput)
-  @Field(() => PostUpdateWithoutAuthorInput, { nullable: false, description: undefined })
+  @Field(() => PostUpdateWithoutAuthorInput, {
+    nullable: false,
+    description: undefined,
+  })
   data!: PostUpdateWithoutAuthorInput;
 }

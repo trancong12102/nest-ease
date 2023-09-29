@@ -11,9 +11,15 @@ export class CategoryMetadataCreateInput {
   @Field(() => Date, { nullable: true, description: undefined })
   updatedAt?: Date | string | null;
   @Type(() => CategoryMetadataCreatemetadataInput)
-  @Field(() => CategoryMetadataCreatemetadataInput, { nullable: true, description: undefined })
+  @Field(() => CategoryMetadataCreatemetadataInput, {
+    nullable: true,
+    description: undefined,
+  })
   metadata?: CategoryMetadataCreatemetadataInput | null;
   @Type(() => CategoryCreateNestedOneWithoutMetadataInput)
-  @Field(() => CategoryCreateNestedOneWithoutMetadataInput, { nullable: false, description: undefined })
+  @Field(() => CategoryCreateNestedOneWithoutMetadataInput, {
+    nullable: false,
+    description: undefined,
+  })
   category!: Omit<CategoryCreateNestedOneWithoutMetadataInput, never>;
 }

@@ -55,6 +55,9 @@ export class PostWhereInput {
   @Field(() => UserRelationFilter, { nullable: true, description: undefined })
   anotherAuthor?: UserRelationFilter | null;
   @Type(() => CategoryListRelationFilter)
-  @Field(() => CategoryListRelationFilter, { nullable: true, description: undefined })
+  @Field(() => CategoryListRelationFilter, {
+    nullable: true,
+    description: undefined,
+  })
   categories?: Omit<CategoryListRelationFilter, never> | null;
 }

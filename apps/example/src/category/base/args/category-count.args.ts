@@ -13,15 +13,24 @@ export class CategoryCountArgs {
   @Field(() => CategoryWhereInput, { nullable: true, description: undefined })
   where?: Omit<CategoryWhereInput, never> | null;
   @Type(() => CategoryOrderByWithRelationInput)
-  @Field(() => [CategoryOrderByWithRelationInput], { nullable: true, description: undefined })
+  @Field(() => [CategoryOrderByWithRelationInput], {
+    nullable: true,
+    description: undefined,
+  })
   orderBy?: Array<CategoryOrderByWithRelationInput> | null;
   @Type(() => CategoryWhereUniqueInput)
-  @Field(() => CategoryWhereUniqueInput, { nullable: true, description: undefined })
+  @Field(() => CategoryWhereUniqueInput, {
+    nullable: true,
+    description: undefined,
+  })
   cursor?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
   @Field(() => Int, { nullable: true, description: undefined })
   take?: number | null;
   @Field(() => Int, { nullable: true, description: undefined })
   skip?: number | null;
-  @Field(() => [CategoryScalarFieldEnum], { nullable: true, description: undefined })
+  @Field(() => [CategoryScalarFieldEnum], {
+    nullable: true,
+    description: undefined,
+  })
   distinct?: Array<keyof typeof CategoryScalarFieldEnum> | null;
 }

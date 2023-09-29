@@ -8,13 +8,22 @@ import { DateTimeFilter } from '../../../prisma/base/input/date-time-filter.inpu
 @InputType()
 export class CategoryScalarWhereInput {
   @Type(() => CategoryScalarWhereInput)
-  @Field(() => [CategoryScalarWhereInput], { nullable: true, description: undefined })
+  @Field(() => [CategoryScalarWhereInput], {
+    nullable: true,
+    description: undefined,
+  })
   AND?: Array<CategoryScalarWhereInput> | null;
   @Type(() => CategoryScalarWhereInput)
-  @Field(() => [CategoryScalarWhereInput], { nullable: true, description: undefined })
+  @Field(() => [CategoryScalarWhereInput], {
+    nullable: true,
+    description: undefined,
+  })
   OR?: Array<CategoryScalarWhereInput> | null;
   @Type(() => CategoryScalarWhereInput)
-  @Field(() => [CategoryScalarWhereInput], { nullable: true, description: undefined })
+  @Field(() => [CategoryScalarWhereInput], {
+    nullable: true,
+    description: undefined,
+  })
   NOT?: Array<CategoryScalarWhereInput> | null;
   @Type(() => IntFilter)
   @Field(() => IntFilter, { nullable: true, description: undefined })

@@ -8,10 +8,16 @@ import { UserWhereInput } from './user-where.input';
 @InputType()
 export class UserUpsertWithoutChildrenInput {
   @Type(() => UserUpdateWithoutChildrenInput)
-  @Field(() => UserUpdateWithoutChildrenInput, { nullable: false, description: undefined })
+  @Field(() => UserUpdateWithoutChildrenInput, {
+    nullable: false,
+    description: undefined,
+  })
   update!: UserUpdateWithoutChildrenInput;
   @Type(() => UserCreateWithoutChildrenInput)
-  @Field(() => UserCreateWithoutChildrenInput, { nullable: false, description: undefined })
+  @Field(() => UserCreateWithoutChildrenInput, {
+    nullable: false,
+    description: undefined,
+  })
   create!: UserCreateWithoutChildrenInput;
   @Type(() => UserWhereInput)
   @Field(() => UserWhereInput, { nullable: true, description: undefined })

@@ -45,15 +45,27 @@ export class UserWhereUniqueInput {
   @Field(() => StringFilter, { nullable: true, description: undefined })
   mappedField?: StringFilter | null;
   @Type(() => PostListRelationFilter)
-  @Field(() => PostListRelationFilter, { nullable: true, description: undefined })
+  @Field(() => PostListRelationFilter, {
+    nullable: true,
+    description: undefined,
+  })
   posts?: Omit<PostListRelationFilter, never> | null;
   @Type(() => UserNullableRelationFilter)
-  @Field(() => UserNullableRelationFilter, { nullable: true, description: undefined })
+  @Field(() => UserNullableRelationFilter, {
+    nullable: true,
+    description: undefined,
+  })
   parent?: UserNullableRelationFilter | null;
   @Type(() => UserListRelationFilter)
-  @Field(() => UserListRelationFilter, { nullable: true, description: undefined })
+  @Field(() => UserListRelationFilter, {
+    nullable: true,
+    description: undefined,
+  })
   children?: Omit<UserListRelationFilter, never> | null;
   @Type(() => PostListRelationFilter)
-  @Field(() => PostListRelationFilter, { nullable: true, description: undefined })
+  @Field(() => PostListRelationFilter, {
+    nullable: true,
+    description: undefined,
+  })
   anotherPosts?: Omit<PostListRelationFilter, never> | null;
 }

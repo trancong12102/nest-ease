@@ -19,47 +19,89 @@ import { StandaloneModelUpdatedateTimeListInput } from './standalone-model-updat
 @InputType()
 export class StandaloneModelUpdateInput {
   @Type(() => DateTimeFieldUpdateOperationsInput)
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true, description: undefined })
+  @Field(() => DateTimeFieldUpdateOperationsInput, {
+    nullable: true,
+    description: undefined,
+  })
   createdAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true, description: undefined })
+  @Field(() => DateTimeFieldUpdateOperationsInput, {
+    nullable: true,
+    description: undefined,
+  })
   updatedAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => StringFieldUpdateOperationsInput)
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true, description: undefined })
+  @Field(() => StringFieldUpdateOperationsInput, {
+    nullable: true,
+    description: undefined,
+  })
   name?: StringFieldUpdateOperationsInput | null;
   @Field(() => GraphQLJSON, { nullable: true, description: undefined })
   jsonField?: JsonValue | null;
   @Type(() => StandaloneModelUpdatejsonListInput)
-  @Field(() => StandaloneModelUpdatejsonListInput, { nullable: true, description: undefined })
+  @Field(() => StandaloneModelUpdatejsonListInput, {
+    nullable: true,
+    description: undefined,
+  })
   jsonList?: StandaloneModelUpdatejsonListInput | null;
   @Type(() => StandaloneModelUpdatestringListInput)
-  @Field(() => StandaloneModelUpdatestringListInput, { nullable: true, description: undefined })
+  @Field(() => StandaloneModelUpdatestringListInput, {
+    nullable: true,
+    description: undefined,
+  })
   stringList?: StandaloneModelUpdatestringListInput | null;
   @Type(() => DecimalFieldUpdateOperationsInput)
-  @Field(() => DecimalFieldUpdateOperationsInput, { nullable: true, description: undefined })
+  @Field(() => DecimalFieldUpdateOperationsInput, {
+    nullable: true,
+    description: undefined,
+  })
   decimalField?: DecimalFieldUpdateOperationsInput | null;
   @Type(() => StandaloneModelUpdatedecimalListInput)
-  @Field(() => StandaloneModelUpdatedecimalListInput, { nullable: true, description: undefined })
+  @Field(() => StandaloneModelUpdatedecimalListInput, {
+    nullable: true,
+    description: undefined,
+  })
   decimalList?: StandaloneModelUpdatedecimalListInput | null;
   @Type(() => FloatFieldUpdateOperationsInput)
-  @Field(() => FloatFieldUpdateOperationsInput, { nullable: true, description: undefined })
+  @Field(() => FloatFieldUpdateOperationsInput, {
+    nullable: true,
+    description: undefined,
+  })
   floatField?: FloatFieldUpdateOperationsInput | null;
   @Type(() => BytesFieldUpdateOperationsInput)
-  @Field(() => BytesFieldUpdateOperationsInput, { nullable: true, description: undefined })
+  @Field(() => BytesFieldUpdateOperationsInput, {
+    nullable: true,
+    description: undefined,
+  })
   bytesField?: BytesFieldUpdateOperationsInput | null;
   @Type(() => StandaloneModelUpdatebytesListInput)
-  @Field(() => StandaloneModelUpdatebytesListInput, { nullable: true, description: undefined })
+  @Field(() => StandaloneModelUpdatebytesListInput, {
+    nullable: true,
+    description: undefined,
+  })
   bytesList?: StandaloneModelUpdatebytesListInput | null;
   @Type(() => BigIntFieldUpdateOperationsInput)
-  @Field(() => BigIntFieldUpdateOperationsInput, { nullable: true, description: undefined })
+  @Field(() => BigIntFieldUpdateOperationsInput, {
+    nullable: true,
+    description: undefined,
+  })
   bigIntField?: BigIntFieldUpdateOperationsInput | null;
   @Type(() => StandaloneModelUpdatebigIntListInput)
-  @Field(() => StandaloneModelUpdatebigIntListInput, { nullable: true, description: undefined })
+  @Field(() => StandaloneModelUpdatebigIntListInput, {
+    nullable: true,
+    description: undefined,
+  })
   bigIntList?: StandaloneModelUpdatebigIntListInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true, description: undefined })
+  @Field(() => DateTimeFieldUpdateOperationsInput, {
+    nullable: true,
+    description: undefined,
+  })
   dateTimeField?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => StandaloneModelUpdatedateTimeListInput)
-  @Field(() => StandaloneModelUpdatedateTimeListInput, { nullable: true, description: undefined })
+  @Field(() => StandaloneModelUpdatedateTimeListInput, {
+    nullable: true,
+    description: undefined,
+  })
   dateTimeList?: StandaloneModelUpdatedateTimeListInput | null;
 }

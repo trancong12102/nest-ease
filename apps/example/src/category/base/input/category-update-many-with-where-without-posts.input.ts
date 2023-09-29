@@ -7,9 +7,15 @@ import { CategoryUpdateManyMutationInput } from './category-update-many-mutation
 @InputType()
 export class CategoryUpdateManyWithWhereWithoutPostsInput {
   @Type(() => CategoryScalarWhereInput)
-  @Field(() => CategoryScalarWhereInput, { nullable: false, description: undefined })
+  @Field(() => CategoryScalarWhereInput, {
+    nullable: false,
+    description: undefined,
+  })
   where!: Omit<CategoryScalarWhereInput, never>;
   @Type(() => CategoryUpdateManyMutationInput)
-  @Field(() => CategoryUpdateManyMutationInput, { nullable: false, description: undefined })
+  @Field(() => CategoryUpdateManyMutationInput, {
+    nullable: false,
+    description: undefined,
+  })
   data!: CategoryUpdateManyMutationInput;
 }

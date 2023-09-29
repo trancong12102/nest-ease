@@ -7,7 +7,10 @@ import { PostWhereInput } from '../input/post-where.input';
 @ArgsType()
 export class PostUpdateManyArgs {
   @Type(() => PostUpdateManyMutationInput)
-  @Field(() => PostUpdateManyMutationInput, { nullable: false, description: undefined })
+  @Field(() => PostUpdateManyMutationInput, {
+    nullable: false,
+    description: undefined,
+  })
   data!: PostUpdateManyMutationInput;
   @Type(() => PostWhereInput)
   @Field(() => PostWhereInput, { nullable: true, description: undefined })

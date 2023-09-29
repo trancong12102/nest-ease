@@ -25,6 +25,9 @@ export class NestedStringNullableFilter {
   @Field(() => String, { nullable: true, description: undefined })
   endsWith?: string | null;
   @Type(() => NestedStringNullableFilter)
-  @Field(() => NestedStringNullableFilter, { nullable: true, description: undefined })
+  @Field(() => NestedStringNullableFilter, {
+    nullable: true,
+    description: undefined,
+  })
   not?: NestedStringNullableFilter | null;
 }

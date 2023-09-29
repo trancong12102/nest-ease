@@ -21,12 +21,21 @@ export class PostCreateInput {
   @Field(() => PostKind, { nullable: false, description: undefined })
   postKind!: keyof typeof PostKind;
   @Type(() => UserCreateNestedOneWithoutPostsInput)
-  @Field(() => UserCreateNestedOneWithoutPostsInput, { nullable: false, description: undefined })
+  @Field(() => UserCreateNestedOneWithoutPostsInput, {
+    nullable: false,
+    description: undefined,
+  })
   author!: Omit<UserCreateNestedOneWithoutPostsInput, never>;
   @Type(() => UserCreateNestedOneWithoutAnotherPostsInput)
-  @Field(() => UserCreateNestedOneWithoutAnotherPostsInput, { nullable: false, description: undefined })
+  @Field(() => UserCreateNestedOneWithoutAnotherPostsInput, {
+    nullable: false,
+    description: undefined,
+  })
   anotherAuthor!: Omit<UserCreateNestedOneWithoutAnotherPostsInput, never>;
   @Type(() => CategoryCreateNestedManyWithoutPostsInput)
-  @Field(() => CategoryCreateNestedManyWithoutPostsInput, { nullable: true, description: undefined })
+  @Field(() => CategoryCreateNestedManyWithoutPostsInput, {
+    nullable: true,
+    description: undefined,
+  })
   categories?: Omit<CategoryCreateNestedManyWithoutPostsInput, never> | null;
 }

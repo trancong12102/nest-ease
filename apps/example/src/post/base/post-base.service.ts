@@ -16,8 +16,7 @@ import { CategoryFindManyArgs } from '../../category/base/args/category-find-man
 import { Category } from '../../category/base/model/category.model';
 
 export class PostBaseService {
-  constructor(protected readonly prisma: PrismaService) {
-  }
+  constructor(protected readonly prisma: PrismaService) {}
 
   async create(args: PostCreateArgs): Promise<Post> {
     return this.prisma.client.post.create(args);
@@ -56,38 +55,35 @@ export class PostBaseService {
   }
 
   async resolveAuthor(parent: Post): Promise<User> {
-
     return this.prisma.client.post
-    .findUniqueOrThrow({
-      where: {
-        id: parent.id,
-    }
-    })
-    .author();
-            
+      .findUniqueOrThrow({
+        where: {
+          id: parent.id,
+        },
+      })
+      .author();
   }
 
   async resolveAnotherAuthor(parent: Post): Promise<User> {
-
     return this.prisma.client.post
-    .findUniqueOrThrow({
-      where: {
-        id: parent.id,
-    }
-    })
-    .anotherAuthor();
-            
+      .findUniqueOrThrow({
+        where: {
+          id: parent.id,
+        },
+      })
+      .anotherAuthor();
   }
 
-  async resolveCategories(parent: Post, args: CategoryFindManyArgs): Promise<Array<Category>> {
-
+  async resolveCategories(
+    parent: Post,
+    args: CategoryFindManyArgs,
+  ): Promise<Array<Category>> {
     return this.prisma.client.post
-    .findUniqueOrThrow({
-      where: {
-        id: parent.id,
-    }
-    })
-    .categories(args);
-            
+      .findUniqueOrThrow({
+        where: {
+          id: parent.id,
+        },
+      })
+      .categories(args);
   }
 }

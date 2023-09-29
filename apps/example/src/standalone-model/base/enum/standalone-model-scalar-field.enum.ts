@@ -17,7 +17,11 @@ export enum StandaloneModelScalarFieldEnum {
   bigIntField = 'bigIntField',
   bigIntList = 'bigIntList',
   dateTimeField = 'dateTimeField',
-  dateTimeList = 'dateTimeList'
+  dateTimeList = 'dateTimeList',
 }
 
-registerEnumType(StandaloneModelScalarFieldEnum, { name: 'StandaloneModelScalarFieldEnum', description: undefined, valuesMap: undefined })
+registerEnumType(StandaloneModelScalarFieldEnum, {
+  name: 'StandaloneModelScalarFieldEnum',
+  description: undefined,
+  valuesMap: undefined,
+});

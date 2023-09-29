@@ -7,9 +7,15 @@ import { StandaloneModelWhereInput } from '../input/standalone-model-where.input
 @ArgsType()
 export class StandaloneModelUpdateManyArgs {
   @Type(() => StandaloneModelUpdateManyMutationInput)
-  @Field(() => StandaloneModelUpdateManyMutationInput, { nullable: false, description: undefined })
+  @Field(() => StandaloneModelUpdateManyMutationInput, {
+    nullable: false,
+    description: undefined,
+  })
   data!: StandaloneModelUpdateManyMutationInput;
   @Type(() => StandaloneModelWhereInput)
-  @Field(() => StandaloneModelWhereInput, { nullable: true, description: undefined })
+  @Field(() => StandaloneModelWhereInput, {
+    nullable: true,
+    description: undefined,
+  })
   where?: Omit<StandaloneModelWhereInput, never> | null;
 }

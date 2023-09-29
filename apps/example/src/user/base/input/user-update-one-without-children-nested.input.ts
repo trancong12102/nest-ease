@@ -12,7 +12,10 @@ import { UserUpdateToOneWithWhereWithoutChildrenInput } from './user-update-to-o
 @InputType()
 export class UserUpdateOneWithoutChildrenNestedInput {
   @Type(() => UserCreateWithoutChildrenInput)
-  @Field(() => UserCreateWithoutChildrenInput, { nullable: true, description: undefined })
+  @Field(() => UserCreateWithoutChildrenInput, {
+    nullable: true,
+    description: undefined,
+  })
   create?: UserCreateWithoutChildrenInput | null;
   @Type(() => UserCreateOrConnectWithoutChildrenInput)
   @HideField()
@@ -30,6 +33,9 @@ export class UserUpdateOneWithoutChildrenNestedInput {
   @Field(() => UserWhereUniqueInput, { nullable: true, description: undefined })
   connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
   @Type(() => UserUpdateToOneWithWhereWithoutChildrenInput)
-  @Field(() => UserUpdateToOneWithWhereWithoutChildrenInput, { nullable: true, description: undefined })
+  @Field(() => UserUpdateToOneWithWhereWithoutChildrenInput, {
+    nullable: true,
+    description: undefined,
+  })
   update?: UserUpdateToOneWithWhereWithoutChildrenInput | null;
 }

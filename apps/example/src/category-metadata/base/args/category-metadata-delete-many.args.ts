@@ -6,6 +6,9 @@ import { Type } from 'class-transformer';
 @ArgsType()
 export class CategoryMetadataDeleteManyArgs {
   @Type(() => CategoryMetadataWhereInput)
-  @Field(() => CategoryMetadataWhereInput, { nullable: true, description: undefined })
+  @Field(() => CategoryMetadataWhereInput, {
+    nullable: true,
+    description: undefined,
+  })
   where?: Omit<CategoryMetadataWhereInput, never> | null;
 }

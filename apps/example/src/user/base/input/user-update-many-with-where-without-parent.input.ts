@@ -7,9 +7,15 @@ import { UserUpdateManyMutationInput } from './user-update-many-mutation.input';
 @InputType()
 export class UserUpdateManyWithWhereWithoutParentInput {
   @Type(() => UserScalarWhereInput)
-  @Field(() => UserScalarWhereInput, { nullable: false, description: undefined })
+  @Field(() => UserScalarWhereInput, {
+    nullable: false,
+    description: undefined,
+  })
   where!: Omit<UserScalarWhereInput, never>;
   @Type(() => UserUpdateManyMutationInput)
-  @Field(() => UserUpdateManyMutationInput, { nullable: false, description: undefined })
+  @Field(() => UserUpdateManyMutationInput, {
+    nullable: false,
+    description: undefined,
+  })
   data!: UserUpdateManyMutationInput;
 }

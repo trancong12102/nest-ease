@@ -13,9 +13,18 @@ export class CategoryCreateInput {
   @Field(() => Date, { nullable: true, description: undefined })
   updatedAt?: Date | string | null;
   @Type(() => PostCreateNestedManyWithoutCategoriesInput)
-  @Field(() => PostCreateNestedManyWithoutCategoriesInput, { nullable: true, description: undefined })
+  @Field(() => PostCreateNestedManyWithoutCategoriesInput, {
+    nullable: true,
+    description: undefined,
+  })
   posts?: Omit<PostCreateNestedManyWithoutCategoriesInput, never> | null;
   @Type(() => CategoryMetadataCreateNestedOneWithoutCategoryInput)
-  @Field(() => CategoryMetadataCreateNestedOneWithoutCategoryInput, { nullable: true, description: undefined })
-  metadata?: Omit<CategoryMetadataCreateNestedOneWithoutCategoryInput, never> | null;
+  @Field(() => CategoryMetadataCreateNestedOneWithoutCategoryInput, {
+    nullable: true,
+    description: undefined,
+  })
+  metadata?: Omit<
+    CategoryMetadataCreateNestedOneWithoutCategoryInput,
+    never
+  > | null;
 }

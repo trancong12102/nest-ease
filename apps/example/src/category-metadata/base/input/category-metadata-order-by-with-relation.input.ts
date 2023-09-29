@@ -17,6 +17,9 @@ export class CategoryMetadataOrderByWithRelationInput {
   @Field(() => SortOrder, { nullable: true, description: undefined })
   metadata?: keyof typeof SortOrder | null;
   @Type(() => CategoryOrderByWithRelationInput)
-  @Field(() => CategoryOrderByWithRelationInput, { nullable: true, description: undefined })
+  @Field(() => CategoryOrderByWithRelationInput, {
+    nullable: true,
+    description: undefined,
+  })
   category?: Omit<CategoryOrderByWithRelationInput, never> | null;
 }

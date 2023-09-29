@@ -6,7 +6,10 @@ import { Type } from 'class-transformer';
 @ArgsType()
 export class StandaloneModelCreateManyArgs {
   @Type(() => StandaloneModelCreateManyInput)
-  @Field(() => [StandaloneModelCreateManyInput], { nullable: false, description: undefined })
+  @Field(() => [StandaloneModelCreateManyInput], {
+    nullable: false,
+    description: undefined,
+  })
   data!: Array<StandaloneModelCreateManyInput>;
   @Field(() => Boolean, { nullable: true, description: undefined })
   skipDuplicates?: boolean | null;

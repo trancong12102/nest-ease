@@ -15,51 +15,68 @@ import { StandaloneModelDeleteManyArgs } from './args/standalone-model-delete-ma
 
 @Resolver(() => StandaloneModel)
 export class StandaloneModelBaseResolver {
-  constructor(protected readonly service: StandaloneModelBaseService) {
-  }
+  constructor(protected readonly service: StandaloneModelBaseService) {}
 
   @Mutation(() => StandaloneModel, { nullable: false })
-  async createStandaloneModel(@Args() args: StandaloneModelCreateArgs): Promise<StandaloneModel> {
+  async createStandaloneModel(
+    @Args() args: StandaloneModelCreateArgs,
+  ): Promise<StandaloneModel> {
     return this.service.create(args);
   }
 
   @Mutation(() => StandaloneModel, { nullable: true })
-  async updateStandaloneModel(@Args() args: StandaloneModelUpdateArgs): Promise<StandaloneModel | null> {
+  async updateStandaloneModel(
+    @Args() args: StandaloneModelUpdateArgs,
+  ): Promise<StandaloneModel | null> {
     return this.service.update(args);
   }
 
   @Mutation(() => StandaloneModel, { nullable: true })
-  async deleteStandaloneModel(@Args() args: StandaloneModelDeleteArgs): Promise<StandaloneModel | null> {
+  async deleteStandaloneModel(
+    @Args() args: StandaloneModelDeleteArgs,
+  ): Promise<StandaloneModel | null> {
     return this.service.delete(args);
   }
 
   @Query(() => StandaloneModel, { nullable: true })
-  async standaloneModel(@Args() args: StandaloneModelFindUniqueArgs): Promise<StandaloneModel | null> {
+  async standaloneModel(
+    @Args() args: StandaloneModelFindUniqueArgs,
+  ): Promise<StandaloneModel | null> {
     return this.service.findUnique(args);
   }
 
   @Query(() => Int, { nullable: false })
-  async standaloneModelCount(@Args() args: StandaloneModelCountArgs): Promise<number> {
+  async standaloneModelCount(
+    @Args() args: StandaloneModelCountArgs,
+  ): Promise<number> {
     return this.service.count(args);
   }
 
   @Query(() => [StandaloneModel], { nullable: false })
-  async standaloneModelList(@Args() args: StandaloneModelFindManyArgs): Promise<Array<StandaloneModel>> {
+  async standaloneModelList(
+    @Args() args: StandaloneModelFindManyArgs,
+  ): Promise<Array<StandaloneModel>> {
     return this.service.findMany(args);
   }
 
   @Mutation(() => AffectedRowsOutput, { nullable: false })
-  async createStandaloneModelList(@Args() args: StandaloneModelCreateManyArgs): Promise<AffectedRowsOutput> {
+  async createStandaloneModelList(
+    @Args() args: StandaloneModelCreateManyArgs,
+  ): Promise<AffectedRowsOutput> {
     return this.service.createMany(args);
   }
 
   @Mutation(() => AffectedRowsOutput, { nullable: false })
-  async updateStandaloneModelList(@Args() args: StandaloneModelUpdateManyArgs): Promise<AffectedRowsOutput> {
+  async updateStandaloneModelList(
+    @Args() args: StandaloneModelUpdateManyArgs,
+  ): Promise<AffectedRowsOutput> {
     return this.service.updateMany(args);
   }
 
   @Mutation(() => AffectedRowsOutput, { nullable: false })
-  async deleteStandaloneModelList(@Args() args: StandaloneModelDeleteManyArgs): Promise<AffectedRowsOutput> {
+  async deleteStandaloneModelList(
+    @Args() args: StandaloneModelDeleteManyArgs,
+  ): Promise<AffectedRowsOutput> {
     return this.service.deleteMany(args);
   }
 }

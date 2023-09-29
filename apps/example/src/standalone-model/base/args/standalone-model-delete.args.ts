@@ -7,6 +7,9 @@ import { Prisma } from '../../../@prisma-client';
 @ArgsType()
 export class StandaloneModelDeleteArgs {
   @Type(() => StandaloneModelWhereUniqueInput)
-  @Field(() => StandaloneModelWhereUniqueInput, { nullable: false, description: undefined })
+  @Field(() => StandaloneModelWhereUniqueInput, {
+    nullable: false,
+    description: undefined,
+  })
   where!: Prisma.AtLeast<StandaloneModelWhereUniqueInput, 'id'>;
 }

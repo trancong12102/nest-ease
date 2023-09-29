@@ -14,22 +14,27 @@ import { CategoryMetadataDeleteManyArgs } from './args/category-metadata-delete-
 import { Category } from '../../category/base/model/category.model';
 
 export class CategoryMetadataBaseService {
-  constructor(protected readonly prisma: PrismaService) {
-  }
+  constructor(protected readonly prisma: PrismaService) {}
 
   async create(args: CategoryMetadataCreateArgs): Promise<CategoryMetadata> {
     return this.prisma.client.categoryMetadata.create(args);
   }
 
-  async update(args: CategoryMetadataUpdateArgs): Promise<CategoryMetadata | null> {
+  async update(
+    args: CategoryMetadataUpdateArgs,
+  ): Promise<CategoryMetadata | null> {
     return this.prisma.client.categoryMetadata.update(args);
   }
 
-  async delete(args: CategoryMetadataDeleteArgs): Promise<CategoryMetadata | null> {
+  async delete(
+    args: CategoryMetadataDeleteArgs,
+  ): Promise<CategoryMetadata | null> {
     return this.prisma.client.categoryMetadata.delete(args);
   }
 
-  async findUnique(args: CategoryMetadataFindUniqueArgs): Promise<CategoryMetadata | null> {
+  async findUnique(
+    args: CategoryMetadataFindUniqueArgs,
+  ): Promise<CategoryMetadata | null> {
     return this.prisma.client.categoryMetadata.findUnique(args);
   }
 
@@ -37,31 +42,37 @@ export class CategoryMetadataBaseService {
     return this.prisma.client.categoryMetadata.count(args);
   }
 
-  async findMany(args: CategoryMetadataFindManyArgs): Promise<Array<CategoryMetadata>> {
+  async findMany(
+    args: CategoryMetadataFindManyArgs,
+  ): Promise<Array<CategoryMetadata>> {
     return this.prisma.client.categoryMetadata.findMany(args);
   }
 
-  async createMany(args: CategoryMetadataCreateManyArgs): Promise<AffectedRowsOutput> {
+  async createMany(
+    args: CategoryMetadataCreateManyArgs,
+  ): Promise<AffectedRowsOutput> {
     return this.prisma.client.categoryMetadata.createMany(args);
   }
 
-  async updateMany(args: CategoryMetadataUpdateManyArgs): Promise<AffectedRowsOutput> {
+  async updateMany(
+    args: CategoryMetadataUpdateManyArgs,
+  ): Promise<AffectedRowsOutput> {
     return this.prisma.client.categoryMetadata.updateMany(args);
   }
 
-  async deleteMany(args: CategoryMetadataDeleteManyArgs): Promise<AffectedRowsOutput> {
+  async deleteMany(
+    args: CategoryMetadataDeleteManyArgs,
+  ): Promise<AffectedRowsOutput> {
     return this.prisma.client.categoryMetadata.deleteMany(args);
   }
 
   async resolveCategory(parent: CategoryMetadata): Promise<Category> {
-
     return this.prisma.client.categoryMetadata
-    .findUniqueOrThrow({
-      where: {
-        id: parent.id,
-    }
-    })
-    .category();
-            
+      .findUniqueOrThrow({
+        where: {
+          id: parent.id,
+        },
+      })
+      .category();
   }
 }

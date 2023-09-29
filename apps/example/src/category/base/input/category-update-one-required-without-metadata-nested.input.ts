@@ -11,7 +11,10 @@ import { CategoryUpdateToOneWithWhereWithoutMetadataInput } from './category-upd
 @InputType()
 export class CategoryUpdateOneRequiredWithoutMetadataNestedInput {
   @Type(() => CategoryCreateWithoutMetadataInput)
-  @Field(() => CategoryCreateWithoutMetadataInput, { nullable: true, description: undefined })
+  @Field(() => CategoryCreateWithoutMetadataInput, {
+    nullable: true,
+    description: undefined,
+  })
   create?: CategoryCreateWithoutMetadataInput | null;
   @Type(() => CategoryCreateOrConnectWithoutMetadataInput)
   @HideField()
@@ -20,9 +23,15 @@ export class CategoryUpdateOneRequiredWithoutMetadataNestedInput {
   @HideField()
   upsert?: CategoryUpsertWithoutMetadataInput | null;
   @Type(() => CategoryWhereUniqueInput)
-  @Field(() => CategoryWhereUniqueInput, { nullable: true, description: undefined })
+  @Field(() => CategoryWhereUniqueInput, {
+    nullable: true,
+    description: undefined,
+  })
   connect?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
   @Type(() => CategoryUpdateToOneWithWhereWithoutMetadataInput)
-  @Field(() => CategoryUpdateToOneWithWhereWithoutMetadataInput, { nullable: true, description: undefined })
+  @Field(() => CategoryUpdateToOneWithWhereWithoutMetadataInput, {
+    nullable: true,
+    description: undefined,
+  })
   update?: CategoryUpdateToOneWithWhereWithoutMetadataInput | null;
 }
