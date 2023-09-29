@@ -11,7 +11,7 @@ export function getPropertyType(
     result = result
       .split('|')
       .map((t) => t.trim())
-      .map((t) => `${t}[]`)
+      .map((t) => `Array<${t}>`)
       .join(' | ');
   }
 
