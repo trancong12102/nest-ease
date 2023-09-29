@@ -70,6 +70,7 @@ export class ProjectStructure {
   }
 
   async save() {
+    logger.info('Removing previous base files if exists...');
     await this.removeBaseFiles();
 
     logger.info('Creating and formatting source files...');
