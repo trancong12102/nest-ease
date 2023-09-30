@@ -13,10 +13,7 @@ import { PostScalarWhereInput } from './post-scalar-where.input';
 @InputType()
 export class PostUpdateManyWithoutCategoriesNestedInput {
   @Type(() => PostCreateWithoutCategoriesInput)
-  @Field(() => [PostCreateWithoutCategoriesInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [PostCreateWithoutCategoriesInput], { nullable: true, description: undefined })
   create?: Array<PostCreateWithoutCategoriesInput> | null;
   @Type(() => PostCreateOrConnectWithoutCategoriesInput)
   @HideField()
@@ -28,28 +25,16 @@ export class PostUpdateManyWithoutCategoriesNestedInput {
   @HideField()
   set?: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
   @Type(() => PostWhereUniqueInput)
-  @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [PostWhereUniqueInput], { nullable: true, description: undefined })
   disconnect?: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
   @Type(() => PostWhereUniqueInput)
-  @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [PostWhereUniqueInput], { nullable: true, description: undefined })
   delete?: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
   @Type(() => PostWhereUniqueInput)
-  @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [PostWhereUniqueInput], { nullable: true, description: undefined })
   connect?: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
   @Type(() => PostUpdateWithWhereUniqueWithoutCategoriesInput)
-  @Field(() => [PostUpdateWithWhereUniqueWithoutCategoriesInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [PostUpdateWithWhereUniqueWithoutCategoriesInput], { nullable: true, description: undefined })
   update?: Array<PostUpdateWithWhereUniqueWithoutCategoriesInput> | null;
   @Type(() => PostUpdateManyWithWhereWithoutCategoriesInput)
   @HideField()

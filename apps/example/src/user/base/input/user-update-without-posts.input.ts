@@ -12,53 +12,29 @@ import { PostUpdateManyWithoutAnotherAuthorNestedInput } from '../../../post/bas
 @InputType()
 export class UserUpdateWithoutPostsInput {
   @Type(() => StringFieldUpdateOperationsInput)
-  @Field(() => StringFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true, description: undefined })
   email?: StringFieldUpdateOperationsInput | null;
   @Type(() => NullableStringFieldUpdateOperationsInput)
-  @Field(() => NullableStringFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true, description: undefined })
   name?: NullableStringFieldUpdateOperationsInput | null;
   @Field(() => UserRole, { nullable: true, description: undefined })
   role?: keyof typeof UserRole | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
-  @Field(() => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true, description: undefined })
   createdAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
-  @Field(() => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true, description: undefined })
   updatedAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => StringFieldUpdateOperationsInput)
-  @Field(() => StringFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true, description: undefined })
   mappedField?: StringFieldUpdateOperationsInput | null;
   @Type(() => UserUpdateOneWithoutChildrenNestedInput)
-  @Field(() => UserUpdateOneWithoutChildrenNestedInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => UserUpdateOneWithoutChildrenNestedInput, { nullable: true, description: undefined })
   parent?: UserUpdateOneWithoutChildrenNestedInput | null;
   @Type(() => UserUpdateManyWithoutParentNestedInput)
-  @Field(() => UserUpdateManyWithoutParentNestedInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => UserUpdateManyWithoutParentNestedInput, { nullable: true, description: undefined })
   children?: UserUpdateManyWithoutParentNestedInput | null;
   @Type(() => PostUpdateManyWithoutAnotherAuthorNestedInput)
-  @Field(() => PostUpdateManyWithoutAnotherAuthorNestedInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => PostUpdateManyWithoutAnotherAuthorNestedInput, { nullable: true, description: undefined })
   anotherPosts?: PostUpdateManyWithoutAnotherAuthorNestedInput | null;
 }

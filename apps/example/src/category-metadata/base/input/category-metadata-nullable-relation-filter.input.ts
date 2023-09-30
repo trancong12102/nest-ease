@@ -6,15 +6,9 @@ import { Type } from 'class-transformer';
 @InputType()
 export class CategoryMetadataNullableRelationFilter {
   @Type(() => CategoryMetadataWhereInput)
-  @Field(() => CategoryMetadataWhereInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => CategoryMetadataWhereInput, { nullable: true, description: undefined })
   is?: CategoryMetadataWhereInput | null;
   @Type(() => CategoryMetadataWhereInput)
-  @Field(() => CategoryMetadataWhereInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => CategoryMetadataWhereInput, { nullable: true, description: undefined })
   isNot?: CategoryMetadataWhereInput | null;
 }

@@ -6,10 +6,7 @@ import { Type } from 'class-transformer';
 @InputType()
 export class PostCreateManyAnotherAuthorInputEnvelope {
   @Type(() => PostCreateManyAnotherAuthorInput)
-  @Field(() => [PostCreateManyAnotherAuthorInput], {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => [PostCreateManyAnotherAuthorInput], { nullable: false, description: undefined })
   data!: Array<PostCreateManyAnotherAuthorInput>;
   @Field(() => Boolean, { nullable: true, description: undefined })
   skipDuplicates?: boolean | null;

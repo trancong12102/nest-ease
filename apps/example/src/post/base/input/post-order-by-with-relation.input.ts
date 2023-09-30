@@ -26,21 +26,12 @@ export class PostOrderByWithRelationInput {
   @Field(() => SortOrder, { nullable: true, description: undefined })
   postKind?: keyof typeof SortOrder | null;
   @Type(() => UserOrderByWithRelationInput)
-  @Field(() => UserOrderByWithRelationInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => UserOrderByWithRelationInput, { nullable: true, description: undefined })
   author?: UserOrderByWithRelationInput | null;
   @Type(() => UserOrderByWithRelationInput)
-  @Field(() => UserOrderByWithRelationInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => UserOrderByWithRelationInput, { nullable: true, description: undefined })
   anotherAuthor?: UserOrderByWithRelationInput | null;
   @Type(() => CategoryOrderByRelationAggregateInput)
-  @Field(() => CategoryOrderByRelationAggregateInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => CategoryOrderByRelationAggregateInput, { nullable: true, description: undefined })
   categories?: CategoryOrderByRelationAggregateInput | null;
 }

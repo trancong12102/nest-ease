@@ -21,21 +21,12 @@ export class UserCreateWithoutChildrenInput {
   @Field(() => String, { nullable: false, description: undefined })
   mappedField!: string;
   @Type(() => PostCreateNestedManyWithoutAuthorInput)
-  @Field(() => PostCreateNestedManyWithoutAuthorInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => PostCreateNestedManyWithoutAuthorInput, { nullable: true, description: undefined })
   posts?: PostCreateNestedManyWithoutAuthorInput | null;
   @Type(() => UserCreateNestedOneWithoutChildrenInput)
-  @Field(() => UserCreateNestedOneWithoutChildrenInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => UserCreateNestedOneWithoutChildrenInput, { nullable: true, description: undefined })
   parent?: UserCreateNestedOneWithoutChildrenInput | null;
   @Type(() => PostCreateNestedManyWithoutAnotherAuthorInput)
-  @Field(() => PostCreateNestedManyWithoutAnotherAuthorInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => PostCreateNestedManyWithoutAnotherAuthorInput, { nullable: true, description: undefined })
   anotherPosts?: PostCreateNestedManyWithoutAnotherAuthorInput | null;
 }

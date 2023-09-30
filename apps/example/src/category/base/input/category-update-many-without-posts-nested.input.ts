@@ -13,10 +13,7 @@ import { CategoryScalarWhereInput } from './category-scalar-where.input';
 @InputType()
 export class CategoryUpdateManyWithoutPostsNestedInput {
   @Type(() => CategoryCreateWithoutPostsInput)
-  @Field(() => [CategoryCreateWithoutPostsInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [CategoryCreateWithoutPostsInput], { nullable: true, description: undefined })
   create?: Array<CategoryCreateWithoutPostsInput> | null;
   @Type(() => CategoryCreateOrConnectWithoutPostsInput)
   @HideField()
@@ -28,28 +25,16 @@ export class CategoryUpdateManyWithoutPostsNestedInput {
   @HideField()
   set?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
   @Type(() => CategoryWhereUniqueInput)
-  @Field(() => [CategoryWhereUniqueInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [CategoryWhereUniqueInput], { nullable: true, description: undefined })
   disconnect?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
   @Type(() => CategoryWhereUniqueInput)
-  @Field(() => [CategoryWhereUniqueInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [CategoryWhereUniqueInput], { nullable: true, description: undefined })
   delete?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
   @Type(() => CategoryWhereUniqueInput)
-  @Field(() => [CategoryWhereUniqueInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [CategoryWhereUniqueInput], { nullable: true, description: undefined })
   connect?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
   @Type(() => CategoryUpdateWithWhereUniqueWithoutPostsInput)
-  @Field(() => [CategoryUpdateWithWhereUniqueWithoutPostsInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [CategoryUpdateWithWhereUniqueWithoutPostsInput], { nullable: true, description: undefined })
   update?: Array<CategoryUpdateWithWhereUniqueWithoutPostsInput> | null;
   @Type(() => CategoryUpdateManyWithWhereWithoutPostsInput)
   @HideField()

@@ -7,10 +7,7 @@ import { UserWhereInput } from '../input/user-where.input';
 @ArgsType()
 export class UserUpdateManyArgs {
   @Type(() => UserUpdateManyMutationInput)
-  @Field(() => UserUpdateManyMutationInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => UserUpdateManyMutationInput, { nullable: false, description: undefined })
   data!: UserUpdateManyMutationInput;
   @Type(() => UserWhereInput)
   @Field(() => UserWhereInput, { nullable: true, description: undefined })

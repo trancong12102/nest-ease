@@ -8,15 +8,9 @@ import { UserUpdateWithoutParentInput } from './user-update-without-parent.input
 @InputType()
 export class UserUpdateWithWhereUniqueWithoutParentInput {
   @Type(() => UserWhereUniqueInput)
-  @Field(() => UserWhereUniqueInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => UserWhereUniqueInput, { nullable: false, description: undefined })
   where!: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
   @Type(() => UserUpdateWithoutParentInput)
-  @Field(() => UserUpdateWithoutParentInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => UserUpdateWithoutParentInput, { nullable: false, description: undefined })
   data!: UserUpdateWithoutParentInput;
 }

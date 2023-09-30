@@ -15,7 +15,8 @@ import { PostFindManyArgs } from '../../post/base/args/post-find-many.args';
 import { Post } from '../../post/base/model/post.model';
 
 export class UserBaseService {
-  constructor(protected readonly prisma: PrismaService) {}
+  constructor(protected readonly prisma: PrismaService) {
+  }
 
   async create(args: UserCreateArgs): Promise<User> {
     return this.prisma.client.user.create(args);
@@ -53,10 +54,7 @@ export class UserBaseService {
     return this.prisma.client.user.deleteMany(args);
   }
 
-  async resolvePosts(
-    parent: User,
-    args: PostFindManyArgs,
-  ): Promise<Array<Post>> {
+  async resolvePosts(parent: User, args: PostFindManyArgs): Promise<Array<Post>> {
     return this.prisma.client.user
       .findUniqueOrThrow({
         where: {
@@ -76,10 +74,7 @@ export class UserBaseService {
       .parent();
   }
 
-  async resolveChildren(
-    parent: User,
-    args: UserFindManyArgs,
-  ): Promise<Array<User>> {
+  async resolveChildren(parent: User, args: UserFindManyArgs): Promise<Array<User>> {
     return this.prisma.client.user
       .findUniqueOrThrow({
         where: {
@@ -89,10 +84,7 @@ export class UserBaseService {
       .children(args);
   }
 
-  async resolveAnotherPosts(
-    parent: User,
-    args: PostFindManyArgs,
-  ): Promise<Array<Post>> {
+  async resolveAnotherPosts(parent: User, args: PostFindManyArgs): Promise<Array<Post>> {
     return this.prisma.client.user
       .findUniqueOrThrow({
         where: {

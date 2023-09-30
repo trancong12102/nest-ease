@@ -13,10 +13,7 @@ export class PostFindManyArgs {
   @Field(() => PostWhereInput, { nullable: true, description: undefined })
   where?: PostWhereInput | null;
   @Type(() => PostOrderByWithRelationInput)
-  @Field(() => [PostOrderByWithRelationInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [PostOrderByWithRelationInput], { nullable: true, description: undefined })
   orderBy?: Array<PostOrderByWithRelationInput> | null;
   @Type(() => PostWhereUniqueInput)
   @Field(() => PostWhereUniqueInput, { nullable: true, description: undefined })
@@ -25,9 +22,6 @@ export class PostFindManyArgs {
   take?: number | null;
   @Field(() => Int, { nullable: true, description: undefined })
   skip?: number | null;
-  @Field(() => [PostScalarFieldEnum], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [PostScalarFieldEnum], { nullable: true, description: undefined })
   distinct?: Array<keyof typeof PostScalarFieldEnum> | null;
 }

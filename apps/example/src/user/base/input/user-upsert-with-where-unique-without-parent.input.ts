@@ -9,21 +9,12 @@ import { UserCreateWithoutParentInput } from './user-create-without-parent.input
 @InputType()
 export class UserUpsertWithWhereUniqueWithoutParentInput {
   @Type(() => UserWhereUniqueInput)
-  @Field(() => UserWhereUniqueInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => UserWhereUniqueInput, { nullable: false, description: undefined })
   where!: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
   @Type(() => UserUpdateWithoutParentInput)
-  @Field(() => UserUpdateWithoutParentInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => UserUpdateWithoutParentInput, { nullable: false, description: undefined })
   update!: UserUpdateWithoutParentInput;
   @Type(() => UserCreateWithoutParentInput)
-  @Field(() => UserCreateWithoutParentInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => UserCreateWithoutParentInput, { nullable: false, description: undefined })
   create!: UserCreateWithoutParentInput;
 }

@@ -6,9 +6,6 @@ import { Type } from 'class-transformer';
 @ArgsType()
 export class StandaloneModelCreateArgs {
   @Type(() => StandaloneModelCreateInput)
-  @Field(() => StandaloneModelCreateInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => StandaloneModelCreateInput, { nullable: false, description: undefined })
   data!: StandaloneModelCreateInput;
 }

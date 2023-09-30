@@ -8,15 +8,9 @@ import { CategoryCreateWithoutMetadataInput } from './category-create-without-me
 @InputType()
 export class CategoryCreateOrConnectWithoutMetadataInput {
   @Type(() => CategoryWhereUniqueInput)
-  @Field(() => CategoryWhereUniqueInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => CategoryWhereUniqueInput, { nullable: false, description: undefined })
   where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
   @Type(() => CategoryCreateWithoutMetadataInput)
-  @Field(() => CategoryCreateWithoutMetadataInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => CategoryCreateWithoutMetadataInput, { nullable: false, description: undefined })
   create!: CategoryCreateWithoutMetadataInput;
 }

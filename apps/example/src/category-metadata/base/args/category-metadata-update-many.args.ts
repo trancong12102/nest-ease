@@ -7,15 +7,9 @@ import { CategoryMetadataWhereInput } from '../input/category-metadata-where.inp
 @ArgsType()
 export class CategoryMetadataUpdateManyArgs {
   @Type(() => CategoryMetadataUpdateManyMutationInput)
-  @Field(() => CategoryMetadataUpdateManyMutationInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => CategoryMetadataUpdateManyMutationInput, { nullable: false, description: undefined })
   data!: CategoryMetadataUpdateManyMutationInput;
   @Type(() => CategoryMetadataWhereInput)
-  @Field(() => CategoryMetadataWhereInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => CategoryMetadataWhereInput, { nullable: true, description: undefined })
   where?: CategoryMetadataWhereInput | null;
 }

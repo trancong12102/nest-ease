@@ -3,11 +3,7 @@ import { registerEnumType } from '@nestjs/graphql';
 
 export enum PostKind {
   BLOG = 'BLOG',
-  ADVERT = 'ADVERT',
+  ADVERT = 'ADVERT'
 }
 
-registerEnumType(PostKind, {
-  name: 'PostKind',
-  description: undefined,
-  valuesMap: { BLOG: {}, ADVERT: {} },
-});
+registerEnumType(PostKind, { name: 'PostKind', description: undefined, valuesMap: {"BLOG":{},"ADVERT":{}} })

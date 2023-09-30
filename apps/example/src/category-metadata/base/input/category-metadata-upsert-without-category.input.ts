@@ -8,21 +8,12 @@ import { CategoryMetadataWhereInput } from './category-metadata-where.input';
 @InputType()
 export class CategoryMetadataUpsertWithoutCategoryInput {
   @Type(() => CategoryMetadataUpdateWithoutCategoryInput)
-  @Field(() => CategoryMetadataUpdateWithoutCategoryInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => CategoryMetadataUpdateWithoutCategoryInput, { nullable: false, description: undefined })
   update!: CategoryMetadataUpdateWithoutCategoryInput;
   @Type(() => CategoryMetadataCreateWithoutCategoryInput)
-  @Field(() => CategoryMetadataCreateWithoutCategoryInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => CategoryMetadataCreateWithoutCategoryInput, { nullable: false, description: undefined })
   create!: CategoryMetadataCreateWithoutCategoryInput;
   @Type(() => CategoryMetadataWhereInput)
-  @Field(() => CategoryMetadataWhereInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => CategoryMetadataWhereInput, { nullable: true, description: undefined })
   where?: CategoryMetadataWhereInput | null;
 }

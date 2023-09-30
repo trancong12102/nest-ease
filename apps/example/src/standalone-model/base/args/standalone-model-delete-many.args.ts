@@ -6,9 +6,6 @@ import { Type } from 'class-transformer';
 @ArgsType()
 export class StandaloneModelDeleteManyArgs {
   @Type(() => StandaloneModelWhereInput)
-  @Field(() => StandaloneModelWhereInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => StandaloneModelWhereInput, { nullable: true, description: undefined })
   where?: StandaloneModelWhereInput | null;
 }

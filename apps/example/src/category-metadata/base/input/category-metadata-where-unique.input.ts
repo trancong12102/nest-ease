@@ -13,22 +13,13 @@ export class CategoryMetadataWhereUniqueInput {
   @Field(() => Int, { nullable: true, description: undefined })
   categoryId?: number | null;
   @Type(() => CategoryMetadataWhereInput)
-  @Field(() => [CategoryMetadataWhereInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [CategoryMetadataWhereInput], { nullable: true, description: undefined })
   AND?: Array<CategoryMetadataWhereInput> | null;
   @Type(() => CategoryMetadataWhereInput)
-  @Field(() => [CategoryMetadataWhereInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [CategoryMetadataWhereInput], { nullable: true, description: undefined })
   OR?: Array<CategoryMetadataWhereInput> | null;
   @Type(() => CategoryMetadataWhereInput)
-  @Field(() => [CategoryMetadataWhereInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [CategoryMetadataWhereInput], { nullable: true, description: undefined })
   NOT?: Array<CategoryMetadataWhereInput> | null;
   @Type(() => DateTimeFilter)
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
@@ -37,15 +28,9 @@ export class CategoryMetadataWhereUniqueInput {
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
   updatedAt?: DateTimeFilter | null;
   @Type(() => JsonNullableListFilter)
-  @Field(() => JsonNullableListFilter, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => JsonNullableListFilter, { nullable: true, description: undefined })
   metadata?: JsonNullableListFilter | null;
   @Type(() => CategoryRelationFilter)
-  @Field(() => CategoryRelationFilter, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => CategoryRelationFilter, { nullable: true, description: undefined })
   category?: CategoryRelationFilter | null;
 }

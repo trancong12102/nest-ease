@@ -7,21 +7,12 @@ import { CategoryMetadataUpdatemetadataInput } from './category-metadata-updatem
 @InputType()
 export class CategoryMetadataUpdateWithoutCategoryInput {
   @Type(() => DateTimeFieldUpdateOperationsInput)
-  @Field(() => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true, description: undefined })
   createdAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
-  @Field(() => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true, description: undefined })
   updatedAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => CategoryMetadataUpdatemetadataInput)
-  @Field(() => CategoryMetadataUpdatemetadataInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => CategoryMetadataUpdatemetadataInput, { nullable: true, description: undefined })
   metadata?: CategoryMetadataUpdatemetadataInput | null;
 }

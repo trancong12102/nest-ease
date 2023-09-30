@@ -9,35 +9,20 @@ import { DateTimeFieldUpdateOperationsInput } from '../../../prisma/base/input/d
 @InputType()
 export class UserUpdateManyMutationInput {
   @Type(() => StringFieldUpdateOperationsInput)
-  @Field(() => StringFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true, description: undefined })
   email?: StringFieldUpdateOperationsInput | null;
   @Type(() => NullableStringFieldUpdateOperationsInput)
-  @Field(() => NullableStringFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true, description: undefined })
   name?: NullableStringFieldUpdateOperationsInput | null;
   @Field(() => UserRole, { nullable: true, description: undefined })
   role?: keyof typeof UserRole | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
-  @Field(() => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true, description: undefined })
   createdAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
-  @Field(() => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true, description: undefined })
   updatedAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => StringFieldUpdateOperationsInput)
-  @Field(() => StringFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true, description: undefined })
   mappedField?: StringFieldUpdateOperationsInput | null;
 }

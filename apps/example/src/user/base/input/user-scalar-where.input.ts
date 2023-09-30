@@ -11,22 +11,13 @@ import { IntNullableFilter } from '../../../prisma/base/input/int-nullable-filte
 @InputType()
 export class UserScalarWhereInput {
   @Type(() => UserScalarWhereInput)
-  @Field(() => [UserScalarWhereInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [UserScalarWhereInput], { nullable: true, description: undefined })
   AND?: Array<UserScalarWhereInput> | null;
   @Type(() => UserScalarWhereInput)
-  @Field(() => [UserScalarWhereInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [UserScalarWhereInput], { nullable: true, description: undefined })
   OR?: Array<UserScalarWhereInput> | null;
   @Type(() => UserScalarWhereInput)
-  @Field(() => [UserScalarWhereInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [UserScalarWhereInput], { nullable: true, description: undefined })
   NOT?: Array<UserScalarWhereInput> | null;
   @Type(() => IntFilter)
   @Field(() => IntFilter, { nullable: true, description: undefined })

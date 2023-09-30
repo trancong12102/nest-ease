@@ -12,9 +12,6 @@ export class CategoryCreateWithoutPostsInput {
   @Field(() => Date, { nullable: true, description: undefined })
   updatedAt?: Date | string | null;
   @Type(() => CategoryMetadataCreateNestedOneWithoutCategoryInput)
-  @Field(() => CategoryMetadataCreateNestedOneWithoutCategoryInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => CategoryMetadataCreateNestedOneWithoutCategoryInput, { nullable: true, description: undefined })
   metadata?: CategoryMetadataCreateNestedOneWithoutCategoryInput | null;
 }

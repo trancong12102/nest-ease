@@ -20,15 +20,9 @@ export class PostCreateWithoutAnotherAuthorInput {
   @Field(() => PostKind, { nullable: false, description: undefined })
   postKind!: keyof typeof PostKind;
   @Type(() => UserCreateNestedOneWithoutPostsInput)
-  @Field(() => UserCreateNestedOneWithoutPostsInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => UserCreateNestedOneWithoutPostsInput, { nullable: false, description: undefined })
   author!: UserCreateNestedOneWithoutPostsInput;
   @Type(() => CategoryCreateNestedManyWithoutPostsInput)
-  @Field(() => CategoryCreateNestedManyWithoutPostsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => CategoryCreateNestedManyWithoutPostsInput, { nullable: true, description: undefined })
   categories?: CategoryCreateNestedManyWithoutPostsInput | null;
 }

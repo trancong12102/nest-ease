@@ -10,10 +10,7 @@ import { Prisma } from '../../../@prisma-client';
 @InputType()
 export class PostCreateNestedManyWithoutAuthorInput {
   @Type(() => PostCreateWithoutAuthorInput)
-  @Field(() => [PostCreateWithoutAuthorInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [PostCreateWithoutAuthorInput], { nullable: true, description: undefined })
   create?: Array<PostCreateWithoutAuthorInput> | null;
   @Type(() => PostCreateOrConnectWithoutAuthorInput)
   @HideField()
@@ -22,9 +19,6 @@ export class PostCreateNestedManyWithoutAuthorInput {
   @HideField()
   createMany?: PostCreateManyAuthorInputEnvelope | null;
   @Type(() => PostWhereUniqueInput)
-  @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [PostWhereUniqueInput], { nullable: true, description: undefined })
   connect?: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
 }

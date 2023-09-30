@@ -12,47 +12,26 @@ import { UserUpdateOneRequiredWithoutAnotherPostsNestedInput } from '../../../us
 @InputType()
 export class PostUpdateWithoutCategoriesInput {
   @Type(() => StringFieldUpdateOperationsInput)
-  @Field(() => StringFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true, description: undefined })
   title?: StringFieldUpdateOperationsInput | null;
   @Type(() => NullableStringFieldUpdateOperationsInput)
-  @Field(() => NullableStringFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true, description: undefined })
   content?: NullableStringFieldUpdateOperationsInput | null;
   @Type(() => BoolFieldUpdateOperationsInput)
-  @Field(() => BoolFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => BoolFieldUpdateOperationsInput, { nullable: true, description: undefined })
   published?: BoolFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
-  @Field(() => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true, description: undefined })
   createdAt?: DateTimeFieldUpdateOperationsInput | null;
   @Type(() => DateTimeFieldUpdateOperationsInput)
-  @Field(() => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true, description: undefined })
   updatedAt?: DateTimeFieldUpdateOperationsInput | null;
   @Field(() => PostKind, { nullable: true, description: undefined })
   postKind?: keyof typeof PostKind | null;
   @Type(() => UserUpdateOneRequiredWithoutPostsNestedInput)
-  @Field(() => UserUpdateOneRequiredWithoutPostsNestedInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => UserUpdateOneRequiredWithoutPostsNestedInput, { nullable: true, description: undefined })
   author?: UserUpdateOneRequiredWithoutPostsNestedInput | null;
   @Type(() => UserUpdateOneRequiredWithoutAnotherPostsNestedInput)
-  @Field(() => UserUpdateOneRequiredWithoutAnotherPostsNestedInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => UserUpdateOneRequiredWithoutAnotherPostsNestedInput, { nullable: true, description: undefined })
   anotherAuthor?: UserUpdateOneRequiredWithoutAnotherPostsNestedInput | null;
 }

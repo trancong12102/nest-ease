@@ -28,15 +28,9 @@ export class CategoryWhereUniqueInput {
   @Field(() => DateTimeFilter, { nullable: true, description: undefined })
   updatedAt?: DateTimeFilter | null;
   @Type(() => PostListRelationFilter)
-  @Field(() => PostListRelationFilter, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => PostListRelationFilter, { nullable: true, description: undefined })
   posts?: PostListRelationFilter | null;
   @Type(() => CategoryMetadataNullableRelationFilter)
-  @Field(() => CategoryMetadataNullableRelationFilter, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => CategoryMetadataNullableRelationFilter, { nullable: true, description: undefined })
   metadata?: CategoryMetadataNullableRelationFilter | null;
 }

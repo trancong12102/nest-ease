@@ -10,9 +10,6 @@ export class UserUpdateToOneWithWhereWithoutChildrenInput {
   @Field(() => UserWhereInput, { nullable: true, description: undefined })
   where?: UserWhereInput | null;
   @Type(() => UserUpdateWithoutChildrenInput)
-  @Field(() => UserUpdateWithoutChildrenInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => UserUpdateWithoutChildrenInput, { nullable: false, description: undefined })
   data!: UserUpdateWithoutChildrenInput;
 }

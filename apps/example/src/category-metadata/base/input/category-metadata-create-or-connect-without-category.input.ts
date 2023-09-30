@@ -8,15 +8,9 @@ import { CategoryMetadataCreateWithoutCategoryInput } from './category-metadata-
 @InputType()
 export class CategoryMetadataCreateOrConnectWithoutCategoryInput {
   @Type(() => CategoryMetadataWhereUniqueInput)
-  @Field(() => CategoryMetadataWhereUniqueInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => CategoryMetadataWhereUniqueInput, { nullable: false, description: undefined })
   where!: Prisma.AtLeast<CategoryMetadataWhereUniqueInput, 'id' | 'categoryId'>;
   @Type(() => CategoryMetadataCreateWithoutCategoryInput)
-  @Field(() => CategoryMetadataCreateWithoutCategoryInput, {
-    nullable: false,
-    description: undefined,
-  })
+  @Field(() => CategoryMetadataCreateWithoutCategoryInput, { nullable: false, description: undefined })
   create!: CategoryMetadataCreateWithoutCategoryInput;
 }

@@ -10,30 +10,18 @@ import { StandaloneModelScalarFieldEnum } from '../enum/standalone-model-scalar-
 @ArgsType()
 export class StandaloneModelFindManyArgs {
   @Type(() => StandaloneModelWhereInput)
-  @Field(() => StandaloneModelWhereInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => StandaloneModelWhereInput, { nullable: true, description: undefined })
   where?: StandaloneModelWhereInput | null;
   @Type(() => StandaloneModelOrderByWithRelationInput)
-  @Field(() => [StandaloneModelOrderByWithRelationInput], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [StandaloneModelOrderByWithRelationInput], { nullable: true, description: undefined })
   orderBy?: Array<StandaloneModelOrderByWithRelationInput> | null;
   @Type(() => StandaloneModelWhereUniqueInput)
-  @Field(() => StandaloneModelWhereUniqueInput, {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => StandaloneModelWhereUniqueInput, { nullable: true, description: undefined })
   cursor?: Prisma.AtLeast<StandaloneModelWhereUniqueInput, 'id'>;
   @Field(() => Int, { nullable: true, description: undefined })
   take?: number | null;
   @Field(() => Int, { nullable: true, description: undefined })
   skip?: number | null;
-  @Field(() => [StandaloneModelScalarFieldEnum], {
-    nullable: true,
-    description: undefined,
-  })
+  @Field(() => [StandaloneModelScalarFieldEnum], { nullable: true, description: undefined })
   distinct?: Array<keyof typeof StandaloneModelScalarFieldEnum> | null;
 }
