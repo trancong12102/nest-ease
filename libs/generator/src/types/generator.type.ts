@@ -5,7 +5,7 @@ import {
 } from 'ts-morph';
 import { GeneratorConfig } from '../config';
 import { FieldLocation, FieldNamespace } from './dmmf.type';
-export { GeneratorOptions as PrismaGeneratorOptions } from '@prisma/generator-helper';
+export { type GeneratorOptions as PrismaGeneratorOptions } from '@prisma/generator-helper';
 
 export type GeneratorOptions = {
   dmmf: InternalDmmf;

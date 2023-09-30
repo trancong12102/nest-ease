@@ -1,1 +1,1 @@
-export { GeneratorConfig } from './config';
+export { type GeneratorConfig } from './config';
