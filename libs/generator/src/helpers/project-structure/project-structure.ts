@@ -8,13 +8,7 @@ import {
 import path from 'path';
 import { remove } from 'fs-extra';
 import { logger } from '../../utils/logger';
-import { uniq } from 'ramda';
 import { formatFile } from '../../utils/format-file';
-import { getSourceFileName } from '../path/get-source-file-name';
-import { getModuleFileClassName } from '../path/get-module-file-class-name';
-import { ROOT_MODULE } from '../../generator/generate-root-module';
-
-const BASE_PATH_REGEX = /\/base\/.+$/;
 
 export class ProjectStructure {
   private readonly _projectStructure: Record<string, SourceFileStructure> = {};
@@ -50,33 +44,12 @@ export class ProjectStructure {
     };
   }
 
-  async removeBaseFiles() {
-    const basePaths = uniq(
-      Object.keys(this._projectStructure)
-        .filter(
-          (p) =>
-            BASE_PATH_REGEX.test(p) ||
-            p.includes(
-              getSourceFileName(
-                getModuleFileClassName(ROOT_MODULE, 'Module'),
-                'Module',
-              ),
-            ),
-        )
-        .map((p) => p.replace(BASE_PATH_REGEX, '/base')),
-    );
-
-    await Promise.all(basePaths.map(async (p) => remove(p)));
-  }
-
   async save() {
-    logger.info('Removing previous base files if exists...');
-    await this.removeBaseFiles();
-
     logger.info('Creating and formatting source files...');
     for (const [filePath, structure] of Object.entries(
       this._projectStructure,
     )) {
+      await remove(filePath);
       const sourceFile = this.project.createSourceFile(filePath, structure);
       sourceFile.replaceWithText(
         await formatFile(filePath, sourceFile.getFullText()),
