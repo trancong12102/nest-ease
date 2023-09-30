@@ -2,6 +2,7 @@ import {
   ClassDeclarationStructure,
   ImportDeclarationStructure,
   StructureKind,
+  WriterFunction,
 } from 'ts-morph';
 import { GeneratorOptions } from '../types/generator.type';
 import { generateModelModule } from './generate-model-module';
@@ -43,13 +44,13 @@ export async function generateRootModule(
     {
       kind: StructureKind.ImportDeclaration,
       moduleSpecifier: '@nestjs/common',
-      namedImports: ['Module'],
+      namedImports: ['Module', 'ModuleMetadata'],
     },
   ];
 
   const modelClassnames = modelMappings
     .map(({ model: { name } }) => getModuleFileClassName(name, 'Module'))
-    .join(', ');
+    .join(',\n');
 
   for (const modelMapping of modelMappings) {
     const {
@@ -74,6 +75,26 @@ export async function generateRootModule(
     });
   }
 
+  const modulesVariableDeclarationStructure: WriterFunction = (writer) => {
+    writer
+      .blankLine()
+      .write(`const modules: ModuleMetadata['imports'] = [\n`)
+      .indent(() => writer.write(modelClassnames).write(','))
+      .write('];');
+  };
+
+  const moduleMetadataVariableDeclarationStructure: WriterFunction = (
+    writer,
+  ) => {
+    writer
+      .blankLine()
+      .write('const metadata: ModuleMetadata = ')
+      .inlineBlock(() => {
+        writer.writeLine(`imports: modules,`);
+        writer.writeLine(`exports: modules,`);
+      });
+  };
+
   const classDeclaration: ClassDeclarationStructure = {
     kind: StructureKind.Class,
     name: className,
@@ -82,21 +103,20 @@ export async function generateRootModule(
       {
         kind: StructureKind.Decorator,
         name: 'Module',
-        arguments: [
-          (writer) => {
-            writer.block(() => {
-              writer.writeLine(`imports: [${modelClassnames}],`);
-              writer.writeLine(`exports: [${modelClassnames}],`);
-            });
-          },
-        ],
+        arguments: ['metadata'],
       },
     ],
   };
 
   project.setSourceFile(sourceFilePath, {
     kind: StructureKind.SourceFile,
-    statements: [GENERATED_WARNING_COMMENT, ...imports, classDeclaration],
+    statements: [
+      GENERATED_WARNING_COMMENT,
+      ...imports,
+      modulesVariableDeclarationStructure,
+      moduleMetadataVariableDeclarationStructure,
+      classDeclaration,
+    ],
   });
 }
 
