@@ -172,15 +172,14 @@ export function generateModelBaseService(
       returnType: propertyType,
       isAsync: true,
       statements: [
-        (writer) => {
-          writer.writeLine(`
-return this.prisma.client.${modelDelegateName}
-.findUniqueOrThrow({
-  where: ${getResolveParentWhereStatement(model)}
-})
-.${name}(${isList ? 'args' : ''});
-        `);
-        },
+        (writer) =>
+          writeResolveRelationStatement(
+            writer,
+            model,
+            modelDelegateName,
+            name,
+            isList,
+          ),
       ],
     });
   }
@@ -216,33 +215,55 @@ return this.prisma.client.${modelDelegateName}
   });
 }
 
-function getResolveParentWhereStatement(model: Model) {
+function writeResolveRelationStatement(
+  writer: CodeBlockWriter,
+  model: Model,
+  modelDelegateName: string,
+  resolverFieldName: string,
+  isList: boolean,
+) {
+  writer
+    .writeLine(`return this.prisma.client.${modelDelegateName}`)
+    .indent(() => {
+      writer
+        .write('.findUniqueOrThrow(')
+        .inlineBlock(() => {
+          writer
+            .write('where: ')
+            .inlineBlock(() =>
+              writeResolveRelationWhereStatement(writer, model),
+            )
+            .write(',');
+        })
+        .write(')')
+        .writeLine(`.${resolverFieldName}(${isList ? 'args' : ''});`);
+    });
+}
+
+function writeResolveRelationWhereStatement(
+  writer: CodeBlockWriter,
+  model: Model,
+) {
   const { primaryKey, fields } = model;
-  const writer = new CodeBlockWriter();
 
   if (primaryKey) {
     const compoundField = getCompoundFieldName(primaryKey);
 
-    writer.block(() => {
-      writer.write(`${compoundField}: `);
-      writer.block(() => {
+    writer
+      .write(`${compoundField}: `)
+      .inlineBlock(() => {
         for (const field of fields) {
           writer.writeLine(`${field.name}: parent.${field.name},`);
         }
-      });
-    });
+      })
+      .write(',');
 
-    return writer.toString();
+    return;
   }
 
   const idField = fields.find((f) => f.isId);
   if (!idField) {
     throw new Error(`Cannot find id field ${model.name}`);
   }
-
-  writer.block(() => {
-    writer.writeLine(`${idField.name}: parent.${idField.name},`);
-  });
-
-  return writer.toString();
+  writer.writeLine(`${idField.name}: parent.${idField.name},`);
 }
